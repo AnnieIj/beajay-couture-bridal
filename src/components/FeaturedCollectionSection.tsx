@@ -6,11 +6,13 @@ import { ActiveModal, GownItem } from '../types';
 interface FeaturedCollectionSectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
   onSelectGown: (gown: GownItem) => void;
+  onNavigateCollections?: (category?: string) => void;
 }
 
 export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps> = ({
   onOpenModal,
-  onSelectGown
+  onSelectGown,
+  onNavigateCollections
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -25,7 +27,11 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
   };
 
   const handleCategoryClick = (categorySlug: string) => {
-    onOpenModal('collections', { defaultCategory: categorySlug });
+    if (onNavigateCollections) {
+      onNavigateCollections(categorySlug);
+    } else {
+      onOpenModal('collections', { defaultCategory: categorySlug });
+    }
   };
 
   return (
@@ -50,7 +56,13 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
           {/* View All CTA & Controls */}
           <div className="flex items-center gap-6">
             <button
-              onClick={() => onOpenModal('collections')}
+              onClick={() => {
+                if (onNavigateCollections) {
+                  onNavigateCollections();
+                } else {
+                  onOpenModal('collections');
+                }
+              }}
               className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.2em] uppercase text-[#111111] hover:text-[#C59B3F] transition-colors cursor-pointer"
             >
               <span>VIEW ALL</span>

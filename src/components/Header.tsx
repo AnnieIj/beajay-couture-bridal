@@ -12,12 +12,14 @@ interface HeaderProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
   activeView: string;
   onNavigateHome: () => void;
+  onNavigateCollections?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenModal,
   activeView,
-  onNavigateHome
+  onNavigateHome,
+  onNavigateCollections
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,14 +35,31 @@ export const Header: React.FC<HeaderProps> = ({
   const handleNavClick = (sectionId: string, modalType?: ActiveModal) => {
     setMobileMenuOpen(false);
 
+    if (sectionId === 'home') {
+      onNavigateHome();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (modalType === 'collections' && onNavigateCollections) {
+      onNavigateCollections();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (modalType) {
       onOpenModal(modalType);
       return;
     }
 
-    if (sectionId === 'home') {
+    if (activeView !== 'home') {
       onNavigateHome();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
       return;
     }
 
@@ -94,7 +113,9 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Collections */}
             <button 
               onClick={() => handleNavClick('featured-collections', 'collections')}
-              className="py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
+              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
+                activeView === 'collections' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
               Collections
             </button>

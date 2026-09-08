@@ -10,9 +10,14 @@ import { ActiveModal } from '../types';
 interface FooterProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
   onNavigateHome: () => void;
+  onNavigateCollections?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenModal, onNavigateHome }) => {
+export const Footer: React.FC<FooterProps> = ({ 
+  onOpenModal, 
+  onNavigateHome,
+  onNavigateCollections 
+}) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -71,7 +76,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal, onNavigateHome }) =
               </li>
               <li>
                 <button 
-                  onClick={() => onOpenModal('collections')}
+                  onClick={() => {
+                    if (onNavigateCollections) {
+                      onNavigateCollections();
+                    } else {
+                      onOpenModal('collections');
+                    }
+                  }}
                   className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
                 >
                   Collections

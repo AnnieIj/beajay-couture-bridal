@@ -1,21 +1,34 @@
+export type GownCategory = 'ball-gown' | 'mermaid' | 'a-line' | 'sheath' | 'reception' | 'veils-accessories';
+
+export type GownAvailability = 'available' | 'reserved' | 'unavailable' | 'coming-soon' | 'unknown';
+
 export interface GownItem {
   id: string;
+  slug: string;
   name: string;
-  category: 'ball-gown' | 'mermaid' | 'a-line' | 'sheath' | 'reception' | 'veils-accessories';
+  code: string;
+  category: GownCategory;
   categoryLabel: string;
-  description: string;
   silhouette: string;
-  fabric: string;
-  embellishments: string;
-  trainLength?: string;
-  image: string;
-  gallery?: string[];
-  isAvailableForRent: boolean;
+  description: string;
+  images: string[];
+  image: string; // Primary image for compatibility
+  gallery?: string[]; // Supporting gallery for compatibility
+  sizes?: string[];
+  fabric?: string;
+  details?: string;
+  embellishments?: string; // Compatibility
+  trainStyle?: string;
+  trainLength?: string; // Compatibility
+  rentalEligible: boolean;
+  isAvailableForRent?: boolean; // Compatibility
+  availability: GownAvailability;
+  featured?: boolean;
+  isFeatured?: boolean; // Compatibility
+  tags?: string[];
   rentalStartingPrice?: string;
   purchaseStartingPrice?: string;
   isBespokeInspiration?: boolean;
-  isFeatured?: boolean;
-  tags?: string[];
 }
 
 export interface CollectionCategory {

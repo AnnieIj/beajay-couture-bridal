@@ -7,13 +7,15 @@ interface GownDetailModalProps {
   onClose: () => void;
   onBookFitting: (gownName: string) => void;
   onRentGown?: (gownName: string) => void;
+  onViewFullGownPage?: (gown: GownItem) => void;
 }
 
 export const GownDetailModal: React.FC<GownDetailModalProps> = ({
   gown,
   onClose,
   onBookFitting,
-  onRentGown
+  onRentGown,
+  onViewFullGownPage
 }) => {
   if (!gown) return null;
 
@@ -127,10 +129,19 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
 
           {/* Action CTAs */}
           <div className="space-y-2.5 pt-2 border-t border-[#EAE3D5]">
+            {onViewFullGownPage && (
+              <button
+                onClick={() => onViewFullGownPage(gown)}
+                className="w-full bg-[#111111] hover:bg-[#252422] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer border border-[#C59B3F]/50"
+              >
+                <span>VIEW FULL EDITORIAL LOOKBOOK</span>
+              </button>
+            )}
+
             {gown.isAvailableForRent && onRentGown && (
               <button
                 onClick={() => onRentGown(gown.name)}
-                className="w-full bg-[#111111] hover:bg-[#252422] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full bg-neutral-900 hover:bg-black text-white py-3 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>REQUEST GOWN RENTAL</span>
               </button>
