@@ -1,0 +1,137 @@
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { ActiveModal } from '../types';
+
+interface PerfectDressSectionProps {
+  onOpenModal: (modal: ActiveModal, payload?: any) => void;
+  onViewCollections: () => void;
+}
+
+export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
+  onOpenModal,
+  onViewCollections
+}) => {
+  const cards = [
+    {
+      id: 'collection',
+      title: 'Bridal Collection',
+      description: 'Explore our beautiful collection of wedding gowns and bridal pieces.',
+      cta: 'View Collection',
+      action: onViewCollections,
+      image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=900&auto=format&fit=crop',
+      alt: 'Luxury bridal ball gown with cathedral train',
+      tag: 'Ready to Wear & Order'
+    },
+    {
+      id: 'rent',
+      title: 'Rent a Gown',
+      description: 'Discover beautiful gowns available for brides and registered vendors.',
+      cta: 'Explore Rentals',
+      action: () => onOpenModal('rentals'),
+      image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop',
+      alt: 'Bride wearing exquisite off-shoulder gown for rental',
+      tag: 'Brides & Registered Vendors'
+    },
+    {
+      id: 'bespoke',
+      title: 'Bespoke Couture',
+      description: 'Custom-made bridal gowns created around the bride\'s style, body and vision.',
+      cta: 'Start a Consultation',
+      action: () => onOpenModal('bespoke'),
+      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
+      alt: 'Intricate bridal back detailing and bespoke lace fitting',
+      tag: 'One-of-a-kind Creation'
+    }
+  ];
+
+  return (
+    <section 
+      id="find-your-perfect-dress"
+      className="py-20 lg:py-28 bg-[#FCFAF7] border-b border-[#EFECE5]"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-3">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-[#111111]">
+            Find Your Perfect Dress
+          </h2>
+          <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto my-2" />
+          <p className="font-sans text-xs sm:text-sm font-semibold tracking-[0.28em] uppercase text-[#C59B3F]">
+            OWN IT. RENT IT. OR HAVE IT MADE JUST FOR YOU.
+          </p>
+        </div>
+
+        {/* 3 Premium Editorial Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+          {cards.map((card) => (
+            <div 
+              key={card.id}
+              className="group bg-white border border-[#E9E4DB] flex flex-col hover:border-[#C59B3F] transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden"
+            >
+              {/* Image Frame with Elegant Hover Zoom */}
+              <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100">
+                <img
+                  src={card.image}
+                  alt={card.alt}
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                
+                {/* Tag */}
+                <div className="absolute top-4 left-4">
+                  <span className="bg-[#111111]/85 backdrop-blur-md text-[#EFECE5] text-[10px] font-medium tracking-[0.16em] uppercase px-3 py-1.5 border border-[#C59B3F]/40">
+                    {card.tag}
+                  </span>
+                </div>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 bg-white space-y-5">
+                <div className="space-y-3">
+                  <h3 className="font-serif text-2xl sm:text-2xl font-normal text-[#111111] group-hover:text-[#C59B3F] transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-light">
+                    {card.description}
+                  </p>
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    onClick={card.action}
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#C59B3F] group-hover:bg-[#B3892F] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.18em] uppercase transition-colors shadow-sm cursor-pointer"
+                  >
+                    <span>{card.cta}</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Private Bridal Consultation Banner */}
+        <div className="mt-14 p-6 sm:p-8 bg-[#F5F1E8] border border-[#E5DFD3] flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="space-y-1 text-center sm:text-left">
+            <h4 className="font-serif text-lg sm:text-xl font-medium text-[#111111]">
+              Unsure which path is right for your ceremony?
+            </h4>
+            <p className="text-xs sm:text-sm text-neutral-600 font-light">
+              Schedule a 1-on-1 discovery consultation with our Enugu bridal stylists to try silhouettes and plan your timeline.
+            </p>
+          </div>
+          <button
+            onClick={() => onOpenModal('appointment')}
+            className="shrink-0 inline-flex items-center gap-2 bg-[#111111] hover:bg-[#252422] text-[#F3EFE6] px-6 py-3 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
+          >
+            <span>BOOK A FITTING CONSULTATION</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#C59B3F]" />
+          </button>
+        </div>
+
+      </div>
+    </section>
+  );
+};
