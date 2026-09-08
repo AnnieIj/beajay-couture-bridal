@@ -23,15 +23,12 @@ import { AboutModal } from './components/AboutModal';
 import { ContactModal } from './components/ContactModal';
 
 import { ActiveModal, GownItem, GalleryItem } from './types';
-import { GOWNS_CATALOG, GALLERY_ITEMS } from './data/bridalData';
 
 export default function App() {
   const [activeModal, setActiveModal] = useState<ActiveModal>(null);
   const [modalPayload, setModalPayload] = useState<any>(null);
   const [selectedGown, setSelectedGown] = useState<GownItem | null>(null);
   const [selectedGalleryItem, setSelectedGalleryItem] = useState<GalleryItem | null>(null);
-  const [savedGownIds, setSavedGownIds] = useState<string[]>(['bj-01', 'bj-02']);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -75,24 +72,19 @@ export default function App() {
     openModal('gown-detail');
   };
 
-  const handleToggleSave = (gownId: string) => {
-    setSavedGownIds((prev) => {
-      const exists = prev.includes(gownId);
-      const updated = exists ? prev.filter(id => id !== gownId) : [...prev, gownId];
-      
-      const gown = GOWNS_CATALOG.find(g => g.id === gownId);
-      setToastMessage(exists ? `Removed from wishlist` : `Added "${gown?.name || 'Gown'}" to wishlist`);
-      setTimeout(() => setToastMessage(null), 3000);
-      
-      return updated;
-    });
-  };
-
   const handleBookFittingFromGown = (gownName?: string, service?: any) => {
     closeModal();
     openModal('appointment', { 
       preselectedGown: gownName, 
       defaultService: service || 'bridal-styling' 
+    });
+  };
+
+  const handleRentGownFromDetail = (gownName: string) => {
+    closeModal();
+    openModal('rentals', { 
+      action: 'request', 
+      gownName 
     });
   };
 
@@ -116,11 +108,10 @@ export default function App() {
         onOpenModal={openModal}
         activeView="home"
         onNavigateHome={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        savedGownsCount={savedGownIds.length}
       />
 
       <main className="flex-1">
-        {/* HERO SECTION — Cinematic Background Video */}
+        {/* HERO SECTION — Cinematic Visuals */}
         <HeroSection
           onOpenModal={openModal}
           onExploreCollections={handleExploreCollections}
@@ -138,9 +129,10 @@ export default function App() {
           onSelectGown={handleSelectGown}
         />
 
-        {/* SECTION 4 — GOWN RENTALS (Brides & Vendors) */}
+        {/* SECTION 4 — GOWN RENTALS (Unified Rental Service) */}
         <GownRentalsSection
           onOpenModal={openModal}
+          onSelectGown={handleSelectGown}
         />
 
         {/* SECTION 5 — BESPOKE BRIDAL (Your Gown. Your Story.) */}
@@ -174,14 +166,6 @@ export default function App() {
         onNavigateHome={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       />
 
-      {/* TOAST NOTIFICATION */}
-      {toastMessage && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#111111] text-white px-5 py-3 text-xs tracking-wider border border-[#C59B3F] shadow-2xl flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F]" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
-
       {/* =======================================================
           MODALS & INTERACTIVE OVERLAYS
           ======================================================= */}
@@ -194,19 +178,13 @@ export default function App() {
         defaultService={modalPayload?.defaultService || 'bridal-styling'}
       />
 
-      {/* 2. Rentals Modal (Bride Rentals, Vendor Rentals, Rental Policy) */}
+      {/* 2. Unified Rentals Modal */}
       <RentalsModal
-        isOpen={activeModal === 'rentals' || activeModal === 'vendor-rentals' || activeModal === 'rental-policy'}
+        isOpen={activeModal === 'rentals'}
         onClose={closeModal}
-        defaultTab={
-          activeModal === 'vendor-rentals' 
-            ? 'vendor' 
-            : activeModal === 'rental-policy' 
-            ? 'policy' 
-            : modalPayload?.defaultTab || 'bride'
-        }
-        onBookFitting={handleBookFittingFromGown}
         onSelectGown={handleSelectGown}
+        initialGownName={modalPayload?.gownName}
+        initialAction={modalPayload?.action || 'browse'}
       />
 
       {/* 3. Collections Modal */}
@@ -214,11 +192,8 @@ export default function App() {
         isOpen={activeModal === 'collections'}
         onClose={closeModal}
         defaultCategory={modalPayload?.defaultCategory}
-        filterMode={modalPayload?.filter}
         onSelectGown={handleSelectGown}
         onBookAppointment={handleBookFittingFromGown}
-        savedGownIds={savedGownIds}
-        onToggleSave={handleToggleSave}
       />
 
       {/* 4. Bespoke Couture Modal */}
@@ -235,11 +210,10 @@ export default function App() {
           if (activeModal === 'gown-detail') closeModal();
         }}
         onBookFitting={handleBookFittingFromGown}
-        isSaved={selectedGown ? savedGownIds.includes(selectedGown.id) : false}
-        onToggleSave={handleToggleSave}
+        onRentGown={handleRentGownFromDetail}
       />
 
-      {/* 6. Gallery Lightbox / Story Reel Video Modal */}
+      {/* 6. Gallery Lightbox / Video Modal */}
       <GalleryLightbox
         item={selectedGalleryItem}
         onClose={() => setSelectedGalleryItem(null)}

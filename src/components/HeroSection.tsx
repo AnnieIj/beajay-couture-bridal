@@ -55,8 +55,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     },
     {
       icon: Layers,
-      title: 'Gown Rentals (Brides & Vendors)',
-      desc: 'Exclusive gowns for ceremonies & clients'
+      title: 'Gown Rentals',
+      desc: 'Exquisite couture gowns available for rental'
     },
     {
       icon: Scissors,
@@ -174,7 +174,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </span>
               <span className="flex items-center gap-1.5 font-medium tracking-wider text-[11px] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F]" />
-                Bride & Vendor Rentals
+                Gown Rentals
               </span>
             </div>
           </div>

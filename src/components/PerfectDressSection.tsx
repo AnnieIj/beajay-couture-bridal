@@ -25,12 +25,12 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
     {
       id: 'rent',
       title: 'Rent a Gown',
-      description: 'Discover beautiful gowns available for brides and registered vendors.',
+      description: 'Discover exquisite couture gowns available for rental.',
       cta: 'Explore Rentals',
       action: () => onOpenModal('rentals'),
       image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop',
       alt: 'Bride wearing exquisite off-shoulder gown for rental',
-      tag: 'Brides & Registered Vendors'
+      tag: 'Gown Rental Collection'
     },
     {
       id: 'bespoke',

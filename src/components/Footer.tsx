@@ -3,8 +3,7 @@ import {
   MapPin, 
   Instagram, 
   MessageSquare, 
-  ArrowUp,
-  Heart
+  ArrowUp
 } from 'lucide-react';
 import { ActiveModal } from '../types';
 
@@ -118,38 +117,24 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal, onNavigateHome }) =
                   Contact & Location
                 </button>
               </li>
-              <li>
-                <button 
-                  onClick={() => onOpenModal('rental-policy')}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left col-span-2 text-[11px] text-neutral-400"
-                >
-                  Rental Policy & Terms
-                </button>
-              </li>
             </ul>
           </div>
 
           {/* Visit Our Studio Column */}
           <div className="lg:col-span-3 space-y-4">
             <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-white pb-1 border-b border-[#262420] inline-block">
-              Atelier Location
+              Location
             </h3>
             
             <div className="space-y-3 text-xs text-neutral-300 font-light">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#C59B3F] shrink-0 mt-0.5" />
-                <span>
-                  Enugu, Nigeria
-                  <span className="text-[11px] text-neutral-400 block mt-1 leading-relaxed">
-                    Private bridal fitting showroom. Exact address & directions provided upon appointment confirmation.
-                  </span>
-                </span>
+                <span>Enugu, Nigeria</span>
               </div>
 
               <div className="border-t border-[#262420] pt-2 text-[11px] text-neutral-400 space-y-1">
-                <p className="text-white font-medium">Consultations & Try-Ons:</p>
-                <p>Strictly By Appointment</p>
-                <p className="text-[#C59B3F]">Private Consultations</p>
+                <p className="text-white font-medium">Consultations & Fittings:</p>
+                <p>By Appointment Only</p>
               </div>
             </div>
           </div>
@@ -190,7 +175,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal, onNavigateHome }) =
             </div>
           </div>
 
-
         </div>
 
         {/* Bottom Bar: Copyright, Disclaimer & Back to Top */}
@@ -205,10 +189,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal, onNavigateHome }) =
 
           <div className="flex items-center gap-6">
             <button
-              onClick={() => onOpenModal('rental-policy')}
-              className="text-[11px] hover:text-[#E6C875] transition-colors"
+              onClick={() => onOpenModal('rentals')}
+              className="text-[11px] hover:text-[#E6C875] transition-colors cursor-pointer"
             >
-              Privacy & Rental Terms
+              Gown Rentals
             </button>
 
             <button

@@ -6,7 +6,7 @@ interface AppointmentModalProps {
   isOpen: boolean;
   onClose: () => void;
   preselectedGown?: string;
-  defaultService?: 'bridal-styling' | 'gown-rental' | 'vendor-rental' | 'bespoke-consultation' | 'fitting-alteration';
+  defaultService?: 'bridal-styling' | 'gown-rental' | 'bespoke-consultation' | 'fitting-alteration';
 }
 
 export const AppointmentModal: React.FC<AppointmentModalProps> = ({
@@ -110,7 +110,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               </div>
               <div className="flex justify-between">
                 <span className="text-neutral-500">Studio Location:</span>
-                <span className="font-medium text-neutral-900">Enugu, Nigeria (Address sent upon confirmation)</span>
+                <span className="font-medium text-neutral-900">Enugu, Nigeria</span>
               </div>
             </div>
 
@@ -159,8 +159,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { id: 'bridal-styling', label: 'Bridal Styling & Try-On (Collection)' },
-                    { id: 'gown-rental', label: 'Gown Rental Fitting (Bride)' },
-                    { id: 'vendor-rental', label: 'Vendor Rental Program (Partner)' },
+                    { id: 'gown-rental', label: 'Gown Rental Consultation' },
                     { id: 'bespoke-consultation', label: 'Bespoke Couture Consultation' },
                     { id: 'fitting-alteration', label: 'Fittings & Alterations' }
                   ].map((service) => (

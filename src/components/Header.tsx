@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { 
   Menu, 
   X, 
-  ChevronDown, 
   Search, 
   ArrowRight,
-  Sparkles,
-  Bookmark
+  Sparkles
 } from 'lucide-react';
 import { ActiveModal } from '../types';
 
@@ -14,19 +12,15 @@ interface HeaderProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
   activeView: string;
   onNavigateHome: () => void;
-  savedGownsCount?: number;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenModal,
   activeView,
-  onNavigateHome,
-  savedGownsCount = 0
+  onNavigateHome
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [rentalsDropdownOpen, setRentalsDropdownOpen] = useState(false);
-  const [mobileRentalsExpanded, setMobileRentalsExpanded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +32,6 @@ export const Header: React.FC<HeaderProps> = ({
 
   const handleNavClick = (sectionId: string, modalType?: ActiveModal) => {
     setMobileMenuOpen(false);
-    setRentalsDropdownOpen(false);
 
     if (modalType) {
       onOpenModal(modalType);
@@ -53,50 +46,49 @@ export const Header: React.FC<HeaderProps> = ({
 
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
     <header 
       id="main-header"
-      className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#FCFAF7]/95 backdrop-blur-md shadow-sm border-b border-[#EAE4D9]' 
-          : 'bg-[#FCFAF7] border-b border-[#EFECE5]'
+          ? 'bg-[#FCFAF7]/95 backdrop-blur-md shadow-xs py-3.5 border-b border-[#EAE4D9]' 
+          : 'bg-[#FCFAF7] py-5 border-b border-[#EAE4D9]/80'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="flex items-center justify-between">
           
-          {/* Brand Logo / Wordmark */}
+          {/* Brand Logo / Monogram */}
           <button 
             onClick={() => handleNavClick('home')}
-            className="flex flex-col items-start text-left group cursor-pointer focus:outline-none"
-            aria-label="BEAJAY COUTURE BRIDAL Home"
+            className="flex flex-col text-left group cursor-pointer"
+            aria-label="BEAJAY Couture Bridal - Home"
           >
-            <span className="font-serif text-2xl sm:text-3xl tracking-[0.22em] text-[#111111] uppercase font-light leading-none group-hover:text-[#C59B3F] transition-colors">
+            <span className="font-serif text-xl sm:text-2xl md:text-[26px] tracking-[0.14em] font-normal text-[#111111] group-hover:text-[#C59B3F] transition-colors uppercase">
               BEAJAY
             </span>
-            <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.38em] text-[#C59B3F] font-semibold uppercase mt-1">
+            <span className="text-[8.5px] sm:text-[9.5px] tracking-[0.38em] uppercase text-[#666666] font-light -mt-0.5">
               COUTURE BRIDAL
+            </span>
+            <span className="text-[7.5px] tracking-[0.22em] text-[#C59B3F] uppercase font-medium">
+              Enugu, Nigeria
             </span>
           </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center space-x-7 text-[12.5px] font-medium tracking-[0.14em] uppercase text-neutral-800">
-            
+          {/* Desktop Navigation Links */}
+          <nav className="hidden xl:flex items-center space-x-7 text-[11px] font-medium tracking-[0.14em] uppercase text-neutral-800">
             {/* Home */}
             <button 
               onClick={() => handleNavClick('home')}
-              className={`relative py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
-                activeView === 'home' ? 'text-[#C59B3F]' : ''
+              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
+                activeView === 'home' ? 'text-[#C59B3F] font-semibold' : ''
               }`}
             >
               Home
-              {activeView === 'home' && (
-                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#C59B3F]" />
-              )}
             </button>
 
             {/* Collections */}
@@ -107,86 +99,13 @@ export const Header: React.FC<HeaderProps> = ({
               Collections
             </button>
 
-            {/* Rentals with Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setRentalsDropdownOpen(true)}
-              onMouseLeave={() => setRentalsDropdownOpen(false)}
+            {/* Rentals - Single Unified Direct Link */}
+            <button
+              onClick={() => handleNavClick('gown-rentals-section', 'rentals')}
+              className="py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
             >
-              <button 
-                onClick={() => onOpenModal('rentals', { defaultTab: 'bride' })}
-                className="flex items-center gap-1 py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
-                aria-expanded={rentalsDropdownOpen}
-                aria-haspopup="true"
-              >
-                Rentals
-                <ChevronDown className={`w-3.5 h-3.5 text-[#C59B3F] transition-transform duration-200 ${
-                  rentalsDropdownOpen ? 'rotate-180' : ''
-                }`} />
-              </button>
-
-              {/* Dropdown Menu */}
-              {rentalsDropdownOpen && (
-                <div 
-                  role="menu"
-                  className="absolute top-full left-0 w-64 bg-[#111111] text-[#EFECE5] shadow-2xl border border-[#2D2A26] py-2 animate-in fade-in slide-in-from-top-2 duration-150 rounded-none z-50"
-                >
-                  <div className="px-4 py-2 border-b border-[#252320] mb-1">
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-[#C59B3F] font-semibold">
-                      Gown Rental Services
-                    </span>
-                  </div>
-                  
-                  <button
-                    role="menuitem"
-                    onClick={() => {
-                      setRentalsDropdownOpen(false);
-                      onOpenModal('rentals', { defaultTab: 'bride' });
-                    }}
-                    className="w-full text-left px-4 py-2.5 hover:bg-[#1E1D1B] hover:text-[#C59B3F] transition-colors flex flex-col cursor-pointer"
-                  >
-                    <span className="font-medium text-xs">For Brides</span>
-                    <span className="text-[10px] tracking-normal text-neutral-400 capitalize">
-                      Rent your dream gown for your big day
-                    </span>
-                  </button>
-
-                  <button
-                    role="menuitem"
-                    onClick={() => {
-                      setRentalsDropdownOpen(false);
-                      onOpenModal('vendor-rentals', { defaultTab: 'vendor' });
-                    }}
-                    className="w-full text-left px-4 py-2.5 hover:bg-[#1E1D1B] hover:text-[#C59B3F] transition-colors flex flex-col cursor-pointer"
-                  >
-                    <span className="font-medium text-xs flex items-center justify-between">
-                      For Vendors
-                      <span className="text-[9px] bg-[#C59B3F]/20 text-[#C59B3F] px-1.5 py-0.5 rounded-none font-sans">
-                        Partners
-                      </span>
-                    </span>
-                    <span className="text-[10px] tracking-normal text-neutral-400 capitalize">
-                      Exclusive access for bridal stylists & boutiques
-                    </span>
-                  </button>
-
-                  <button
-                    role="menuitem"
-                    onClick={() => {
-                      setRentalsDropdownOpen(false);
-                      onOpenModal('rental-policy', { defaultTab: 'policy' });
-                    }}
-                    className="w-full text-left px-4 py-2.5 hover:bg-[#1E1D1B] hover:text-[#C59B3F] transition-colors flex flex-col cursor-pointer border-t border-[#252320] mt-1"
-                  >
-                    <span className="font-medium text-xs">Rental Policy & Terms</span>
-                    <span className="text-[10px] tracking-normal text-neutral-400 capitalize">
-                      Fittings, reservations & care standards
-                    </span>
-                  </button>
-                </div>
-              )}
-            </div>
-
+              Rentals
+            </button>
 
             {/* Bespoke */}
             <button 
@@ -241,58 +160,39 @@ export const Header: React.FC<HeaderProps> = ({
               <Search className="w-5 h-5" />
             </button>
 
-            {/* Saved Wishlist */}
+            {/* Prominent Gold Book Appointment Button */}
             <button
-              onClick={() => onOpenModal('collections', { filter: 'saved' })}
-              aria-label="Wishlist"
-              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-700 hover:text-[#C59B3F] transition-colors relative cursor-pointer focus:outline-none"
-              title="Saved Gowns"
-            >
-              <Bookmark className="w-5 h-5" />
-              {savedGownsCount > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-[#C59B3F] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                  {savedGownsCount}
-                </span>
-              )}
-            </button>
-
-            {/* Prominent Gold Book Appointment / Enquire Button (Matches Reference Image) */}
-            <button
-              id="header-enquire-btn"
               onClick={() => onOpenModal('appointment')}
-              className="hidden sm:inline-flex items-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] active:bg-[#9E7724] text-white px-5 py-2.5 min-h-[44px] text-[11.5px] font-semibold tracking-[0.16em] uppercase transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white px-5 py-2.5 text-[11px] font-semibold tracking-[0.18em] uppercase transition-all duration-200 shadow-xs cursor-pointer"
             >
-              <span>ENQUIRE NOW</span>
+              <span>BOOK APPOINTMENT</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Hamburger Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="xl:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-800 hover:text-[#C59B3F] focus:outline-none cursor-pointer"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div 
-          id="mobile-navigation-menu"
+          id="mobile-nav-menu"
           className="xl:hidden bg-[#FCFAF7] border-b border-[#EAE4D9] px-6 py-6 space-y-4 shadow-xl animate-in slide-in-from-top-4 duration-200 max-h-[85vh] overflow-y-auto"
         >
           <div className="flex flex-col space-y-3 text-sm font-medium tracking-[0.12em] uppercase text-neutral-800 border-b border-[#EAE4D9] pb-5">
             <button 
               onClick={() => handleNavClick('home')}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between"
+              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
             >
               <span>Home</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">01</span>
@@ -300,58 +200,24 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button 
               onClick={() => handleNavClick('featured-collections', 'collections')}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between"
+              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
             >
               <span>Collections</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">02</span>
             </button>
 
-            {/* Rentals Sub-menu on Mobile */}
-            <div className="py-1">
-              <button 
-                onClick={() => setMobileRentalsExpanded(!mobileRentalsExpanded)}
-                className="w-full text-left py-2 flex items-center justify-between hover:text-[#C59B3F]"
-              >
-                <span>Rentals</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${mobileRentalsExpanded ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {mobileRentalsExpanded && (
-                <div className="pl-4 py-2 space-y-2.5 border-l-2 border-[#C59B3F]/40 my-1 bg-[#F5F1E8]/50 p-2.5">
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      onOpenModal('rentals', { defaultTab: 'bride' });
-                    }}
-                    className="block w-full text-left py-1 text-xs font-medium text-neutral-800 hover:text-[#C59B3F]"
-                  >
-                    For Brides
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      onOpenModal('vendor-rentals', { defaultTab: 'vendor' });
-                    }}
-                    className="block w-full text-left py-1 text-xs font-medium text-neutral-800 hover:text-[#C59B3F]"
-                  >
-                    For Vendors (Bridal Partners)
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      onOpenModal('rental-policy', { defaultTab: 'policy' });
-                    }}
-                    className="block w-full text-left py-1 text-xs font-medium text-neutral-800 hover:text-[#C59B3F]"
-                  >
-                    Rental Policy & Terms
-                  </button>
-                </div>
-              )}
-            </div>
+            {/* Rentals - Direct link */}
+            <button 
+              onClick={() => handleNavClick('gown-rentals-section', 'rentals')}
+              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+            >
+              <span>Rentals</span>
+              <span className="text-[10px] text-[#C59B3F] tracking-widest">03</span>
+            </button>
 
             <button 
               onClick={() => handleNavClick('bespoke-section', 'bespoke')}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between"
+              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
             >
               <span>Bespoke Couture</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">04</span>
@@ -359,7 +225,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button 
               onClick={() => handleNavClick('bridal-gallery', 'gallery')}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between"
+              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
             >
               <span>Gallery</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">05</span>
@@ -370,7 +236,7 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 onOpenModal('about');
               }}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between"
+              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
             >
               <span>About Atelier</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">06</span>
@@ -379,12 +245,23 @@ export const Header: React.FC<HeaderProps> = ({
             <button 
               onClick={() => {
                 setMobileMenuOpen(false);
+                onOpenModal('appointment');
+              }}
+              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+            >
+              <span>Book Appointment</span>
+              <span className="text-[10px] text-[#C59B3F] tracking-widest">07</span>
+            </button>
+
+            <button 
+              onClick={() => {
+                setMobileMenuOpen(false);
                 onOpenModal('contact');
               }}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between"
+              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
             >
-              <span>Contact & Studio</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">07</span>
+              <span>Contact</span>
+              <span className="text-[10px] text-[#C59B3F] tracking-widest">08</span>
             </button>
           </div>
 
@@ -394,14 +271,14 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 onOpenModal('appointment');
               }}
-              className="w-full flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3 px-4 text-xs font-semibold tracking-[0.16em] uppercase shadow cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3 px-4 text-xs font-semibold tracking-[0.16em] uppercase shadow-sm cursor-pointer"
             >
               <Sparkles className="w-4 h-4" />
               <span>BOOK AN APPOINTMENT</span>
             </button>
 
             <p className="text-center text-[11px] text-neutral-500 tracking-wider">
-              Enugu, Nigeria • Fittings By Private Booking
+              Enugu, Nigeria • By Appointment Only
             </p>
           </div>
 

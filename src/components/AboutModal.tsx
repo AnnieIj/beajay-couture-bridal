@@ -67,8 +67,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({
                 Based in Enugu, Nigeria, our atelier showcases exquisite hand-beaded ball gowns, sculpted mermaids, and regal veil creations.
               </p>
               <p>
-                Beyond creating custom bespoke masterpieces, we offer refined 
-                <strong className="font-medium text-neutral-900"> Gown Rental Programs</strong> for both discerning brides and registered bridal fashion stylists.
+                Beyond creating custom bespoke masterpieces, we offer our refined 
+                <strong className="font-medium text-neutral-900"> Gown Rental Service</strong> for individuals and bridal industry partners.
               </p>
               <div className="pt-2 border-t border-[#EAE3D5] grid grid-cols-2 gap-4 text-neutral-800 font-medium">
                 <div>
@@ -97,7 +97,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               <Award className="w-5 h-5 text-[#C59B3F] mx-auto" />
               <h4 className="font-serif text-base text-neutral-900">Couture Standards</h4>
               <p className="text-[11px] text-neutral-500 font-light">
-                Imported silks, French laces, Austrian crystal beads, and architectural boning.
+                Imported silks, French laces, crystal beads, and architectural boning.
               </p>
             </div>
 
@@ -105,7 +105,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               <MapPin className="w-5 h-5 text-[#C59B3F] mx-auto" />
               <h4 className="font-serif text-base text-neutral-900">Enugu Atelier</h4>
               <p className="text-[11px] text-neutral-500 font-light">
-                Conveniently situated in Enugu, Nigeria with private consultation sessions.
+                Located in Enugu, Nigeria with private consultation sessions.
               </p>
             </div>
           </div>

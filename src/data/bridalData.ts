@@ -6,11 +6,9 @@ export const HERO_POSTER_URL = "https://images.unsplash.com/photo-1594552072238-
 export const BUSINESS_INFO = {
   name: 'BEAJAY COUTURE BRIDAL',
   location: 'Enugu, Nigeria',
-  locationDetails: 'Private showroom & atelier in Enugu, Nigeria. Specific address provided upon appointment confirmation.',
   instagramHandle: '@beajaycouture_bridal',
   instagramUrl: 'https://instagram.com/beajaycouture_bridal',
-  schedule: 'By Appointment Only',
-  pricingNotice: 'Gown rental rates, bespoke creation pricing, and refundable caution deposit details are provided upon consultation.'
+  schedule: 'By Appointment Only'
 };
 
 export const CATEGORIES: CollectionCategory[] = [
@@ -81,8 +79,6 @@ export const GOWNS_CATALOG: GownItem[] = [
       'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop'
     ],
     isAvailableForRent: true,
-    rentalStartingPrice: 'Price on Request',
-    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Cathedral Train', 'Corset Bodice', 'Royal Bride', 'Featured Rental']
@@ -102,8 +98,6 @@ export const GOWNS_CATALOG: GownItem[] = [
       'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop'
     ],
     isAvailableForRent: true,
-    rentalStartingPrice: 'Price on Request',
-    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Hourglass Contour', 'Illusion Back', 'Popular']
@@ -120,8 +114,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: '2.0 Meters Sweep Train',
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: 'Price on Request',
-    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Romantic', 'Off-Shoulder', 'Lightweight Movement']
@@ -138,8 +130,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: 'Detachable 2.5m Watteau Cape Train',
     image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: 'Price on Request',
-    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Minimalist Luxury', 'Civil Wedding', 'Intimate Ceremony']
@@ -156,8 +146,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: 'Floor Length / Dance-Friendly',
     image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: 'Price on Request',
-    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Reception Glam', 'Party Ready', 'Sparkle & Movement']
@@ -174,8 +162,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: '4.0 Meters',
     image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: 'Price on Request',
-    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Heirloom Piece', 'Cathedral Length', 'Accessories']
@@ -192,8 +178,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: '3.5 Meters Royal Train',
     image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: 'Price on Request',
-    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: false,
     tags: ['Modest Royal', 'Long Sleeve', 'Cathedral Wedding']
@@ -210,11 +194,9 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: '2.2 Meters',
     image: 'https://images.unsplash.com/photo-1549416869-3738b556f8f5?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: 'Price on Request',
-    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: false,
-    tags: ['Pearl Back', 'Hourglass', 'Vendor Favorite']
+    tags: ['Pearl Back', 'Hourglass', 'Couture Favorite']
   }
 ];
 
@@ -231,10 +213,10 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-2',
     brideName: 'Adaobi N.',
-    weddingDate: 'Bride Rental Experience',
+    weddingDate: 'Gown Rental Experience',
     location: 'Enugu, Nigeria',
     quote: 'Renting a bridal gown from BEAJAY was an outstanding experience. The gown condition was immaculate, the fitting adjustments were tailored with care, and the process was stress-free.',
-    gownType: 'Bride Rental Program',
+    gownType: 'Gown Rental',
     image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop'
   },
   {
@@ -249,10 +231,10 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-4',
     brideName: 'Kelechi O.',
-    weddingDate: 'Bridal Stylist & Partner',
+    weddingDate: 'Bridal Stylist Experience',
     location: 'Enugu, Nigeria',
-    quote: 'The Vendor Rental Program is a wonderful resource for bridal stylists. The selection of silhouettes and the care given to gown maintenance make client consultations smooth and dependable.',
-    gownType: 'Vendor Partner Experience',
+    quote: 'Renting from BEAJAY Couture Bridal is a wonderful resource. The selection of silhouettes and the care given to gown maintenance make wedding consultations smooth and dependable.',
+    gownType: 'Gown Rental Service',
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop'
   }
 ];
@@ -312,10 +294,6 @@ export const RENTAL_POLICIES = [
   {
     title: 'Fitting & Silhouette Adjustments',
     detail: 'Professional fitting consultations ensure an optimal silhouette. All allowable temporary adjustments are executed strictly in-house by atelier tailors.'
-  },
-  {
-    title: 'Vendor Rental Program',
-    detail: 'Verified bridal stylists, wedding planners, and fashion curators can reserve gowns for client styling and photoshoots. Dedicated vendor terms and agreements are provided upon inquiry.'
   }
 ];
 

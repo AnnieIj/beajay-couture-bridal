@@ -1,21 +1,19 @@
 import React from 'react';
-import { X, Heart, Sparkles, Instagram, Calendar } from 'lucide-react';
+import { X, Sparkles, Instagram } from 'lucide-react';
 import { GownItem } from '../types';
 
 interface GownDetailModalProps {
   gown: GownItem | null;
   onClose: () => void;
   onBookFitting: (gownName: string) => void;
-  isSaved: boolean;
-  onToggleSave: (id: string) => void;
+  onRentGown?: (gownName: string) => void;
 }
 
 export const GownDetailModal: React.FC<GownDetailModalProps> = ({
   gown,
   onClose,
   onBookFitting,
-  isSaved,
-  onToggleSave
+  onRentGown
 }) => {
   if (!gown) return null;
 
@@ -29,7 +27,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
         <button
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 p-2 text-neutral-600 hover:text-neutral-900 z-20 cursor-pointer bg-white/90 rounded-full shadow"
+          className="absolute top-4 right-4 p-2 text-neutral-600 hover:text-neutral-900 z-20 cursor-pointer bg-white/90 rounded-full shadow-xs"
         >
           <X className="w-5 h-5" />
         </button>
@@ -47,20 +45,10 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
             </span>
             {gown.isAvailableForRent && (
               <span className="bg-[#C59B3F] text-white text-[10px] font-semibold tracking-[0.16em] uppercase px-3 py-1 font-sans">
-                Available For Rent & Bespoke
+                Available For Rent
               </span>
             )}
           </div>
-
-          <button
-            onClick={() => onToggleSave(gown.id)}
-            aria-label="Toggle wishlist"
-            className={`absolute bottom-4 right-4 p-3 rounded-full shadow-lg transition-colors cursor-pointer ${
-              isSaved ? 'bg-[#C59B3F] text-white' : 'bg-white/90 text-neutral-800 hover:bg-white'
-            }`}
-          >
-            <Heart className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
-          </button>
         </div>
 
         {/* Right Column: Specifications & Booking */}
@@ -102,25 +90,27 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
               )}
             </div>
 
-            {/* Pricing / Inquiries Section */}
-            <div className="p-4 border border-[#D9CEBA] bg-[#FAF6EE] flex flex-col sm:flex-row justify-between gap-3">
-              <div>
-                <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
-                  Rental Status
-                </span>
-                <span className="font-serif text-base font-medium text-[#856122]">
-                  {gown.rentalStartingPrice || 'Rate on Request'}
-                </span>
-              </div>
+            {/* Availability info - Display NO PRICE if verified pricing is unavailable */}
+            <div className="p-4 border border-[#D9CEBA] bg-[#FAF6EE] text-xs">
+              <span className="text-[10px] uppercase tracking-wider text-neutral-500 block mb-1">
+                Atelier Availability
+              </span>
+              <span className="font-medium text-neutral-900">
+                {gown.isAvailableForRent 
+                  ? 'Eligible for Couture Gown Rental & Bespoke Commission' 
+                  : 'Available for Bespoke Atelier Commission'}
+              </span>
 
-              <div>
-                <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
-                  Bespoke / Purchase
-                </span>
-                <span className="font-serif text-base font-medium text-neutral-900">
-                  {gown.purchaseStartingPrice || 'Available on Request'}
-                </span>
-              </div>
+              {(gown.rentalStartingPrice || gown.purchaseStartingPrice) && (
+                <div className="mt-2 pt-2 border-t border-[#E8DFC8]">
+                  <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
+                    Verified Pricing
+                  </span>
+                  <span className="font-serif text-base font-medium text-[#856122]">
+                    {gown.rentalStartingPrice || gown.purchaseStartingPrice}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Tags */}
@@ -137,26 +127,35 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
 
           {/* Action CTAs */}
           <div className="space-y-2.5 pt-2 border-t border-[#EAE3D5]">
+            {gown.isAvailableForRent && onRentGown && (
+              <button
+                onClick={() => onRentGown(gown.name)}
+                className="w-full bg-[#111111] hover:bg-[#252422] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>REQUEST GOWN RENTAL</span>
+              </button>
+            )}
+
             <button
               onClick={() => onBookFitting(gown.name)}
-              className="w-full bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
             >
               <Sparkles className="w-4 h-4" />
-              <span>BOOK TRY-ON FOR THIS GOWN</span>
+              <span>BOOK FITTING APPOINTMENT</span>
             </button>
 
             <a
               href="https://instagram.com/beajaycouture_bridal"
               target="_blank"
               rel="noreferrer"
-              className="w-full border border-neutral-800 hover:border-[#C59B3F] hover:text-[#C59B3F] text-neutral-900 py-3 px-5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors flex items-center justify-center gap-2"
+              className="w-full border border-neutral-800 hover:border-[#C59B3F] hover:text-[#C59B3F] text-neutral-900 py-3 px-5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer"
             >
               <Instagram className="w-4 h-4 text-[#C59B3F]" />
-              <span>Inquire on Instagram @beajaycouture_bridal</span>
+              <span>Inquire on Instagram</span>
             </a>
 
-            <p className="text-[10px] text-center text-neutral-500 font-light pt-1">
-              Private atelier appointments in Enugu, Nigeria. Showroom directions sent upon booking.
+            <p className="text-[10.5px] text-center text-neutral-500 font-light pt-1">
+              Enugu, Nigeria • By Appointment Only
             </p>
           </div>
         </div>
@@ -165,4 +164,3 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
     </div>
   );
 };
-

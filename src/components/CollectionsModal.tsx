@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { X, Filter, Sparkles, Heart, Bookmark, Eye, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Sparkles, ArrowRight } from 'lucide-react';
 import { GOWNS_CATALOG, CATEGORIES } from '../data/bridalData';
 import { GownItem } from '../types';
 
@@ -9,9 +9,6 @@ interface CollectionsModalProps {
   defaultCategory?: string;
   onSelectGown: (gown: GownItem) => void;
   onBookAppointment: (gownName?: string) => void;
-  savedGownIds: string[];
-  onToggleSave: (gownId: string) => void;
-  filterMode?: string;
 }
 
 export const CollectionsModal: React.FC<CollectionsModalProps> = ({
@@ -19,15 +16,10 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
   onClose,
   defaultCategory,
   onSelectGown,
-  onBookAppointment,
-  savedGownIds,
-  onToggleSave,
-  filterMode
+  onBookAppointment
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(defaultCategory || 'all');
-  const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'rent' | 'bespoke' | 'saved'>(
-    filterMode === 'saved' ? 'saved' : 'all'
-  );
+  const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'rent' | 'bespoke'>('all');
 
   if (!isOpen) return null;
 
@@ -41,9 +33,6 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
       return false;
     }
     if (availabilityFilter === 'bespoke' && !gown.isBespokeInspiration) {
-      return false;
-    }
-    if (availabilityFilter === 'saved' && !savedGownIds.includes(gown.id)) {
       return false;
     }
     return true;
@@ -104,7 +93,7 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
             ))}
           </div>
 
-          {/* Quick Availability / Wishlist Filter */}
+          {/* Availability Filter */}
           <div className="flex items-center gap-2 self-end md:self-auto text-xs">
             <button
               onClick={() => setAvailabilityFilter('all')}
@@ -125,13 +114,12 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
             </button>
             <span className="text-neutral-400">|</span>
             <button
-              onClick={() => setAvailabilityFilter('saved')}
-              className={`px-2.5 py-1 text-[11px] flex items-center gap-1 transition-colors cursor-pointer ${
-                availabilityFilter === 'saved' ? 'text-[#856122] font-semibold underline' : 'text-neutral-600'
+              onClick={() => setAvailabilityFilter('bespoke')}
+              className={`px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
+                availabilityFilter === 'bespoke' ? 'text-[#856122] font-semibold underline' : 'text-neutral-600'
               }`}
             >
-              <Bookmark className="w-3 h-3" />
-              <span>Saved ({savedGownIds.length})</span>
+              Bespoke Inspiration
             </button>
           </div>
         </div>
@@ -150,122 +138,104 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
                   setSelectedCategory('all');
                   setAvailabilityFilter('all');
                 }}
-                className="mt-2 text-xs text-[#C59B3F] underline uppercase tracking-wider font-semibold"
+                className="mt-2 text-xs text-[#C59B3F] underline uppercase tracking-wider font-semibold cursor-pointer"
               >
                 Reset All Filters
               </button>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredGowns.map((gown) => {
-                const isSaved = savedGownIds.includes(gown.id);
-
-                return (
-                  <div
-                    key={gown.id}
-                    className="group bg-white border border-[#E9E3D6] hover:border-[#C59B3F] transition-all flex flex-col overflow-hidden shadow-xs hover:shadow-lg"
-                  >
-                    {/* Gown Photo */}
-                    <div className="relative aspect-[3/4] bg-neutral-100 overflow-hidden cursor-pointer">
-                      <img
-                        src={gown.image}
-                        alt={gown.name}
-                        loading="lazy"
-                        onClick={() => onSelectGown(gown)}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      />
-                      
-                      {/* Top Badges */}
-                      <div className="absolute top-3 left-3 flex flex-col gap-1">
-                        <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] px-2 py-0.5 tracking-wider uppercase font-sans">
-                          {gown.categoryLabel}
+              {filteredGowns.map((gown) => (
+                <div
+                  key={gown.id}
+                  className="group bg-white border border-[#E9E3D6] hover:border-[#C59B3F] transition-all flex flex-col overflow-hidden shadow-xs hover:shadow-lg"
+                >
+                  {/* Gown Photo */}
+                  <div className="relative aspect-[3/4] bg-neutral-100 overflow-hidden cursor-pointer">
+                    <img
+                      src={gown.image}
+                      alt={gown.name}
+                      loading="lazy"
+                      onClick={() => onSelectGown(gown)}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    
+                    {/* Top Badges */}
+                    <div className="absolute top-3 left-3 flex flex-col gap-1">
+                      <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] px-2 py-0.5 tracking-wider uppercase font-sans">
+                        {gown.categoryLabel}
+                      </span>
+                      {gown.isAvailableForRent && (
+                        <span className="bg-[#C59B3F] text-white text-[9px] px-2 py-0.5 tracking-wider uppercase font-sans font-medium">
+                          Available For Rent
                         </span>
-                        {gown.isAvailableForRent && (
-                          <span className="bg-[#C59B3F] text-white text-[9px] px-2 py-0.5 tracking-wider uppercase font-sans font-medium">
-                            Rent / Buy
-                          </span>
-                        )}
-                      </div>
+                      )}
+                    </div>
 
-                      {/* Bookmark / Wishlist Heart */}
+                    {/* Quick Inspect Button on Hover */}
+                    <div className="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                       <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onToggleSave(gown.id);
-                        }}
-                        aria-label="Save gown"
-                        className={`absolute top-3 right-3 p-2 rounded-full transition-colors ${
-                          isSaved 
-                            ? 'bg-[#C59B3F] text-white' 
-                            : 'bg-white/80 hover:bg-white text-neutral-800'
-                        }`}
+                        onClick={() => onSelectGown(gown)}
+                        className="w-full bg-[#111111]/90 hover:bg-black text-white py-2 text-[11px] font-semibold tracking-wider uppercase transition-colors shadow-xs cursor-pointer"
                       >
-                        <Heart className={`w-3.5 h-3.5 ${isSaved ? 'fill-current' : ''}`} />
+                        View Details & Fit
                       </button>
+                    </div>
+                  </div>
 
-                      {/* Quick Inspect Button on Hover */}
-                      <div className="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  {/* Content */}
+                  <div className="p-4 flex flex-col justify-between flex-1 space-y-3">
+                    <div>
+                      <h4 
+                        onClick={() => onSelectGown(gown)}
+                        className="font-serif text-base text-[#111111] hover:text-[#C59B3F] transition-colors cursor-pointer"
+                      >
+                        {gown.name}
+                      </h4>
+                      <p className="text-[11px] text-neutral-500 font-light mt-1 line-clamp-2">
+                        {gown.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-2 border-t border-[#F2ECE0] space-y-2.5">
+                      {(gown.rentalStartingPrice || gown.purchaseStartingPrice) && (
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-[10px] uppercase text-neutral-400">Pricing:</span>
+                          <span className="font-semibold text-[#856122]">
+                            {gown.rentalStartingPrice || gown.purchaseStartingPrice}
+                          </span>
+                        </div>
+                      )}
+
+                      <div className="grid grid-cols-2 gap-2">
                         <button
                           onClick={() => onSelectGown(gown)}
-                          className="w-full bg-[#111111]/90 hover:bg-black text-white py-2 text-[11px] font-semibold tracking-wider uppercase transition-colors shadow"
+                          className="py-2 text-[10.5px] border border-neutral-300 hover:border-neutral-800 text-neutral-800 uppercase tracking-wider text-center cursor-pointer"
                         >
-                          View Details & Fit
+                          Details
+                        </button>
+                        <button
+                          onClick={() => onBookAppointment(gown.name)}
+                          className="py-2 text-[10.5px] bg-[#C59B3F] hover:bg-[#B3892F] text-white uppercase tracking-wider text-center font-semibold cursor-pointer"
+                        >
+                          Book Fitting
                         </button>
                       </div>
                     </div>
-
-                    {/* Content */}
-                    <div className="p-4 flex flex-col justify-between flex-1 space-y-3">
-                      <div>
-                        <h4 
-                          onClick={() => onSelectGown(gown)}
-                          className="font-serif text-base text-[#111111] hover:text-[#C59B3F] transition-colors cursor-pointer"
-                        >
-                          {gown.name}
-                        </h4>
-                        <p className="text-[11px] text-neutral-500 font-light mt-1 line-clamp-2">
-                          {gown.description}
-                        </p>
-                      </div>
-
-                      <div className="pt-2 border-t border-[#F2ECE0] space-y-2.5">
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-[10px] uppercase text-neutral-400">Rental:</span>
-                          <span className="font-semibold text-[#856122]">
-                            {gown.rentalStartingPrice?.split('/')[0]}
-                          </span>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-2">
-                          <button
-                            onClick={() => onSelectGown(gown)}
-                            className="py-2 text-[10.5px] border border-neutral-300 hover:border-neutral-800 text-neutral-800 uppercase tracking-wider text-center"
-                          >
-                            Details
-                          </button>
-                          <button
-                            onClick={() => onBookAppointment(gown.name)}
-                            className="py-2 text-[10.5px] bg-[#C59B3F] hover:bg-[#B3892F] text-white uppercase tracking-wider text-center font-semibold"
-                          >
-                            Book Fitting
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
-                );
-              })}
+
+                </div>
+              ))}
             </div>
           )}
         </div>
 
         {/* Footer */}
         <div className="p-4 border-t border-[#EAE3D5] bg-white flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
-          <span>Private showroom try-ons available in Enugu, Nigeria.</span>
+          <span>Enugu, Nigeria</span>
           <button
             onClick={() => onBookAppointment()}
-            className="text-xs font-semibold text-[#856122] hover:underline flex items-center gap-1 uppercase tracking-wider"
+            className="text-xs font-semibold text-[#856122] hover:underline flex items-center gap-1 uppercase tracking-wider cursor-pointer"
           >
             <span>Book In-Studio Fitting Consultation</span>
             <ArrowRight className="w-3.5 h-3.5" />

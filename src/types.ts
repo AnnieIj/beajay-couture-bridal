@@ -51,13 +51,11 @@ export type ActiveModal =
   | 'appointment' 
   | 'collections' 
   | 'rentals' 
-  | 'vendor-rentals' 
-  | 'rental-policy'
   | 'bespoke' 
   | 'gallery' 
   | 'about' 
   | 'contact' 
-  | 'search'
+  | 'search' 
   | 'gown-detail';
 
 export interface BookingFormData {
@@ -65,7 +63,7 @@ export interface BookingFormData {
   phone: string;
   email: string;
   weddingDate: string;
-  serviceType: 'bridal-styling' | 'gown-rental' | 'vendor-rental' | 'bespoke-consultation' | 'fitting-alteration';
+  serviceType: 'bridal-styling' | 'gown-rental' | 'bespoke-consultation' | 'fitting-alteration';
   budgetRange: string;
   preferredDate: string;
   preferredTime: string;
@@ -73,16 +71,17 @@ export interface BookingFormData {
   silhouetteInterest: string[];
 }
 
-export interface VendorInquiryFormData {
-  businessName: string;
-  contactPerson: string;
-  email: string;
+export type RenterType = 'individual' | 'vendor';
+
+export interface RentalInquiryFormData {
+  renterType: RenterType;
+  fullName: string;
   phone: string;
-  businessAddress: string;
-  cityState: string;
-  socialHandle: string;
-  yearsInBusiness: string;
-  clientWeddingDate: string;
-  selectedGownInterest: string;
-  specialRequests: string;
+  email?: string;
+  weddingDate: string;
+  selectedGownName: string;
+  businessName?: string;
+  businessType?: string;
+  socialHandle?: string;
+  notes?: string;
 }

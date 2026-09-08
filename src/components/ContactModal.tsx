@@ -45,11 +45,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               REACH OUT TO BEAJAY COUTURE
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#111111]">
-              Contact & Studio Location
+              Contact & Location
             </h2>
             <div className="w-14 h-[2px] bg-[#C59B3F] mx-auto my-2" />
             <p className="text-xs text-neutral-600 font-light">
-              We welcome brides and vendor partners by private appointment in Enugu, Nigeria.
+              Enugu, Nigeria • By Appointment Only
             </p>
           </div>
 
@@ -61,14 +61,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2 text-neutral-900 font-semibold tracking-wider uppercase text-[11px]">
                   <MapPin className="w-4 h-4 text-[#C59B3F]" />
-                  <span>Atelier Showroom Location</span>
+                  <span>Location</span>
                 </div>
                 <p className="text-neutral-600 font-light pl-6">
                   Enugu, Nigeria
                 </p>
-                <span className="text-[11px] text-neutral-500 pl-6 block leading-relaxed">
-                  Private bridal fitting suites. Precise showroom address and directions are provided upon appointment confirmation.
-                </span>
               </div>
 
               <div className="space-y-1.5 border-t border-[#F2ECE0] pt-4">
