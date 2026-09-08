@@ -29,7 +29,7 @@ export const TestimonialsSection: React.FC = () => {
           </h2>
           <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto my-2" />
           <p className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.26em] uppercase text-[#856122]">
-            REAL BRIDES. BEAUTIFUL STORIES.
+            CLIENT EXPERIENCES & STORIES
           </p>
         </div>
 

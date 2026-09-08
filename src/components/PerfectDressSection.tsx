@@ -119,7 +119,7 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
               Unsure which path is right for your ceremony?
             </h4>
             <p className="text-xs sm:text-sm text-neutral-600 font-light">
-              Schedule a 1-on-1 discovery consultation with our Enugu bridal stylists to try silhouettes and plan your timeline.
+              Schedule a 1-on-1 discovery consultation with our Enugu, Nigeria bridal stylists to try silhouettes and plan your timeline.
             </p>
           </div>
           <button

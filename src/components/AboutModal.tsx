@@ -64,16 +64,16 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               </h3>
               <p>
                 BEAJAY COUTURE BRIDAL was founded with a singular conviction: that every bride deserves to experience royal bridal luxury without compromise. 
-                Based in the serene district of New Haven, Enugu, our atelier houses exquisite hand-beaded ball gowns, sculpted mermaids, and regal veil creations.
+                Based in Enugu, Nigeria, our atelier showcases exquisite hand-beaded ball gowns, sculpted mermaids, and regal veil creations.
               </p>
               <p>
-                Beyond creating custom bespoke masterpieces, we pioneered the refined 
-                <strong className="font-medium text-neutral-900"> Gown Rental Program</strong> for both discerning brides and registered bridal fashion stylists across South East Nigeria.
+                Beyond creating custom bespoke masterpieces, we offer refined 
+                <strong className="font-medium text-neutral-900"> Gown Rental Programs</strong> for both discerning brides and registered bridal fashion stylists.
               </p>
               <div className="pt-2 border-t border-[#EAE3D5] grid grid-cols-2 gap-4 text-neutral-800 font-medium">
                 <div>
                   <span className="font-serif text-2xl text-[#C59B3F] block font-light">100%</span>
-                  <span className="text-[11px] uppercase tracking-wider text-neutral-500">Private Fitting VIP Suites</span>
+                  <span className="text-[11px] uppercase tracking-wider text-neutral-500">Private Fitting Sessions</span>
                 </div>
                 <div>
                   <span className="font-serif text-2xl text-[#C59B3F] block font-light">28+</span>
@@ -87,9 +87,9 @@ export const AboutModal: React.FC<AboutModalProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#EAE3D5]">
             <div className="p-4 bg-white border border-[#EAE3D5] text-center space-y-2">
               <Heart className="w-5 h-5 text-[#C59B3F] mx-auto" />
-              <h4 className="font-serif text-base text-neutral-900">Unmatched Care</h4>
+              <h4 className="font-serif text-base text-neutral-900">Dedicated Care</h4>
               <p className="text-[11px] text-neutral-500 font-light">
-                From champagne fittings to gentle hand adjustments, you are revered throughout.
+                From private bridal styling to gentle hand adjustments, you are revered throughout.
               </p>
             </div>
 
@@ -103,9 +103,9 @@ export const AboutModal: React.FC<AboutModalProps> = ({
 
             <div className="p-4 bg-white border border-[#EAE3D5] text-center space-y-2">
               <MapPin className="w-5 h-5 text-[#C59B3F] mx-auto" />
-              <h4 className="font-serif text-base text-neutral-900">Enugu Studio</h4>
+              <h4 className="font-serif text-base text-neutral-900">Enugu Atelier</h4>
               <p className="text-[11px] text-neutral-500 font-light">
-                Conveniently situated in New Haven with dedicated private bride parking.
+                Conveniently situated in Enugu, Nigeria with private consultation sessions.
               </p>
             </div>
           </div>

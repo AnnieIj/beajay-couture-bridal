@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   X, 
   Heart, 
@@ -7,9 +7,7 @@ import {
   CheckCircle2, 
   ArrowRight, 
   Calendar, 
-  AlertCircle,
-  Sparkles,
-  Phone
+  AlertCircle
 } from 'lucide-react';
 import { GOWNS_CATALOG, RENTAL_POLICIES } from '../data/bridalData';
 import { GownItem, VendorInquiryFormData } from '../types';
@@ -30,6 +28,12 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
   onSelectGown
 }) => {
   const [activeTab, setActiveTab] = useState<'bride' | 'vendor' | 'policy'>(defaultTab);
+
+  useEffect(() => {
+    if (isOpen) {
+      setActiveTab(defaultTab);
+    }
+  }, [defaultTab, isOpen]);
 
   const [vendorForm, setVendorForm] = useState<VendorInquiryFormData>({
     businessName: '',
@@ -244,7 +248,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#C59B3F] shrink-0 mt-0.5" />
-                    <span>Direct logistics pickup in New Haven, Enugu</span>
+                    <span>Direct logistics & fitting pickup in Enugu, Nigeria</span>
                   </div>
                 </div>
               </div>
@@ -260,7 +264,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   </h4>
                   <p className="text-xs text-neutral-600 max-w-md mx-auto font-light leading-relaxed">
                     Thank you, <strong className="font-medium text-neutral-900">{vendorForm.businessName}</strong>. 
-                    Our commercial bridal partnerships desk will verify your details and send our confidential vendor rate card via WhatsApp / Email within 24 hours.
+                    Our commercial bridal partnerships desk will review your credentials and contact you with our partner rental terms.
                   </p>
                   <div className="pt-2">
                     <button
@@ -426,8 +430,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               <div className="p-4 bg-amber-50/70 border border-amber-200 flex items-start gap-3 text-xs text-amber-900">
                 <AlertCircle className="w-5 h-5 text-[#C59B3F] shrink-0 mt-0.5" />
                 <p>
-                  Have custom dates or require multi-gown holds for destination weddings outside Enugu? 
-                  Reach out to our bridal concierge team directly via WhatsApp for customized rental agreements.
+                  Have custom dates or require multi-gown holds for events outside Enugu? 
+                  Reach out to our bridal concierge team directly to discuss customized rental arrangements.
                 </p>
               </div>
             </div>
@@ -437,7 +441,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
         {/* Modal Footer */}
         <div className="p-4 border-t border-[#EAE3D5] bg-white flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
-          <span>Enugu Studio • Showroom Viewings By Appointment</span>
+          <span>Enugu, Nigeria • Showroom Viewings By Appointment</span>
           <div className="flex items-center gap-3">
             <button
               onClick={() => onBookFitting(undefined, 'gown-rental')}

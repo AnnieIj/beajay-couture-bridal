@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Heart, Sparkles, Check, ArrowRight, MessageSquare, ShieldCheck, Ruler } from 'lucide-react';
+import { X, Heart, Sparkles, Instagram, Calendar } from 'lucide-react';
 import { GownItem } from '../types';
 
 interface GownDetailModalProps {
@@ -47,7 +47,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
             </span>
             {gown.isAvailableForRent && (
               <span className="bg-[#C59B3F] text-white text-[10px] font-semibold tracking-[0.16em] uppercase px-3 py-1 font-sans">
-                Available For Rent & Buy
+                Available For Rent & Bespoke
               </span>
             )}
           </div>
@@ -102,27 +102,25 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
               )}
             </div>
 
-            {/* Pricing Section */}
+            {/* Pricing / Inquiries Section */}
             <div className="p-4 border border-[#D9CEBA] bg-[#FAF6EE] flex flex-col sm:flex-row justify-between gap-3">
               <div>
                 <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
-                  Rental Rate (3-5 Days)
+                  Rental Status
                 </span>
-                <span className="font-serif text-lg font-medium text-[#856122]">
-                  {gown.rentalStartingPrice || 'Contact Atelier'}
+                <span className="font-serif text-base font-medium text-[#856122]">
+                  {gown.rentalStartingPrice || 'Rate on Request'}
                 </span>
               </div>
 
-              {gown.purchaseStartingPrice && (
-                <div>
-                  <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
-                    Bespoke / Purchase
-                  </span>
-                  <span className="font-serif text-lg font-medium text-neutral-900">
-                    {gown.purchaseStartingPrice}
-                  </span>
-                </div>
-              )}
+              <div>
+                <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
+                  Bespoke / Purchase
+                </span>
+                <span className="font-serif text-base font-medium text-neutral-900">
+                  {gown.purchaseStartingPrice || 'Available on Request'}
+                </span>
+              </div>
             </div>
 
             {/* Tags */}
@@ -138,7 +136,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
           </div>
 
           {/* Action CTAs */}
-          <div className="space-y-2 pt-2 border-t border-[#EAE3D5]">
+          <div className="space-y-2.5 pt-2 border-t border-[#EAE3D5]">
             <button
               onClick={() => onBookFitting(gown.name)}
               className="w-full bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
@@ -148,17 +146,17 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
             </button>
 
             <a
-              href={`https://wa.me/2348031234567?text=Hello%20BEAJAY%20Couture,%20I%20am%20enquiring%20about%20the%20${encodeURIComponent(gown.name)}.`}
+              href="https://instagram.com/beajaycouture_bridal"
               target="_blank"
               rel="noreferrer"
               className="w-full border border-neutral-800 hover:border-[#C59B3F] hover:text-[#C59B3F] text-neutral-900 py-3 px-5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors flex items-center justify-center gap-2"
             >
-              <MessageSquare className="w-4 h-4" />
-              <span>Enquire via WhatsApp</span>
+              <Instagram className="w-4 h-4 text-[#C59B3F]" />
+              <span>Inquire on Instagram @beajaycouture_bridal</span>
             </a>
 
             <p className="text-[10px] text-center text-neutral-500 font-light pt-1">
-              Private fitting suites available at 85 Chime Avenue, New Haven, Enugu.
+              Private atelier appointments in Enugu, Nigeria. Showroom directions sent upon booking.
             </p>
           </div>
         </div>
@@ -167,3 +165,4 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
     </div>
   );
 };
+

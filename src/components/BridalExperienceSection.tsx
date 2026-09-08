@@ -17,7 +17,7 @@ export const BridalExperienceSection: React.FC<BridalExperienceSectionProps> = (
     {
       number: '02',
       title: 'Book a Consultation',
-      description: 'Reserve a private VIP styling suite at our Enugu atelier for you and your bridal confidants.',
+      description: 'Reserve a private styling consultation at our Enugu, Nigeria atelier for you and your bridal guests.',
       icon: Calendar
     },
     {
@@ -51,7 +51,7 @@ export const BridalExperienceSection: React.FC<BridalExperienceSectionProps> = (
           </h2>
           <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto my-3" />
           <p className="text-sm text-neutral-600 font-light leading-relaxed">
-            From the moment you step through our doors in Enugu to the second you step down the aisle, we craft an effortless, celebratory experience.
+            From the moment you connect with our atelier in Enugu, Nigeria to the second you step down the aisle, we craft an effortless, celebratory experience.
           </p>
         </div>
 

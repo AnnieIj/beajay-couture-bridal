@@ -33,6 +33,33 @@ export default function App() {
   const [savedGownIds, setSavedGownIds] = useState<string[]>(['bj-01', 'bj-02']);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (selectedGalleryItem) {
+          setSelectedGalleryItem(null);
+        } else if (selectedGown && activeModal !== 'gown-detail') {
+          setSelectedGown(null);
+        } else if (activeModal) {
+          closeModal();
+        }
+      }
+    };
+
+    const isAnyModalOpen = activeModal !== null || selectedGalleryItem !== null || selectedGown !== null;
+    if (isAnyModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [activeModal, selectedGalleryItem, selectedGown]);
+
   const openModal = (modal: ActiveModal, payload?: any) => {
     setModalPayload(payload || null);
     setActiveModal(modal);

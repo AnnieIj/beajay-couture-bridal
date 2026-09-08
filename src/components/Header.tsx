@@ -114,9 +114,10 @@ export const Header: React.FC<HeaderProps> = ({
               onMouseLeave={() => setRentalsDropdownOpen(false)}
             >
               <button 
-                onClick={() => onOpenModal('rentals')}
+                onClick={() => onOpenModal('rentals', { defaultTab: 'bride' })}
                 className="flex items-center gap-1 py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
                 aria-expanded={rentalsDropdownOpen}
+                aria-haspopup="true"
               >
                 Rentals
                 <ChevronDown className={`w-3.5 h-3.5 text-[#C59B3F] transition-transform duration-200 ${
@@ -127,7 +128,8 @@ export const Header: React.FC<HeaderProps> = ({
               {/* Dropdown Menu */}
               {rentalsDropdownOpen && (
                 <div 
-                  className="absolute top-full left-0 w-64 bg-[#111111] text-[#EFECE5] shadow-2xl border border-[#2D2A26] py-3 animate-in fade-in slide-in-from-top-2 duration-150 rounded-none z-50"
+                  role="menu"
+                  className="absolute top-full left-0 w-64 bg-[#111111] text-[#EFECE5] shadow-2xl border border-[#2D2A26] py-2 animate-in fade-in slide-in-from-top-2 duration-150 rounded-none z-50"
                 >
                   <div className="px-4 py-2 border-b border-[#252320] mb-1">
                     <span className="text-[10px] tracking-[0.2em] uppercase text-[#C59B3F] font-semibold">
@@ -136,19 +138,21 @@ export const Header: React.FC<HeaderProps> = ({
                   </div>
                   
                   <button
+                    role="menuitem"
                     onClick={() => {
                       setRentalsDropdownOpen(false);
                       onOpenModal('rentals', { defaultTab: 'bride' });
                     }}
                     className="w-full text-left px-4 py-2.5 hover:bg-[#1E1D1B] hover:text-[#C59B3F] transition-colors flex flex-col cursor-pointer"
                   >
-                    <span className="font-medium text-xs">1. Bride Rentals</span>
+                    <span className="font-medium text-xs">For Brides</span>
                     <span className="text-[10px] tracking-normal text-neutral-400 capitalize">
                       Rent your dream gown for your big day
                     </span>
                   </button>
 
                   <button
+                    role="menuitem"
                     onClick={() => {
                       setRentalsDropdownOpen(false);
                       onOpenModal('vendor-rentals', { defaultTab: 'vendor' });
@@ -156,7 +160,7 @@ export const Header: React.FC<HeaderProps> = ({
                     className="w-full text-left px-4 py-2.5 hover:bg-[#1E1D1B] hover:text-[#C59B3F] transition-colors flex flex-col cursor-pointer"
                   >
                     <span className="font-medium text-xs flex items-center justify-between">
-                      2. Vendor Rentals
+                      For Vendors
                       <span className="text-[9px] bg-[#C59B3F]/20 text-[#C59B3F] px-1.5 py-0.5 rounded-none font-sans">
                         Partners
                       </span>
@@ -167,20 +171,22 @@ export const Header: React.FC<HeaderProps> = ({
                   </button>
 
                   <button
+                    role="menuitem"
                     onClick={() => {
                       setRentalsDropdownOpen(false);
-                      onOpenModal('rental-policy');
+                      onOpenModal('rental-policy', { defaultTab: 'policy' });
                     }}
                     className="w-full text-left px-4 py-2.5 hover:bg-[#1E1D1B] hover:text-[#C59B3F] transition-colors flex flex-col cursor-pointer border-t border-[#252320] mt-1"
                   >
-                    <span className="font-medium text-xs">3. Rental Policy</span>
+                    <span className="font-medium text-xs">Rental Policy & Terms</span>
                     <span className="text-[10px] tracking-normal text-neutral-400 capitalize">
-                      Terms, caution deposit & care standards
+                      Fittings, reservations & care standards
                     </span>
                   </button>
                 </div>
               )}
             </div>
+
 
             {/* Bespoke */}
             <button 
@@ -230,21 +236,21 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={() => onOpenModal('search')}
               aria-label="Search Gowns"
-              className="p-2 text-neutral-700 hover:text-[#C59B3F] transition-colors cursor-pointer focus:outline-none"
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-700 hover:text-[#C59B3F] transition-colors cursor-pointer focus:outline-none"
             >
-              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Search className="w-5 h-5" />
             </button>
 
             {/* Saved Wishlist */}
             <button
               onClick={() => onOpenModal('collections', { filter: 'saved' })}
               aria-label="Wishlist"
-              className="p-2 text-neutral-700 hover:text-[#C59B3F] transition-colors relative cursor-pointer focus:outline-none"
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-700 hover:text-[#C59B3F] transition-colors relative cursor-pointer focus:outline-none"
               title="Saved Gowns"
             >
-              <Bookmark className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Bookmark className="w-5 h-5" />
               {savedGownsCount > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 bg-[#C59B3F] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-[#C59B3F] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
                   {savedGownsCount}
                 </span>
               )}
@@ -254,7 +260,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               id="header-enquire-btn"
               onClick={() => onOpenModal('appointment')}
-              className="hidden sm:inline-flex items-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] active:bg-[#9E7724] text-white px-5 py-2.5 text-[11.5px] font-semibold tracking-[0.16em] uppercase transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] active:bg-[#9E7724] text-white px-5 py-2.5 min-h-[44px] text-[11.5px] font-semibold tracking-[0.16em] uppercase transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
             >
               <span>ENQUIRE NOW</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -263,7 +269,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 text-neutral-800 hover:text-[#C59B3F] focus:outline-none cursor-pointer"
+              className="xl:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-800 hover:text-[#C59B3F] focus:outline-none cursor-pointer"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -311,33 +317,33 @@ export const Header: React.FC<HeaderProps> = ({
               </button>
               
               {mobileRentalsExpanded && (
-                <div className="pl-4 py-2 space-y-2 border-l-2 border-[#C59B3F]/40 my-1 bg-[#F5F1E8]/50 p-2">
+                <div className="pl-4 py-2 space-y-2.5 border-l-2 border-[#C59B3F]/40 my-1 bg-[#F5F1E8]/50 p-2.5">
                   <button
                     onClick={() => {
                       setMobileMenuOpen(false);
                       onOpenModal('rentals', { defaultTab: 'bride' });
                     }}
-                    className="block w-full text-left py-1 text-xs text-neutral-700 hover:text-[#C59B3F]"
+                    className="block w-full text-left py-1 text-xs font-medium text-neutral-800 hover:text-[#C59B3F]"
                   >
-                    1. Bride Rentals
+                    For Brides
                   </button>
                   <button
                     onClick={() => {
                       setMobileMenuOpen(false);
                       onOpenModal('vendor-rentals', { defaultTab: 'vendor' });
                     }}
-                    className="block w-full text-left py-1 text-xs text-neutral-700 hover:text-[#C59B3F]"
+                    className="block w-full text-left py-1 text-xs font-medium text-neutral-800 hover:text-[#C59B3F]"
                   >
-                    2. Vendor Rentals (Bridal Partners)
+                    For Vendors (Bridal Partners)
                   </button>
                   <button
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      onOpenModal('rental-policy');
+                      onOpenModal('rental-policy', { defaultTab: 'policy' });
                     }}
-                    className="block w-full text-left py-1 text-xs text-neutral-700 hover:text-[#C59B3F]"
+                    className="block w-full text-left py-1 text-xs font-medium text-neutral-800 hover:text-[#C59B3F]"
                   >
-                    3. Rental Policy & Guidelines
+                    Rental Policy & Terms
                   </button>
                 </div>
               )}
@@ -388,16 +394,17 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 onOpenModal('appointment');
               }}
-              className="w-full flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3 px-4 text-xs font-semibold tracking-[0.16em] uppercase shadow"
+              className="w-full flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3 px-4 text-xs font-semibold tracking-[0.16em] uppercase shadow cursor-pointer"
             >
               <Sparkles className="w-4 h-4" />
               <span>BOOK AN APPOINTMENT</span>
             </button>
 
             <p className="text-center text-[11px] text-neutral-500 tracking-wider">
-              Enugu Studio • Fittings By Private Booking
+              Enugu, Nigeria • Fittings By Private Booking
             </p>
           </div>
+
         </div>
       )}
     </header>

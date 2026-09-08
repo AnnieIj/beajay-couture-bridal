@@ -1,8 +1,6 @@
 import React from 'react';
 import { 
   MapPin, 
-  Phone, 
-  Mail, 
   Instagram, 
   MessageSquare, 
   ArrowUp,
@@ -131,52 +129,38 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal, onNavigateHome }) =
             </ul>
           </div>
 
-          {/* Visit Our Studio Column (Accurately documented placeholders) */}
+          {/* Visit Our Studio Column */}
           <div className="lg:col-span-3 space-y-4">
             <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-white pb-1 border-b border-[#262420] inline-block">
-              Visit Our Studio
+              Atelier Location
             </h3>
             
             <div className="space-y-3 text-xs text-neutral-300 font-light">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#C59B3F] shrink-0 mt-0.5" />
                 <span>
-                  85 Chime Avenue, New Haven, Enugu, Nigeria{' '}
-                  <span className="text-[10px] text-neutral-500 block">
-                    (Fitting Studio & Showroom — By Appointment)
+                  Enugu, Nigeria
+                  <span className="text-[11px] text-neutral-400 block mt-1 leading-relaxed">
+                    Private bridal fitting showroom. Exact address & directions provided upon appointment confirmation.
                   </span>
                 </span>
               </div>
 
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#C59B3F] shrink-0" />
-                <a 
-                  href="tel:+2348031234567" 
-                  className="hover:text-[#E6C875] transition-colors"
-                >
-                  +234 803 123 4567 <span className="text-[10px] text-neutral-500">(Placeholder)</span>
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#C59B3F] shrink-0" />
-                <a 
-                  href="mailto:info@beajaycouturebridal.com" 
-                  className="hover:text-[#E6C875] transition-colors"
-                >
-                  info@beajaycouturebridal.com
-                </a>
+              <div className="border-t border-[#262420] pt-2 text-[11px] text-neutral-400 space-y-1">
+                <p className="text-white font-medium">Consultations & Try-Ons:</p>
+                <p>Strictly By Appointment</p>
+                <p className="text-[#C59B3F]">Private Consultations</p>
               </div>
             </div>
           </div>
 
-          {/* Social & WhatsApp Connect */}
+          {/* Connect & Appointments */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-white pb-1 border-b border-[#262420] inline-block">
-              Follow Us
+              Connect
             </h3>
             
-            <div className="flex flex-col space-y-2 text-xs">
+            <div className="flex flex-col space-y-2.5 text-xs">
               <a 
                 href="https://instagram.com/beajaycouture_bridal"
                 target="_blank"
@@ -187,26 +171,25 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal, onNavigateHome }) =
                 <span>@beajaycouture_bridal</span>
               </a>
 
-              <a 
-                href="https://wa.me/2348031234567?text=Hello%20BEAJAY%20COUTURE%20BRIDAL,%20I%20would%20like%20to%20enquire%20about%20your%20wedding%20gowns."
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 text-neutral-300 hover:text-[#E6C875] transition-colors"
+              <button 
+                onClick={() => onOpenModal('contact')}
+                className="flex items-center gap-2 text-neutral-300 hover:text-[#E6C875] transition-colors text-left cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4 text-[#C59B3F]" />
-                <span>WhatsApp Bridal Concierge</span>
-              </a>
+                <span>Send Atelier Inquiry</span>
+              </button>
             </div>
 
             <div className="pt-2">
               <button
                 onClick={() => onOpenModal('appointment')}
-                className="w-full bg-[#C59B3F] hover:bg-[#B3892F] text-white py-2.5 px-3 text-[10.5px] font-semibold tracking-[0.16em] uppercase transition-colors"
+                className="w-full bg-[#C59B3F] hover:bg-[#B3892F] text-white py-2.5 px-3 text-[10.5px] font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer"
               >
                 REQUEST FITTING
               </button>
             </div>
           </div>
+
 
         </div>
 

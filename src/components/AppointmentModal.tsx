@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Calendar, Clock, CheckCircle2, Sparkles, Send, Phone } from 'lucide-react';
+import { X, Calendar, Clock, CheckCircle2, Sparkles, Send, Instagram } from 'lucide-react';
 import { BookingFormData } from '../types';
 
 interface AppointmentModalProps {
@@ -21,7 +21,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     email: '',
     weddingDate: '',
     serviceType: defaultService,
-    budgetRange: '₦150,000 - ₦300,000',
+    budgetRange: 'Consultation to Discuss',
     preferredDate: '',
     preferredTime: '11:00 AM',
     notes: preselectedGown ? `Interested in trying on: ${preselectedGown}` : '',
@@ -79,14 +79,14 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
             <div className="space-y-2">
               <span className="text-[11px] tracking-[0.24em] font-semibold text-[#C59B3F] uppercase">
-                CONSULTATION REQUEST RECEIVED
+                CONSULTATION REQUEST RECORDED
               </span>
               <h3 className="font-serif text-3xl text-[#111111] font-normal">
                 Thank You, {formData.fullName || 'Bride'}
               </h3>
               <p className="text-sm text-neutral-600 font-light max-w-md mx-auto leading-relaxed">
-                Your private fitting consultation request at our Enugu atelier has been recorded. 
-                Our bridal director will contact you via WhatsApp / Phone to confirm your exact appointment slot.
+                Your private fitting consultation request for our atelier in Enugu, Nigeria has been received. 
+                Our bridal director will review your schedule and reach out to confirm your dedicated appointment slot.
               </p>
             </div>
 
@@ -106,23 +106,23 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               </div>
               <div className="flex justify-between border-b border-[#E8E1CD] pb-2">
                 <span className="text-neutral-500">Contact Number:</span>
-                <span className="font-medium text-neutral-900">{formData.phone || '+234...'}</span>
+                <span className="font-medium text-neutral-900">{formData.phone || 'Provided'}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-neutral-500">Studio Location:</span>
-                <span className="font-medium text-neutral-900">New Haven, Enugu</span>
+                <span className="font-medium text-neutral-900">Enugu, Nigeria (Address sent upon confirmation)</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
               <a
-                href={`https://wa.me/2348031234567?text=Hello%20BEAJAY%20Couture,%20I%20just%20submitted%20a%20bridal%20appointment%20request%20for%20${encodeURIComponent(formData.fullName)}.`}
+                href="https://instagram.com/beajaycouture_bridal"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white px-6 py-3 text-xs font-semibold tracking-wider uppercase transition-colors"
               >
-                <Phone className="w-4 h-4" />
-                <span>Instant WhatsApp Confirmation</span>
+                <Instagram className="w-4 h-4" />
+                <span>Visit Instagram @beajaycouture_bridal</span>
               </a>
 
               <button
@@ -145,7 +145,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 Book Your Bridal Consultation
               </h2>
               <p className="text-xs text-neutral-600 font-light">
-                Experience an exclusive private VIP styling suite session tailored to your wedding vision.
+                Experience a private styling consultation session tailored to your wedding vision.
               </p>
             </div>
 
@@ -262,11 +262,11 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                     onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
                     className="w-full px-3.5 py-2.5 bg-white border border-[#D5CDBF] text-xs focus:outline-none focus:border-[#C59B3F]"
                   >
-                    <option value="10:00 AM">10:00 AM (Morning VIP)</option>
+                    <option value="10:00 AM">10:00 AM (Morning Session)</option>
                     <option value="11:30 AM">11:30 AM</option>
-                    <option value="1:30 PM">1:30 PM (Midday Fitting)</option>
+                    <option value="1:30 PM">1:30 PM (Midday Session)</option>
                     <option value="3:00 PM">3:00 PM</option>
-                    <option value="4:30 PM">4:30 PM (Evening Session)</option>
+                    <option value="4:30 PM">4:30 PM (Late Afternoon Session)</option>
                   </select>
                 </div>
               </div>
@@ -321,7 +321,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   <span>CONFIRM APPOINTMENT REQUEST</span>
                 </button>
                 <p className="text-[11px] text-center text-neutral-500 mt-2">
-                  No payment required today. All fittings in New Haven, Enugu are private and personalized.
+                  No payment required today. All fittings in Enugu, Nigeria are private and personalized.
                 </p>
               </div>
 
@@ -333,3 +333,4 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     </div>
   );
 };
+

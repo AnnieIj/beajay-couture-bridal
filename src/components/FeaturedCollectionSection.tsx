@@ -145,7 +145,7 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
         {/* Editorial Subline */}
         <div className="mt-8 text-center border-t border-[#EFECE5] pt-6">
           <p className="text-xs text-neutral-500 font-light tracking-wider">
-            Every gown in our collection is available for custom fitting, bespoke recreation, or selective rental in Enugu.
+            Every gown in our collection is available for custom fitting, bespoke recreation, or selective rental in Enugu, Nigeria.
           </p>
         </div>
 

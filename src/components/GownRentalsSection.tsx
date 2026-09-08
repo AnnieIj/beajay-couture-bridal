@@ -67,7 +67,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
                   For Brides
                 </h3>
                 <p className="text-sm text-neutral-300 font-light leading-relaxed">
-                  Find and rent your dream gown for your special day. Enjoy an intimate private fitting in our Enugu studio, complete with gentle tailoring adjustments and couture veil pairings.
+                  Find and rent your dream gown for your special day. Enjoy an intimate private fitting in our Enugu, Nigeria atelier, complete with gentle tailoring adjustments and couture veil pairings.
                 </p>
               </div>
 
@@ -75,7 +75,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
               <ul className="space-y-2.5 pt-2 text-xs text-neutral-300 border-t border-[#2A2724]">
                 <li className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#C59B3F] shrink-0" />
-                  <span>3 to 5-Day Standard Rental Window</span>
+                  <span>Flexible Rental Period Options</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#C59B3F] shrink-0" />
@@ -130,7 +130,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
               <ul className="space-y-2.5 pt-2 text-xs text-neutral-300 border-t border-[#2A2724]">
                 <li className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#C59B3F] shrink-0" />
-                  <span>Privileged Commercial Rental Tariffs</span>
+                  <span>Partner Rental Rates on Request</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#C59B3F] shrink-0" />
@@ -138,7 +138,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
                 </li>
                 <li className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#C59B3F] shrink-0" />
-                  <span>Flexible Multi-Client Logistics across South East Nigeria</span>
+                  <span>Logistics & Fitting Coordination in Enugu, Nigeria</span>
                 </li>
               </ul>
             </div>
@@ -166,7 +166,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
                 The BEAJAY Rental Assurance
               </h4>
               <p className="text-xs text-neutral-400 font-light">
-                Transparent refundable security deposit, guaranteed sanitization, and verified fit before pickup.
+                Careful garment inspection, guaranteed couture sanitization, and transparent rental terms.
               </p>
             </div>
           </div>

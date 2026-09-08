@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Sparkles, CheckCircle2, Ruler, Phone, MessageSquare } from 'lucide-react';
+import { X, Sparkles, CheckCircle2, Ruler, Instagram } from 'lucide-react';
 
 interface BespokeModalProps {
   isOpen: boolean;
@@ -12,7 +12,7 @@ export const BespokeModal: React.FC<BespokeModalProps> = ({ isOpen, onClose }) =
   const [phone, setPhone] = useState('');
   const [weddingDate, setWeddingDate] = useState('');
   const [preferredSilhouette, setPreferredSilhouette] = useState('Ball Gown with Cathedral Train');
-  const [budgetTier, setBudgetTier] = useState('₦600,000 - ₦900,000');
+  const [budgetTier, setBudgetTier] = useState('Signature Cathedral & Beading');
   const [customNotes, setCustomNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -45,13 +45,13 @@ export const BespokeModal: React.FC<BespokeModalProps> = ({ isOpen, onClose }) =
 
             <div className="space-y-2">
               <span className="text-[11px] tracking-[0.24em] font-semibold text-[#C59B3F] uppercase">
-                BESPOKE COUTURE ENQUIRY LOGGED
+                BESPOKE COUTURE ENQUIRY RECORDED
               </span>
               <h3 className="font-serif text-3xl text-[#111111] font-normal">
                 Your Custom Gown Journey Begins, {fullName || 'Bride'}
               </h3>
               <p className="text-sm text-neutral-600 font-light max-w-md mx-auto leading-relaxed">
-                Our head couture designer will review your silhouette vision and prepare preliminary sketch inspirations and fabric options before your private fitting consultation.
+                Our head couture atelier in Enugu, Nigeria will review your silhouette vision and prepare preliminary sketch inspirations and fabric options before your private fitting consultation.
               </p>
             </div>
 
@@ -65,20 +65,24 @@ export const BespokeModal: React.FC<BespokeModalProps> = ({ isOpen, onClose }) =
                 <span className="font-medium text-neutral-900">{weddingDate || 'To be specified'}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-neutral-500">Estimated Timeline:</span>
-                <span className="font-medium text-neutral-900">4-6 Months Atelier Craft</span>
+                <span className="text-neutral-500">Design Tier:</span>
+                <span className="font-medium text-neutral-900">{budgetTier}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-neutral-500">Location:</span>
+                <span className="font-medium text-neutral-900">Enugu, Nigeria</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
               <a
-                href={`https://wa.me/2348031234567?text=Hello%20BEAJAY%20Couture,%20I%20have%20submitted%20a%20Bespoke%20Couture%20Enquiry%20for%20${encodeURIComponent(fullName)}.`}
+                href="https://instagram.com/beajaycouture_bridal"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white px-6 py-3 text-xs font-semibold tracking-wider uppercase transition-colors"
               >
-                <MessageSquare className="w-4 h-4" />
-                <span>Chat with Head Designer on WhatsApp</span>
+                <Instagram className="w-4 h-4" />
+                <span>Visit Instagram @beajaycouture_bridal</span>
               </a>
 
               <button
@@ -167,10 +171,10 @@ export const BespokeModal: React.FC<BespokeModalProps> = ({ isOpen, onClose }) =
 
               <div>
                 <label className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-700 mb-1">
-                  Estimated Bespoke Budget Tier
+                  Design Scope Tier
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-                  {['₦500,000 - ₦750,000', '₦750,000 - ₦1,200,000', '₦1,200,000+ (Haute Royal)'].map((tier) => (
+                  {['Intimate & Minimalist Couture', 'Signature Cathedral & Beading', 'Haute Royal Masterpiece'].map((tier) => (
                     <button
                       type="button"
                       key={tier}
@@ -209,7 +213,7 @@ export const BespokeModal: React.FC<BespokeModalProps> = ({ isOpen, onClose }) =
                   <span>SUBMIT BESPOKE ENQUIRY</span>
                 </button>
                 <p className="text-[11px] text-center text-neutral-500 mt-2">
-                  Atelier located in New Haven, Enugu. Private consultation includes fabric swatch presentation.
+                  Atelier located in Enugu, Nigeria. Private consultation includes fabric swatch exploration.
                 </p>
               </div>
 
@@ -220,3 +224,4 @@ export const BespokeModal: React.FC<BespokeModalProps> = ({ isOpen, onClose }) =
     </div>
   );
 };
+

@@ -66,12 +66,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     {
       icon: CalendarCheck,
       title: 'Fittings & Alterations',
-      desc: 'Precision bridal sculpting in Enugu'
+      desc: 'Precision bridal sculpting in Enugu, Nigeria'
     },
     {
       icon: HeartHandshake,
       title: 'Personalized Experience',
-      desc: 'One-on-one VIP bridal suite styling'
+      desc: 'One-on-one private bridal styling'
     }
   ];
 
@@ -123,7 +123,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="inline-flex items-center gap-2.5 px-3 py-1 bg-white/10 backdrop-blur-md border border-[#C59B3F]/40 text-[#E6C875]">
               <Sparkles className="w-3.5 h-3.5 text-[#C59B3F]" />
               <span className="text-[11px] sm:text-xs font-semibold tracking-[0.24em] uppercase">
-                BRIDAL COUTURE IN ENUGU
+                BRIDAL COUTURE • ENUGU, NIGERIA
               </span>
             </div>
 
@@ -163,14 +163,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
 
             {/* Subtle Studio Trust Banner */}
-            <div className="pt-4 flex items-center gap-6 text-xs text-neutral-300 border-t border-white/15">
+            <div className="pt-4 flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-neutral-300 border-t border-white/15">
               <span className="flex items-center gap-1.5 font-medium tracking-wider text-[11px] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F]" />
-                Enugu Showroom
+                Enugu, Nigeria
               </span>
               <span className="flex items-center gap-1.5 font-medium tracking-wider text-[11px] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F]" />
-                Private VIP Fittings
+                Private Fittings
               </span>
               <span className="flex items-center gap-1.5 font-medium tracking-wider text-[11px] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F]" />
@@ -203,9 +203,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                         <Icon className="w-4 h-4" />
                       </div>
                       <div className="text-left">
-                        <h2 className="text-xs sm:text-sm font-medium tracking-wider text-white group-hover:text-[#E6C875] transition-colors">
+                        <h3 className="text-xs sm:text-sm font-medium tracking-wider text-white group-hover:text-[#E6C875] transition-colors">
                           {service.title}
-                        </h2>
+                        </h3>
                         <p className="text-[11px] text-neutral-300 font-light">
                           {service.desc}
                         </p>

@@ -83,7 +83,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         <div className="max-h-[60vh] overflow-y-auto p-4 sm:p-6 space-y-3">
           {query.trim() === '' ? (
             <div className="py-12 text-center text-xs text-neutral-400 font-light">
-              Type to search our Enugu bridal couture gowns, rental silhouettes, or veils...
+              Type to search our Enugu, Nigeria bridal couture gowns, rental silhouettes, or veils...
             </div>
           ) : results.length === 0 ? (
             <div className="py-12 text-center text-xs text-neutral-500">

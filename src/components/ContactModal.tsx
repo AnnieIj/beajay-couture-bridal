@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, MapPin, Phone, Mail, Instagram, MessageSquare, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { X, MapPin, Instagram, Clock, Send, CheckCircle2 } from 'lucide-react';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -61,50 +61,58 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2 text-neutral-900 font-semibold tracking-wider uppercase text-[11px]">
                   <MapPin className="w-4 h-4 text-[#C59B3F]" />
-                  <span>Atelier Showroom Address</span>
+                  <span>Atelier Showroom Location</span>
                 </div>
                 <p className="text-neutral-600 font-light pl-6">
-                  85 Chime Avenue, New Haven, Enugu, Enugu State, Nigeria
+                  Enugu, Nigeria
                 </p>
-                <span className="text-[10px] text-neutral-400 pl-6 block">
-                  (Dedicated VIP Bridal Suite • Private Parking Available)
+                <span className="text-[11px] text-neutral-500 pl-6 block leading-relaxed">
+                  Private bridal fitting suites. Precise showroom address and directions are provided upon appointment confirmation.
                 </span>
               </div>
 
               <div className="space-y-1.5 border-t border-[#F2ECE0] pt-4">
                 <div className="flex items-center gap-2 text-neutral-900 font-semibold tracking-wider uppercase text-[11px]">
                   <Clock className="w-4 h-4 text-[#C59B3F]" />
-                  <span>Fitting & Atelier Hours</span>
+                  <span>Fitting & Atelier Schedule</span>
                 </div>
-                <div className="pl-6 space-y-1 text-neutral-600 font-light">
-                  <p>Monday – Friday: 9:00 AM – 6:00 PM</p>
-                  <p>Saturday: 10:00 AM – 5:00 PM (By Appointment Only)</p>
-                  <p>Sunday: Closed for Ceremonies & Rest</p>
+                <div className="pl-6 space-y-1.5 text-neutral-600 font-light text-xs">
+                  <p className="text-neutral-800 font-medium">By Private Appointment Only</p>
+                  <p className="text-[11px] text-neutral-500">
+                    Each bride or vendor partner is allocated dedicated studio time with our head bridal consultant.
+                  </p>
                 </div>
               </div>
 
               <div className="space-y-2 border-t border-[#F2ECE0] pt-4">
                 <div className="flex items-center gap-2 text-neutral-900 font-semibold tracking-wider uppercase text-[11px]">
-                  <Phone className="w-4 h-4 text-[#C59B3F]" />
-                  <span>Direct Communication</span>
+                  <Instagram className="w-4 h-4 text-[#C59B3F]" />
+                  <span>Official Social Channel</span>
                 </div>
                 <div className="pl-6 space-y-1 text-neutral-600 font-light">
-                  <p>Phone: +234 803 123 4567 <span className="text-neutral-400">(Placeholder)</span></p>
-                  <p>Email: info@beajaycouturebridal.com</p>
-                  <p>Instagram: @beajaycouture_bridal</p>
+                  <a 
+                    href="https://instagram.com/beajaycouture_bridal"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#856122] font-medium hover:underline flex items-center gap-1.5"
+                  >
+                    <span>@beajaycouture_bridal</span>
+                  </a>
+                  <p className="text-[11px] text-neutral-400">Follow for our latest gown releases & runway reels.</p>
                 </div>
               </div>
 
-              <div className="pt-2">
-                <a
-                  href="https://wa.me/2348031234567?text=Hello%20BEAJAY%20Couture%20Bridal,%20I%20would%20like%20to%20reach%20out%20regarding%20your%20services."
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full flex items-center justify-center gap-2 bg-[#25D366]/90 hover:bg-[#25D366] text-white py-3 px-4 text-xs font-semibold tracking-wider uppercase transition-colors"
+              <div className="pt-2 border-t border-[#F2ECE0]">
+                <button
+                  onClick={() => {
+                    onClose();
+                    onOpenAppointment();
+                  }}
+                  className="w-full flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3 px-4 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
                 >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Chat on WhatsApp Directly</span>
-                </a>
+                  <Clock className="w-4 h-4" />
+                  <span>Request Private Fitting Slot</span>
+                </button>
               </div>
 
             </div>

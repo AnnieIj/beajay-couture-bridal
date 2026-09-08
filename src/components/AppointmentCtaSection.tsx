@@ -36,7 +36,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
             </h2>
 
             <p className="text-sm sm:text-base text-neutral-300 font-light max-w-xl leading-relaxed">
-              Book a consultation at our Enugu studio and let us bring your bridal vision to life.
+              Book a consultation at our Enugu, Nigeria atelier and let us bring your bridal vision to life.
               Whether you wish to purchase, rent, or commission a bespoke couture gown, our team is honored to walk with you.
             </p>
 
@@ -77,7 +77,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
                 Personalized Service
               </span>
               <span className="text-[11px] text-neutral-400 font-light">
-                VIP Private Suite
+                Private Consultation
               </span>
             </div>
 
@@ -87,10 +87,10 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
                 <MapPin className="w-5 h-5" />
               </div>
               <span className="text-xs font-medium tracking-wider uppercase text-neutral-200">
-                Convenient Location
+                Studio Location
               </span>
               <span className="text-[11px] text-neutral-400 font-light">
-                New Haven, Enugu
+                Enugu, Nigeria
               </span>
             </div>
 

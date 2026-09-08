@@ -262,7 +262,7 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
 
         {/* Footer */}
         <div className="p-4 border-t border-[#EAE3D5] bg-white flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
-          <span>Private showroom try-ons available in New Haven, Enugu.</span>
+          <span>Private showroom try-ons available in Enugu, Nigeria.</span>
           <button
             onClick={() => onBookAppointment()}
             className="text-xs font-semibold text-[#856122] hover:underline flex items-center gap-1 uppercase tracking-wider"

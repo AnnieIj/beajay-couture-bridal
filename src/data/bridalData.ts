@@ -3,6 +3,16 @@ import { GownItem, CollectionCategory, Testimonial, GalleryItem } from '../types
 export const HERO_VIDEO_URL = "https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4";
 export const HERO_POSTER_URL = "https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1920&auto=format&fit=crop";
 
+export const BUSINESS_INFO = {
+  name: 'BEAJAY COUTURE BRIDAL',
+  location: 'Enugu, Nigeria',
+  locationDetails: 'Private showroom & atelier in Enugu, Nigeria. Specific address provided upon appointment confirmation.',
+  instagramHandle: '@beajaycouture_bridal',
+  instagramUrl: 'https://instagram.com/beajaycouture_bridal',
+  schedule: 'By Appointment Only',
+  pricingNotice: 'Gown rental rates, bespoke creation pricing, and refundable caution deposit details are provided upon consultation.'
+};
+
 export const CATEGORIES: CollectionCategory[] = [
   {
     id: 'ball-gown',
@@ -71,11 +81,11 @@ export const GOWNS_CATALOG: GownItem[] = [
       'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop'
     ],
     isAvailableForRent: true,
-    rentalStartingPrice: '₦180,000 / 3-Day Rental',
-    purchaseStartingPrice: '₦750,000',
+    rentalStartingPrice: 'Price on Request',
+    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
-    tags: ['Cathedral Train', 'Corset Bodice', 'Royal Bride', 'Top Rental']
+    tags: ['Cathedral Train', 'Corset Bodice', 'Royal Bride', 'Featured Rental']
   },
   {
     id: 'bj-02',
@@ -92,8 +102,8 @@ export const GOWNS_CATALOG: GownItem[] = [
       'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop'
     ],
     isAvailableForRent: true,
-    rentalStartingPrice: '₦160,000 / 3-Day Rental',
-    purchaseStartingPrice: '₦680,000',
+    rentalStartingPrice: 'Price on Request',
+    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Hourglass Contour', 'Illusion Back', 'Popular']
@@ -110,8 +120,8 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: '2.0 Meters Sweep Train',
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: '₦150,000 / 3-Day Rental',
-    purchaseStartingPrice: '₦620,000',
+    rentalStartingPrice: 'Price on Request',
+    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Romantic', 'Off-Shoulder', 'Lightweight Movement']
@@ -128,8 +138,8 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: 'Detachable 2.5m Watteau Cape Train',
     image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: '₦140,000 / 3-Day Rental',
-    purchaseStartingPrice: '₦550,000',
+    rentalStartingPrice: 'Price on Request',
+    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Minimalist Luxury', 'Civil Wedding', 'Intimate Ceremony']
@@ -146,8 +156,8 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: 'Floor Length / Dance-Friendly',
     image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: '₦175,000 / 3-Day Rental',
-    purchaseStartingPrice: '₦720,000',
+    rentalStartingPrice: 'Price on Request',
+    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Reception Glam', 'Party Ready', 'Sparkle & Movement']
@@ -164,8 +174,8 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: '4.0 Meters',
     image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: '₦45,000 / 3-Day Rental',
-    purchaseStartingPrice: '₦180,000',
+    rentalStartingPrice: 'Price on Request',
+    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: true,
     tags: ['Heirloom Piece', 'Cathedral Length', 'Accessories']
@@ -182,8 +192,8 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: '3.5 Meters Royal Train',
     image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: '₦220,000 / 3-Day Rental',
-    purchaseStartingPrice: '₦920,000',
+    rentalStartingPrice: 'Price on Request',
+    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: false,
     tags: ['Modest Royal', 'Long Sleeve', 'Cathedral Wedding']
@@ -200,8 +210,8 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: '2.2 Meters',
     image: 'https://images.unsplash.com/photo-1549416869-3738b556f8f5?q=80&w=1200&auto=format&fit=crop',
     isAvailableForRent: true,
-    rentalStartingPrice: '₦165,000 / 3-Day Rental',
-    purchaseStartingPrice: '₦690,000',
+    rentalStartingPrice: 'Price on Request',
+    purchaseStartingPrice: 'Available on Request',
     isBespokeInspiration: true,
     isFeatured: false,
     tags: ['Pearl Back', 'Hourglass', 'Vendor Favorite']
@@ -212,37 +222,37 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-1',
     brideName: 'Chiamaka U.',
-    weddingDate: 'December 2025',
+    weddingDate: 'Wedding Reflection',
     location: 'Enugu, Nigeria',
-    quote: 'Beajay Couture Bridal made me feel so special. My gown was everything I dreamed of and more. The fitting process in New Haven was seamless, private, and utterly professional.',
-    gownType: 'Bespoke Cathedral Ball Gown',
+    quote: 'Beajay Couture Bridal made me feel truly regal. The gown was everything I imagined. The private fitting session in Enugu was seamless, calm, and exquisitely professional.',
+    gownType: 'Bespoke Cathedral Silhouette',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop'
   },
   {
     id: 't-2',
     brideName: 'Adaobi N.',
-    weddingDate: 'November 2025',
-    location: 'Enugu & Lagos',
-    quote: 'I rented the Amara Sovereign gown for my wedding in Enugu. The condition was immaculate — it looked freshly crafted from the runway. My guests could not believe it was a rental!',
+    weddingDate: 'Bride Rental Experience',
+    location: 'Enugu, Nigeria',
+    quote: 'Renting a bridal gown from BEAJAY was an outstanding experience. The gown condition was immaculate, the fitting adjustments were tailored with care, and the process was stress-free.',
     gownType: 'Bride Rental Program',
     image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop'
   },
   {
     id: 't-3',
     brideName: 'Somtochukwu E.',
-    weddingDate: 'January 2026',
+    weddingDate: 'Bridal Styling Experience',
     location: 'Enugu, Nigeria',
-    quote: 'As a bride with specific sizing needs, finding someone who understood corsetry was everything. Beajay delivered perfection on my first fitting. I felt like an African queen.',
-    gownType: 'Custom Bespoke Couture',
+    quote: 'Finding an atelier with genuine mastery of corsetry and structure was essential for me. The team delivered exceptional contouring, and I felt completely confident stepping into my celebration.',
+    gownType: 'Custom Atelier Fitting',
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop'
   },
   {
     id: 't-4',
-    brideName: 'Kelechi O. (Stylist & Vendor Partner)',
-    weddingDate: 'Vendor Partner since 2024',
-    location: 'Enugu / Asaba',
-    quote: 'The Vendor Rental Program is a gamechanger. I regularly style brides across the South East, and BEAJAY’s gowns and streamlined vendor reservation process are unmatched.',
-    gownType: 'Vendor Rental Partner',
+    brideName: 'Kelechi O.',
+    weddingDate: 'Bridal Stylist & Partner',
+    location: 'Enugu, Nigeria',
+    quote: 'The Vendor Rental Program is a wonderful resource for bridal stylists. The selection of silhouettes and the care given to gown maintenance make client consultations smooth and dependable.',
+    gownType: 'Vendor Partner Experience',
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop'
   }
 ];
@@ -274,7 +284,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Studio Fitting Precision',
     category: 'fitting',
     image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=800&auto=format&fit=crop',
-    caption: 'Individual pin fittings at the BEAJAY New Haven studio in Enugu.'
+    caption: 'Individual pin fittings at the BEAJAY bridal atelier in Enugu, Nigeria.'
   },
   {
     id: 'gal-5',
@@ -288,23 +298,24 @@ export const GALLERY_ITEMS: GalleryItem[] = [
 
 export const RENTAL_POLICIES = [
   {
-    title: 'Standard Rental Duration',
-    detail: 'Standard gown rentals run for 3 to 5 calendar days (pickup 1-2 days before ceremony, return 1-2 days after). Extended rental periods are available on request.'
+    title: 'Rental Booking & Duration',
+    detail: 'Rental periods are coordinated around your ceremony dates, fitting schedule, and return timeline. Specific pickup and return windows are confirmed upon reservation.'
   },
   {
     title: 'Refundable Caution Deposit',
-    detail: 'A refundable security deposit is held during the rental period and reimbursed immediately upon safe return of the gown after inspection.'
+    detail: 'A refundable security deposit is held for the duration of the gown rental and returned upon inspection following the safe return of the dress.'
   },
   {
-    title: 'Complimentary Professional Cleaning',
-    detail: 'Never wash or dry clean the gown yourself! All BEAJAY gowns undergo specialized couture steam cleaning and sanitization prior to pickup and after return.'
+    title: 'Atelier Cleaning & Sanitization',
+    detail: 'All gowns undergo specialized couture steam pressing and sanitization before pickup and after return. Clients and vendors must not attempt external washing or dry cleaning.'
   },
   {
-    title: 'Minor Fitting Adjustments',
-    detail: 'Temporary basting stitches and minor bustier/hem adjustments are executed in-house by our master tailors to ensure your gown fits you seamlessly without altering the core structure.'
+    title: 'Fitting & Silhouette Adjustments',
+    detail: 'Professional fitting consultations ensure an optimal silhouette. All allowable temporary adjustments are executed strictly in-house by atelier tailors.'
   },
   {
-    title: 'Vendor Rental Program Guidelines',
-    detail: 'Registered fashion stylists, bridal planners, and boutiques receive privileged commercial rates, flexible pickup windows, and priority reservations for client photo sessions and wedding dates.'
+    title: 'Vendor Rental Program',
+    detail: 'Verified bridal stylists, wedding planners, and fashion curators can reserve gowns for client styling and photoshoots. Dedicated vendor terms and agreements are provided upon inquiry.'
   }
 ];
+
