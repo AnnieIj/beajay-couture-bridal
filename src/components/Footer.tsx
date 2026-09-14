@@ -12,13 +12,15 @@ interface FooterProps {
   onNavigateHome: () => void;
   onNavigateCollections?: () => void;
   onNavigateRentals?: () => void;
+  onNavigateBespoke?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ 
   onOpenModal, 
   onNavigateHome,
   onNavigateCollections,
-  onNavigateRentals
+  onNavigateRentals,
+  onNavigateBespoke
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -126,7 +128,13 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button 
-                  onClick={() => onOpenModal('bespoke')}
+                  onClick={() => {
+                    if (onNavigateBespoke) {
+                      onNavigateBespoke();
+                    } else {
+                      onOpenModal('bespoke');
+                    }
+                  }}
                   className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
                 >
                   Bespoke

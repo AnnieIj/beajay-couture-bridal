@@ -33,14 +33,14 @@ export const AboutModal: React.FC<AboutModalProps> = ({
           {/* Header */}
           <div className="text-center space-y-2 border-b border-[#EAE3D5] pb-6">
             <span className="text-[10px] tracking-[0.24em] font-semibold text-[#C59B3F] uppercase">
-              THE BEAJAY ATELIER HERITAGE
+              THE BEAJAY BRIDAL HERITAGE
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#111111]">
               About BEAJAY COUTURE BRIDAL
             </h2>
             <div className="w-14 h-[2px] bg-[#C59B3F] mx-auto my-2" />
             <p className="font-sans text-xs text-neutral-600 font-light max-w-lg mx-auto">
-              Rooted in Enugu, Nigeria — bringing regal African bride grace together with haute couture corsetry and world-class bridal styling.
+              Rooted in Enugu, Nigeria — celebrating elegance, thoughtful craftsmanship, and dedicated bridal styling.
             </p>
           </div>
 
@@ -60,14 +60,14 @@ export const AboutModal: React.FC<AboutModalProps> = ({
 
             <div className="space-y-4 text-xs sm:text-[13px] text-neutral-600 font-light leading-relaxed">
               <h3 className="font-serif text-xl font-normal text-[#111111]">
-                Couture Craftsmanship in Enugu
+                Bridal Craftsmanship in Enugu
               </h3>
               <p>
                 BEAJAY COUTURE BRIDAL was founded with a singular conviction: that every bride deserves to experience royal bridal luxury without compromise. 
-                Based in Enugu, Nigeria, our atelier showcases exquisite hand-beaded ball gowns, sculpted mermaids, and regal veil creations.
+                Based in Enugu, Nigeria, BEAJAY showcases statement ball gowns, elegant mermaid silhouettes, and bespoke veil creations.
               </p>
               <p>
-                Beyond creating custom bespoke masterpieces, we offer our refined 
+                Beyond creating custom bespoke gowns, we offer our refined 
                 <strong className="font-medium text-neutral-900"> Gown Rental Service</strong> for individuals and bridal industry partners.
               </p>
               <div className="pt-2 border-t border-[#EAE3D5] grid grid-cols-2 gap-4 text-neutral-800 font-medium">
@@ -76,8 +76,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({
                   <span className="text-[11px] uppercase tracking-wider text-neutral-500">Private Fitting Sessions</span>
                 </div>
                 <div>
-                  <span className="font-serif text-2xl text-[#C59B3F] block font-light">28+</span>
-                  <span className="text-[11px] uppercase tracking-wider text-neutral-500">Bespoke Body Measurements</span>
+                  <span className="font-serif text-2xl text-[#C59B3F] block font-light">Dedicated</span>
+                  <span className="text-[11px] uppercase tracking-wider text-neutral-500">Fitting Consultations</span>
                 </div>
               </div>
             </div>
@@ -95,15 +95,15 @@ export const AboutModal: React.FC<AboutModalProps> = ({
 
             <div className="p-4 bg-white border border-[#EAE3D5] text-center space-y-2">
               <Award className="w-5 h-5 text-[#C59B3F] mx-auto" />
-              <h4 className="font-serif text-base text-neutral-900">Couture Standards</h4>
+              <h4 className="font-serif text-base text-neutral-900">Quality Standards</h4>
               <p className="text-[11px] text-neutral-500 font-light">
-                Imported silks, French laces, crystal beads, and architectural boning.
+                Curated fabrics, hand-finished detailing, and thoughtful gown construction.
               </p>
             </div>
 
             <div className="p-4 bg-white border border-[#EAE3D5] text-center space-y-2">
               <MapPin className="w-5 h-5 text-[#C59B3F] mx-auto" />
-              <h4 className="font-serif text-base text-neutral-900">Enugu Atelier</h4>
+              <h4 className="font-serif text-base text-neutral-900">Enugu, Nigeria</h4>
               <p className="text-[11px] text-neutral-500 font-light">
                 Located in Enugu, Nigeria with private consultation sessions.
               </p>
@@ -119,7 +119,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               }}
               className="bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3.5 px-8 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-md inline-flex items-center gap-2"
             >
-              <span>SCHEDULE ATELIER DISCOVERY VISIT</span>
+              <span>BOOK A BRIDAL CONSULTATION</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

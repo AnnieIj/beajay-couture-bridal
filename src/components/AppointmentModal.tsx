@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Calendar, Clock, CheckCircle2, Sparkles, Send, Instagram } from 'lucide-react';
 import { BookingFormData } from '../types';
 
@@ -29,6 +29,17 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   });
 
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSubmitted(false);
+      setFormData(prev => ({
+        ...prev,
+        serviceType: defaultService || prev.serviceType,
+        notes: preselectedGown ? `Interested in: ${preselectedGown}` : prev.notes
+      }));
+    }
+  }, [isOpen, defaultService, preselectedGown]);
 
   if (!isOpen) return null;
 
@@ -85,8 +96,8 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 Thank You, {formData.fullName || 'Bride'}
               </h3>
               <p className="text-sm text-neutral-600 font-light max-w-md mx-auto leading-relaxed">
-                Your private fitting consultation request for our atelier in Enugu, Nigeria has been received. 
-                Our bridal director will review your schedule and reach out to confirm your dedicated appointment slot.
+                Your bridal consultation request for BEAJAY in Enugu, Nigeria has been received. 
+                Our team will review your schedule and reach out to confirm your appointment slot.
               </p>
             </div>
 
@@ -139,7 +150,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
             {/* Header */}
             <div className="text-center space-y-2 mb-8 border-b border-[#EAE3D5] pb-6">
               <span className="text-[10px] tracking-[0.24em] font-semibold text-[#C59B3F] uppercase">
-                ENUGU ATELIER APPOINTMENTS
+                ENUGU, NIGERIA
               </span>
               <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111]">
                 Book Your Bridal Consultation
@@ -160,7 +171,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   {[
                     { id: 'bridal-styling', label: 'Bridal Styling & Try-On (Collection)' },
                     { id: 'gown-rental', label: 'Gown Rental Consultation' },
-                    { id: 'bespoke-consultation', label: 'Bespoke Couture Consultation' },
+                    { id: 'bespoke-consultation', label: 'Bespoke Consultation' },
                     { id: 'fitting-alteration', label: 'Fittings & Alterations' }
                   ].map((service) => (
                     <button

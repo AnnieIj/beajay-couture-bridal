@@ -24,6 +24,7 @@ interface GownDetailPageProps {
   onBookFitting: (gownName: string) => void;
   onCheckRentalAvailability: (gownName: string) => void;
   onEnquire: (gownName: string) => void;
+  onNavigateBespokeWithInspiration?: (gownName: string) => void;
 }
 
 export const GownDetailPage: React.FC<GownDetailPageProps> = ({
@@ -32,7 +33,8 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
   onSelectGown,
   onBookFitting,
   onCheckRentalAvailability,
-  onEnquire
+  onEnquire,
+  onNavigateBespokeWithInspiration
 }) => {
   const images = gown.images && gown.images.length > 0 
     ? gown.images 
@@ -365,6 +367,36 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                 <span>ENQUIRE ABOUT THIS GOWN</span>
               </button>
 
+            </div>
+
+            {/* Bespoke Inspiration Connection: Enquire About a Bespoke Creation */}
+            <div className="p-5 bg-[#FAF7F0] border border-[#E5DEC9] space-y-2.5">
+              <div className="flex items-center gap-2 text-[#856122]">
+                <Sparkles className="w-4 h-4 text-[#C59B3F] shrink-0" />
+                <span className="text-[10px] tracking-[0.24em] font-semibold uppercase">
+                  INSPIRED BY THIS DESIGN?
+                </span>
+              </div>
+              <h4 className="font-serif text-base text-neutral-900 font-normal">
+                Enquire About A Bespoke Creation
+              </h4>
+              <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                Adore the silhouette, structure, or detailing of {gown.name}? Connect with BEAJAY to create a custom gown inspired by this design.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  if (onNavigateBespokeWithInspiration) {
+                    onNavigateBespokeWithInspiration(gown.name);
+                  } else {
+                    onEnquire(gown.name);
+                  }
+                }}
+                className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#856122] hover:text-[#AA802E] underline cursor-pointer pt-1"
+              >
+                <span>Begin Bespoke Journey With This Inspiration</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
 
             {/* Atelier Assurance Note */}

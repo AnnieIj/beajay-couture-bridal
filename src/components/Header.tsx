@@ -14,6 +14,7 @@ interface HeaderProps {
   onNavigateHome: () => void;
   onNavigateCollections?: () => void;
   onNavigateRentals?: () => void;
+  onNavigateBespoke?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -21,7 +22,8 @@ export const Header: React.FC<HeaderProps> = ({
   activeView,
   onNavigateHome,
   onNavigateCollections,
-  onNavigateRentals
+  onNavigateRentals,
+  onNavigateBespoke
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -51,6 +53,12 @@ export const Header: React.FC<HeaderProps> = ({
 
     if (modalType === 'rentals' && onNavigateRentals) {
       onNavigateRentals();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (modalType === 'bespoke' && onNavigateBespoke) {
+      onNavigateBespoke();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -141,7 +149,9 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Bespoke */}
             <button 
               onClick={() => handleNavClick('bespoke-section', 'bespoke')}
-              className="py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
+              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
+                activeView === 'bespoke' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
               Bespoke
             </button>
@@ -248,7 +258,9 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button 
               onClick={() => handleNavClick('bespoke-section', 'bespoke')}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+              className={`text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer ${
+                activeView === 'bespoke' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
               <span>Bespoke Couture</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">04</span>

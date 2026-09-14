@@ -108,3 +108,43 @@ export interface RentalInquiryFormData {
   // Additional information
   notes?: string;
 }
+
+export interface BespokeEnquiryFormData {
+  // Step 1: About You
+  fullName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  // Step 2: Your Wedding
+  weddingDate: string;
+  weddingLocation?: string;
+  // Step 3: Your Vision
+  inspirationSilhouettes: string[];
+  designPreferences: string[];
+  preselectedGownInspiration?: string;
+  // Step 4: Tell Us More
+  visionNotes?: string;
+  // Step 5: Inspiration Files (Prepared frontend upload previews)
+  inspirationFiles?: {
+    name: string;
+    size: number;
+    previewUrl: string;
+  }[];
+}
+
+export interface BespokeCraftsmanshipItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+}
+
+export interface BespokeJourneyStage {
+  step: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image?: string;
+}

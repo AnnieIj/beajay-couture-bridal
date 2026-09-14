@@ -15,6 +15,7 @@ import { Footer } from './components/Footer';
 import { CollectionsPage } from './components/CollectionsPage';
 import { GownDetailPage } from './components/GownDetailPage';
 import { RentalsPage } from './components/RentalsPage';
+import { BespokePage } from './components/BespokePage';
 
 import { AppointmentModal } from './components/AppointmentModal';
 import { RentalsModal } from './components/RentalsModal';
@@ -42,6 +43,7 @@ export default function App() {
   const [selectedGown, setSelectedGown] = useState<GownItem | null>(null);
   const [selectedGalleryItem, setSelectedGalleryItem] = useState<GalleryItem | null>(null);
   const [collectionCategory, setCollectionCategory] = useState<string>('all');
+  const [bespokeInspirationGown, setBespokeInspirationGown] = useState<string | undefined>(undefined);
 
   // Handle browser history back/forward
   useEffect(() => {
@@ -83,6 +85,7 @@ export default function App() {
   // Route Resolution
   const isCollectionsPage = currentPath === '/collections' || currentPath === '/collections/';
   const isRentalsPage = currentPath === '/rentals' || currentPath === '/rentals/';
+  const isBespokePage = currentPath === '/bespoke' || currentPath === '/bespoke/';
   const gownSlugMatch = currentPath.startsWith('/collections/') 
     ? currentPath.replace('/collections/', '').replace(/\/$/, '')
     : null;
@@ -95,6 +98,8 @@ export default function App() {
   useEffect(() => {
     if (matchedGown) {
       document.title = `${matchedGown.name} | BEAJAY COUTURE BRIDAL Collections`;
+    } else if (isBespokePage) {
+      document.title = "Bespoke Bridal Couture | BEAJAY COUTURE BRIDAL • Crafted in Nigeria";
     } else if (isRentalsPage) {
       document.title = "Gown Rentals | BEAJAY COUTURE BRIDAL • Wear the Moment";
     } else if (isCollectionsPage) {
@@ -102,7 +107,7 @@ export default function App() {
     } else {
       document.title = "BEAJAY COUTURE BRIDAL | Luxury Bridal Couture & Gown Rentals, Enugu";
     }
-  }, [matchedGown, isRentalsPage, isCollectionsPage]);
+  }, [matchedGown, isBespokePage, isRentalsPage, isCollectionsPage]);
 
   // Navigation Helpers
   const navigateTo = (path: string) => {
@@ -122,6 +127,14 @@ export default function App() {
 
   const navigateToRentals = () => {
     navigateTo('/rentals');
+  };
+
+  const navigateToBespoke = (inspirationGown?: string) => {
+    closeModal();
+    if (inspirationGown) {
+      setBespokeInspirationGown(inspirationGown);
+    }
+    navigateTo('/bespoke');
   };
 
   const navigateToGownDetail = (gown: GownItem) => {
@@ -156,7 +169,13 @@ export default function App() {
     });
   };
 
-  const activeNavView = isRentalsPage ? 'rentals' : isCollectionsPage || matchedGown ? 'collections' : 'home';
+  const activeNavView = isBespokePage 
+    ? 'bespoke' 
+    : isRentalsPage 
+    ? 'rentals' 
+    : isCollectionsPage || matchedGown 
+    ? 'collections' 
+    : 'home';
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FCFAF7] text-[#1A1A1A] font-sans">
@@ -171,6 +190,7 @@ export default function App() {
         onNavigateHome={() => navigateTo('/')}
         onNavigateCollections={navigateToCollections}
         onNavigateRentals={navigateToRentals}
+        onNavigateBespoke={navigateToBespoke}
       />
 
       {/* Content Rendering based on route */}
@@ -184,6 +204,14 @@ export default function App() {
             onBookFitting={(gownName) => handleBookFittingFromGown(gownName)}
             onCheckRentalAvailability={(gownName) => handleRentGownFromDetail(gownName)}
             onEnquire={(gownName) => openModal('contact', { preselectedGown: gownName })}
+            onNavigateBespokeWithInspiration={(gownName) => navigateToBespoke(gownName)}
+          />
+        ) : isBespokePage ? (
+          /* Dedicated Bespoke Couture Experience (/bespoke) */
+          <BespokePage
+            onNavigateCollections={navigateToCollections}
+            onBookConsultation={(gownName) => handleBookFittingFromGown(gownName, 'bespoke-consultation')}
+            preselectedInspirationGown={bespokeInspirationGown}
           />
         ) : isCollectionsPage ? (
           /* Dedicated Collections Showcase Lookbook (/collections) */
@@ -231,6 +259,7 @@ export default function App() {
             {/* SECTION 5 — BESPOKE BRIDAL (Your Gown. Your Story.) */}
             <BespokeSection
               onOpenModal={openModal}
+              onNavigateBespoke={navigateToBespoke}
             />
 
             {/* SECTION 6 — THE BRIDAL EXPERIENCE (01 to 04) */}
@@ -261,6 +290,7 @@ export default function App() {
         onNavigateHome={() => navigateTo('/')}
         onNavigateCollections={navigateToCollections}
         onNavigateRentals={navigateToRentals}
+        onNavigateBespoke={navigateToBespoke}
       />
 
       {/* =======================================================
@@ -298,6 +328,9 @@ export default function App() {
       <BespokeModal
         isOpen={activeModal === 'bespoke'}
         onClose={closeModal}
+        preselectedGown={modalPayload?.preselectedGown}
+        onNavigateBespokePage={navigateToBespoke}
+        onBookConsultation={() => handleBookFittingFromGown(modalPayload?.preselectedGown, 'bespoke-consultation')}
       />
 
       {/* 5. Gown Detail Sheet Modal (Quick Preview) */}

@@ -4,24 +4,25 @@ import { ActiveModal } from '../types';
 
 interface BespokeSectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
+  onNavigateBespoke?: () => void;
 }
 
-export const BespokeSection: React.FC<BespokeSectionProps> = ({ onOpenModal }) => {
+export const BespokeSection: React.FC<BespokeSectionProps> = ({ onOpenModal, onNavigateBespoke }) => {
   const steps = [
     {
       icon: Compass,
       title: 'Vision & Silhouette Exploration',
-      desc: 'Moodboards, personal aesthetics, ceremony venue aesthetics, and fabric swatching.'
+      desc: 'Understanding your style preferences, celebration aesthetic, and preferred gown direction.'
     },
     {
       icon: Ruler,
-      title: '28-Point Custom Body Measurements',
-      desc: 'Precision anatomic measurement ensuring a corseted silhouette engineered exclusively for your posture.'
+      title: 'Individual Measurements & Design',
+      desc: 'Careful measurements and silhouette development tailored specifically to your proportions.'
     },
     {
       icon: PenTool,
-      title: 'Toile Fitting & Hand Embellishment',
-      desc: 'Muslin mock-up fitting followed by delicate hand-beading of French lace and Swarovski crystals.'
+      title: 'Fittings & Hand-Finished Details',
+      desc: 'Progressive fitting refinement accompanied by thoughtful fabric selection and delicate finishing accents.'
     }
   ];
 
@@ -59,7 +60,7 @@ export const BespokeSection: React.FC<BespokeSectionProps> = ({ onOpenModal }) =
                 />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-sm text-center py-1.5 px-2">
                   <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-[#E6C875]">
-                    Enugu Atelier Craft
+                    Crafted in Enugu, Nigeria
                   </span>
                 </div>
               </div>
@@ -91,7 +92,7 @@ export const BespokeSection: React.FC<BespokeSectionProps> = ({ onOpenModal }) =
             {/* Description */}
             <p className="text-sm sm:text-base text-neutral-600 font-light leading-relaxed">
               At <strong className="font-medium text-neutral-900">BEAJAY COUTURE BRIDAL</strong>, bespoke is more than a service — it is a collaborative art form. 
-              We craft one-of-a-kind wedding gowns sculpted strictly around your body contours, personal aesthetic, and the emotional resonance of your wedding celebration.
+              We craft one-of-a-kind wedding gowns shaped thoughtfully around your vision, silhouette, and the personal significance of your celebration.
             </p>
 
             {/* Process Highlights */}
@@ -120,25 +121,31 @@ export const BespokeSection: React.FC<BespokeSectionProps> = ({ onOpenModal }) =
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <button
                 id="bespoke-enquiry-btn"
-                onClick={() => onOpenModal('bespoke')}
+                onClick={() => {
+                  if (onNavigateBespoke) {
+                    onNavigateBespoke();
+                  } else {
+                    onOpenModal('bespoke');
+                  }
+                }}
                 className="inline-flex items-center justify-center gap-3 bg-[#C59B3F] hover:bg-[#B3892F] active:bg-[#9E7724] text-white py-4 px-8 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-md cursor-pointer"
               >
-                <span>ENQUIRE ABOUT A CUSTOM GOWN</span>
+                <span>EXPLORE BESPOKE COUTURE</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <button
-                onClick={() => onOpenModal('appointment')}
+                onClick={() => onOpenModal('appointment', { defaultService: 'bespoke-consultation' })}
                 className="inline-flex items-center justify-center gap-2 border border-neutral-800 hover:border-[#C59B3F] hover:text-[#C59B3F] text-neutral-900 py-4 px-6 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer"
               >
-                <span>BOOK STUDIO VISIT</span>
+                <span>BOOK BESPOKE CONSULTATION</span>
               </button>
             </div>
 
-            {/* Timeline Note */}
+            {/* Global Brand Statement */}
             <p className="text-[11px] text-neutral-500 tracking-wider font-light flex items-center gap-2">
               <Sparkles className="w-3.5 h-3.5 text-[#C59B3F]" />
-              Recommended timeline: 3 to 6 months prior to wedding date (Express slots upon consultation)
+              Crafted in Nigeria. Made for Brides Everywhere. • Consultations available upon request.
             </p>
 
           </div>

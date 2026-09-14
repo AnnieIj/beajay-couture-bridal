@@ -32,7 +32,7 @@ export const CATEGORIES: CollectionCategory[] = [
     id: 'a-line',
     name: 'A-Line',
     slug: 'a-line',
-    description: 'Timeless grace and flattering proportions tailored with French Chantilly lace and mikado silk.',
+    description: 'Timeless grace and flattering proportions tailored with delicate lace and refined fabrics.',
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
     itemCount: 12
   },
@@ -40,7 +40,7 @@ export const CATEGORIES: CollectionCategory[] = [
     id: 'sheath',
     name: 'Sheath',
     slug: 'sheath',
-    description: 'Effortless modern luxury featuring clean column silhouettes, pearl accents, and flowing crepes.',
+    description: 'Effortless modern luxury featuring clean column silhouettes, subtle accents, and flowing fabrics.',
     image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=900&auto=format&fit=crop',
     itemCount: 9
   },
@@ -48,7 +48,7 @@ export const CATEGORIES: CollectionCategory[] = [
     id: 'reception',
     name: 'Reception Dresses',
     slug: 'reception',
-    description: 'Glamorous show-stoppers made with crystal beading, metallic accents, and detachable capes.',
+    description: 'Glamorous show-stoppers made with hand-finished beading, metallic accents, and detachable capes.',
     image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=900&auto=format&fit=crop',
     itemCount: 16
   },
@@ -56,7 +56,7 @@ export const CATEGORIES: CollectionCategory[] = [
     id: 'veils-accessories',
     name: 'Veils & Accessories',
     slug: 'veils-accessories',
-    description: 'Cathedral veils, pearl hair vines, crystal tiaras, and handcrafted bridal gloves.',
+    description: 'Cathedral veils, hair accessories, bridal tiaras, and handcrafted finishing pieces.',
     image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=900&auto=format&fit=crop',
     itemCount: 22
   }
@@ -86,8 +86,8 @@ export const GOWNS_CATALOG: GownItem[] = [
     name: 'The Amara Sovereign Gown',
     category: 'ball-gown',
     categoryLabel: 'Ball Gown',
-    silhouette: 'Grand Ball Gown with Structured Corsetry',
-    description: 'A regal royal bridal masterpiece featuring an illusion corseted bodice, hand-sewn Austrian Swarovski pearls, and a cascading 3-meter cathedral train.',
+    silhouette: 'Grand Ball Gown with Structured Bodice',
+    description: 'A regal royal bridal gown featuring an illusion detailed bodice, hand-placed embellishments, and a cascading 3-meter cathedral train.',
     images: [
       'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
@@ -98,10 +98,10 @@ export const GOWNS_CATALOG: GownItem[] = [
       'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop'
     ],
-    sizes: ['UK 8', 'UK 10', 'Atelier Tailored'],
-    fabric: 'Heavy Dutchess Satin & French Embroidered Tulle',
-    details: 'Hand-encrusted seed pearls, crystal beadwork, 3D floral appliqués',
-    embellishments: 'Hand-encrusted seed pearls, crystal beadwork, 3D floral appliqués',
+    sizes: ['UK 8', 'UK 10', 'Tailored Sizing'],
+    fabric: 'Dutchess Satin & Embroidered Tulle',
+    details: 'Hand-placed beadwork and dimensional floral appliqués',
+    embellishments: 'Hand-placed beadwork and dimensional floral appliqués',
     trainStyle: '3.2 Meters Cathedral Train',
     trainLength: '3.2 Meters Cathedral Train',
     rentalEligible: true,
@@ -110,7 +110,7 @@ export const GOWNS_CATALOG: GownItem[] = [
     featured: true,
     isFeatured: true,
     isBespokeInspiration: true,
-    tags: ['Cathedral Train', 'Corset Bodice', 'Royal Bride', 'Featured Rental']
+    tags: ['Cathedral Train', 'Detailed Bodice', 'Royal Bride', 'Featured Rental']
   },
   {
     id: 'bj-02',
@@ -120,7 +120,7 @@ export const GOWNS_CATALOG: GownItem[] = [
     category: 'mermaid',
     categoryLabel: 'Mermaid',
     silhouette: 'Fit-and-Flare Sculpted Mermaid',
-    description: 'Sensual sculpted elegance designed to contour every curve, featuring sweetheart neckline, sheer back illusion button detailing, and godet lace skirt.',
+    description: 'Sculpted elegance designed to contour the silhouette, featuring a sweetheart neckline, sheer back button detailing, and godet lace skirt.',
     images: [
       'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1549416869-3738b556f8f5?q=80&w=1200&auto=format&fit=crop'
@@ -129,10 +129,10 @@ export const GOWNS_CATALOG: GownItem[] = [
     gallery: [
       'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop'
     ],
-    sizes: ['UK 8', 'UK 10', 'Bespoke Adjustments'],
-    fabric: 'Mikado Silk & Corded Alençon Lace',
-    details: 'Glass bugle beads, delicate crystal trim along neckline',
-    embellishments: 'Glass bugle beads, delicate crystal trim along neckline',
+    sizes: ['UK 8', 'UK 10', 'Tailored Sizing'],
+    fabric: 'Structured Satin & Corded Lace',
+    details: 'Delicate beading and fine trim along the neckline',
+    embellishments: 'Delicate beading and fine trim along the neckline',
     trainStyle: '1.8 Meters Chapel Train',
     trainLength: '1.8 Meters Chapel Train',
     rentalEligible: true,
@@ -151,16 +151,16 @@ export const GOWNS_CATALOG: GownItem[] = [
     category: 'a-line',
     categoryLabel: 'A-Line',
     silhouette: 'Romantic Classic A-Line',
-    description: 'An ode to romantic purity. Gentle sweetheart bustier with off-the-shoulder draped sleeves, flowing seamlessly into soft organza layers that float when walking.',
+    description: 'An ode to romantic purity. Gentle sweetheart bustier with off-the-shoulder draped sleeves, flowing seamlessly into soft layered fabrics that float when walking.',
     images: [
       'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
     sizes: ['UK 8', 'UK 10', 'UK 12'],
-    fabric: 'Italian Silk Organza & Chantilly Lace',
-    details: 'Scattered micro-sequins with subtle shimmer under studio lighting',
-    embellishments: 'Scattered micro-sequins with subtle shimmer under studio lighting',
+    fabric: 'Bridal Organza & Delicate Lace',
+    details: 'Scattered micro-sequins with subtle shimmer under lighting',
+    embellishments: 'Scattered micro-sequins with subtle shimmer under lighting',
     trainStyle: '2.0 Meters Sweep Train',
     trainLength: '2.0 Meters Sweep Train',
     rentalEligible: true,
@@ -179,16 +179,16 @@ export const GOWNS_CATALOG: GownItem[] = [
     category: 'sheath',
     categoryLabel: 'Sheath',
     silhouette: 'Clean Architectural Sheath',
-    description: 'For the contemporary minimalist bride. A sleek architectural column with square neckline, thigh-high modest slit option, and detachable watteau train.',
+    description: 'For the contemporary minimalist bride. A sleek architectural column with square neckline, modest slit option, and detachable watteau train.',
     images: [
       'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
     sizes: ['UK 6', 'UK 8'],
-    fabric: 'Heavy Crepe de Chine & Silk Charmeuse',
-    details: 'Covered satin buttons down spine, minimalist pearl cuff detail',
-    embellishments: 'Covered satin buttons down spine, minimalist pearl cuff detail',
+    fabric: 'Tailored Crepe & Fine Lining',
+    details: 'Covered buttons down spine, minimalist cuff detail',
+    embellishments: 'Covered buttons down spine, minimalist cuff detail',
     trainStyle: 'Detachable 2.5m Watteau Cape Train',
     trainLength: 'Detachable 2.5m Watteau Cape Train',
     rentalEligible: true,
@@ -207,16 +207,16 @@ export const GOWNS_CATALOG: GownItem[] = [
     category: 'reception',
     categoryLabel: 'Reception Dress',
     silhouette: 'Glamour Contour with Illusion Slit',
-    description: 'Designed for high-energy dancing and red carpet grandeur. Drenched in champagne crystal fringe, boned corset, and an optional feather-hemmed shoulder cape.',
+    description: 'Designed for celebration and evening presence. Finished with shimmering fringe beading, structured bodice, and an optional shoulder cape.',
     images: [
       'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
     sizes: ['UK 8', 'UK 10'],
-    fabric: 'Champagne Metallic Mesh & Stiffened Tulle',
-    details: 'Thousands of crystal fringe beads that bounce with movement',
-    embellishments: 'Thousands of crystal fringe beads that bounce with music',
+    fabric: 'Champagne Metallic Mesh & Tulle',
+    details: 'Fringe beading that catches motion with celebration',
+    embellishments: 'Fringe beading that catches motion with celebration',
     trainStyle: 'Floor Length / Dance-Friendly',
     trainLength: 'Floor Length / Dance-Friendly',
     rentalEligible: true,
@@ -235,16 +235,16 @@ export const GOWNS_CATALOG: GownItem[] = [
     category: 'veils-accessories',
     categoryLabel: 'Veils & Accessories',
     silhouette: 'Royal Cathedral Veil',
-    description: 'Hand-cut 4-meter English tulle veil trimmed with beaded scallop French lace and accompanied by a gold crystal tiara.',
+    description: 'Hand-cut 4-meter bridal tulle veil trimmed with beaded scallop lace and accompanied by a gold-tone bridal tiara.',
     images: [
       'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
     sizes: ['One Size (4.0 Meters)'],
-    fabric: 'Imported English Soft Illusion Tulle',
-    details: 'Hand-sewn scalloped lace border with pearl micro-clusters',
-    embellishments: 'Hand-sewn scalloped lace border with pearl micro-clusters',
+    fabric: 'Soft Illusion Bridal Tulle',
+    details: 'Hand-placed scalloped lace border with subtle beadwork',
+    embellishments: 'Hand-placed scalloped lace border with subtle beadwork',
     trainStyle: '4.0 Meters Length',
     trainLength: '4.0 Meters',
     rentalEligible: true,
@@ -263,16 +263,16 @@ export const GOWNS_CATALOG: GownItem[] = [
     category: 'ball-gown',
     categoryLabel: 'Ball Gown',
     silhouette: 'Modest Royal Ball Gown',
-    description: 'Opulent long-sleeved bridal royalty with baroque beaded bodice, high neckline collar, and voluminous skirt for church cathedral ceremonies.',
+    description: 'Long-sleeved bridal elegance with an intricately detailed bodice, high neckline collar, and voluminous skirt for church and cathedral ceremonies.',
     images: [
       'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
     sizes: ['UK 10', 'Bespoke Order Only'],
-    fabric: 'Brocade Damask & Metallic Threaded Lace',
-    details: 'Seed pearls, teardrop crystals, gold bullion metallic embroidery',
-    embellishments: 'Seed pearls, teardrop crystals, gold bullion metallic embroidery',
+    fabric: 'Damask & Metallic Threaded Lace',
+    details: 'Fine beading, metallic accents, and detailed embroidery',
+    embellishments: 'Fine beading, metallic accents, and detailed embroidery',
     trainStyle: '3.5 Meters Royal Train',
     trainLength: '3.5 Meters Royal Train',
     rentalEligible: false,
@@ -291,16 +291,16 @@ export const GOWNS_CATALOG: GownItem[] = [
     category: 'mermaid',
     categoryLabel: 'Mermaid',
     silhouette: 'Low-Back Dramatic Mermaid',
-    description: 'Dramatic low back with cascading pearl strands draping across the shoulder blades and an hourglass flounce of Spanish lace.',
+    description: 'Dramatic low back with cascading bead strands draping across the back and an elegant flounce of embroidered lace.',
     images: [
       'https://images.unsplash.com/photo-1549416869-3738b556f8f5?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1549416869-3738b556f8f5?q=80&w=1200&auto=format&fit=crop',
     sizes: ['UK 8', 'UK 10'],
-    fabric: 'Stretch Crepe & Embroidered Spanish Lace',
-    details: 'Multi-strand South Sea pearl back draping and scalloped hemline',
-    embellishments: 'Multi-strand South Sea pearl back draping',
+    fabric: 'Stretch Crepe & Embroidered Lace',
+    details: 'Beaded back draping and scalloped hemline',
+    embellishments: 'Beaded back draping',
     trainStyle: '2.2 Meters Court Train',
     trainLength: '2.2 Meters',
     rentalEligible: true,
@@ -309,7 +309,7 @@ export const GOWNS_CATALOG: GownItem[] = [
     featured: false,
     isFeatured: false,
     isBespokeInspiration: true,
-    tags: ['Pearl Back', 'Hourglass', 'Couture Favorite']
+    tags: ['Beaded Back', 'Hourglass', 'Bridal Favorite']
   },
   {
     id: 'bj-09',
@@ -319,16 +319,16 @@ export const GOWNS_CATALOG: GownItem[] = [
     category: 'a-line',
     categoryLabel: 'A-Line',
     silhouette: 'V-Neckline Pleated A-Line',
-    description: 'Understated aristocratic poise featuring crisp micro-pleating, deep plunging illusion V-neckline, and side pockets in heavy silk mikado.',
+    description: 'Understated poise featuring crisp pleating, deep plunging illusion V-neckline, and side pockets in tailored bridal fabric.',
     images: [
       'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
     sizes: ['UK 8', 'UK 10', 'UK 12'],
-    fabric: 'Pure Silk Mikado',
+    fabric: 'Structured Bridal Satin',
     details: 'Hand-pressed box pleats, concealed in-seam pockets, covered buttons',
-    embellishments: 'Hand-pressed box pleats, covered silk buttons',
+    embellishments: 'Hand-pressed box pleats, covered buttons',
     trainStyle: '2.2 Meters Cathedral Train',
     trainLength: '2.2 Meters Cathedral Train',
     rentalEligible: true,
@@ -337,25 +337,25 @@ export const GOWNS_CATALOG: GownItem[] = [
     featured: false,
     isFeatured: false,
     isBespokeInspiration: true,
-    tags: ['Mikado Silk', 'Pockets', 'Classic Elegance']
+    tags: ['Structured Satin', 'Pockets', 'Classic Elegance']
   },
   {
     id: 'bj-10',
     slug: 'the-nneka-silk-crepe-sheath',
     code: 'BJ-10',
-    name: 'The Nneka Silk Crepe Sheath',
+    name: 'The Nneka Minimalist Crepe Sheath',
     category: 'sheath',
     categoryLabel: 'Sheath',
     silhouette: 'High-Neck Halter Column Sheath',
-    description: 'Chic sculpted minimalism with an asymmetrical high halter collar, draped cowl back, and fluid liquid-silk drape.',
+    description: 'Clean modern minimalism with an asymmetrical high halter collar, draped cowl back, and fluid drape.',
     images: [
       'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
     sizes: ['UK 6', 'UK 8', 'UK 10'],
-    fabric: 'Double-Faced Silk Moroccan Crepe',
-    details: 'Hand-rolled silk halter tie, low draped cowl back line',
+    fabric: 'Fluid Bridal Crepe',
+    details: 'Halter tie finish, low draped cowl back line',
     embellishments: 'Minimalist clean finish without external beadwork',
     trainStyle: 'Sweep Train',
     trainLength: '1.2 Meters Sweep Train',
@@ -369,22 +369,22 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-11',
-    slug: 'the-chioma-crystal-corset-reception-dress',
+    slug: 'the-chioma-shimmer-reception-dress',
     code: 'BJ-11',
-    name: 'The Chioma Crystal Corset Reception Dress',
+    name: 'The Chioma Shimmer Reception Dress',
     category: 'reception',
     categoryLabel: 'Reception Dress',
     silhouette: 'Sculpted Midi with Detachable Train',
-    description: 'High-octane after-party luxury featuring an exposed boned corset encrusted in glass crystals, a fitted sheath skirt, and a detachable dramatic satin overskirt.',
+    description: 'Evening reception elegance featuring a structured detailed bodice with fine shimmer, a fitted skirt, and a detachable dramatic satin overskirt.',
     images: [
       'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
     sizes: ['UK 8', 'UK 10'],
-    fabric: 'Crystal Netting & Duchesse Satin',
-    details: 'Exposed boning with Swarovski crystals, convertible silhouette',
-    embellishments: 'Swarovski crystals, metallic silver bugle beading',
+    fabric: 'Shimmer Netting & Duchesse Satin',
+    details: 'Structured bodice with subtle beading, convertible silhouette',
+    embellishments: 'Subtle beading, metallic silver accents',
     trainStyle: 'Detachable 2-Meter Dramatic Overskirt',
     trainLength: '2.0 Meters Detachable Overskirt',
     rentalEligible: true,
@@ -399,20 +399,20 @@ export const GOWNS_CATALOG: GownItem[] = [
     id: 'bj-12',
     slug: 'the-royale-pearl-cape-and-tiara',
     code: 'BJ-12',
-    name: 'The Royale Pearl Cape & Tiara',
+    name: 'The Royale Embellished Cape & Tiara',
     category: 'veils-accessories',
     categoryLabel: 'Veils & Accessories',
     silhouette: 'Shoulder-Draped Cathedral Bridal Cape',
-    description: 'An ethereal alternative to the classic veil. Featherweight illusion tulle adorned with thousands of graduated ivory pearls, cascading from tailored shoulder clasps.',
+    description: 'An ethereal alternative to the classic veil. Lightweight bridal tulle adorned with delicate accents, cascading from tailored shoulder clasps.',
     images: [
       'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
     sizes: ['One Size Fits All'],
-    fabric: 'Silk Illusion Tulle',
-    details: 'Graduated ivory pearls, antique gold shoulder closures',
-    embellishments: 'Hand-fastened graduated pearls',
+    fabric: 'Soft Bridal Illusion Tulle',
+    details: 'Delicate bead accents, tailored shoulder closures',
+    embellishments: 'Hand-fastened delicate bead accents',
     trainStyle: '3.0 Meters Cape Length',
     trainLength: '3.0 Meters',
     rentalEligible: true,
@@ -421,7 +421,7 @@ export const GOWNS_CATALOG: GownItem[] = [
     featured: false,
     isFeatured: false,
     isBespokeInspiration: true,
-    tags: ['Bridal Cape', 'Pearl Detail', 'Statement Piece']
+    tags: ['Bridal Cape', 'Accents', 'Statement Piece']
   }
 ];
 
@@ -449,8 +449,8 @@ export const TESTIMONIALS: Testimonial[] = [
     brideName: 'Somtochukwu E.',
     weddingDate: 'Bridal Styling Experience',
     location: 'Enugu, Nigeria',
-    quote: 'Finding an atelier with genuine mastery of corsetry and structure was essential for me. The team delivered exceptional contouring, and I felt completely confident stepping into my celebration.',
-    gownType: 'Custom Atelier Fitting',
+    quote: 'Finding bridal craftsmanship with genuine attention to fit and silhouette was essential for me. The team delivered thoughtful tailoring, and I felt completely confident stepping into my celebration.',
+    gownType: 'Custom Fitting Experience',
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop'
   },
   {
@@ -474,10 +474,10 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 'gal-2',
-    title: 'Back Detailing & Pearl Spine',
+    title: 'Back Detailing & Button Spine',
     category: 'gown-details',
     image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=800&auto=format&fit=crop',
-    caption: 'Silk covered buttons and pearl encrusting on sheer illusion mesh.'
+    caption: 'Fabric-covered buttons and delicate detailing on sheer illusion mesh.'
   },
   {
     id: 'gal-3',
@@ -488,10 +488,10 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 'gal-4',
-    title: 'Studio Fitting Precision',
+    title: 'Fitting Precision',
     category: 'fitting',
     image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=800&auto=format&fit=crop',
-    caption: 'Individual pin fittings at the BEAJAY bridal atelier in Enugu, Nigeria.'
+    caption: 'Individual fittings and tailored adjustments in Enugu, Nigeria.'
   },
   {
     id: 'gal-5',
@@ -519,6 +519,217 @@ export const RENTAL_POLICIES = [
   {
     title: 'Fitting & Silhouette Adjustments',
     detail: 'Professional fitting consultations ensure an optimal silhouette. All allowable temporary adjustments are executed strictly in-house by atelier tailors.'
+  }
+];
+
+// =========================================================================
+// BESPOKE COUTURE MEDIA & CONTENT ARCHITECTURE
+// Centralized, easily replaceable media and copy for /bespoke
+// =========================================================================
+
+export const BESPOKE_MEDIA = {
+  hero: {
+    primary: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1600&auto=format&fit=crop',
+    alt: 'Bridal gown construction and fabric draping on dressmaker form'
+  },
+  atelier: {
+    sketching: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop',
+    draping: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200&auto=format&fit=crop',
+    structure: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
+    fitting: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop'
+  },
+  details: {
+    beading: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
+    lace: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
+    veils: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
+    finishing: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop'
+  }
+};
+
+export const BESPOKE_JOURNEY_STAGES = [
+  {
+    step: '01',
+    title: 'CONSULTATION',
+    subtitle: "Understanding the Bride's Vision",
+    description: "Understanding the bride's vision, wedding aesthetic and preferred direction.",
+    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    step: '02',
+    title: 'DESIGN',
+    subtitle: 'Developing the Gown Concept',
+    description: 'Developing the creative direction and gown concept.',
+    image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    step: '03',
+    title: 'FABRIC & DETAILS',
+    subtitle: 'Materials & Embellishment',
+    description: 'Exploring materials, embellishment and finishing details.',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    step: '04',
+    title: 'FITTINGS',
+    subtitle: 'Refining Fit & Silhouette',
+    description: "Refining the gown's fit and silhouette during the creation process.",
+    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    step: '05',
+    title: 'FINAL CREATION',
+    subtitle: 'The Finished Bridal Piece',
+    description: 'Completing the finished BEAJAY bridal piece.',
+    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=800&auto=format&fit=crop'
+  }
+];
+
+export const BESPOKE_CRAFTSMANSHIP_ITEMS = [
+  {
+    id: 'lace',
+    title: 'Lace & Detailing Placement',
+    subtitle: 'Delicate Motifs & Balanced Placement',
+    description: 'Each lace motif is carefully arranged and hand-placed along bodices, hemlines, and necklines to complement the gown silhouette.',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'beading',
+    title: 'Hand-Finished Embellishment',
+    subtitle: 'Light-Catching Detailing',
+    description: 'Delicate beadwork, subtle sequins, and textural accents hand-finished to catch the light with refined elegance.',
+    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'structure',
+    title: 'Thoughtful Gown Structure',
+    subtitle: 'Support Built Within',
+    description: 'Balanced internal support and bodice tailoring designed to provide poise, graceful lines, and comfort throughout your day.',
+    image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'draping',
+    title: 'Draping & Layered Volume',
+    subtitle: 'Silhouette Movement',
+    description: 'Balanced fabric layering and careful proportioning that maintain fluid movement and graceful presence.',
+    image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'veils',
+    title: 'Veil & Train Detailing',
+    subtitle: 'Coordinated Bridal Accents',
+    description: 'Cathedral, chapel, and fingertip-length veils trimmed with coordinating lace and lightweight bridal tulle.',
+    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'finishing',
+    title: 'Tailoring & Finishing',
+    subtitle: 'Careful Bridal Craftsmanship',
+    description: 'Hand-finished closures, covered buttons, and clean seam work ensuring elegance in every finishing detail.',
+    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop'
+  }
+];
+
+export const BESPOKE_SILHOUETTE_INSPIRATIONS = [
+  {
+    slug: 'ball-gown',
+    name: 'Ball Gown',
+    subtitle: 'Regal Volume',
+    description: 'Structured bodices cascading into full, graceful skirts. A classic choice for grand ceremonies and stately celebrations.',
+    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=900&auto=format&fit=crop',
+    highlight: 'Majestic & Timeless'
+  },
+  {
+    slug: 'mermaid',
+    name: 'Mermaid',
+    subtitle: 'Contoured Silhouette',
+    description: 'Tailored contours that celebrate natural proportions before gently flaring outward for dramatic presence.',
+    image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop',
+    highlight: 'Dramatic & Confident'
+  },
+  {
+    slug: 'a-line',
+    name: 'A-Line',
+    subtitle: 'Effortless Flow & Grace',
+    description: 'Universally flattering balanced proportions flowing naturally from the waist down in soft tulle, lace, or fluid bridal textiles.',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
+    highlight: 'Fluid & Classical'
+  },
+  {
+    slug: 'sheath',
+    name: 'Sheath',
+    subtitle: 'Clean & Contemporary',
+    description: 'Clean lines, fluid drape, and refined detailing designed for the bride who loves modern simplicity and elegance.',
+    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=900&auto=format&fit=crop',
+    highlight: 'Understated Luxury'
+  }
+];
+
+export type BespokeGalleryCategory = 'Atelier' | 'Details' | 'Silhouettes' | 'Craftsmanship' | 'Bridal Inspiration';
+
+export interface BespokeGalleryItem {
+  id: string;
+  title: string;
+  category: BespokeGalleryCategory;
+  image: string;
+  caption: string;
+}
+
+export const BESPOKE_INSPIRATION_GALLERY: BespokeGalleryItem[] = [
+  {
+    id: 'bg-1',
+    title: 'Concept & Silhouette Exploration',
+    category: 'Craftsmanship',
+    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop',
+    caption: 'Exploring silhouette proportions, line work, and drape during design development.'
+  },
+  {
+    id: 'bg-2',
+    title: 'Draped Bodice on Form',
+    category: 'Atelier',
+    image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop',
+    caption: 'Arranging fabric folds and exploring structure on the dress form.'
+  },
+  {
+    id: 'bg-3',
+    title: 'Lace Appliqué Placement',
+    category: 'Details',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000&auto=format&fit=crop',
+    caption: 'Exploring delicate lace motifs and textured floral accents.'
+  },
+  {
+    id: 'bg-4',
+    title: 'Illusion Back & Covered Buttons',
+    category: 'Details',
+    image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1000&auto=format&fit=crop',
+    caption: 'Meticulously spaced fabric-covered buttons along an illusion back line.'
+  },
+  {
+    id: 'bg-5',
+    title: 'Hand-Finished Detailing',
+    category: 'Craftsmanship',
+    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1000&auto=format&fit=crop',
+    caption: 'Subtle beadwork and textural detailing catching the light.'
+  },
+  {
+    id: 'bg-6',
+    title: 'Silhouette Fitting & Proportions',
+    category: 'Atelier',
+    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1000&auto=format&fit=crop',
+    caption: 'Evaluating comfort, balance, and hemline alignment during fitting.'
+  },
+  {
+    id: 'bg-7',
+    title: 'Veil & Train Detailing',
+    category: 'Silhouettes',
+    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1000&auto=format&fit=crop',
+    caption: 'Soft bridal veil bordered with delicate coordinating lace.'
+  },
+  {
+    id: 'bg-8',
+    title: 'Bridal Silhouette Inspiration',
+    category: 'Bridal Inspiration',
+    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1000&auto=format&fit=crop',
+    caption: 'A graceful bridal silhouette crafted with care and presence.'
   }
 ];
 
