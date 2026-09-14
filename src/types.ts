@@ -48,13 +48,33 @@ export interface Testimonial {
   image: string;
 }
 
+export type GalleryCategory =
+  | 'all'
+  | 'bridal-looks'
+  | 'couture-details'
+  | 'bespoke'
+  | 'veils-accessories'
+  | 'behind-the-craft'
+  | 'bride'
+  | 'gown-details'
+  | 'fitting'
+  | 'studio'
+  | 'veil';
+
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'bride' | 'gown-details' | 'fitting' | 'studio' | 'veil';
+  alt?: string;
+  category: GalleryCategory;
+  categoryLabel?: string;
   image: string;
   caption?: string;
   isVideo?: boolean;
+  videoUrl?: string;
+  orientation?: 'portrait' | 'landscape' | 'square';
+  featured?: boolean;
+  aspectRatio?: string;
+  objectPosition?: string;
 }
 
 export type ActiveModal = 

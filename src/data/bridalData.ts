@@ -1,9 +1,11 @@
-import { GownItem, CollectionCategory, Testimonial, GalleryItem } from '../types';
+import { GownItem, CollectionCategory, Testimonial, GalleryItem, GalleryCategory } from '../types';
 import { 
   HERO_MEDIA_ASSETS, 
   COLLECTION_MEDIA_ASSETS,
   BESPOKE_MEDIA_ASSETS,
   GALLERY_MEDIA_ASSETS,
+  HOMEPAGE_GALLERY_MEDIA_ASSETS,
+  EDITORIAL_GALLERY_MEDIA_ASSETS,
   resolveMedia 
 } from '../config/mediaAssets';
 
@@ -471,14 +473,43 @@ export const TESTIMONIALS: Testimonial[] = [
   }
 ];
 
-export const GALLERY_ITEMS: GalleryItem[] = GALLERY_MEDIA_ASSETS.map((item) => ({
+export const HOMEPAGE_GALLERY_ITEMS: GalleryItem[] = HOMEPAGE_GALLERY_MEDIA_ASSETS.map((item) => ({
   id: item.id,
   title: item.title,
+  alt: item.alt,
   category: item.category,
   image: resolveMedia(item),
   caption: item.caption,
-  isVideo: 'isVideo' in item ? item.isVideo : false
+  isVideo: 'isVideo' in item ? item.isVideo : false,
+  videoUrl: 'videoCurrent' in item ? resolveMedia({ current: item.videoCurrent, officialPath: item.videoOfficialPath }) : undefined
 }));
+
+export const GALLERY_ITEMS: GalleryItem[] = HOMEPAGE_GALLERY_ITEMS;
+
+export const EDITORIAL_GALLERY_ITEMS: GalleryItem[] = EDITORIAL_GALLERY_MEDIA_ASSETS.map((item) => ({
+  id: item.id,
+  title: item.title,
+  alt: item.alt,
+  category: item.category,
+  categoryLabel: item.categoryLabel,
+  image: resolveMedia(item),
+  caption: item.caption,
+  orientation: item.orientation,
+  featured: item.featured,
+  aspectRatio: item.aspectRatio,
+  objectPosition: item.objectPosition,
+  isVideo: 'isVideo' in item ? item.isVideo : false,
+  videoUrl: 'videoCurrent' in item ? resolveMedia({ current: item.videoCurrent, officialPath: item.videoOfficialPath }) : undefined
+}));
+
+export const GALLERY_CATEGORIES: { id: GalleryCategory; label: string; count?: number }[] = [
+  { id: 'all', label: 'ALL' },
+  { id: 'bridal-looks', label: 'BRIDAL LOOKS' },
+  { id: 'couture-details', label: 'COUTURE DETAILS' },
+  { id: 'bespoke', label: 'BESPOKE' },
+  { id: 'veils-accessories', label: 'VEILS & ACCESSORIES' },
+  { id: 'behind-the-craft', label: 'BEHIND THE CRAFT' }
+];
 
 export const RENTAL_POLICIES = [
   {

@@ -5,13 +5,22 @@ import { ActiveModal, GalleryItem } from '../types';
 
 interface GallerySectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
-  onOpenLightbox: (item: GalleryItem) => void;
+  onOpenLightbox: (item: GalleryItem, items?: GalleryItem[]) => void;
+  onNavigateGallery?: () => void;
 }
 
 export const GallerySection: React.FC<GallerySectionProps> = ({
   onOpenModal,
-  onOpenLightbox
+  onOpenLightbox,
+  onNavigateGallery
 }) => {
+  const handleViewGallery = () => {
+    if (onNavigateGallery) {
+      onNavigateGallery();
+    } else {
+      onOpenModal('gallery');
+    }
+  };
   return (
     <section 
       id="bridal-gallery" 
@@ -43,10 +52,11 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
             </a>
 
             <button
-              onClick={() => onOpenModal('gallery')}
+              onClick={handleViewGallery}
+              aria-label="View the full bridal gallery"
               className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.2em] uppercase text-[#111111] hover:text-[#C59B3F] transition-colors cursor-pointer"
             >
-              <span>VIEW GALLERY</span>
+              <span>VIEW THE GALLERY</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F]" />
             </button>
           </div>
@@ -59,7 +69,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
               return (
                 <div
                   key={item.id}
-                  onClick={() => onOpenLightbox(item)}
+                  onClick={() => onOpenLightbox(item, GALLERY_ITEMS)}
                   className="group relative aspect-[3/4] bg-[#111111] overflow-hidden cursor-pointer col-span-2 sm:col-span-1 border border-[#2D2A26] flex items-center justify-center text-center p-4"
                 >
                   <img
@@ -89,8 +99,17 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
             return (
               <div
                 key={item.id}
-                onClick={() => onOpenLightbox(item)}
-                className="group relative aspect-[3/4] overflow-hidden bg-neutral-200 cursor-pointer border border-[#E9E3D6] hover:border-[#C59B3F] transition-all"
+                onClick={() => onOpenLightbox(item, GALLERY_ITEMS)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onOpenLightbox(item, GALLERY_ITEMS);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-label={`View photo: ${item.title}`}
+                className="group relative aspect-[3/4] overflow-hidden bg-neutral-200 cursor-pointer border border-[#E9E3D6] hover:border-[#C59B3F] transition-all focus:outline-none focus:ring-2 focus:ring-[#C59B3F]"
               >
                 <img
                   src={item.image}

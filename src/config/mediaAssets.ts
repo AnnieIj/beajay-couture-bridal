@@ -508,48 +508,354 @@ export const BESPOKE_MEDIA_ASSETS = {
 // =========================================================================
 // 5. GALLERY MEDIA
 // =========================================================================
-export const GALLERY_MEDIA_ASSETS = [
+
+/** Curated gallery items for homepage preview */
+export const HOMEPAGE_GALLERY_MEDIA_ASSETS = [
   {
     id: 'gal-1',
     title: 'Cathedral Veil Drama',
-    category: 'veil' as const,
-    current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=800&auto=format&fit=crop',
+    category: 'veils-accessories' as const,
+    current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-01.jpg',
-    caption: 'Handcrafted cathedral veil walking into the sanctuary.'
+    alt: 'Cathedral-length bridal veil trailing gracefully in natural light',
+    caption: 'Cathedral veil with handcrafted border trim and sheer illusion drape.'
   },
   {
     id: 'gal-2',
     title: 'Back Detailing & Button Spine',
-    category: 'gown-details' as const,
-    current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=800&auto=format&fit=crop',
+    category: 'couture-details' as const,
+    current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-02.jpg',
-    caption: 'Fabric-covered buttons and delicate detailing on sheer illusion mesh.'
+    alt: 'Intricate bridal gown back with fabric-covered buttons along spine',
+    caption: 'Meticulously spaced satin-covered buttons on sheer illusion tulle.'
   },
   {
     id: 'gal-3',
     title: 'The Radiant Bride with Bouquet',
-    category: 'bride' as const,
-    current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
+    category: 'bridal-looks' as const,
+    current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-03.jpg',
-    caption: 'Soft smiles moments before taking the sacred vows.'
+    alt: 'Bridal portrait showcasing textured lace gown and classic bouquet',
+    caption: 'Refined silhouette featuring delicate textured lace and soft floral notes.'
   },
   {
     id: 'gal-4',
-    title: 'Fitting Precision',
-    category: 'fitting' as const,
-    current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=800&auto=format&fit=crop',
+    title: 'Fitting & Silhouette Alignment',
+    category: 'behind-the-craft' as const,
+    current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-04.jpg',
-    caption: 'Individual fittings and tailored adjustments in Enugu, Nigeria.'
+    alt: 'Bridal gown fitting session focusing on waistline contours and drape',
+    caption: 'Careful proportioning and pin-fitting during gown development.'
   },
   {
     id: 'gal-5',
     title: 'Watch Our Story Reel',
-    category: 'studio' as const,
-    current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop',
+    category: 'behind-the-craft' as const,
+    current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-05.jpg',
     videoCurrent: 'https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4',
     videoOfficialPath: '/media/gallery/gallery-story-reel.mp4',
-    caption: 'Behind the scenes at BEAJAY Couture Bridal.',
+    alt: 'Bridal silhouette and veil motion in the atelier',
+    caption: 'Couture movements, fabric flow, and bridal artistry in motion.',
+    isVideo: true
+  }
+] as const;
+
+/** Alias for backwards compatibility */
+export const GALLERY_MEDIA_ASSETS = HOMEPAGE_GALLERY_MEDIA_ASSETS;
+
+/** Full editorial archive assets for /gallery */
+export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
+  // BRIDAL LOOKS
+  {
+    id: 'eg-01',
+    title: 'Cathedral Majesty Ball Gown',
+    category: 'bridal-looks' as const,
+    categoryLabel: 'Bridal Looks',
+    current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1600&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-01.jpg',
+    alt: 'Regal bridal ball gown with sweeping cathedral train in architectural setting',
+    caption: 'Full-skirted ivory ball gown with sculpted bodice and sweeping gossamer train.',
+    orientation: 'portrait' as const,
+    featured: true,
+    aspectRatio: 'aspect-[3/4]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-02',
+    title: 'Contoured Mermaid Silhouette',
+    category: 'bridal-looks' as const,
+    categoryLabel: 'Bridal Looks',
+    current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-02.jpg',
+    alt: 'Contoured mermaid wedding gown featuring illusion back and dramatic flare',
+    caption: 'Precision-tailored mermaid silhouette celebrating natural bridal contours.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[4/5]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-03',
+    title: 'Fluid Classical A-Line',
+    category: 'bridal-looks' as const,
+    categoryLabel: 'Bridal Looks',
+    current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-03.jpg',
+    alt: 'Graceful A-line wedding gown with floral lace bodice and flowing skirt',
+    caption: 'Balanced A-line proportions cascading gracefully in soft bridal tulle.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[3/4]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-04',
+    title: 'Understated Column Sheath',
+    category: 'bridal-looks' as const,
+    categoryLabel: 'Bridal Looks',
+    current: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-04.jpg',
+    alt: 'Contemporary sheath bridal gown in liquid silk satin with minimalist lines',
+    caption: 'Clean architectural lines and fluid drape for the modern minimalist bride.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[3/4]',
+    objectPosition: 'object-top'
+  },
+
+  // COUTURE DETAILS
+  {
+    id: 'eg-05',
+    title: 'Spine of Satin Buttons on Mesh',
+    category: 'couture-details' as const,
+    categoryLabel: 'Couture Details',
+    current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-05.jpg',
+    alt: 'Close-up of fabric covered buttons running down sheer illusion bodice back',
+    caption: 'Hand-covered satin buttons hand-fastened along a sheer illusion spine.',
+    orientation: 'square' as const,
+    featured: true,
+    aspectRatio: 'aspect-[1/1]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-06',
+    title: 'Hand-Appliquéd French Lace',
+    category: 'couture-details' as const,
+    categoryLabel: 'Couture Details',
+    current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-06.jpg',
+    alt: 'Intricate French lace motif with light-catching crystal beadwork',
+    caption: 'Botanical lace motifs hand-stitched with translucent seed beads and micro-sequins.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[4/5]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-07',
+    title: 'Structured Corset Architecture',
+    category: 'couture-details' as const,
+    categoryLabel: 'Couture Details',
+    current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-07.jpg',
+    alt: 'Close-up of structured internal boning and corset foundation on dressmaker form',
+    caption: 'Internal boning channels engineered for effortless posture and all-day comfort.',
+    orientation: 'landscape' as const,
+    featured: false,
+    aspectRatio: 'aspect-[16/10]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-08',
+    title: 'Textured Hem & Scalloped Lace',
+    category: 'couture-details' as const,
+    categoryLabel: 'Couture Details',
+    current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-08.jpg',
+    alt: 'Scalloped lace train hem resting gently across stone flooring',
+    caption: 'Delicate scalloped embroidery framing the border of a ceremonial hem.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[3/4]',
+    objectPosition: 'object-bottom'
+  },
+
+  // BESPOKE
+  {
+    id: 'eg-09',
+    title: 'Bespoke Concept Development',
+    category: 'bespoke' as const,
+    categoryLabel: 'Bespoke',
+    current: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-09.jpg',
+    alt: 'Couture fashion sketches and textile swatches during bespoke design consultation',
+    caption: 'Original design sketches translating a bride’s singular aesthetic vision.',
+    orientation: 'landscape' as const,
+    featured: true,
+    aspectRatio: 'aspect-[16/10]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-10',
+    title: 'Drape Exploration on Form',
+    category: 'bespoke' as const,
+    categoryLabel: 'Bespoke',
+    current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-10.jpg',
+    alt: 'Tailor arranging silk fabric folds on dressmaker mannequin',
+    caption: 'Sculpting fabric in real time to establish natural drape and silhouette tension.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[3/4]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-11',
+    title: 'Custom Fit Silhouette Evaluation',
+    category: 'bespoke' as const,
+    categoryLabel: 'Bespoke',
+    current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-11.jpg',
+    alt: 'Bride undergoing personalized couture fitting session',
+    caption: 'Evaluating posture, ease of movement, and seam precision in the studio.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[4/5]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-12',
+    title: 'Bespoke Train Length Calibration',
+    category: 'bespoke' as const,
+    categoryLabel: 'Bespoke',
+    current: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-12.jpg',
+    alt: 'Custom bridal gown train billowing out across polished ceremony floor',
+    caption: 'Bespoke train length tailored precisely to ceremonial venue proportions.',
+    orientation: 'landscape' as const,
+    featured: false,
+    aspectRatio: 'aspect-[16/10]',
+    objectPosition: 'object-center'
+  },
+
+  // VEILS & ACCESSORIES
+  {
+    id: 'eg-13',
+    title: 'Cathedral Veil Flow in Sunlight',
+    category: 'veils-accessories' as const,
+    categoryLabel: 'Veils & Accessories',
+    current: 'https://images.unsplash.com/photo-1509927083803-4bd519298ac4?q=80&w=1600&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-13.jpg',
+    alt: 'Sheer translucent bridal veil gently floating in warm ambient sunlight',
+    caption: 'Illusion tulle cathedral veil diffusing ambient light with ethereal lightness.',
+    orientation: 'portrait' as const,
+    featured: true,
+    aspectRatio: 'aspect-[3/4]',
+    objectPosition: 'object-top'
+  },
+  {
+    id: 'eg-14',
+    title: 'Hand-Cut Lace Veil Border',
+    category: 'veils-accessories' as const,
+    categoryLabel: 'Veils & Accessories',
+    current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-14.jpg',
+    alt: 'Intricate lace edging of fingertip bridal veil resting on satin gown',
+    caption: 'Scalloped lace appliqués meticulously aligned along the veil circumference.',
+    orientation: 'square' as const,
+    featured: false,
+    aspectRatio: 'aspect-[1/1]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-15',
+    title: 'Bridal Headpiece & Pearl Accents',
+    category: 'veils-accessories' as const,
+    categoryLabel: 'Veils & Accessories',
+    current: 'https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-15.jpg',
+    alt: 'Bridal hair styling featuring freshwater pearl pins and delicate comb',
+    caption: 'Freshwater pearl pins and artisan hair ornaments complementing the bridal veil.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[4/5]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-16',
+    title: 'Chapel Length Veil Silhouette',
+    category: 'veils-accessories' as const,
+    categoryLabel: 'Veils & Accessories',
+    current: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-16.jpg',
+    alt: 'Bride framed by translucent chapel veil with soft bouquet',
+    caption: 'Understated chapel veil framing the bridal portrait with soft focus.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[3/4]',
+    objectPosition: 'object-center'
+  },
+
+  // BEHIND THE CRAFT
+  {
+    id: 'eg-17',
+    title: 'Textile Selection & Silk Rolls',
+    category: 'behind-the-craft' as const,
+    categoryLabel: 'Behind The Craft',
+    current: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=1600&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-17.jpg',
+    alt: 'Rolls of premium bridal silk, satin, and lace in the atelier workspace',
+    caption: 'Curating silk mikado, French lace, and gossamer tulle for upcoming commissions.',
+    orientation: 'landscape' as const,
+    featured: true,
+    aspectRatio: 'aspect-[16/10]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-18',
+    title: 'Hand-Finishing Seam Work',
+    category: 'behind-the-craft' as const,
+    categoryLabel: 'Behind The Craft',
+    current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-18.jpg',
+    alt: 'Artisan needlework securing delicate lace trim onto bridal bodice',
+    caption: 'Hand-stitched invisible hems and reinforced closures guaranteeing heirloom quality.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[4/5]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-19',
+    title: 'Pattern Drafting & Measuring',
+    category: 'behind-the-craft' as const,
+    categoryLabel: 'Behind The Craft',
+    current: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-19.jpg',
+    alt: 'Measuring tape and chalk pattern markings on bridal atelier cutting table',
+    caption: 'Precise bespoke measurements translated onto custom foundation patterns.',
+    orientation: 'square' as const,
+    featured: false,
+    aspectRatio: 'aspect-[1/1]',
+    objectPosition: 'object-center'
+  },
+  {
+    id: 'eg-20',
+    title: 'Atelier Motion & Veil Flight',
+    category: 'behind-the-craft' as const,
+    categoryLabel: 'Behind The Craft',
+    current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop',
+    officialPath: '/media/gallery/gallery-editorial-20.jpg',
+    videoCurrent: 'https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4',
+    videoOfficialPath: '/media/gallery/gallery-story-reel.mp4',
+    alt: 'Bridal veil gently drifting in atelier motion capture',
+    caption: 'Capturing dynamic veil flow, drape weight, and fabric balance in movement.',
+    orientation: 'portrait' as const,
+    featured: false,
+    aspectRatio: 'aspect-[3/4]',
+    objectPosition: 'object-center',
     isVideo: true
   }
 ] as const;

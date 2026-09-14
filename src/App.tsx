@@ -16,6 +16,7 @@ import { CollectionsPage } from './components/CollectionsPage';
 import { GownDetailPage } from './components/GownDetailPage';
 import { RentalsPage } from './components/RentalsPage';
 import { BespokePage } from './components/BespokePage';
+import { GalleryPage } from './components/GalleryPage';
 
 import { AppointmentModal } from './components/AppointmentModal';
 import { RentalsModal } from './components/RentalsModal';
@@ -28,7 +29,7 @@ import { AboutModal } from './components/AboutModal';
 import { ContactModal } from './components/ContactModal';
 
 import { ActiveModal, GownItem, GalleryItem } from './types';
-import { GOWNS_CATALOG } from './data/bridalData';
+import { GOWNS_CATALOG, EDITORIAL_GALLERY_ITEMS } from './data/bridalData';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -42,6 +43,7 @@ export default function App() {
   const [modalPayload, setModalPayload] = useState<any>(null);
   const [selectedGown, setSelectedGown] = useState<GownItem | null>(null);
   const [selectedGalleryItem, setSelectedGalleryItem] = useState<GalleryItem | null>(null);
+  const [galleryLightboxItems, setGalleryLightboxItems] = useState<GalleryItem[]>(EDITORIAL_GALLERY_ITEMS);
   const [collectionCategory, setCollectionCategory] = useState<string>('all');
   const [bespokeInspirationGown, setBespokeInspirationGown] = useState<string | undefined>(undefined);
 
@@ -86,6 +88,7 @@ export default function App() {
   const isCollectionsPage = currentPath === '/collections' || currentPath === '/collections/';
   const isRentalsPage = currentPath === '/rentals' || currentPath === '/rentals/';
   const isBespokePage = currentPath === '/bespoke' || currentPath === '/bespoke/';
+  const isGalleryPage = currentPath === '/gallery' || currentPath === '/gallery/';
   const gownSlugMatch = currentPath.startsWith('/collections/') 
     ? currentPath.replace('/collections/', '').replace(/\/$/, '')
     : null;
@@ -104,10 +107,12 @@ export default function App() {
       document.title = "Gown Rentals | BEAJAY COUTURE BRIDAL • Wear the Moment";
     } else if (isCollectionsPage) {
       document.title = "Bridal Collections Showcase | BEAJAY COUTURE BRIDAL";
+    } else if (isGalleryPage) {
+      document.title = "The Bridal Gallery | Moments in Couture • BEAJAY COUTURE BRIDAL";
     } else {
       document.title = "BEAJAY COUTURE BRIDAL | Luxury Bridal Couture & Gown Rentals, Enugu";
     }
-  }, [matchedGown, isBespokePage, isRentalsPage, isCollectionsPage]);
+  }, [matchedGown, isBespokePage, isRentalsPage, isCollectionsPage, isGalleryPage]);
 
   // Navigation Helpers
   const navigateTo = (path: string) => {
@@ -137,6 +142,11 @@ export default function App() {
     navigateTo('/bespoke');
   };
 
+  const navigateToGallery = () => {
+    closeModal();
+    navigateTo('/gallery');
+  };
+
   const navigateToGownDetail = (gown: GownItem) => {
     closeModal();
     setSelectedGown(null);
@@ -144,6 +154,10 @@ export default function App() {
   };
 
   const openModal = (modal: ActiveModal, payload?: any) => {
+    if (modal === 'gallery') {
+      navigateToGallery();
+      return;
+    }
     setModalPayload(payload || null);
     setActiveModal(modal);
   };
@@ -175,6 +189,8 @@ export default function App() {
     ? 'rentals' 
     : isCollectionsPage || matchedGown 
     ? 'collections' 
+    : isGalleryPage
+    ? 'gallery'
     : 'home';
 
   return (
@@ -191,6 +207,7 @@ export default function App() {
         onNavigateCollections={navigateToCollections}
         onNavigateRentals={navigateToRentals}
         onNavigateBespoke={navigateToBespoke}
+        onNavigateGallery={navigateToGallery}
       />
 
       {/* Content Rendering based on route */}
@@ -226,6 +243,17 @@ export default function App() {
             onSelectGown={navigateToGownDetail}
             onRequestRental={(gownName) => openModal('rentals', { action: 'request', gownName })}
             onExploreCollections={() => navigateToCollections('all')}
+          />
+        ) : isGalleryPage ? (
+          /* Dedicated Bridal Gallery Experience (/gallery) */
+          <GalleryPage
+            onOpenLightbox={(item, items) => {
+              setSelectedGalleryItem(item);
+              setGalleryLightboxItems(items && items.length > 0 ? items : EDITORIAL_GALLERY_ITEMS);
+            }}
+            onNavigateCollections={() => navigateToCollections('all')}
+            onNavigateBespoke={() => navigateToBespoke()}
+            onBookAppointment={() => handleBookFittingFromGown(undefined, 'bridal-styling')}
           />
         ) : (
           /* Homepage */
@@ -273,7 +301,11 @@ export default function App() {
             {/* SECTION 8 — MOMENTS THAT MATTER (Bridal Gallery) */}
             <GallerySection
               onOpenModal={openModal}
-              onOpenLightbox={(item) => setSelectedGalleryItem(item)}
+              onOpenLightbox={(item, items) => {
+                setSelectedGalleryItem(item);
+                setGalleryLightboxItems(items && items.length > 0 ? items : EDITORIAL_GALLERY_ITEMS);
+              }}
+              onNavigateGallery={navigateToGallery}
             />
 
             {/* SECTION 9 — APPOINTMENT CTA */}
@@ -291,6 +323,7 @@ export default function App() {
         onNavigateCollections={navigateToCollections}
         onNavigateRentals={navigateToRentals}
         onNavigateBespoke={navigateToBespoke}
+        onNavigateGallery={navigateToGallery}
       />
 
       {/* =======================================================
@@ -348,10 +381,16 @@ export default function App() {
       {/* 6. Gallery Lightbox / Video Modal */}
       <GalleryLightbox
         item={selectedGalleryItem}
+        items={galleryLightboxItems}
         onClose={() => setSelectedGalleryItem(null)}
+        onSelectItem={(item) => setSelectedGalleryItem(item)}
         onBookAppointment={() => {
           setSelectedGalleryItem(null);
           openModal('appointment');
+        }}
+        onNavigateBespoke={() => {
+          setSelectedGalleryItem(null);
+          navigateToBespoke();
         }}
       />
 

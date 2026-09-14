@@ -13,6 +13,7 @@ interface FooterProps {
   onNavigateCollections?: () => void;
   onNavigateRentals?: () => void;
   onNavigateBespoke?: () => void;
+  onNavigateGallery?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ 
@@ -20,7 +21,8 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateHome,
   onNavigateCollections,
   onNavigateRentals,
-  onNavigateBespoke
+  onNavigateBespoke,
+  onNavigateGallery
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -98,7 +100,13 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button 
-                  onClick={() => onOpenModal('gallery')}
+                  onClick={() => {
+                    if (onNavigateGallery) {
+                      onNavigateGallery();
+                    } else {
+                      onOpenModal('gallery');
+                    }
+                  }}
                   className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
                 >
                   Gallery

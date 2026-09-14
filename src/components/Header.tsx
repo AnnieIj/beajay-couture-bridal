@@ -15,6 +15,7 @@ interface HeaderProps {
   onNavigateCollections?: () => void;
   onNavigateRentals?: () => void;
   onNavigateBespoke?: () => void;
+  onNavigateGallery?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -23,7 +24,8 @@ export const Header: React.FC<HeaderProps> = ({
   onNavigateHome,
   onNavigateCollections,
   onNavigateRentals,
-  onNavigateBespoke
+  onNavigateBespoke,
+  onNavigateGallery
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -59,6 +61,12 @@ export const Header: React.FC<HeaderProps> = ({
 
     if (modalType === 'bespoke' && onNavigateBespoke) {
       onNavigateBespoke();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (modalType === 'gallery' && onNavigateGallery) {
+      onNavigateGallery();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -159,7 +167,9 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Gallery */}
             <button 
               onClick={() => handleNavClick('bridal-gallery', 'gallery')}
-              className="py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
+              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
+                activeView === 'gallery' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
               Gallery
             </button>
@@ -268,7 +278,9 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button 
               onClick={() => handleNavClick('bridal-gallery', 'gallery')}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+              className={`text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer ${
+                activeView === 'gallery' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
               <span>Gallery</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">05</span>
