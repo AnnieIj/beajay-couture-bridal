@@ -15,7 +15,7 @@ interface GalleryPageProps {
   onOpenLightbox: (item: GalleryItem, items: GalleryItem[]) => void;
   onNavigateCollections: () => void;
   onNavigateBespoke: () => void;
-  onBookAppointment: () => void;
+  onBookAppointment?: () => void;
 }
 
 export const GalleryPage: React.FC<GalleryPageProps> = ({
@@ -71,7 +71,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
         {/* Restrained Instagram Follower Link */}
         <div className="mt-6 flex items-center justify-center gap-2 text-xs text-neutral-500">
           <Instagram className="w-3.5 h-3.5 text-[#C59B3F]" />
-          <span>Follow the journey:</span>
+          <span className="text-[11px] font-semibold tracking-wider uppercase text-neutral-700">FOLLOW THE JOURNEY:</span>
           <a
             href="https://instagram.com/beajaycouture_bridal"
             target="_blank"
@@ -270,7 +270,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
             Begin your personal BEAJAY couture journey.
           </h2>
           <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-md mx-auto mb-6 leading-relaxed">
-            Every bespoke gown is crafted from custom sketch to final veil in our atelier, tailored around your silhouette, wedding aesthetic, and vision.
+            Every bespoke gown is crafted from custom sketch to final veil, tailored around your silhouette, wedding aesthetic, and vision.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
@@ -281,10 +281,10 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F]" />
             </button>
             <button
-              onClick={onBookAppointment}
+              onClick={onNavigateCollections}
               className="min-h-[44px] px-6 py-3 border border-[#856122] hover:bg-[#EBE2D3] text-[#111111] font-medium text-xs tracking-[0.18em] uppercase transition-colors cursor-pointer"
             >
-              Book Studio Fitting
+              DISCOVER THE COLLECTION
             </button>
           </div>
         </div>
@@ -299,10 +299,10 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
             <Instagram className="w-5 h-5 text-[#C59B3F] shrink-0" />
             <div>
               <span className="font-semibold tracking-wider uppercase text-[#111111] block text-[11px]">
-                FOLLOW THE JOURNEY
+                FOLLOW BEAJAY
               </span>
               <span className="text-neutral-500 font-light">
-                Discover atelier craftsmanship, fitting previews, and veil details.
+                Discover bridal silhouettes, design previews, and veil details.
               </span>
             </div>
           </div>
@@ -312,7 +312,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
             rel="noreferrer"
             className="min-h-[44px] inline-flex items-center gap-2 px-5 py-2.5 border border-[#141312] text-[#111111] hover:bg-[#141312] hover:text-white font-medium text-[11px] tracking-widest uppercase transition-colors shrink-0"
           >
-            <span>@beajaycouture_bridal</span>
+            <span>SEE MORE ON INSTAGRAM • @beajaycouture_bridal</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#C59B3F]" />
           </a>
         </div>

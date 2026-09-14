@@ -127,16 +127,20 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
           })}
         </div>
 
-        {/* Subtle IG Social Proof Bar */}
-        <div className="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 border-t border-[#EAE3D5] gap-2">
-          <span>Tag <strong className="text-neutral-800">#BeajayBride</strong> on Instagram to be featured in our official studio showcase.</span>
+        {/* Subtle IG Link Bar */}
+        <div className="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 border-t border-[#EAE3D5] gap-3">
+          <div className="flex items-center gap-2">
+            <Instagram className="w-4 h-4 text-[#C59B3F]" />
+            <span className="font-medium text-neutral-800 tracking-wider uppercase text-[11px]">FOLLOW THE JOURNEY</span>
+          </div>
           <a
             href="https://instagram.com/beajaycouture_bridal"
             target="_blank"
             rel="noreferrer"
-            className="text-[#856122] font-medium hover:underline flex items-center gap-1"
+            className="text-[#856122] hover:text-[#C59B3F] font-medium hover:underline flex items-center gap-1.5 uppercase tracking-wider text-[11px] transition-colors"
           >
-            Follow @beajaycouture_bridal <ArrowRight className="w-3 h-3" />
+            <span>SEE MORE ON INSTAGRAM • @beajaycouture_bridal</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
 

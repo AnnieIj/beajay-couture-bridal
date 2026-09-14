@@ -807,7 +807,7 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
     current: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=1600&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-editorial-17.jpg',
     alt: 'Rolls of premium bridal silk, satin, and lace in the atelier workspace',
-    caption: 'Curating silk mikado, French lace, and gossamer tulle for upcoming commissions.',
+    caption: 'Curating silk mikado, French lace, and gossamer tulle for upcoming creations.',
     orientation: 'landscape' as const,
     featured: true,
     aspectRatio: 'aspect-[16/10]',

@@ -384,14 +384,6 @@ export default function App() {
         items={galleryLightboxItems}
         onClose={() => setSelectedGalleryItem(null)}
         onSelectItem={(item) => setSelectedGalleryItem(item)}
-        onBookAppointment={() => {
-          setSelectedGalleryItem(null);
-          openModal('appointment');
-        }}
-        onNavigateBespoke={() => {
-          setSelectedGalleryItem(null);
-          navigateToBespoke();
-        }}
       />
 
       {/* 7. Search Modal */}

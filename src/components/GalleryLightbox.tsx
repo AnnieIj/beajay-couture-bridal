@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { X, ChevronLeft, ChevronRight, Play, ArrowRight, Sparkles } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { GalleryItem } from '../types';
 import { HERO_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 
@@ -8,17 +8,13 @@ interface GalleryLightboxProps {
   items?: GalleryItem[];
   onClose: () => void;
   onSelectItem?: (item: GalleryItem) => void;
-  onBookAppointment?: () => void;
-  onNavigateBespoke?: () => void;
 }
 
 export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
   item,
   items,
   onClose,
-  onSelectItem,
-  onBookAppointment,
-  onNavigateBespoke
+  onSelectItem
 }) => {
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -220,48 +216,28 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
               )}
             </div>
 
-            {/* Right Controls: Navigation Buttons on Mobile + CTA */}
-            <div className="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t border-neutral-800/80 sm:border-0">
-              
-              {/* Mobile next/prev controls */}
-              {canNavigate && (
-                <div className="flex sm:hidden items-center gap-1.5">
-                  <button
-                    onClick={handlePrev}
-                    aria-label="Previous photograph"
-                    className="w-10 h-10 flex items-center justify-center border border-[#33302B] text-neutral-300 hover:text-white bg-black/40 rounded-full"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <span className="font-mono text-[11px] text-neutral-400 px-1">
-                    {safeIndex + 1}/{totalCount}
-                  </span>
-                  <button
-                    onClick={handleNext}
-                    aria-label="Next photograph"
-                    className="w-10 h-10 flex items-center justify-center border border-[#33302B] text-neutral-300 hover:text-white bg-black/40 rounded-full"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-              )}
-
-              {/* Consultation / Bespoke Action */}
-              <div className="flex items-center gap-2 shrink-0">
-                {onBookAppointment && (
-                  <button
-                    onClick={() => {
-                      onClose();
-                      onBookAppointment();
-                    }}
-                    className="min-h-[44px] bg-[#C59B3F] hover:bg-[#B3892F] text-black font-medium py-2.5 px-4 sm:px-5 text-xs tracking-wider uppercase transition-colors cursor-pointer shadow-sm"
-                  >
-                    Book Fitting
-                  </button>
-                )}
+            {/* Right Controls: Navigation Controls on Mobile */}
+            {canNavigate && (
+              <div className="flex sm:hidden items-center justify-end gap-1.5 pt-2 border-t border-neutral-800/80">
+                <button
+                  onClick={handlePrev}
+                  aria-label="Previous photograph"
+                  className="w-10 h-10 flex items-center justify-center border border-[#33302B] text-neutral-300 hover:text-white bg-black/40 rounded-full cursor-pointer"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <span className="font-mono text-[11px] text-neutral-400 px-2">
+                  {safeIndex + 1} / {totalCount}
+                </span>
+                <button
+                  onClick={handleNext}
+                  aria-label="Next photograph"
+                  className="w-10 h-10 flex items-center justify-center border border-[#33302B] text-neutral-300 hover:text-white bg-black/40 rounded-full cursor-pointer"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
               </div>
-
-            </div>
+            )}
 
           </div>
         </div>
