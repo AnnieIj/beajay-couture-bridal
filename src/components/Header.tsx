@@ -13,13 +13,15 @@ interface HeaderProps {
   activeView: string;
   onNavigateHome: () => void;
   onNavigateCollections?: () => void;
+  onNavigateRentals?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenModal,
   activeView,
   onNavigateHome,
-  onNavigateCollections
+  onNavigateCollections,
+  onNavigateRentals
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,6 +45,12 @@ export const Header: React.FC<HeaderProps> = ({
 
     if (modalType === 'collections' && onNavigateCollections) {
       onNavigateCollections();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (modalType === 'rentals' && onNavigateRentals) {
+      onNavigateRentals();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -123,7 +131,9 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Rentals - Single Unified Direct Link */}
             <button
               onClick={() => handleNavClick('gown-rentals-section', 'rentals')}
-              className="py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
+              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
+                activeView === 'rentals' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
               Rentals
             </button>

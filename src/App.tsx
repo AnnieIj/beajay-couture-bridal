@@ -14,6 +14,7 @@ import { Footer } from './components/Footer';
 
 import { CollectionsPage } from './components/CollectionsPage';
 import { GownDetailPage } from './components/GownDetailPage';
+import { RentalsPage } from './components/RentalsPage';
 
 import { AppointmentModal } from './components/AppointmentModal';
 import { RentalsModal } from './components/RentalsModal';
@@ -81,6 +82,7 @@ export default function App() {
 
   // Route Resolution
   const isCollectionsPage = currentPath === '/collections' || currentPath === '/collections/';
+  const isRentalsPage = currentPath === '/rentals' || currentPath === '/rentals/';
   const gownSlugMatch = currentPath.startsWith('/collections/') 
     ? currentPath.replace('/collections/', '').replace(/\/$/, '')
     : null;
@@ -93,12 +95,14 @@ export default function App() {
   useEffect(() => {
     if (matchedGown) {
       document.title = `${matchedGown.name} | BEAJAY COUTURE BRIDAL Collections`;
+    } else if (isRentalsPage) {
+      document.title = "Gown Rentals | BEAJAY COUTURE BRIDAL • Wear the Moment";
     } else if (isCollectionsPage) {
       document.title = "Bridal Collections Showcase | BEAJAY COUTURE BRIDAL";
     } else {
       document.title = "BEAJAY COUTURE BRIDAL | Luxury Bridal Couture & Gown Rentals, Enugu";
     }
-  }, [matchedGown, isCollectionsPage]);
+  }, [matchedGown, isRentalsPage, isCollectionsPage]);
 
   // Navigation Helpers
   const navigateTo = (path: string) => {
@@ -114,6 +118,10 @@ export default function App() {
       setCollectionCategory(category);
     }
     navigateTo('/collections');
+  };
+
+  const navigateToRentals = () => {
+    navigateTo('/rentals');
   };
 
   const navigateToGownDetail = (gown: GownItem) => {
@@ -148,7 +156,7 @@ export default function App() {
     });
   };
 
-  const activeNavView = isCollectionsPage || matchedGown ? 'collections' : 'home';
+  const activeNavView = isRentalsPage ? 'rentals' : isCollectionsPage || matchedGown ? 'collections' : 'home';
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FCFAF7] text-[#1A1A1A] font-sans">
@@ -162,6 +170,7 @@ export default function App() {
         activeView={activeNavView}
         onNavigateHome={() => navigateTo('/')}
         onNavigateCollections={navigateToCollections}
+        onNavigateRentals={navigateToRentals}
       />
 
       {/* Content Rendering based on route */}
@@ -182,6 +191,13 @@ export default function App() {
             onSelectGown={navigateToGownDetail}
             onBookAppointment={(gownName) => handleBookFittingFromGown(gownName)}
             initialCategory={collectionCategory}
+          />
+        ) : isRentalsPage ? (
+          /* Dedicated Unified Rentals Experience (/rentals) */
+          <RentalsPage
+            onSelectGown={navigateToGownDetail}
+            onRequestRental={(gownName) => openModal('rentals', { action: 'request', gownName })}
+            onExploreCollections={() => navigateToCollections('all')}
           />
         ) : (
           /* Homepage */
@@ -209,6 +225,7 @@ export default function App() {
             <GownRentalsSection
               onOpenModal={openModal}
               onSelectGown={navigateToGownDetail}
+              onNavigateRentals={navigateToRentals}
             />
 
             {/* SECTION 5 — BESPOKE BRIDAL (Your Gown. Your Story.) */}
@@ -243,6 +260,7 @@ export default function App() {
         onOpenModal={openModal}
         onNavigateHome={() => navigateTo('/')}
         onNavigateCollections={navigateToCollections}
+        onNavigateRentals={navigateToRentals}
       />
 
       {/* =======================================================
@@ -264,6 +282,7 @@ export default function App() {
         onSelectGown={navigateToGownDetail}
         initialGownName={modalPayload?.gownName}
         initialAction={modalPayload?.action || 'browse'}
+        onExploreCollections={() => navigateToCollections('all')}
       />
 
       {/* 3. Collections Modal (Quick Browse Overlay) */}

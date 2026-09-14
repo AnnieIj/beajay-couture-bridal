@@ -26,8 +26,6 @@ export interface GownItem {
   featured?: boolean;
   isFeatured?: boolean; // Compatibility
   tags?: string[];
-  rentalStartingPrice?: string;
-  purchaseStartingPrice?: string;
   isBespokeInspiration?: boolean;
 }
 
@@ -88,13 +86,25 @@ export type RenterType = 'individual' | 'vendor';
 
 export interface RentalInquiryFormData {
   renterType: RenterType;
-  fullName: string;
-  phone: string;
-  email?: string;
-  weddingDate: string;
   selectedGownName: string;
+  selectedGownId?: string;
+  selectedGownCode?: string;
+  // Event & Dates
+  eventDate: string;
+  collectionDate: string;
+  returnDate: string;
+  weddingDate?: string; // Backwards compatibility
+  // Individual / Bride details
+  fullName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  // Bridal Vendor / Business details
   businessName?: string;
+  contactPerson?: string;
   businessType?: string;
   socialHandle?: string;
+  // Additional information
   notes?: string;
 }

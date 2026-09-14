@@ -102,17 +102,6 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
                   ? 'Eligible for Couture Gown Rental & Bespoke Commission' 
                   : 'Available for Bespoke Atelier Commission'}
               </span>
-
-              {(gown.rentalStartingPrice || gown.purchaseStartingPrice) && (
-                <div className="mt-2 pt-2 border-t border-[#E8DFC8]">
-                  <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
-                    Verified Pricing
-                  </span>
-                  <span className="font-serif text-base font-medium text-[#856122]">
-                    {gown.rentalStartingPrice || gown.purchaseStartingPrice}
-                  </span>
-                </div>
-              )}
             </div>
 
             {/* Tags */}

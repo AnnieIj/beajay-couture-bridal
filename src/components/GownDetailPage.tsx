@@ -290,11 +290,19 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                 </div>
               )}
 
-              {gown.availability !== 'unknown' && (
+              {gown.availability && (
                 <div className="grid grid-cols-3 gap-2">
                   <span className="text-neutral-500 font-medium">Availability:</span>
                   <span className="col-span-2 text-neutral-900 font-normal capitalize">
-                    {gown.availability === 'available' ? 'Available in Atelier for Fittings' : gown.availability.replace('-', ' ')}
+                    {gown.availability === 'available'
+                      ? 'Available'
+                      : gown.availability === 'reserved'
+                      ? 'Reserved'
+                      : gown.availability === 'unavailable'
+                      ? 'Unavailable'
+                      : gown.availability === 'coming-soon'
+                      ? 'Coming Soon'
+                      : 'Availability requires confirmation'}
                   </span>
                 </div>
               )}
@@ -331,11 +339,20 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
               {/* Action 2: Check Rental Availability (ONLY if rentalEligible is true) */}
               {gown.rentalEligible && (
                 <button
-                  onClick={() => onCheckRentalAvailability(gown.name)}
-                  className="w-full flex items-center justify-center gap-2.5 bg-[#111111] hover:bg-[#262420] text-white py-3.5 px-6 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 shadow-xs cursor-pointer border border-[#C59B3F]/60"
+                  onClick={() => gown.availability !== 'unavailable' && onCheckRentalAvailability(gown.name)}
+                  disabled={gown.availability === 'unavailable'}
+                  className={`w-full flex items-center justify-center gap-2.5 py-3.5 px-6 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 shadow-xs border ${
+                    gown.availability === 'unavailable'
+                      ? 'bg-neutral-200 text-neutral-400 border-neutral-300 cursor-not-allowed'
+                      : 'bg-[#111111] hover:bg-[#262420] text-white cursor-pointer border-[#C59B3F]/60'
+                  }`}
                 >
                   <Layers className="w-4 h-4 text-[#C59B3F]" />
-                  <span>CHECK RENTAL AVAILABILITY</span>
+                  <span>
+                    {gown.availability === 'unavailable' 
+                      ? 'RENTAL CURRENTLY UNAVAILABLE' 
+                      : 'CHECK RENTAL AVAILABILITY'}
+                  </span>
                 </button>
               )}
 
@@ -355,7 +372,7 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
               <div className="flex items-start gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#C59B3F] flex-shrink-0 mt-0.5" />
                 <p>
-                  Every private fitting at BEAJAY COUTURE BRIDAL is conducted with dedicated studio time in our Enugu showroom. In-house tailoring ensures precise silhouette contouring.
+                  Every private consultation and fitting is conducted with dedicated care in our Enugu, Nigeria atelier, with bespoke guidance and styling support for brides everywhere.
                 </p>
               </div>
             </div>

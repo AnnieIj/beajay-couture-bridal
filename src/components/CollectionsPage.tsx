@@ -20,7 +20,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [rentalOnly, setRentalOnly] = useState<boolean>(initialRentalOnly);
-  const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'available' | 'reserved' | 'coming-soon'>('all');
+  const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'available' | 'reserved' | 'unavailable' | 'coming-soon'>('all');
 
   // Filtered Gowns Logic
   const filteredGowns = useMemo(() => {
@@ -119,7 +119,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
             <span className="text-neutral-300 hidden sm:inline">|</span>
 
             {/* Availability Filter */}
-            <div className="flex items-center gap-1">
+            <div className="flex flex-wrap items-center gap-1">
               <span className="text-[10.5px] uppercase tracking-wider text-neutral-500 mr-1 hidden sm:inline">
                 Status:
               </span>
@@ -131,7 +131,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                     : 'text-neutral-600 hover:text-neutral-900'
                 }`}
               >
-                All
+                All Availability
               </button>
               <button
                 onClick={() => setAvailabilityFilter('available')}
@@ -141,7 +141,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                     : 'text-neutral-600 hover:text-neutral-900'
                 }`}
               >
-                Available in Atelier
+                Available
               </button>
               <button
                 onClick={() => setAvailabilityFilter('reserved')}
@@ -152,6 +152,26 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                 }`}
               >
                 Reserved
+              </button>
+              <button
+                onClick={() => setAvailabilityFilter('unavailable')}
+                className={`px-2.5 py-1 text-[11px] uppercase tracking-wider cursor-pointer ${
+                  availabilityFilter === 'unavailable'
+                    ? 'text-[#856122] font-semibold underline'
+                    : 'text-neutral-600 hover:text-neutral-900'
+                }`}
+              >
+                Unavailable
+              </button>
+              <button
+                onClick={() => setAvailabilityFilter('coming-soon')}
+                className={`px-2.5 py-1 text-[11px] uppercase tracking-wider cursor-pointer ${
+                  availabilityFilter === 'coming-soon'
+                    ? 'text-[#856122] font-semibold underline'
+                    : 'text-neutral-600 hover:text-neutral-900'
+                }`}
+              >
+                Coming Soon
               </button>
             </div>
           </div>

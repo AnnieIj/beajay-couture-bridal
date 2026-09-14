@@ -11,12 +11,14 @@ interface FooterProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
   onNavigateHome: () => void;
   onNavigateCollections?: () => void;
+  onNavigateRentals?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ 
   onOpenModal, 
   onNavigateHome,
-  onNavigateCollections 
+  onNavigateCollections,
+  onNavigateRentals
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -43,11 +45,15 @@ export const Footer: React.FC<FooterProps> = ({
               </span>
             </button>
 
-            <p className="text-xs text-neutral-400 font-light leading-relaxed max-w-sm pt-2">
-              Exquisite bridal couture, luxury gown rentals, bespoke creations, and personalized fitting services crafted for the modern, unforgettable bride.
+            <p className="text-xs text-neutral-400 font-light leading-relaxed max-w-sm pt-1">
+              Exquisite bridal couture, luxury gown rentals, bespoke creations, and personalized fitting services.
             </p>
 
-            <div className="pt-2 text-[11px] tracking-wider text-[#C59B3F]/90 uppercase font-sans">
+            <div className="text-xs text-[#E6C875] tracking-widest uppercase font-serif">
+              Crafted in Nigeria. Made for Brides Everywhere.
+            </div>
+
+            <div className="pt-1 text-[11px] tracking-wider text-[#C59B3F]/90 uppercase font-sans">
               Bridal Gowns • Rentals • Bespoke • Fittings • Alterations
             </div>
           </div>
@@ -98,7 +104,13 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button 
-                  onClick={() => onOpenModal('rentals')}
+                  onClick={() => {
+                    if (onNavigateRentals) {
+                      onNavigateRentals();
+                    } else {
+                      onOpenModal('rentals');
+                    }
+                  }}
                   className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
                 >
                   Rentals

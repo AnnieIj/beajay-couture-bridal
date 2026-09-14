@@ -197,16 +197,7 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
                       </p>
                     </div>
 
-                    <div className="pt-2 border-t border-[#F2ECE0] space-y-2.5">
-                      {(gown.rentalStartingPrice || gown.purchaseStartingPrice) && (
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-[10px] uppercase text-neutral-400">Pricing:</span>
-                          <span className="font-semibold text-[#856122]">
-                            {gown.rentalStartingPrice || gown.purchaseStartingPrice}
-                          </span>
-                        </div>
-                      )}
-
+                    <div className="pt-2 border-t border-[#F2ECE0]">
                       <div className="grid grid-cols-2 gap-2">
                         <button
                           onClick={() => onSelectGown(gown)}
