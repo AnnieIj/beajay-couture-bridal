@@ -5,17 +5,27 @@ interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenAppointment: () => void;
+  preselectedGown?: string;
 }
 
 export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
-  onOpenAppointment
+  onOpenAppointment,
+  preselectedGown
 }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(() => 
+    preselectedGown ? `Hello, I would like to inquire regarding ${preselectedGown}.` : ''
+  );
   const [sent, setSent] = useState(false);
+
+  React.useEffect(() => {
+    if (preselectedGown) {
+      setMessage(`Hello, I would like to inquire regarding ${preselectedGown}.`);
+    }
+  }, [preselectedGown]);
 
   if (!isOpen) return null;
 
