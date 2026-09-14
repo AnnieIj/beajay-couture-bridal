@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Sparkles, Heart, Award, MapPin, ArrowRight } from 'lucide-react';
+import { EDITORIAL_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 
 interface AboutModalProps {
   isOpen: boolean;
@@ -48,8 +49,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="aspect-[4/5] bg-neutral-100 overflow-hidden border border-[#E5DEC9] shadow-md relative">
               <img
-                src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop"
-                alt="BEAJAY Couture Bridal fitting studio"
+                src={resolveMedia(EDITORIAL_MEDIA_ASSETS.aboutModal)}
+                alt={EDITORIAL_MEDIA_ASSETS.aboutModal.alt}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

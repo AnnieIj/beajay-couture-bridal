@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Play, Instagram, Sparkles } from 'lucide-react';
 import { GalleryItem } from '../types';
+import { HERO_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 
 interface GalleryLightboxProps {
   item: GalleryItem | null;
@@ -34,7 +35,7 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
           {item.isVideo ? (
             <div className="w-full h-full relative">
               <video
-                src="https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4"
+                src={resolveMedia(HERO_MEDIA_ASSETS.video)}
                 controls
                 autoPlay
                 className="w-full h-full object-cover"

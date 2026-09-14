@@ -1,7 +1,14 @@
 import { GownItem, CollectionCategory, Testimonial, GalleryItem } from '../types';
+import { 
+  HERO_MEDIA_ASSETS, 
+  COLLECTION_MEDIA_ASSETS,
+  BESPOKE_MEDIA_ASSETS,
+  GALLERY_MEDIA_ASSETS,
+  resolveMedia 
+} from '../config/mediaAssets';
 
-export const HERO_VIDEO_URL = "https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4";
-export const HERO_POSTER_URL = "https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1920&auto=format&fit=crop";
+export const HERO_VIDEO_URL = resolveMedia(HERO_MEDIA_ASSETS.video);
+export const HERO_POSTER_URL = resolveMedia(HERO_MEDIA_ASSETS.poster);
 
 export const BUSINESS_INFO = {
   name: 'BEAJAY COUTURE BRIDAL',
@@ -17,7 +24,7 @@ export const CATEGORIES: CollectionCategory[] = [
     name: 'Ball Gowns',
     slug: 'ball-gown',
     description: 'Grand royal silhouettes with dramatic full skirts and hand-embroidered bodices.',
-    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.ballGown),
     itemCount: 14
   },
   {
@@ -25,7 +32,7 @@ export const CATEGORIES: CollectionCategory[] = [
     name: 'Mermaid',
     slug: 'mermaid',
     description: 'Form-fitting allure celebrating feminine curves, tapering down into dramatic lace flares.',
-    image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.mermaid),
     itemCount: 18
   },
   {
@@ -33,7 +40,7 @@ export const CATEGORIES: CollectionCategory[] = [
     name: 'A-Line',
     slug: 'a-line',
     description: 'Timeless grace and flattering proportions tailored with delicate lace and refined fabrics.',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.aLine),
     itemCount: 12
   },
   {
@@ -41,7 +48,7 @@ export const CATEGORIES: CollectionCategory[] = [
     name: 'Sheath',
     slug: 'sheath',
     description: 'Effortless modern luxury featuring clean column silhouettes, subtle accents, and flowing fabrics.',
-    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.sheath),
     itemCount: 9
   },
   {
@@ -49,7 +56,7 @@ export const CATEGORIES: CollectionCategory[] = [
     name: 'Reception Dresses',
     slug: 'reception',
     description: 'Glamorous show-stoppers made with hand-finished beading, metallic accents, and detachable capes.',
-    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.reception),
     itemCount: 16
   },
   {
@@ -57,7 +64,7 @@ export const CATEGORIES: CollectionCategory[] = [
     name: 'Veils & Accessories',
     slug: 'veils-accessories',
     description: 'Cathedral veils, hair accessories, bridal tiaras, and handcrafted finishing pieces.',
-    image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.accessories),
     itemCount: 22
   }
 ];
@@ -464,44 +471,14 @@ export const TESTIMONIALS: Testimonial[] = [
   }
 ];
 
-export const GALLERY_ITEMS: GalleryItem[] = [
-  {
-    id: 'gal-1',
-    title: 'Cathedral Veil Drama',
-    category: 'veil',
-    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=800&auto=format&fit=crop',
-    caption: 'Handcrafted cathedral veil walking into the sanctuary.'
-  },
-  {
-    id: 'gal-2',
-    title: 'Back Detailing & Button Spine',
-    category: 'gown-details',
-    image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=800&auto=format&fit=crop',
-    caption: 'Fabric-covered buttons and delicate detailing on sheer illusion mesh.'
-  },
-  {
-    id: 'gal-3',
-    title: 'The Radiant Bride with Bouquet',
-    category: 'bride',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
-    caption: 'Soft smiles moments before taking the sacred vows.'
-  },
-  {
-    id: 'gal-4',
-    title: 'Fitting Precision',
-    category: 'fitting',
-    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=800&auto=format&fit=crop',
-    caption: 'Individual fittings and tailored adjustments in Enugu, Nigeria.'
-  },
-  {
-    id: 'gal-5',
-    title: 'Watch Our Story Reel',
-    category: 'studio',
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop',
-    caption: 'Behind the scenes at BEAJAY Couture Bridal.',
-    isVideo: true
-  }
-];
+export const GALLERY_ITEMS: GalleryItem[] = GALLERY_MEDIA_ASSETS.map((item) => ({
+  id: item.id,
+  title: item.title,
+  category: item.category,
+  image: resolveMedia(item),
+  caption: item.caption,
+  isVideo: 'isVideo' in item ? item.isVideo : false
+}));
 
 export const RENTAL_POLICIES = [
   {
@@ -529,60 +506,30 @@ export const RENTAL_POLICIES = [
 
 export const BESPOKE_MEDIA = {
   hero: {
-    primary: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Bridal gown construction and fabric draping on dressmaker form'
+    primary: resolveMedia(BESPOKE_MEDIA_ASSETS.hero),
+    alt: BESPOKE_MEDIA_ASSETS.hero.alt
   },
   atelier: {
-    sketching: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop',
-    draping: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200&auto=format&fit=crop',
-    structure: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-    fitting: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop'
+    sketching: resolveMedia(BESPOKE_MEDIA_ASSETS.atelier.sketching),
+    draping: resolveMedia(BESPOKE_MEDIA_ASSETS.atelier.draping),
+    structure: resolveMedia(BESPOKE_MEDIA_ASSETS.atelier.structure),
+    fitting: resolveMedia(BESPOKE_MEDIA_ASSETS.atelier.fitting)
   },
   details: {
-    beading: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
-    lace: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-    veils: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-    finishing: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop'
+    beading: resolveMedia(BESPOKE_MEDIA_ASSETS.details.beading),
+    lace: resolveMedia(BESPOKE_MEDIA_ASSETS.details.lace),
+    veils: resolveMedia(BESPOKE_MEDIA_ASSETS.details.veils),
+    finishing: resolveMedia(BESPOKE_MEDIA_ASSETS.details.finishing)
   }
 };
 
-export const BESPOKE_JOURNEY_STAGES = [
-  {
-    step: '01',
-    title: 'CONSULTATION',
-    subtitle: "Understanding the Bride's Vision",
-    description: "Understanding the bride's vision, wedding aesthetic and preferred direction.",
-    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    step: '02',
-    title: 'DESIGN',
-    subtitle: 'Developing the Gown Concept',
-    description: 'Developing the creative direction and gown concept.',
-    image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    step: '03',
-    title: 'FABRIC & DETAILS',
-    subtitle: 'Materials & Embellishment',
-    description: 'Exploring materials, embellishment and finishing details.',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    step: '04',
-    title: 'FITTINGS',
-    subtitle: 'Refining Fit & Silhouette',
-    description: "Refining the gown's fit and silhouette during the creation process.",
-    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    step: '05',
-    title: 'FINAL CREATION',
-    subtitle: 'The Finished Bridal Piece',
-    description: 'Completing the finished BEAJAY bridal piece.',
-    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=800&auto=format&fit=crop'
-  }
-];
+export const BESPOKE_JOURNEY_STAGES = BESPOKE_MEDIA_ASSETS.journey.map((stage) => ({
+  step: stage.step,
+  title: stage.title,
+  subtitle: stage.subtitle,
+  description: stage.description,
+  image: resolveMedia(stage)
+}));
 
 export const BESPOKE_CRAFTSMANSHIP_ITEMS = [
   {
@@ -590,42 +537,42 @@ export const BESPOKE_CRAFTSMANSHIP_ITEMS = [
     title: 'Lace & Detailing Placement',
     subtitle: 'Delicate Motifs & Balanced Placement',
     description: 'Each lace motif is carefully arranged and hand-placed along bodices, hemlines, and necklines to complement the gown silhouette.',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop'
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.lace)
   },
   {
     id: 'beading',
     title: 'Hand-Finished Embellishment',
     subtitle: 'Light-Catching Detailing',
     description: 'Delicate beadwork, subtle sequins, and textural accents hand-finished to catch the light with refined elegance.',
-    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=800&auto=format&fit=crop'
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.beading)
   },
   {
     id: 'structure',
     title: 'Thoughtful Gown Structure',
     subtitle: 'Support Built Within',
     description: 'Balanced internal support and bodice tailoring designed to provide poise, graceful lines, and comfort throughout your day.',
-    image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=800&auto=format&fit=crop'
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.structure)
   },
   {
     id: 'draping',
     title: 'Draping & Layered Volume',
     subtitle: 'Silhouette Movement',
     description: 'Balanced fabric layering and careful proportioning that maintain fluid movement and graceful presence.',
-    image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop'
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.draping)
   },
   {
     id: 'veils',
     title: 'Veil & Train Detailing',
     subtitle: 'Coordinated Bridal Accents',
     description: 'Cathedral, chapel, and fingertip-length veils trimmed with coordinating lace and lightweight bridal tulle.',
-    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=800&auto=format&fit=crop'
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.veils)
   },
   {
     id: 'finishing',
     title: 'Tailoring & Finishing',
     subtitle: 'Careful Bridal Craftsmanship',
     description: 'Hand-finished closures, covered buttons, and clean seam work ensuring elegance in every finishing detail.',
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop'
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.finishing)
   }
 ];
 
@@ -635,7 +582,7 @@ export const BESPOKE_SILHOUETTE_INSPIRATIONS = [
     name: 'Ball Gown',
     subtitle: 'Regal Volume',
     description: 'Structured bodices cascading into full, graceful skirts. A classic choice for grand ceremonies and stately celebrations.',
-    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.silhouettes.ballGown),
     highlight: 'Majestic & Timeless'
   },
   {
@@ -643,7 +590,7 @@ export const BESPOKE_SILHOUETTE_INSPIRATIONS = [
     name: 'Mermaid',
     subtitle: 'Contoured Silhouette',
     description: 'Tailored contours that celebrate natural proportions before gently flaring outward for dramatic presence.',
-    image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.silhouettes.mermaid),
     highlight: 'Dramatic & Confident'
   },
   {
@@ -651,7 +598,7 @@ export const BESPOKE_SILHOUETTE_INSPIRATIONS = [
     name: 'A-Line',
     subtitle: 'Effortless Flow & Grace',
     description: 'Universally flattering balanced proportions flowing naturally from the waist down in soft tulle, lace, or fluid bridal textiles.',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.silhouettes.aLine),
     highlight: 'Fluid & Classical'
   },
   {
@@ -659,7 +606,7 @@ export const BESPOKE_SILHOUETTE_INSPIRATIONS = [
     name: 'Sheath',
     subtitle: 'Clean & Contemporary',
     description: 'Clean lines, fluid drape, and refined detailing designed for the bride who loves modern simplicity and elegance.',
-    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=900&auto=format&fit=crop',
+    image: resolveMedia(BESPOKE_MEDIA_ASSETS.silhouettes.sheath),
     highlight: 'Understated Luxury'
   }
 ];
@@ -674,62 +621,11 @@ export interface BespokeGalleryItem {
   caption: string;
 }
 
-export const BESPOKE_INSPIRATION_GALLERY: BespokeGalleryItem[] = [
-  {
-    id: 'bg-1',
-    title: 'Concept & Silhouette Exploration',
-    category: 'Craftsmanship',
-    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop',
-    caption: 'Exploring silhouette proportions, line work, and drape during design development.'
-  },
-  {
-    id: 'bg-2',
-    title: 'Draped Bodice on Form',
-    category: 'Atelier',
-    image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop',
-    caption: 'Arranging fabric folds and exploring structure on the dress form.'
-  },
-  {
-    id: 'bg-3',
-    title: 'Lace Appliqué Placement',
-    category: 'Details',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000&auto=format&fit=crop',
-    caption: 'Exploring delicate lace motifs and textured floral accents.'
-  },
-  {
-    id: 'bg-4',
-    title: 'Illusion Back & Covered Buttons',
-    category: 'Details',
-    image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1000&auto=format&fit=crop',
-    caption: 'Meticulously spaced fabric-covered buttons along an illusion back line.'
-  },
-  {
-    id: 'bg-5',
-    title: 'Hand-Finished Detailing',
-    category: 'Craftsmanship',
-    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1000&auto=format&fit=crop',
-    caption: 'Subtle beadwork and textural detailing catching the light.'
-  },
-  {
-    id: 'bg-6',
-    title: 'Silhouette Fitting & Proportions',
-    category: 'Atelier',
-    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1000&auto=format&fit=crop',
-    caption: 'Evaluating comfort, balance, and hemline alignment during fitting.'
-  },
-  {
-    id: 'bg-7',
-    title: 'Veil & Train Detailing',
-    category: 'Silhouettes',
-    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1000&auto=format&fit=crop',
-    caption: 'Soft bridal veil bordered with delicate coordinating lace.'
-  },
-  {
-    id: 'bg-8',
-    title: 'Bridal Silhouette Inspiration',
-    category: 'Bridal Inspiration',
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1000&auto=format&fit=crop',
-    caption: 'A graceful bridal silhouette crafted with care and presence.'
-  }
-];
+export const BESPOKE_INSPIRATION_GALLERY: BespokeGalleryItem[] = BESPOKE_MEDIA_ASSETS.inspirationGallery.map((item) => ({
+  id: item.id,
+  title: item.title,
+  category: item.category,
+  image: resolveMedia(item),
+  caption: item.caption
+}));
 

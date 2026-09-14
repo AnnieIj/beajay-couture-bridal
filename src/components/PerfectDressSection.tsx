@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { ActiveModal } from '../types';
+import { EDITORIAL_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 
 interface PerfectDressSectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -18,8 +19,8 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
       description: 'Explore our beautiful collection of wedding gowns and bridal pieces.',
       cta: 'View Collection',
       action: onViewCollections,
-      image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=900&auto=format&fit=crop',
-      alt: 'Luxury bridal ball gown with cathedral train',
+      image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.collection),
+      alt: EDITORIAL_MEDIA_ASSETS.perfectDress.collection.alt,
       tag: 'Ready to Wear & Order'
     },
     {
@@ -28,8 +29,8 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
       description: 'Discover exquisite couture gowns available for rental.',
       cta: 'Explore Rentals',
       action: () => onOpenModal('rentals'),
-      image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop',
-      alt: 'Bride wearing exquisite off-shoulder gown for rental',
+      image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.rent),
+      alt: EDITORIAL_MEDIA_ASSETS.perfectDress.rent.alt,
       tag: 'Gown Rental Collection'
     },
     {
@@ -38,8 +39,8 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
       description: 'Custom-made bridal gowns created around the bride\'s style, body and vision.',
       cta: 'Start a Consultation',
       action: () => onOpenModal('bespoke'),
-      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
-      alt: 'Intricate bridal back detailing and bespoke lace fitting',
+      image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.bespoke),
+      alt: EDITORIAL_MEDIA_ASSETS.perfectDress.bespoke.alt,
       tag: 'One-of-a-kind Creation'
     }
   ];

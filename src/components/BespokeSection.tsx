@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Sparkles, Ruler, Compass, PenTool, Check } from 'lucide-react';
 import { ActiveModal } from '../types';
+import { EDITORIAL_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 
 interface BespokeSectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -42,8 +43,8 @@ export const BespokeSection: React.FC<BespokeSectionProps> = ({ onOpenModal, onN
               {/* Primary Large Image */}
               <div className="relative aspect-[4/5] bg-neutral-100 overflow-hidden shadow-2xl border border-[#E8E2D5]">
                 <img
-                  src="https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop"
-                  alt="Bride bespoke gown back with buttons and lace"
+                  src={resolveMedia(EDITORIAL_MEDIA_ASSETS.bespokeSection.primary)}
+                  alt={EDITORIAL_MEDIA_ASSETS.bespokeSection.primary.alt}
                   className="w-full h-full object-cover object-center"
                 />
                 
@@ -54,8 +55,8 @@ export const BespokeSection: React.FC<BespokeSectionProps> = ({ onOpenModal, onN
               {/* Overlapping Secondary Atelier Detail Image */}
               <div className="hidden sm:block absolute -bottom-8 -right-8 w-56 sm:w-64 aspect-square bg-white p-2 shadow-2xl border border-[#E0D8C8]">
                 <img
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop"
-                  alt="Hand tailoring and lace embroidery detail"
+                  src={resolveMedia(EDITORIAL_MEDIA_ASSETS.bespokeSection.secondary)}
+                  alt={EDITORIAL_MEDIA_ASSETS.bespokeSection.secondary.alt}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-sm text-center py-1.5 px-2">

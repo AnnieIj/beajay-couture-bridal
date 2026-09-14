@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Shield, MapPin, ArrowRight, Sparkles } from 'lucide-react';
 import { ActiveModal } from '../types';
+import { EDITORIAL_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 
 interface AppointmentCtaSectionProps {
   onOpenModal: (modal: ActiveModal) => void;
@@ -16,7 +17,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-25"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop')`
+          backgroundImage: `url('${resolveMedia(EDITORIAL_MEDIA_ASSETS.appointmentCta)}')`
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/90" />
