@@ -490,7 +490,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
             Looking to Explore All BEAJAY Designs?
           </h3>
           <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed">
-            While our Rentals collection features selected gowns ready for hire, our complete bridal collection includes bespoke commissions, runway prototypes, and signature made-to-order couture.
+            While our Rentals collection features selected gowns ready for hire, our complete bridal collection includes our full range of silhouettes, statement designs, and signature made-to-order couture.
           </p>
           <div>
             <button

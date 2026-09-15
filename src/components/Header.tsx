@@ -14,7 +14,6 @@ interface HeaderProps {
   onNavigateHome: () => void;
   onNavigateCollections?: () => void;
   onNavigateRentals?: () => void;
-  onNavigateBespoke?: () => void;
   onNavigateGallery?: () => void;
   onNavigateAbout?: () => void;
   onNavigateContact?: () => void;
@@ -26,7 +25,6 @@ export const Header: React.FC<HeaderProps> = ({
   onNavigateHome,
   onNavigateCollections,
   onNavigateRentals,
-  onNavigateBespoke,
   onNavigateGallery,
   onNavigateAbout,
   onNavigateContact
@@ -59,12 +57,6 @@ export const Header: React.FC<HeaderProps> = ({
 
     if (modalType === 'rentals' && onNavigateRentals) {
       onNavigateRentals();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    if (modalType === 'bespoke' && onNavigateBespoke) {
-      onNavigateBespoke();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -168,16 +160,6 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               Rentals
-            </button>
-
-            {/* Bespoke */}
-            <button 
-              onClick={() => handleNavClick('bespoke-section', 'bespoke')}
-              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
-                activeView === 'bespoke' ? 'text-[#C59B3F] font-semibold' : ''
-              }`}
-            >
-              Bespoke
             </button>
 
             {/* Gallery */}
@@ -287,23 +269,13 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
 
             <button 
-              onClick={() => handleNavClick('bespoke-section', 'bespoke')}
-              className={`text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer ${
-                activeView === 'bespoke' ? 'text-[#C59B3F] font-semibold' : ''
-              }`}
-            >
-              <span>Bespoke Couture</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">04</span>
-            </button>
-
-            <button 
               onClick={() => handleNavClick('bridal-gallery', 'gallery')}
               className={`text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer ${
                 activeView === 'gallery' ? 'text-[#C59B3F] font-semibold' : ''
               }`}
             >
               <span>Gallery</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">05</span>
+              <span className="text-[10px] text-[#C59B3F] tracking-widest">04</span>
             </button>
 
             <button 
@@ -313,7 +285,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <span>About</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">06</span>
+              <span className="text-[10px] text-[#C59B3F] tracking-widest">05</span>
             </button>
 
             <button 
@@ -324,7 +296,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
             >
               <span>Book Appointment</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">07</span>
+              <span className="text-[10px] text-[#C59B3F] tracking-widest">06</span>
             </button>
 
             <button 
@@ -334,7 +306,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <span>Contact</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">08</span>
+              <span className="text-[10px] text-[#C59B3F] tracking-widest">07</span>
             </button>
           </div>
 

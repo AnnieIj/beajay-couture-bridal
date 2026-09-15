@@ -682,15 +682,15 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
     objectPosition: 'object-bottom'
   },
 
-  // BESPOKE
+  // DESIGN & CRAFT MOMENTS
   {
     id: 'eg-09',
-    title: 'Bespoke Concept Development',
-    category: 'bespoke' as const,
-    categoryLabel: 'Bespoke',
+    title: 'Design Concept & Sketching',
+    category: 'behind-the-craft' as const,
+    categoryLabel: 'Behind The Craft',
     current: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-editorial-09.jpg',
-    alt: 'Couture fashion sketches and textile swatches during bespoke design consultation',
+    alt: 'Couture fashion sketches and textile swatches during bridal design consultation',
     caption: 'Original design sketches translating a bride’s singular aesthetic vision.',
     orientation: 'landscape' as const,
     featured: true,
@@ -700,8 +700,8 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
   {
     id: 'eg-10',
     title: 'Drape Exploration on Form',
-    category: 'bespoke' as const,
-    categoryLabel: 'Bespoke',
+    category: 'behind-the-craft' as const,
+    categoryLabel: 'Behind The Craft',
     current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1400&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-editorial-10.jpg',
     alt: 'Tailor arranging silk fabric folds on dressmaker mannequin',
@@ -713,9 +713,9 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
   },
   {
     id: 'eg-11',
-    title: 'Custom Fit Silhouette Evaluation',
-    category: 'bespoke' as const,
-    categoryLabel: 'Bespoke',
+    title: 'Silhouette Fit & Proportions',
+    category: 'behind-the-craft' as const,
+    categoryLabel: 'Behind The Craft',
     current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1400&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-editorial-11.jpg',
     alt: 'Bride undergoing personalized couture fitting session',
@@ -727,13 +727,13 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
   },
   {
     id: 'eg-12',
-    title: 'Bespoke Train Length Calibration',
-    category: 'bespoke' as const,
-    categoryLabel: 'Bespoke',
+    title: 'Cathedral Train Balancing',
+    category: 'couture-details' as const,
+    categoryLabel: 'Couture Details',
     current: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1400&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-editorial-12.jpg',
-    alt: 'Custom bridal gown train billowing out across polished ceremony floor',
-    caption: 'Bespoke train length tailored precisely to ceremonial venue proportions.',
+    alt: 'Bridal gown train billowing out across polished ceremony floor',
+    caption: 'Dramatic train length tailored precisely to ceremonial venue proportions.',
     orientation: 'landscape' as const,
     featured: false,
     aspectRatio: 'aspect-[16/10]',
@@ -834,8 +834,8 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
     categoryLabel: 'Behind The Craft',
     current: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=1400&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-editorial-19.jpg',
-    alt: 'Measuring tape and chalk pattern markings on bridal atelier cutting table',
-    caption: 'Precise bespoke measurements translated onto custom foundation patterns.',
+    alt: 'Measuring tape and chalk pattern markings on bridal cutting table',
+    caption: 'Precise measurements translated onto custom foundation patterns.',
     orientation: 'square' as const,
     featured: false,
     aspectRatio: 'aspect-[1/1]',
@@ -843,14 +843,14 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
   },
   {
     id: 'eg-20',
-    title: 'Atelier Motion & Veil Flight',
+    title: 'Studio Motion & Veil Flight',
     category: 'behind-the-craft' as const,
     categoryLabel: 'Behind The Craft',
     current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-editorial-20.jpg',
     videoCurrent: 'https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4',
     videoOfficialPath: '/media/gallery/gallery-story-reel.mp4',
-    alt: 'Bridal veil gently drifting in atelier motion capture',
+    alt: 'Bridal veil gently drifting in studio motion capture',
     caption: 'Capturing dynamic veil flow, drape weight, and fabric balance in movement.',
     orientation: 'portrait' as const,
     featured: false,
@@ -888,14 +888,14 @@ export const EDITORIAL_MEDIA_ASSETS = {
     bespoke: {
       current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
       officialPath: '/media/bespoke/bespoke-card.jpg',
-      alt: 'Intricate bridal back detailing and bespoke lace fitting'
+      alt: 'Intricate bridal back detailing and fine lace fitting'
     }
   },
   bespokeSection: {
     primary: {
       current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
       officialPath: '/media/bespoke/bespoke-section-primary.jpg',
-      alt: 'Bride bespoke gown back with buttons and lace'
+      alt: 'Bride bridal gown back with buttons and lace'
     },
     secondary: {
       current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop',

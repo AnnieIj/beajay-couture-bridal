@@ -12,7 +12,6 @@ interface FooterProps {
   onNavigateHome: () => void;
   onNavigateCollections?: () => void;
   onNavigateRentals?: () => void;
-  onNavigateBespoke?: () => void;
   onNavigateGallery?: () => void;
   onNavigateAbout?: () => void;
   onNavigateContact?: () => void;
@@ -23,7 +22,6 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateHome,
   onNavigateCollections,
   onNavigateRentals,
-  onNavigateBespoke,
   onNavigateGallery,
   onNavigateAbout,
   onNavigateContact
@@ -54,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({
             </button>
 
             <p className="text-xs text-neutral-400 font-light leading-relaxed max-w-sm pt-1">
-              Exquisite bridal couture, luxury gown rentals, bespoke creations, and personalized fitting services.
+              Exquisite bridal couture, luxury gown rentals, and personalized fitting services.
             </p>
 
             <div className="text-xs text-[#E6C875] tracking-widest uppercase font-serif">
@@ -107,20 +105,6 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
                 >
                   Rentals
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    if (onNavigateBespoke) {
-                      onNavigateBespoke();
-                    } else {
-                      onOpenModal('bespoke');
-                    }
-                  }}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
-                >
-                  Bespoke
                 </button>
               </li>
               <li>

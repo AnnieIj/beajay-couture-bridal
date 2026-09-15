@@ -2,7 +2,6 @@ import { GownItem, CollectionCategory, Testimonial, GalleryItem, GalleryCategory
 import { 
   HERO_MEDIA_ASSETS, 
   COLLECTION_MEDIA_ASSETS,
-  BESPOKE_MEDIA_ASSETS,
   GALLERY_MEDIA_ASSETS,
   HOMEPAGE_GALLERY_MEDIA_ASSETS,
   EDITORIAL_GALLERY_MEDIA_ASSETS,
@@ -118,7 +117,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: true,
     isFeatured: true,
-    isBespokeInspiration: true,
     tags: ['Cathedral Train', 'Detailed Bodice', 'Royal Bride', 'Featured Rental']
   },
   {
@@ -149,7 +147,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: true,
     isFeatured: true,
-    isBespokeInspiration: true,
     tags: ['Hourglass Contour', 'Illusion Back', 'Popular']
   },
   {
@@ -177,7 +174,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: true,
     isFeatured: true,
-    isBespokeInspiration: true,
     tags: ['Romantic', 'Off-Shoulder', 'Lightweight Movement']
   },
   {
@@ -205,7 +201,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'reserved',
     featured: true,
     isFeatured: true,
-    isBespokeInspiration: true,
     tags: ['Minimalist Luxury', 'Civil Wedding', 'Intimate Ceremony']
   },
   {
@@ -233,7 +228,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: true,
     isFeatured: true,
-    isBespokeInspiration: true,
     tags: ['Reception Glam', 'Party Ready', 'Sparkle & Movement']
   },
   {
@@ -261,7 +255,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: true,
     isFeatured: true,
-    isBespokeInspiration: true,
     tags: ['Heirloom Piece', 'Cathedral Length', 'Accessories']
   },
   {
@@ -278,7 +271,7 @@ export const GOWNS_CATALOG: GownItem[] = [
       'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop'
     ],
     image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
-    sizes: ['UK 10', 'Bespoke Order Only'],
+    sizes: ['UK 10', 'Custom Sizing Available'],
     fabric: 'Damask & Metallic Threaded Lace',
     details: 'Fine beading, metallic accents, and detailed embroidery',
     embellishments: 'Fine beading, metallic accents, and detailed embroidery',
@@ -289,7 +282,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'coming-soon',
     featured: false,
     isFeatured: false,
-    isBespokeInspiration: true,
     tags: ['Modest Royal', 'Long Sleeve', 'Cathedral Wedding']
   },
   {
@@ -317,7 +309,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: false,
     isFeatured: false,
-    isBespokeInspiration: true,
     tags: ['Beaded Back', 'Hourglass', 'Bridal Favorite']
   },
   {
@@ -345,7 +336,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: false,
     isFeatured: false,
-    isBespokeInspiration: true,
     tags: ['Structured Satin', 'Pockets', 'Classic Elegance']
   },
   {
@@ -373,7 +363,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: false,
     isFeatured: false,
-    isBespokeInspiration: true,
     tags: ['Halter Neck', 'Minimalist', 'Civil Chic']
   },
   {
@@ -401,7 +390,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: false,
     isFeatured: false,
-    isBespokeInspiration: true,
     tags: ['Convertible', 'Reception Glam', 'After-Party']
   },
   {
@@ -429,7 +417,6 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: false,
     isFeatured: false,
-    isBespokeInspiration: true,
     tags: ['Bridal Cape', 'Accents', 'Statement Piece']
   }
 ];
@@ -441,7 +428,7 @@ export const TESTIMONIALS: Testimonial[] = [
     weddingDate: 'Wedding Reflection',
     location: 'Enugu, Nigeria',
     quote: 'Beajay Couture Bridal made me feel truly regal. The gown was everything I imagined. The private fitting session in Enugu was seamless, calm, and exquisitely professional.',
-    gownType: 'Bespoke Cathedral Silhouette',
+    gownType: 'Cathedral Silhouette',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop'
   },
   {
@@ -506,7 +493,6 @@ export const GALLERY_CATEGORIES: { id: GalleryCategory; label: string; count?: n
   { id: 'all', label: 'ALL' },
   { id: 'bridal-looks', label: 'BRIDAL LOOKS' },
   { id: 'couture-details', label: 'COUTURE DETAILS' },
-  { id: 'bespoke', label: 'BESPOKE' },
   { id: 'veils-accessories', label: 'VEILS & ACCESSORIES' },
   { id: 'behind-the-craft', label: 'BEHIND THE CRAFT' }
 ];
@@ -530,133 +516,4 @@ export const RENTAL_POLICIES = [
   }
 ];
 
-// =========================================================================
-// BESPOKE COUTURE MEDIA & CONTENT ARCHITECTURE
-// Centralized, easily replaceable media and copy for /bespoke
-// =========================================================================
-
-export const BESPOKE_MEDIA = {
-  hero: {
-    primary: resolveMedia(BESPOKE_MEDIA_ASSETS.hero),
-    alt: BESPOKE_MEDIA_ASSETS.hero.alt
-  },
-  atelier: {
-    sketching: resolveMedia(BESPOKE_MEDIA_ASSETS.atelier.sketching),
-    draping: resolveMedia(BESPOKE_MEDIA_ASSETS.atelier.draping),
-    structure: resolveMedia(BESPOKE_MEDIA_ASSETS.atelier.structure),
-    fitting: resolveMedia(BESPOKE_MEDIA_ASSETS.atelier.fitting)
-  },
-  details: {
-    beading: resolveMedia(BESPOKE_MEDIA_ASSETS.details.beading),
-    lace: resolveMedia(BESPOKE_MEDIA_ASSETS.details.lace),
-    veils: resolveMedia(BESPOKE_MEDIA_ASSETS.details.veils),
-    finishing: resolveMedia(BESPOKE_MEDIA_ASSETS.details.finishing)
-  }
-};
-
-export const BESPOKE_JOURNEY_STAGES = BESPOKE_MEDIA_ASSETS.journey.map((stage) => ({
-  step: stage.step,
-  title: stage.title,
-  subtitle: stage.subtitle,
-  description: stage.description,
-  image: resolveMedia(stage)
-}));
-
-export const BESPOKE_CRAFTSMANSHIP_ITEMS = [
-  {
-    id: 'lace',
-    title: 'Lace & Detailing Placement',
-    subtitle: 'Delicate Motifs & Balanced Placement',
-    description: 'Each lace motif is carefully arranged and hand-placed along bodices, hemlines, and necklines to complement the gown silhouette.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.lace)
-  },
-  {
-    id: 'beading',
-    title: 'Hand-Finished Embellishment',
-    subtitle: 'Light-Catching Detailing',
-    description: 'Delicate beadwork, subtle sequins, and textural accents hand-finished to catch the light with refined elegance.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.beading)
-  },
-  {
-    id: 'structure',
-    title: 'Thoughtful Gown Structure',
-    subtitle: 'Support Built Within',
-    description: 'Balanced internal support and bodice tailoring designed to provide poise, graceful lines, and comfort throughout your day.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.structure)
-  },
-  {
-    id: 'draping',
-    title: 'Draping & Layered Volume',
-    subtitle: 'Silhouette Movement',
-    description: 'Balanced fabric layering and careful proportioning that maintain fluid movement and graceful presence.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.draping)
-  },
-  {
-    id: 'veils',
-    title: 'Veil & Train Detailing',
-    subtitle: 'Coordinated Bridal Accents',
-    description: 'Cathedral, chapel, and fingertip-length veils trimmed with coordinating lace and lightweight bridal tulle.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.veils)
-  },
-  {
-    id: 'finishing',
-    title: 'Tailoring & Finishing',
-    subtitle: 'Careful Bridal Craftsmanship',
-    description: 'Hand-finished closures, covered buttons, and clean seam work ensuring elegance in every finishing detail.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.craftsmanship.finishing)
-  }
-];
-
-export const BESPOKE_SILHOUETTE_INSPIRATIONS = [
-  {
-    slug: 'ball-gown',
-    name: 'Ball Gown',
-    subtitle: 'Regal Volume',
-    description: 'Structured bodices cascading into full, graceful skirts. A classic choice for grand ceremonies and stately celebrations.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.silhouettes.ballGown),
-    highlight: 'Majestic & Timeless'
-  },
-  {
-    slug: 'mermaid',
-    name: 'Mermaid',
-    subtitle: 'Contoured Silhouette',
-    description: 'Tailored contours that celebrate natural proportions before gently flaring outward for dramatic presence.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.silhouettes.mermaid),
-    highlight: 'Dramatic & Confident'
-  },
-  {
-    slug: 'a-line',
-    name: 'A-Line',
-    subtitle: 'Effortless Flow & Grace',
-    description: 'Universally flattering balanced proportions flowing naturally from the waist down in soft tulle, lace, or fluid bridal textiles.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.silhouettes.aLine),
-    highlight: 'Fluid & Classical'
-  },
-  {
-    slug: 'sheath',
-    name: 'Sheath',
-    subtitle: 'Clean & Contemporary',
-    description: 'Clean lines, fluid drape, and refined detailing designed for the bride who loves modern simplicity and elegance.',
-    image: resolveMedia(BESPOKE_MEDIA_ASSETS.silhouettes.sheath),
-    highlight: 'Understated Luxury'
-  }
-];
-
-export type BespokeGalleryCategory = 'Atelier' | 'Details' | 'Silhouettes' | 'Craftsmanship' | 'Bridal Inspiration';
-
-export interface BespokeGalleryItem {
-  id: string;
-  title: string;
-  category: BespokeGalleryCategory;
-  image: string;
-  caption: string;
-}
-
-export const BESPOKE_INSPIRATION_GALLERY: BespokeGalleryItem[] = BESPOKE_MEDIA_ASSETS.inspirationGallery.map((item) => ({
-  id: item.id,
-  title: item.title,
-  category: item.category,
-  image: resolveMedia(item),
-  caption: item.caption
-}));
 

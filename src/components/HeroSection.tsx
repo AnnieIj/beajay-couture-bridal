@@ -60,8 +60,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     },
     {
       icon: Scissors,
-      title: 'Bespoke Couture',
-      desc: 'Custom-made to your body & vision'
+      title: 'Bridal Styling & Tailoring',
+      desc: 'Expert craftsmanship tailored to perfection'
     },
     {
       icon: CalendarCheck,

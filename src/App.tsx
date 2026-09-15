@@ -5,7 +5,6 @@ import { HeroSection } from './components/HeroSection';
 import { PerfectDressSection } from './components/PerfectDressSection';
 import { FeaturedCollectionSection } from './components/FeaturedCollectionSection';
 import { GownRentalsSection } from './components/GownRentalsSection';
-import { BespokeSection } from './components/BespokeSection';
 import { BridalExperienceSection } from './components/BridalExperienceSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { GallerySection } from './components/GallerySection';
@@ -15,7 +14,6 @@ import { Footer } from './components/Footer';
 import { CollectionsPage } from './components/CollectionsPage';
 import { GownDetailPage } from './components/GownDetailPage';
 import { RentalsPage } from './components/RentalsPage';
-import { BespokePage } from './components/BespokePage';
 import { GalleryPage } from './components/GalleryPage';
 import { AboutPage } from './components/AboutPage';
 import { ContactPage } from './components/ContactPage';
@@ -23,7 +21,6 @@ import { ContactPage } from './components/ContactPage';
 import { AppointmentModal } from './components/AppointmentModal';
 import { RentalsModal } from './components/RentalsModal';
 import { CollectionsModal } from './components/CollectionsModal';
-import { BespokeModal } from './components/BespokeModal';
 import { GownDetailModal } from './components/GownDetailModal';
 import { GalleryLightbox } from './components/GalleryLightbox';
 import { SearchModal } from './components/SearchModal';
@@ -45,7 +42,6 @@ export default function App() {
   const [selectedGalleryItem, setSelectedGalleryItem] = useState<GalleryItem | null>(null);
   const [galleryLightboxItems, setGalleryLightboxItems] = useState<GalleryItem[]>(EDITORIAL_GALLERY_ITEMS);
   const [collectionCategory, setCollectionCategory] = useState<string>('all');
-  const [bespokeInspirationGown, setBespokeInspirationGown] = useState<string | undefined>(undefined);
   const [contactPreselectedGown, setContactPreselectedGown] = useState<string | null>(null);
 
   // Handle browser history back/forward
@@ -88,7 +84,6 @@ export default function App() {
   // Route Resolution
   const isCollectionsPage = currentPath === '/collections' || currentPath === '/collections/';
   const isRentalsPage = currentPath === '/rentals' || currentPath === '/rentals/';
-  const isBespokePage = currentPath === '/bespoke' || currentPath === '/bespoke/';
   const isGalleryPage = currentPath === '/gallery' || currentPath === '/gallery/';
   const isAboutPage = currentPath === '/about' || currentPath === '/about/';
   const isContactPage = currentPath === '/contact' || currentPath === '/contact/';
@@ -104,8 +99,6 @@ export default function App() {
   useEffect(() => {
     if (matchedGown) {
       document.title = `${matchedGown.name} | BEAJAY COUTURE BRIDAL Collections`;
-    } else if (isBespokePage) {
-      document.title = "Bespoke Bridal Couture | BEAJAY COUTURE BRIDAL • Crafted in Nigeria";
     } else if (isRentalsPage) {
       document.title = "Gown Rentals | BEAJAY COUTURE BRIDAL • Wear the Moment";
     } else if (isCollectionsPage) {
@@ -119,7 +112,7 @@ export default function App() {
     } else {
       document.title = "BEAJAY COUTURE BRIDAL | Luxury Bridal Couture & Gown Rentals, Enugu";
     }
-  }, [matchedGown, isBespokePage, isRentalsPage, isCollectionsPage, isGalleryPage, isAboutPage, isContactPage]);
+  }, [matchedGown, isRentalsPage, isCollectionsPage, isGalleryPage, isAboutPage, isContactPage]);
 
   // Navigation Helpers
   const navigateTo = (path: string) => {
@@ -139,14 +132,6 @@ export default function App() {
 
   const navigateToRentals = () => {
     navigateTo('/rentals');
-  };
-
-  const navigateToBespoke = (inspirationGown?: string) => {
-    closeModal();
-    if (inspirationGown) {
-      setBespokeInspirationGown(inspirationGown);
-    }
-    navigateTo('/bespoke');
   };
 
   const navigateToGallery = () => {
@@ -213,9 +198,7 @@ export default function App() {
     });
   };
 
-  const activeNavView = isBespokePage 
-    ? 'bespoke' 
-    : isRentalsPage 
+  const activeNavView = isRentalsPage 
     ? 'rentals' 
     : isCollectionsPage || matchedGown 
     ? 'collections' 
@@ -240,7 +223,6 @@ export default function App() {
         onNavigateHome={() => navigateTo('/')}
         onNavigateCollections={navigateToCollections}
         onNavigateRentals={navigateToRentals}
-        onNavigateBespoke={navigateToBespoke}
         onNavigateGallery={navigateToGallery}
         onNavigateAbout={navigateToAbout}
         onNavigateContact={navigateToContact}
@@ -257,7 +239,6 @@ export default function App() {
             onBookFitting={(gownName) => handleBookFittingFromGown(gownName)}
             onCheckRentalAvailability={(gownName) => handleRentGownFromDetail(gownName)}
             onEnquire={(gownName) => navigateToContact(gownName)}
-            onNavigateBespokeWithInspiration={(gownName) => navigateToBespoke(gownName)}
           />
         ) : isAboutPage ? (
           /* Dedicated About BEAJAY Experience (/about) */
@@ -278,13 +259,6 @@ export default function App() {
             onNavigateRentals={navigateToRentals}
             onNavigateGallery={navigateToGallery}
             onOpenAppointment={() => openModal('appointment')}
-          />
-        ) : isBespokePage ? (
-          /* Dedicated Bespoke Couture Experience (/bespoke) */
-          <BespokePage
-            onNavigateCollections={navigateToCollections}
-            onBookConsultation={(gownName) => handleBookFittingFromGown(gownName, 'bespoke-consultation')}
-            preselectedInspirationGown={bespokeInspirationGown}
           />
         ) : isCollectionsPage ? (
           /* Dedicated Collections Showcase Lookbook (/collections) */
@@ -308,7 +282,6 @@ export default function App() {
               setGalleryLightboxItems(items && items.length > 0 ? items : EDITORIAL_GALLERY_ITEMS);
             }}
             onNavigateCollections={() => navigateToCollections('all')}
-            onNavigateBespoke={() => navigateToBespoke()}
             onBookAppointment={() => handleBookFittingFromGown(undefined, 'bridal-styling')}
           />
         ) : (
@@ -340,21 +313,15 @@ export default function App() {
               onNavigateRentals={navigateToRentals}
             />
 
-            {/* SECTION 5 — BESPOKE BRIDAL (Your Gown. Your Story.) */}
-            <BespokeSection
-              onOpenModal={openModal}
-              onNavigateBespoke={navigateToBespoke}
-            />
-
-            {/* SECTION 6 — THE BRIDAL EXPERIENCE (01 to 04) */}
+            {/* SECTION 5 — THE BRIDAL EXPERIENCE (01 to 04) */}
             <BridalExperienceSection
               onOpenModal={openModal}
             />
 
-            {/* SECTION 7 — WHAT OUR BRIDES SAY (Testimonials) */}
+            {/* SECTION 6 — WHAT OUR BRIDES SAY (Testimonials) */}
             <TestimonialsSection />
 
-            {/* SECTION 8 — MOMENTS THAT MATTER (Bridal Gallery) */}
+            {/* SECTION 7 — MOMENTS THAT MATTER (Bridal Gallery) */}
             <GallerySection
               onOpenModal={openModal}
               onOpenLightbox={(item, items) => {
@@ -364,7 +331,7 @@ export default function App() {
               onNavigateGallery={navigateToGallery}
             />
 
-            {/* SECTION 9 — APPOINTMENT CTA */}
+            {/* SECTION 8 — APPOINTMENT CTA */}
             <AppointmentCtaSection
               onOpenModal={openModal}
             />
@@ -378,7 +345,6 @@ export default function App() {
         onNavigateHome={() => navigateTo('/')}
         onNavigateCollections={navigateToCollections}
         onNavigateRentals={navigateToRentals}
-        onNavigateBespoke={navigateToBespoke}
         onNavigateGallery={navigateToGallery}
         onNavigateAbout={navigateToAbout}
         onNavigateContact={navigateToContact}
@@ -415,16 +381,7 @@ export default function App() {
         onBookAppointment={handleBookFittingFromGown}
       />
 
-      {/* 4. Bespoke Couture Modal */}
-      <BespokeModal
-        isOpen={activeModal === 'bespoke'}
-        onClose={closeModal}
-        preselectedGown={modalPayload?.preselectedGown}
-        onNavigateBespokePage={navigateToBespoke}
-        onBookConsultation={() => handleBookFittingFromGown(modalPayload?.preselectedGown, 'bespoke-consultation')}
-      />
-
-      {/* 5. Gown Detail Sheet Modal (Quick Preview) */}
+      {/* 4. Gown Detail Sheet Modal (Quick Preview) */}
       <GownDetailModal
         gown={selectedGown}
         onClose={() => {

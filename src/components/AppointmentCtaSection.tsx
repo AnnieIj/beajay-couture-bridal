@@ -38,7 +38,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
 
             <p className="text-sm sm:text-base text-neutral-300 font-light max-w-xl leading-relaxed">
               Book a consultation at our Enugu, Nigeria atelier and let us bring your bridal vision to life.
-              Whether you wish to purchase, rent, or commission a bespoke couture gown, our team is honored to walk with you.
+              Whether you wish to purchase, rent, or experience our collection, our team is honored to walk with you.
             </p>
 
             <div className="pt-2">

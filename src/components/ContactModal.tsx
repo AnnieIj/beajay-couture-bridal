@@ -183,7 +183,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       required
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Ask about gown availability, fitting schedules, bespoke timelines..."
+                      placeholder="Ask about gown availability, fitting schedules, styling consultations..."
                       className="w-full px-3 py-2 bg-white border border-[#D5CDBF] text-xs focus:outline-none focus:border-[#C59B3F]"
                     />
                   </div>

@@ -19,7 +19,7 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
   onBookAppointment
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(defaultCategory || 'all');
-  const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'rent' | 'bespoke'>('all');
+  const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'rent'>('all');
 
   if (!isOpen) return null;
 
@@ -30,9 +30,6 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
     }
     // Availability filter
     if (availabilityFilter === 'rent' && !gown.isAvailableForRent) {
-      return false;
-    }
-    if (availabilityFilter === 'bespoke' && !gown.isBespokeInspiration) {
       return false;
     }
     return true;
@@ -111,15 +108,6 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
               }`}
             >
               Available For Rent
-            </button>
-            <span className="text-neutral-400">|</span>
-            <button
-              onClick={() => setAvailabilityFilter('bespoke')}
-              className={`px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
-                availabilityFilter === 'bespoke' ? 'text-[#856122] font-semibold underline' : 'text-neutral-600'
-              }`}
-            >
-              Bespoke Inspiration
             </button>
           </div>
         </div>

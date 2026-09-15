@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { X, Calendar, Clock, CheckCircle2, Sparkles, Send, Instagram } from 'lucide-react';
-import { BookingFormData } from '../types';
+import { BookingFormData, AppointmentServiceType } from '../types';
 
 interface AppointmentModalProps {
   isOpen: boolean;
   onClose: () => void;
   preselectedGown?: string;
-  defaultService?: 'bridal-styling' | 'gown-rental' | 'bespoke-consultation' | 'fitting-alteration';
+  defaultService?: AppointmentServiceType;
 }
 
 export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   isOpen,
   onClose,
   preselectedGown,
-  defaultService = 'bridal-styling'
+  defaultService = 'bridal-consultation'
 }) => {
   const [formData, setFormData] = useState<BookingFormData>({
     fullName: '',
@@ -169,9 +169,9 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
-                    { id: 'bridal-styling', label: 'Bridal Styling & Try-On (Collection)' },
-                    { id: 'gown-rental', label: 'Gown Rental Consultation' },
-                    { id: 'bespoke-consultation', label: 'Bespoke Consultation' },
+                    { id: 'bridal-consultation', label: 'Bridal Consultation & Try-On' },
+                    { id: 'gown-viewing', label: 'Collection Gown Viewing' },
+                    { id: 'rental-fitting', label: 'Gown Rental Fitting' },
                     { id: 'fitting-alteration', label: 'Fittings & Alterations' }
                   ].map((service) => (
                     <button

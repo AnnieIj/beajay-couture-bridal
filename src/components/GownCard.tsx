@@ -146,7 +146,7 @@ export const GownCard: React.FC<GownCardProps> = ({
 
           {gown.rentalEligible && (
             <span className="text-[10.5px] text-[#856122] tracking-wider uppercase font-medium">
-              Rent or Bespoke
+              Rental Eligible
             </span>
           )}
         </div>

@@ -34,14 +34,14 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
       tag: 'Gown Rental Collection'
     },
     {
-      id: 'bespoke',
-      title: 'Bespoke Couture',
-      description: 'Custom-made bridal gowns created around the bride\'s style, body and vision.',
-      cta: 'Start a Consultation',
-      action: () => onOpenModal('bespoke'),
+      id: 'appointment',
+      title: 'Private Consultation',
+      description: 'Experience dedicated, one-on-one bridal styling and fitting sessions at our Enugu atelier.',
+      cta: 'Book an Appointment',
+      action: () => onOpenModal('appointment'),
       image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.bespoke),
-      alt: EDITORIAL_MEDIA_ASSETS.perfectDress.bespoke.alt,
-      tag: 'One-of-a-kind Creation'
+      alt: 'BEAJAY Atelier bridal consultation and fitting',
+      tag: 'Private Atelier Experience'
     }
   ];
 
@@ -59,7 +59,7 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
           </h2>
           <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto my-2" />
           <p className="font-sans text-xs sm:text-sm font-semibold tracking-[0.28em] uppercase text-[#C59B3F]">
-            OWN IT. RENT IT. OR HAVE IT MADE JUST FOR YOU.
+            COLLECTIONS • GOWN RENTALS • PRIVATE FITTINGS
           </p>
         </div>
 

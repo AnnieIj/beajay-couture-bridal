@@ -90,7 +90,6 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
   const displayCategory = item.categoryLabel || 
     (item.category === 'bridal-looks' ? 'Bridal Looks' :
      item.category === 'couture-details' ? 'Couture Details' :
-     item.category === 'bespoke' ? 'Bespoke' :
      item.category === 'veils-accessories' ? 'Veils & Accessories' :
      item.category === 'behind-the-craft' ? 'Behind The Craft' : 'Editorial Archive');
 

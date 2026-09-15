@@ -23,7 +23,7 @@ export const AnnouncementBar: React.FC<AnnouncementBarProps> = ({ onContactClick
 
         {/* Center: Brand Distinction */}
         <div className="text-center font-medium tracking-[0.18em] text-[10px] sm:text-[11px] uppercase text-[#C59B3F] hidden md:block">
-          Luxury Bridal Couture • Gown Rentals • Bespoke Fittings
+          Luxury Bridal Couture • Gown Rentals • Private Fittings
         </div>
 
         {/* Right: Confirmed Instagram & Quick Inquiry */}

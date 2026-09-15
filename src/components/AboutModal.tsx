@@ -65,11 +65,11 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               </h3>
               <p>
                 BEAJAY COUTURE BRIDAL was founded with a singular conviction: that every bride deserves to experience royal bridal luxury without compromise. 
-                Based in Enugu, Nigeria, BEAJAY showcases statement ball gowns, elegant mermaid silhouettes, and bespoke veil creations.
+                Based in Enugu, Nigeria, BEAJAY showcases statement ball gowns, elegant mermaid silhouettes, and signature veil creations.
               </p>
               <p>
-                Beyond creating custom bespoke gowns, we offer our refined 
-                <strong className="font-medium text-neutral-900"> Gown Rental Service</strong> for individuals and bridal industry partners.
+                Alongside our bridal collections, we offer our refined 
+                <strong className="font-medium text-neutral-900"> Gown Rental Service</strong> for brides and bridal industry partners.
               </p>
               <div className="pt-2 border-t border-[#EAE3D5] grid grid-cols-2 gap-4 text-neutral-800 font-medium">
                 <div>

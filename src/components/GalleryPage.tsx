@@ -14,14 +14,12 @@ import { EDITORIAL_GALLERY_ITEMS, GALLERY_CATEGORIES } from '../data/bridalData'
 interface GalleryPageProps {
   onOpenLightbox: (item: GalleryItem, items: GalleryItem[]) => void;
   onNavigateCollections: () => void;
-  onNavigateBespoke: () => void;
   onBookAppointment?: () => void;
 }
 
 export const GalleryPage: React.FC<GalleryPageProps> = ({
   onOpenLightbox,
   onNavigateCollections,
-  onNavigateBespoke,
   onBookAppointment
 }) => {
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
@@ -259,27 +257,29 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
       </section>
 
       {/* =========================================================================
-          5. SUBTLE EDITORIAL CTA: BESPOKE CONNECTION
+          5. SUBTLE EDITORIAL CTA: BRIDAL APPOINTMENT CONNECTION
           ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div className="text-center py-12 sm:py-16 px-6 bg-[#F5EFE4] border border-[#E3D9C6]">
           <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-[#856122] block mb-2">
-            INSPIRED TO CREATE YOUR OWN?
+            EXPERIENCE THE COLLECTION
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#111111] font-normal mb-3">
-            Begin your personal BEAJAY couture journey.
+            Begin your personal BEAJAY bridal experience.
           </h2>
           <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-md mx-auto mb-6 leading-relaxed">
-            Every bespoke gown is crafted from custom sketch to final veil, tailored around your silhouette, wedding aesthetic, and vision.
+            Reserve a private bridal fitting consultation at our Enugu atelier or discover signature designs available for purchase and rental.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={onNavigateBespoke}
-              className="group min-h-[44px] inline-flex items-center gap-2 px-6 py-3 bg-[#111111] hover:bg-black text-[#FAF7F2] font-medium text-xs tracking-[0.18em] uppercase transition-colors cursor-pointer shadow-sm"
-            >
-              <span>EXPLORE BESPOKE</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F]" />
-            </button>
+            {onBookAppointment && (
+              <button
+                onClick={onBookAppointment}
+                className="group min-h-[44px] inline-flex items-center gap-2 px-6 py-3 bg-[#111111] hover:bg-black text-[#FAF7F2] font-medium text-xs tracking-[0.18em] uppercase transition-colors cursor-pointer shadow-sm"
+              >
+                <span>BOOK APPOINTMENT</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F]" />
+              </button>
+            )}
             <button
               onClick={onNavigateCollections}
               className="min-h-[44px] px-6 py-3 border border-[#856122] hover:bg-[#EBE2D3] text-[#111111] font-medium text-xs tracking-[0.18em] uppercase transition-colors cursor-pointer"
