@@ -18,7 +18,7 @@ interface ContactPageProps {
   onNavigateHome: () => void;
   onNavigateCollections: () => void;
   onNavigateRentals: () => void;
-  onNavigateBespoke: () => void;
+  onNavigateGallery: () => void;
   onOpenAppointment: () => void;
 }
 
@@ -27,7 +27,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   onNavigateHome,
   onNavigateCollections,
   onNavigateRentals,
-  onNavigateBespoke,
+  onNavigateGallery,
   onOpenAppointment
 }) => {
   const [formData, setFormData] = useState<GeneralContactFormData>({
@@ -36,8 +36,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     phone: '',
     country: '',
     city: '',
-    enquiryType: preselectedGown ? 'Bridal Collection' : 'General Enquiry',
-    message: preselectedGown ? `Hello, I would like to inquire regarding ${preselectedGown}.` : ''
+    enquiryType: preselectedGown ? 'Gown Enquiry' : 'General Enquiry',
+    message: preselectedGown ? `Hello, I would like to enquire regarding the ${preselectedGown} gown.` : ''
   });
 
   const [errors, setErrors] = useState<Partial<Record<keyof GeneralContactFormData, string>>>({});
@@ -48,8 +48,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     if (preselectedGown) {
       setFormData(prev => ({
         ...prev,
-        enquiryType: 'Bridal Collection',
-        message: `Hello, I would like to inquire regarding ${preselectedGown}.`
+        enquiryType: 'Gown Enquiry',
+        message: `Hello, I would like to enquire regarding the ${preselectedGown} gown.`
       }));
     }
   }, [preselectedGown]);
@@ -125,12 +125,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           </h1>
 
           <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
-            Whether you are exploring a bridal gown, rental or bespoke creation, tell us what you have in mind.
+            Whether you are inquiring about a specific gown, exploring rental availability, or requesting a fitting, we would love to hear from you.
           </p>
         </div>
       </section>
 
-      {/* 2. DIRECT CONTACT PATHWAYS (BRIDAL COLLECTION, RENTAL ENQUIRY, BESPOKE ENQUIRY, APPOINTMENT) */}
+      {/* 2. DIRECT CONTACT PATHWAYS (BRIDAL COLLECTIONS, RENTAL AVAILABILITY, GALLERY, APPOINTMENT) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 border-b border-[#EAE3D5]">
         <div className="mb-8 space-y-2">
           <span className="text-[10px] tracking-[0.28em] font-semibold text-[#C59B3F] uppercase block">
@@ -140,20 +140,20 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             Choose How to Connect
           </h2>
           <p className="text-xs sm:text-sm text-neutral-600 font-light">
-            Select a specialized channel or complete the general contact form below.
+            Select a service pathway or complete the enquiry form below.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          {/* Pathway 1: BRIDAL COLLECTION */}
+          {/* Pathway 1: BRIDAL COLLECTIONS */}
           <div className="bg-white border border-[#E5DFD1] p-6 flex flex-col justify-between group hover:border-[#856122] transition-colors shadow-sm">
             <div className="space-y-3">
               <div className="w-10 h-10 bg-[#FAF7F2] border border-[#DDD4C1] flex items-center justify-center text-[#856122]">
                 <Layers className="w-5 h-5" />
               </div>
               <h3 className="font-serif text-lg text-[#111111] uppercase tracking-wide">
-                BRIDAL COLLECTION
+                BRIDAL COLLECTIONS
               </h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
                 Explore signature silhouettes, lookbooks, and gown collections.
@@ -164,23 +164,23 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 onClick={onNavigateCollections}
                 className="w-full min-h-[44px] flex items-center justify-between px-4 py-2.5 bg-[#F8F4EC] hover:bg-[#111111] text-[#141312] hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-colors cursor-pointer border border-[#DDD4C1]"
               >
-                <span>View Collection</span>
+                <span>View Collections</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
-          {/* Pathway 2: RENTAL ENQUIRY */}
+          {/* Pathway 2: RENTAL AVAILABILITY */}
           <div className="bg-white border border-[#E5DFD1] p-6 flex flex-col justify-between group hover:border-[#856122] transition-colors shadow-sm">
             <div className="space-y-3">
               <div className="w-10 h-10 bg-[#FAF7F2] border border-[#DDD4C1] flex items-center justify-center text-[#856122]">
                 <Compass className="w-5 h-5" />
               </div>
               <h3 className="font-serif text-lg text-[#111111] uppercase tracking-wide">
-                RENTAL ENQUIRY
+                RENTAL AVAILABILITY
               </h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Check available rental gowns, fitting guidelines, and date slots.
+                Check available rental gowns, sizes, and booking details.
               </p>
             </div>
             <div className="pt-6">
@@ -188,47 +188,47 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 onClick={onNavigateRentals}
                 className="w-full min-h-[44px] flex items-center justify-between px-4 py-2.5 bg-[#F8F4EC] hover:bg-[#111111] text-[#141312] hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-colors cursor-pointer border border-[#DDD4C1]"
               >
-                <span>Rentals Salon</span>
+                <span>Explore Rentals</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
-          {/* Pathway 3: BESPOKE ENQUIRY */}
+          {/* Pathway 3: BRIDAL GALLERY */}
           <div className="bg-white border border-[#E5DFD1] p-6 flex flex-col justify-between group hover:border-[#856122] transition-colors shadow-sm">
             <div className="space-y-3">
               <div className="w-10 h-10 bg-[#FAF7F2] border border-[#DDD4C1] flex items-center justify-center text-[#856122]">
                 <Sparkles className="w-5 h-5" />
               </div>
               <h3 className="font-serif text-lg text-[#111111] uppercase tracking-wide">
-                BESPOKE ENQUIRY
+                BRIDAL GALLERY
               </h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Begin custom couture design consultations tailored to your silhouette.
+                View real bride moments and editorial photography.
               </p>
             </div>
             <div className="pt-6">
               <button
-                onClick={onNavigateBespoke}
+                onClick={onNavigateGallery}
                 className="w-full min-h-[44px] flex items-center justify-between px-4 py-2.5 bg-[#F8F4EC] hover:bg-[#111111] text-[#141312] hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-colors cursor-pointer border border-[#DDD4C1]"
               >
-                <span>Start Bespoke</span>
+                <span>Open Gallery</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
-          {/* Pathway 4: APPOINTMENT */}
+          {/* Pathway 4: FITTING / APPOINTMENT */}
           <div className="bg-white border border-[#E5DFD1] p-6 flex flex-col justify-between group hover:border-[#856122] transition-colors shadow-sm">
             <div className="space-y-3">
               <div className="w-10 h-10 bg-[#FAF7F2] border border-[#DDD4C1] flex items-center justify-center text-[#856122]">
                 <Calendar className="w-5 h-5" />
               </div>
               <h3 className="font-serif text-lg text-[#111111] uppercase tracking-wide">
-                APPOINTMENT
+                FITTING / APPOINTMENT
               </h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Request a dedicated fitting session or bridal consultation.
+                Request a dedicated fitting session or styling consultation.
               </p>
             </div>
             <div className="pt-6">
@@ -310,7 +310,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     onClick={handleReset}
                     className="min-h-[44px] px-6 py-3 border border-[#856122] text-[#141312] hover:bg-[#F8F4EC] text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
                   >
-                    Submit Another Note
+                    Submit Another Enquiry
                   </button>
                   <button
                     onClick={onNavigateCollections}
@@ -325,10 +325,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 
                 <div className="border-b border-[#EAE3D5] pb-4">
                   <h2 className="font-serif text-2xl text-[#111111]">
-                    General Contact Form
+                    Send an Enquiry
                   </h2>
                   <p className="text-xs text-neutral-600 font-light mt-1">
-                    Please share your details and questions with us.
+                    Please share your details and bridal questions with us.
                   </p>
                 </div>
 
@@ -404,11 +404,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       onChange={(e) => setFormData({ ...formData, enquiryType: e.target.value as ContactEnquiryType })}
                       className="w-full min-h-[44px] px-3.5 py-2.5 bg-white border border-[#D5CDBF] text-xs text-neutral-900 focus:outline-none focus:border-[#C59B3F]"
                     >
+                      <option value="Gown Enquiry">Gown Enquiry</option>
+                      <option value="Rental Availability">Rental Availability</option>
+                      <option value="Fitting / Appointment">Fitting / Appointment</option>
                       <option value="General Enquiry">General Enquiry</option>
-                      <option value="Bridal Collection">Bridal Collection</option>
-                      <option value="Gown Rental">Gown Rental</option>
-                      <option value="Bespoke Couture">Bespoke Couture</option>
-                      <option value="Appointment">Appointment</option>
                     </select>
                   </div>
                 </div>
@@ -464,7 +463,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about your wedding date, preferred silhouette, or specific questions..."
+                    placeholder="Tell us about your wedding date, gown preferences, or any specific questions..."
                     className={`w-full p-3.5 bg-white border text-xs text-neutral-900 focus:outline-none focus:border-[#C59B3F] ${
                       errors.message ? 'border-red-500' : 'border-[#D5CDBF]'
                     }`}
@@ -496,10 +495,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             <div className="bg-white border border-[#E5DFD1] p-6 sm:p-8 space-y-5 shadow-sm">
               <div className="space-y-1">
                 <span className="text-[10px] tracking-[0.28em] font-semibold text-[#C59B3F] uppercase block">
-                  ATELIER PRESENCE
+                  LOCATION
                 </span>
                 <h3 className="font-serif text-xl text-[#111111]">
-                  Verified Studio Location
+                  Studio Location
                 </h3>
               </div>
 
@@ -518,10 +517,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                 <div className="pt-4 border-t border-[#F2EDE2] space-y-1">
                   <span className="font-semibold text-neutral-900 block text-[11px] tracking-wider uppercase">
-                    Consultations
+                    Fittings & Visits
                   </span>
                   <p className="text-neutral-600 font-light text-xs">
-                    By Appointment Only
+                    Fittings can be scheduled through our appointment booking system or contact form.
                   </p>
                 </div>
               </div>
@@ -542,7 +541,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               </div>
 
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Connect with our bridal design journey, editorial releases, and veil details on Instagram.
+                Connect with our bridal design journey, collection releases, and gown details on Instagram.
               </p>
 
               <a

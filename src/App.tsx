@@ -113,7 +113,7 @@ export default function App() {
     } else if (isGalleryPage) {
       document.title = "The Bridal Gallery | Moments in Couture • BEAJAY COUTURE BRIDAL";
     } else if (isAboutPage) {
-      document.title = "The House of BEAJAY | BEAJAY COUTURE BRIDAL • About Atelier";
+      document.title = "About BEAJAY COUTURE BRIDAL • Crafted in Nigeria";
     } else if (isContactPage) {
       document.title = "Contact BEAJAY | BEAJAY COUTURE BRIDAL • Begin the Conversation";
     } else {
@@ -260,12 +260,11 @@ export default function App() {
             onNavigateBespokeWithInspiration={(gownName) => navigateToBespoke(gownName)}
           />
         ) : isAboutPage ? (
-          /* Dedicated About The House Experience (/about) */
+          /* Dedicated About BEAJAY Experience (/about) */
           <AboutPage
             onNavigateHome={() => navigateTo('/')}
             onNavigateCollections={() => navigateToCollections('all')}
             onNavigateRentals={navigateToRentals}
-            onNavigateBespoke={() => navigateToBespoke()}
             onNavigateGallery={navigateToGallery}
             onNavigateContact={() => navigateToContact()}
             onOpenAppointment={() => openModal('appointment')}
@@ -277,7 +276,7 @@ export default function App() {
             onNavigateHome={() => navigateTo('/')}
             onNavigateCollections={() => navigateToCollections('all')}
             onNavigateRentals={navigateToRentals}
-            onNavigateBespoke={() => navigateToBespoke()}
+            onNavigateGallery={navigateToGallery}
             onOpenAppointment={() => openModal('appointment')}
           />
         ) : isBespokePage ? (

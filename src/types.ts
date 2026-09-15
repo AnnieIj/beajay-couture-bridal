@@ -170,11 +170,10 @@ export interface BespokeJourneyStage {
 }
 
 export type ContactEnquiryType = 
-  | 'General Enquiry'
-  | 'Bridal Collection'
-  | 'Gown Rental'
-  | 'Bespoke Couture'
-  | 'Appointment';
+  | 'Gown Enquiry'
+  | 'Rental Availability'
+  | 'Fitting / Appointment'
+  | 'General Enquiry';
 
 export interface GeneralContactFormData {
   fullName: string;
