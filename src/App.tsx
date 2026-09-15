@@ -297,6 +297,8 @@ export default function App() {
             <PerfectDressSection
               onOpenModal={openModal}
               onViewCollections={() => navigateToCollections('all')}
+              onNavigateRentals={navigateToRentals}
+              onNavigateGallery={navigateToGallery}
             />
 
             {/* SECTION 3 — FEATURED BRIDAL COLLECTION */}

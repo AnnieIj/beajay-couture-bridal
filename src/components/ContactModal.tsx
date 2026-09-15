@@ -81,7 +81,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <div className="space-y-1.5 border-t border-[#F2ECE0] pt-4">
                 <div className="flex items-center gap-2 text-neutral-900 font-semibold tracking-wider uppercase text-[11px]">
                   <Clock className="w-4 h-4 text-[#C59B3F]" />
-                  <span>Fitting & Atelier Schedule</span>
+                  <span>Fitting & Appointment Schedule</span>
                 </div>
                 <div className="pl-6 space-y-1.5 text-neutral-600 font-light text-xs">
                   <p className="text-neutral-800 font-medium">By Private Appointment Only</p>
@@ -143,7 +143,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <h4 className="font-serif text-lg text-neutral-900">
-                    Send Atelier a Message
+                    Send Us a Message
                   </h4>
 
                   <div>

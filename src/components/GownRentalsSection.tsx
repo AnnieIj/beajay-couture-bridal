@@ -43,7 +43,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <span className="text-[10px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-[#C59B3F]">
-            EXQUISITE COUTURE ATELIER
+            EXQUISITE BRIDAL COUTURE
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-white tracking-tight">
             Gown Rentals
@@ -73,7 +73,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
             </div>
             <h3 className="font-serif text-lg text-white">Unified Rental System</h3>
             <p className="text-xs text-neutral-400 font-light leading-relaxed">
-              Individual brides and bridal vendors share a seamless, transparent request process with direct atelier coordination.
+              Individual brides and bridal vendors share a seamless, transparent request process with direct consultation and coordination.
             </p>
           </div>
 

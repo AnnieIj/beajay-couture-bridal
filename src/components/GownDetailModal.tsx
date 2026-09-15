@@ -95,12 +95,12 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
             {/* Availability info - Display NO PRICE if verified pricing is unavailable */}
             <div className="p-4 border border-[#D9CEBA] bg-[#FAF6EE] text-xs">
               <span className="text-[10px] uppercase tracking-wider text-neutral-500 block mb-1">
-                Atelier Availability
+                Gown Availability
               </span>
               <span className="font-medium text-neutral-900">
                 {gown.isAvailableForRent 
-                  ? 'Eligible for Couture Gown Rental' 
-                  : 'Made-to-Order Collection Piece'}
+                  ? 'Rental Eligible' 
+                  : 'Collection Gown'}
               </span>
             </div>
 

@@ -226,7 +226,7 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                 )}
                 {gown.availability === 'coming-soon' && (
                   <span className="text-[10px] uppercase tracking-wider font-semibold text-purple-700 bg-purple-50 px-2.5 py-0.5 border border-purple-200">
-                    Atelier Preview
+                    Collection Preview
                   </span>
                 )}
               </div>
@@ -243,7 +243,7 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
             {/* Editorial Description */}
             <div className="space-y-2">
               <span className="text-[10.5px] tracking-[0.2em] font-semibold text-neutral-500 uppercase block">
-                ATELIER NOTES
+                DESIGN DETAILS
               </span>
               <p className="text-neutral-700 text-sm sm:text-[15px] font-light leading-relaxed">
                 {gown.description}
@@ -313,11 +313,11 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                   {gown.rentalEligible ? (
                     <span className="text-[#856122] font-semibold flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#C59B3F]" />
-                      Eligible for Couture Gown Rental
+                      Rental Eligible
                     </span>
                   ) : (
                     <span className="text-neutral-500">
-                      Made-to-Order Collection Piece
+                      Collection Gown
                     </span>
                   )}
                 </span>
@@ -367,12 +367,12 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
 
             </div>
 
-            {/* Atelier Assurance Note */}
+            {/* Fitting Care Note */}
             <div className="border-t border-[#EAE4D9] pt-5 space-y-2 text-[11px] text-neutral-500 font-light">
               <div className="flex items-start gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#C59B3F] flex-shrink-0 mt-0.5" />
                 <p>
-                  Every private consultation and fitting is conducted with dedicated care in our Enugu, Nigeria atelier, with personalized guidance and styling support for brides everywhere.
+                  Every private consultation and fitting is conducted with dedicated care in Enugu, Nigeria, with personalized guidance and styling support for brides everywhere.
                 </p>
               </div>
             </div>

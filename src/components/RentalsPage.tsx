@@ -445,7 +445,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
               Crafted in Nigeria. Made for Brides Everywhere.
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-2xl">
-              Based in Enugu, Nigeria, BEAJAY COUTURE BRIDAL welcomes rental inquiries from brides and bridal vendors across Nigeria and internationally. Submit your preferred dates, country, and city, and our atelier team will review whether your request can be fulfilled and confirm availability.
+              Based in Enugu, Nigeria, BEAJAY COUTURE BRIDAL welcomes rental inquiries from brides and bridal vendors across Nigeria and internationally. Submit your preferred dates, country, and city, and our bridal team will review whether your request can be fulfilled and confirm availability.
             </p>
           </div>
 
@@ -471,7 +471,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
           ======================================================= */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 text-center space-y-3">
         <span className="text-[10px] tracking-[0.24em] font-semibold text-[#856122] uppercase block">
-          ATELIER CARE & TERMS
+          RENTAL CARE & TERMS
         </span>
         <p className="font-serif text-sm sm:text-base text-neutral-600 font-light italic max-w-xl mx-auto">
           "Rental terms and care requirements will be provided by BEAJAY COUTURE BRIDAL as part of the confirmed rental process."
@@ -490,7 +490,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
             Looking to Explore All BEAJAY Designs?
           </h3>
           <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed">
-            While our Rentals collection features selected gowns ready for hire, our complete bridal collection includes our full range of silhouettes, statement designs, and signature made-to-order couture.
+            While our Rentals collection features selected gowns ready for hire, our complete bridal collection includes our full range of silhouettes, statement designs, and signature bridal gowns.
           </p>
           <div>
             <button

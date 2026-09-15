@@ -29,7 +29,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
           <div className="lg:col-span-7 space-y-6 text-left">
             <div className="inline-flex items-center gap-2 text-[#E6C875] text-[11px] font-semibold tracking-[0.24em] uppercase">
               <Sparkles className="w-3.5 h-3.5 text-[#C59B3F]" />
-              <span>PRIVATE ATELIER CONSULTATIONS</span>
+              <span>BRIDAL CONSULTATION</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-white tracking-tight leading-tight">
@@ -37,7 +37,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
             </h2>
 
             <p className="text-sm sm:text-base text-neutral-300 font-light max-w-xl leading-relaxed">
-              Book a consultation at our Enugu, Nigeria atelier and let us bring your bridal vision to life.
+              Book an appointment in Enugu, Nigeria and let us bring your bridal vision to life.
               Whether you wish to purchase, rent, or experience our collection, our team is honored to walk with you.
             </p>
 

@@ -6,42 +6,46 @@ import { EDITORIAL_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 interface PerfectDressSectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
   onViewCollections: () => void;
+  onNavigateRentals: () => void;
+  onNavigateGallery: () => void;
 }
 
 export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
   onOpenModal,
-  onViewCollections
+  onViewCollections,
+  onNavigateRentals,
+  onNavigateGallery
 }) => {
   const cards = [
     {
       id: 'collection',
-      title: 'Bridal Collection',
-      description: 'Explore our beautiful collection of wedding gowns and bridal pieces.',
+      title: 'BRIDAL COLLECTION',
+      description: 'Explore BEAJAY bridal designs.',
       cta: 'View Collection',
       action: onViewCollections,
       image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.collection),
       alt: EDITORIAL_MEDIA_ASSETS.perfectDress.collection.alt,
-      tag: 'Ready to Wear & Order'
+      tag: 'Bridal Designs'
     },
     {
       id: 'rent',
-      title: 'Rent a Gown',
-      description: 'Discover exquisite couture gowns available for rental.',
+      title: 'GOWN RENTALS',
+      description: 'Discover selected gowns available for rental requests.',
       cta: 'Explore Rentals',
-      action: () => onOpenModal('rentals'),
+      action: onNavigateRentals,
       image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.rent),
       alt: EDITORIAL_MEDIA_ASSETS.perfectDress.rent.alt,
       tag: 'Gown Rental Collection'
     },
     {
-      id: 'appointment',
-      title: 'Private Consultation',
-      description: 'Experience dedicated, one-on-one bridal styling and fitting sessions at our Enugu atelier.',
-      cta: 'Book an Appointment',
-      action: () => onOpenModal('appointment'),
+      id: 'gallery',
+      title: 'BRIDAL GALLERY',
+      description: 'Explore BEAJAY bridal looks, details and creative work.',
+      cta: 'View Gallery',
+      action: onNavigateGallery,
       image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.bespoke),
-      alt: 'BEAJAY Atelier bridal consultation and fitting',
-      tag: 'Private Atelier Experience'
+      alt: 'BEAJAY bridal looks, details and creative work',
+      tag: 'Moments & Details'
     }
   ];
 
@@ -59,7 +63,7 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
           </h2>
           <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto my-2" />
           <p className="font-sans text-xs sm:text-sm font-semibold tracking-[0.28em] uppercase text-[#C59B3F]">
-            COLLECTIONS • GOWN RENTALS • PRIVATE FITTINGS
+            BRIDAL COLLECTION • GOWN RENTALS • BRIDAL GALLERY
           </p>
         </div>
 

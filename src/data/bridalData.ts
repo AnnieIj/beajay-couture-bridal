@@ -507,12 +507,12 @@ export const RENTAL_POLICIES = [
     detail: 'A refundable security deposit is held for the duration of the gown rental and returned upon inspection following the safe return of the dress.'
   },
   {
-    title: 'Atelier Cleaning & Sanitization',
+    title: 'Professional Cleaning & Sanitization',
     detail: 'All gowns undergo specialized couture steam pressing and sanitization before pickup and after return. Clients and vendors must not attempt external washing or dry cleaning.'
   },
   {
     title: 'Fitting & Silhouette Adjustments',
-    detail: 'Professional fitting consultations ensure an optimal silhouette. All allowable temporary adjustments are executed strictly in-house by atelier tailors.'
+    detail: 'Professional fitting consultations ensure an optimal silhouette. All allowable temporary adjustments are executed strictly in-house by our bridal tailors.'
   }
 ];
 

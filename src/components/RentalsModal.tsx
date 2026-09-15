@@ -532,7 +532,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   Event & Preferred Dates
                 </h3>
                 <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                  Provide your target ceremony or intended use dates so our atelier team can review availability and fitting preparation timelines.
+                  Provide your target ceremony or intended use dates so our bridal team can review availability and fitting preparation timelines.
                 </p>
               </div>
 
@@ -852,7 +852,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               {/* Minimal rental terms guidance placeholder */}
               <div className="p-4 bg-[#FAF7F0] border border-[#EAE4D9] text-xs text-neutral-600 font-light space-y-1">
                 <span className="font-semibold text-[#856122] uppercase tracking-wider text-[10.5px] block">
-                  ATELIER RENTAL TERMS
+                  RENTAL TERMS & CARE
                 </span>
                 <p>
                   Rental terms and care requirements will be provided by BEAJAY COUTURE BRIDAL as part of the confirmed rental process.
@@ -1016,7 +1016,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               </div>
 
               <div className="p-4 bg-[#FAF7F0] border border-[#EAE4D9] text-xs text-neutral-600 font-light text-center">
-                Submitting this request will send your dates and preferences to BEAJAY COUTURE BRIDAL for atelier review.
+                Submitting this request will send your dates and preferences to BEAJAY COUTURE BRIDAL for review.
               </div>
             </div>
           )}

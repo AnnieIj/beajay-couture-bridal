@@ -33,7 +33,7 @@ export const CollectionsHero: React.FC = () => {
           </p>
 
           <p className="text-[11px] tracking-[0.2em] text-[#856122] uppercase font-medium pt-2">
-            Enugu, Nigeria • Private Bridal Atelier
+            Enugu, Nigeria • Luxury Bridal Couture
           </p>
 
         </div>

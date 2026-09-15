@@ -268,7 +268,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
             Begin your personal BEAJAY bridal experience.
           </h2>
           <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-md mx-auto mb-6 leading-relaxed">
-            Reserve a private bridal fitting consultation at our Enugu atelier or discover signature designs available for purchase and rental.
+            Reserve a bridal fitting consultation in Enugu, Nigeria or discover signature designs available for purchase and rental.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {onBookAppointment && (

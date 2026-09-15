@@ -241,7 +241,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
           </h2>
 
           <p className="text-neutral-600 text-xs sm:text-sm font-light max-w-xl mx-auto leading-relaxed">
-            Let our bridal team help you discover a gown that feels uniquely yours. Private consultations in our Enugu atelier provide individual silhouette assessments and fabric previews.
+            Let our bridal team help you discover a gown that feels uniquely yours. Private bridal consultations in Enugu provide individual silhouette assessments and fabric previews.
           </p>
 
           <div className="pt-3">
