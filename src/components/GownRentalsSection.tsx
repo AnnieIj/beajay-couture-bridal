@@ -50,7 +50,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
           </h2>
           <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto my-3" />
           <p className="text-sm sm:text-base text-neutral-300 font-light max-w-xl mx-auto leading-relaxed">
-            Experience the majesty of luxury bridal couture without the commitment of full purchase. 
+            Experience luxury bridal designs without the commitment of full purchase. 
             Crafted in Nigeria. Made for Brides Everywhere.
           </p>
         </div>
@@ -63,7 +63,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
             </div>
             <h3 className="font-serif text-lg text-white">Curated Silhouettes</h3>
             <p className="text-xs text-neutral-400 font-light leading-relaxed">
-              From cathedral ball gowns to sculpted mermaids, explore selected BEAJAY designs available for rental.
+              Explore selected BEAJAY bridal designs available for rental.
             </p>
           </div>
 
@@ -71,9 +71,9 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
             <div className="w-10 h-10 bg-[#22201D] border border-[#C59B3F]/30 flex items-center justify-center text-[#C59B3F]">
               <CheckCircle2 className="w-5 h-5" />
             </div>
-            <h3 className="font-serif text-lg text-white">Unified Rental System</h3>
+            <h3 className="font-serif text-lg text-white">Rental Service</h3>
             <p className="text-xs text-neutral-400 font-light leading-relaxed">
-              Individual brides and bridal vendors share a seamless, transparent request process with direct consultation and coordination.
+              Individual brides and bridal vendors can submit rental requests with coordinated scheduling.
             </p>
           </div>
 
@@ -81,9 +81,9 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
             <div className="w-10 h-10 bg-[#22201D] border border-[#C59B3F]/30 flex items-center justify-center text-[#C59B3F]">
               <ShieldCheck className="w-5 h-5" />
             </div>
-            <h3 className="font-serif text-lg text-white">Confirmed Availability</h3>
+            <h3 className="font-serif text-lg text-white">Availability Confirmation</h3>
             <p className="text-xs text-neutral-400 font-light leading-relaxed">
-              Submit your preferred dates and location for direct review and confirmation by BEAJAY COUTURE BRIDAL.
+              Submit your preferred dates and BEAJAY reviews the request before confirming availability.
             </p>
           </div>
         </div>
@@ -122,7 +122,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-xs text-white text-[9px] px-2.5 py-1 tracking-wider uppercase font-sans">
-                    {gown.categoryLabel}
+                    RENTAL SELECTION
                   </div>
                 </div>
 

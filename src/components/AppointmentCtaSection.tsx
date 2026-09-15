@@ -37,8 +37,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
             </h2>
 
             <p className="text-sm sm:text-base text-neutral-300 font-light max-w-xl leading-relaxed">
-              Book an appointment in Enugu, Nigeria and let us bring your bridal vision to life.
-              Whether you wish to purchase, rent, or experience our collection, our team is honored to walk with you.
+              Book an appointment with BEAJAY COUTURE BRIDAL for bridal consultations, gown viewings, or rental fittings. We look forward to assisting you.
             </p>
 
             <div className="pt-2">
@@ -53,7 +52,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
             </div>
           </div>
 
-          {/* Right: Small Benefits Grid matching the prototype */}
+          {/* Right: Benefits Grid */}
           <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-row items-start sm:items-center justify-between lg:justify-end gap-6 sm:gap-8 pt-4 lg:pt-0">
             
             {/* Benefit 1 */}
@@ -62,10 +61,10 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
                 <Calendar className="w-5 h-5" />
               </div>
               <span className="text-xs font-medium tracking-wider uppercase text-neutral-200">
-                Easy Booking
+                Bridal Consultation
               </span>
               <span className="text-[11px] text-neutral-400 font-light">
-                Flexible Slots
+                Fittings & Viewings
               </span>
             </div>
 
@@ -75,10 +74,10 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
                 <Shield className="w-5 h-5" />
               </div>
               <span className="text-xs font-medium tracking-wider uppercase text-neutral-200">
-                Personalized Service
+                Rental Fitting
               </span>
               <span className="text-[11px] text-neutral-400 font-light">
-                Private Consultation
+                Gown Selection
               </span>
             </div>
 

@@ -6,7 +6,6 @@ import { PerfectDressSection } from './components/PerfectDressSection';
 import { FeaturedCollectionSection } from './components/FeaturedCollectionSection';
 import { GownRentalsSection } from './components/GownRentalsSection';
 import { BridalExperienceSection } from './components/BridalExperienceSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
 import { GallerySection } from './components/GallerySection';
 import { AppointmentCtaSection } from './components/AppointmentCtaSection';
 import { Footer } from './components/Footer';
@@ -320,10 +319,7 @@ export default function App() {
               onOpenModal={openModal}
             />
 
-            {/* SECTION 6 — WHAT OUR BRIDES SAY (Testimonials) */}
-            <TestimonialsSection />
-
-            {/* SECTION 7 — MOMENTS THAT MATTER (Bridal Gallery) */}
+            {/* SECTION 6 — MOMENTS THAT MATTER (Bridal Gallery) */}
             <GallerySection
               onOpenModal={openModal}
               onOpenLightbox={(item, items) => {

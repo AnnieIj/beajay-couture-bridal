@@ -59,7 +59,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             </h2>
             <div className="w-14 h-[2px] bg-[#C59B3F] mx-auto my-2" />
             <p className="text-xs text-neutral-600 font-light">
-              Enugu, Nigeria • By Appointment Only
+              Enugu, Nigeria
             </p>
           </div>
 

@@ -9,21 +9,17 @@ export const AnnouncementBar: React.FC<AnnouncementBarProps> = ({ onContactClick
   return (
     <div id="top-announcement-bar" className="bg-[#0E0E0E] text-[#D8D2C5] text-xs py-2 px-4 border-b border-[#252320]">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-        {/* Left: Confirmed Location & Status */}
+        {/* Left: Confirmed Location */}
         <div className="flex items-center gap-3 text-[11px] sm:text-xs tracking-wider">
           <div className="flex items-center gap-1.5 text-neutral-300">
             <MapPin className="w-3.5 h-3.5 text-[#C59B3F]" />
             <span className="font-light">Enugu, Nigeria</span>
           </div>
-          <span className="text-neutral-600">•</span>
-          <span className="text-neutral-400 tracking-wider uppercase text-[10px]">
-            By Appointment Only
-          </span>
         </div>
 
         {/* Center: Brand Distinction */}
         <div className="text-center font-medium tracking-[0.18em] text-[10px] sm:text-[11px] uppercase text-[#C59B3F] hidden md:block">
-          Luxury Bridal Couture • Gown Rentals • Private Fittings
+          Bridal Collections • Gown Rentals • Fittings & Consultations
         </div>
 
         {/* Right: Confirmed Instagram & Quick Inquiry */}

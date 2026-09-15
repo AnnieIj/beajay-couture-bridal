@@ -117,21 +117,21 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
           ))}
         </div>
 
-        {/* Private Bridal Consultation Banner */}
+        {/* Bridal Consultation Banner */}
         <div className="mt-14 p-6 sm:p-8 bg-[#F5F1E8] border border-[#E5DFD3] flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="font-serif text-lg sm:text-xl font-medium text-[#111111]">
-              Unsure which path is right for your ceremony?
+              Need guidance on your bridal selection?
             </h4>
             <p className="text-xs sm:text-sm text-neutral-600 font-light">
-              Schedule a 1-on-1 discovery consultation with our Enugu, Nigeria bridal stylists to try silhouettes and plan your timeline.
+              Book an appointment with BEAJAY COUTURE BRIDAL to view collections, try silhouettes, or discuss rental availability.
             </p>
           </div>
           <button
             onClick={() => onOpenModal('appointment')}
             className="shrink-0 inline-flex items-center gap-2 bg-[#111111] hover:bg-[#252422] text-[#F3EFE6] px-6 py-3 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
           >
-            <span>BOOK A FITTING CONSULTATION</span>
+            <span>BOOK AN APPOINTMENT</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#C59B3F]" />
           </button>
         </div>

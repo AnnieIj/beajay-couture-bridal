@@ -10,26 +10,26 @@ export const BridalExperienceSection: React.FC<BridalExperienceSectionProps> = (
   const steps = [
     {
       number: '01',
-      title: 'Discover Your Gown',
-      description: 'Explore our curated collections online or share your dream bridal vision with our styling directors.',
+      title: 'Explore',
+      description: 'Browse BEAJAY bridal collections and rental selections.',
       icon: Search
     },
     {
       number: '02',
-      title: 'Book a Consultation',
-      description: 'Reserve a bridal consultation and fitting session in Enugu, Nigeria for you and your bridal guests.',
+      title: 'Enquire or Book',
+      description: 'Submit an enquiry or request an appointment.',
       icon: Calendar
     },
     {
       number: '03',
-      title: 'Fitting & Alterations',
-      description: 'Experience multiple precision fittings with our master tailors until the silhouette contours effortlessly.',
+      title: 'Fitting / Consultation',
+      description: 'Arrange the appropriate fitting or bridal consultation with BEAJAY.',
       icon: Scissors
     },
     {
       number: '04',
-      title: 'Your Final Look',
-      description: 'Collect your steam-pressed, veil-adorned gown ready for unforgettable bridal portraits and your grand walk.',
+      title: 'Your Bridal Look',
+      description: 'Complete the experience with your selected BEAJAY gown.',
       icon: Sparkles
     }
   ];
@@ -51,7 +51,7 @@ export const BridalExperienceSection: React.FC<BridalExperienceSectionProps> = (
           </h2>
           <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto my-3" />
           <p className="text-sm text-neutral-600 font-light leading-relaxed">
-            From the moment you connect with our team in Enugu, Nigeria to the second you step down the aisle, we craft an effortless, celebratory experience.
+            From initial exploration to your fitting or consultation, discover a dedicated bridal experience with BEAJAY COUTURE BRIDAL.
           </p>
         </div>
 
@@ -99,7 +99,7 @@ export const BridalExperienceSection: React.FC<BridalExperienceSectionProps> = (
             onClick={() => onOpenModal('appointment')}
             className="inline-flex items-center gap-3 bg-[#111111] hover:bg-[#262420] text-white px-8 py-4 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-md cursor-pointer border border-transparent hover:border-[#C59B3F]"
           >
-            <span>START YOUR BRIDAL EXPERIENCE</span>
+            <span>BOOK A FITTING OR CONSULTATION</span>
             <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
           </button>
         </div>

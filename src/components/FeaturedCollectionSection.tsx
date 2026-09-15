@@ -49,7 +49,7 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
             </h2>
             <div className="w-12 h-[2px] bg-[#C59B3F]" />
             <p className="font-sans text-xs sm:text-xs font-semibold tracking-[0.26em] uppercase text-[#856122]">
-              ICONIC STYLES FOR EVERY BRIDE
+              EXPLORE BRIDAL SILHOUETTES
             </p>
           </div>
 
@@ -133,11 +133,6 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
                       EXPLORE SILHOUETTES
                     </button>
                   </div>
-
-                  {/* Piece count badge */}
-                  <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[10px] tracking-wider px-2 py-1 uppercase font-sans">
-                    {category.itemCount} Designs
-                  </div>
                 </div>
 
                 {/* Category Caption Below Image */}
@@ -157,7 +152,7 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
         {/* Editorial Subline */}
         <div className="mt-8 text-center border-t border-[#EFECE5] pt-6">
           <p className="text-xs text-neutral-500 font-light tracking-wider">
-            Every gown in our collection is available for private fitting or selective rental in Enugu, Nigeria.
+            Gowns in our collection are available for fittings, consultations, or rental requests with BEAJAY COUTURE BRIDAL in Enugu, Nigeria.
           </p>
         </div>
 

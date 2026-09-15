@@ -255,7 +255,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
           </div>
 
           <p className="text-[11px] text-neutral-400 tracking-wider">
-            Private fittings scheduled by appointment only in Enugu, Nigeria.
+            Fittings and bridal appointments in Enugu, Nigeria.
           </p>
         </div>
       </section>

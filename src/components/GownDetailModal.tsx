@@ -155,7 +155,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
             </a>
 
             <p className="text-[10.5px] text-center text-neutral-500 font-light pt-1">
-              Enugu, Nigeria • By Appointment Only
+              Enugu, Nigeria
             </p>
           </div>
         </div>

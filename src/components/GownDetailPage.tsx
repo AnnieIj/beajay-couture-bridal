@@ -372,7 +372,7 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
               <div className="flex items-start gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#C59B3F] flex-shrink-0 mt-0.5" />
                 <p>
-                  Every private consultation and fitting is conducted with dedicated care in Enugu, Nigeria, with personalized guidance and styling support for brides everywhere.
+                  Every consultation and fitting is conducted with dedicated care in Enugu, Nigeria, with styling support for brides everywhere.
                 </p>
               </div>
             </div>

@@ -106,7 +106,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               <MapPin className="w-5 h-5 text-[#C59B3F] mx-auto" />
               <h4 className="font-serif text-base text-neutral-900">Enugu, Nigeria</h4>
               <p className="text-[11px] text-neutral-500 font-light">
-                Located in Enugu, Nigeria with private consultation sessions.
+                Located in Enugu, Nigeria with fittings and consultations.
               </p>
             </div>
           </div>

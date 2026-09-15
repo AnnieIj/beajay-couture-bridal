@@ -323,7 +323,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
 
             <p className="text-center text-[11px] text-neutral-500 tracking-wider">
-              Enugu, Nigeria • By Appointment Only
+              Enugu, Nigeria
             </p>
           </div>
 

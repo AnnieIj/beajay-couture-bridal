@@ -16,7 +16,7 @@ export const BUSINESS_INFO = {
   location: 'Enugu, Nigeria',
   instagramHandle: '@beajaycouture_bridal',
   instagramUrl: 'https://instagram.com/beajaycouture_bridal',
-  schedule: 'By Appointment Only'
+  schedule: 'Fittings & Consultations'
 };
 
 export const CATEGORIES: CollectionCategory[] = [
@@ -24,7 +24,7 @@ export const CATEGORIES: CollectionCategory[] = [
     id: 'ball-gown',
     name: 'Ball Gowns',
     slug: 'ball-gown',
-    description: 'Grand royal silhouettes with dramatic full skirts and hand-embroidered bodices.',
+    description: 'Classic silhouettes with dramatic full skirts and structured bodices.',
     image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.ballGown),
     itemCount: 14
   },

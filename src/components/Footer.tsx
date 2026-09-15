@@ -169,7 +169,7 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="space-y-3 text-xs text-neutral-300 font-light">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#C59B3F] shrink-0" />
-                <span>Enugu, Nigeria • By Appointment Only</span>
+                <span>Enugu, Nigeria</span>
               </div>
 
               <div className="pt-1">

@@ -50,28 +50,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const servicePillList = [
     {
       icon: Crown,
-      title: 'Premium Bridal Collections',
-      desc: 'Haute couture & royal silhouettes'
+      title: 'Bridal Collections',
+      desc: 'Explore bridal collections and lookbooks'
     },
     {
       icon: Layers,
       title: 'Gown Rentals',
-      desc: 'Exquisite couture gowns available for rental'
-    },
-    {
-      icon: Scissors,
-      title: 'Bridal Styling & Tailoring',
-      desc: 'Expert craftsmanship tailored to perfection'
+      desc: 'Selected gowns available for rental'
     },
     {
       icon: CalendarCheck,
-      title: 'Fittings & Alterations',
-      desc: 'Precision bridal sculpting in Enugu, Nigeria'
+      title: 'Fittings & Appointments',
+      desc: 'Scheduled bridal fittings in Enugu, Nigeria'
     },
     {
       icon: HeartHandshake,
-      title: 'Personalized Experience',
-      desc: 'One-on-one private bridal styling'
+      title: 'Bridal Consultation',
+      desc: 'Guidance on silhouettes and styling'
+    },
+    {
+      icon: Sparkles,
+      title: 'Bridal Gallery',
+      desc: 'Moments and details from our collection'
     }
   ];
 
@@ -135,9 +135,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Supporting Text */}
             <p className="text-sm sm:text-base md:text-lg text-[#E3DDD1] max-w-xl font-light leading-relaxed tracking-wide">
-              Explore, rent, or create a custom bridal gown designed just for you. At{' '}
-              <strong className="font-medium text-white">BEAJAY COUTURE BRIDAL</strong>, every bride
-              deserves an unforgettable, personalized bridal experience.
+              Explore bridal collections, discover gowns available for rental, and book a fitting or consultation with{' '}
+              <strong className="font-medium text-white">BEAJAY COUTURE BRIDAL</strong>.
             </p>
 
             {/* Action Buttons */}
@@ -170,7 +169,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </span>
               <span className="flex items-center gap-1.5 font-medium tracking-wider text-[11px] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F]" />
-                Private Fittings
+                Fittings & Appointments
               </span>
               <span className="flex items-center gap-1.5 font-medium tracking-wider text-[11px] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F]" />
@@ -188,7 +187,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#C59B3F]/80 pointer-events-none" />
 
               <div className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] text-[#C59B3F] uppercase pb-1 border-b border-white/10">
-                Couture Services & Offerings
+                Services & Offerings
               </div>
 
               <div className="space-y-3">
@@ -216,12 +215,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               <div className="pt-2 flex items-center justify-between text-[11px] text-neutral-400">
-                <span>By Private Consultation</span>
+                <span>BEAJAY COUTURE BRIDAL</span>
                 <button 
                   onClick={() => onOpenModal('appointment')}
                   className="text-[#E6C875] hover:underline cursor-pointer flex items-center gap-1 font-medium"
                 >
-                  Reserve a Fitting <ArrowRight className="w-3 h-3" />
+                  Book an Appointment <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
             </div>
