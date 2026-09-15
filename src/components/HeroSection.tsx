@@ -3,14 +3,15 @@ import {
   ArrowRight, 
   Sparkles, 
   Crown, 
-  Scissors, 
   CalendarCheck, 
   HeartHandshake, 
   Play, 
   Pause,
+  Volume2,
+  VolumeX,
   Layers
 } from 'lucide-react';
-import { HERO_VIDEO_URL, HERO_POSTER_URL } from '../data/bridalData';
+import { HERO_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 import { ActiveModal } from '../types';
 
 interface HeroSectionProps {
@@ -24,16 +25,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // Consume hero media directly from central registry
+  const heroVideoSrc = resolveMedia(HERO_MEDIA_ASSETS.video);
+  const heroPosterSrc = resolveMedia(HERO_MEDIA_ASSETS.poster);
 
   useEffect(() => {
     // Respect prefers-reduced-motion
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches && videoRef.current) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
+    const handleMotionPreference = (matches: boolean) => {
+      setPrefersReducedMotion(matches);
+      if (matches && videoRef.current) {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    };
+
+    handleMotionPreference(mediaQuery.matches);
+
+    const listener = (e: MediaQueryListEvent) => handleMotionPreference(e.matches);
+    mediaQuery.addEventListener('change', listener);
+    return () => mediaQuery.removeEventListener('change', listener);
   }, []);
 
   const togglePlayPause = () => {
@@ -45,6 +61,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       videoRef.current.play().catch(() => {});
       setIsPlaying(true);
     }
+  };
+
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    const nextMuted = !isMuted;
+    videoRef.current.muted = nextMuted;
+    setIsMuted(nextMuted);
   };
 
   const servicePillList = [
@@ -86,23 +109,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* High-definition poster image (always present as base background) */}
         <div 
           className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
-          style={{ backgroundImage: `url(${HERO_POSTER_URL})` }}
+          style={{ backgroundImage: `url(${heroPosterSrc})` }}
         />
 
-        {/* Video Element */}
+        {/* Native HTML5 Background Video Element */}
         {!videoError && (
           <video
             ref={videoRef}
-            src={HERO_VIDEO_URL}
-            poster={HERO_POSTER_URL}
-            autoPlay
-            muted
+            src={heroVideoSrc}
+            poster={heroPosterSrc}
+            autoPlay={!prefersReducedMotion}
+            muted={isMuted}
             loop
             playsInline
+            preload="metadata"
             onLoadedData={() => setVideoLoaded(true)}
             onError={() => setVideoError(true)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              videoLoaded ? 'opacity-70' : 'opacity-0'
+            className={`absolute inset-0 w-full h-full object-cover object-[center_25%] md:object-center transition-opacity duration-1000 ${
+              videoLoaded && (!prefersReducedMotion || isPlaying) ? 'opacity-70' : 'opacity-0'
             }`}
           />
         )}
@@ -229,21 +253,50 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* Video Controls (Subtle bottom-right pill) */}
-      <div className="absolute bottom-4 right-4 z-20 flex items-center gap-2">
+      <div 
+        id="hero-video-controls"
+        className="absolute bottom-4 right-4 z-20 flex items-center gap-2"
+        role="toolbar"
+        aria-label="Video playback controls"
+      >
+        {/* Play / Pause Toggle */}
         <button
+          id="hero-video-play-pause-btn"
+          type="button"
           onClick={togglePlayPause}
           aria-label={isPlaying ? "Pause background video" : "Play background video"}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/90 text-white/80 hover:text-white border border-white/20 text-[10px] tracking-wider uppercase backdrop-blur-md transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/90 active:bg-black text-white/85 hover:text-white border border-white/20 hover:border-[#C59B3F]/60 text-[10px] sm:text-[11px] font-medium tracking-wider uppercase backdrop-blur-md transition-all duration-200 cursor-pointer focus:outline-hidden focus:ring-1 focus:ring-[#C59B3F]"
         >
           {isPlaying ? (
             <>
-              <Pause className="w-3 h-3 text-[#C59B3F]" />
+              <Pause className="w-3.5 h-3.5 text-[#C59B3F]" aria-hidden="true" />
               <span className="hidden sm:inline">Pause Video</span>
             </>
           ) : (
             <>
-              <Play className="w-3 h-3 text-[#C59B3F]" />
+              <Play className="w-3.5 h-3.5 text-[#C59B3F]" aria-hidden="true" />
               <span className="hidden sm:inline">Play Video</span>
+            </>
+          )}
+        </button>
+
+        {/* Mute / Unmute Toggle */}
+        <button
+          id="hero-video-mute-unmute-btn"
+          type="button"
+          onClick={toggleMute}
+          aria-label={isMuted ? "Unmute background video" : "Mute background video"}
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/90 active:bg-black text-white/85 hover:text-white border border-white/20 hover:border-[#C59B3F]/60 text-[10px] sm:text-[11px] font-medium tracking-wider uppercase backdrop-blur-md transition-all duration-200 cursor-pointer focus:outline-hidden focus:ring-1 focus:ring-[#C59B3F]"
+        >
+          {isMuted ? (
+            <>
+              <VolumeX className="w-3.5 h-3.5 text-[#C59B3F]" aria-hidden="true" />
+              <span className="hidden sm:inline">Unmute</span>
+            </>
+          ) : (
+            <>
+              <Volume2 className="w-3.5 h-3.5 text-[#C59B3F]" aria-hidden="true" />
+              <span className="hidden sm:inline">Mute</span>
             </>
           )}
         </button>

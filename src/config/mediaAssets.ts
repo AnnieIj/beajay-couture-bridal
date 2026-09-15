@@ -124,11 +124,13 @@ export const HERO_MEDIA_ASSETS = {
   video: {
     current: 'https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4',
     officialPath: '/media/hero/bridal-hero.mp4',
+    hasOfficial: false,
     alt: 'BEAJAY Couture Bridal cinematic hero video'
   },
   poster: {
     current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1920&auto=format&fit=crop',
     officialPath: '/media/hero/bridal-hero-poster.jpg',
+    hasOfficial: false,
     alt: 'BEAJAY bride wearing a royal veil'
   }
 } as const;
