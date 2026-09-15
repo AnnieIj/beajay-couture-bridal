@@ -906,6 +906,32 @@ export const EDITORIAL_MEDIA_ASSETS = {
 } as const;
 
 // =========================================================================
+// 7. ABOUT PAGE MEDIA ASSETS
+// =========================================================================
+export const ABOUT_MEDIA_ASSETS = {
+  hero: {
+    current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1600&auto=format&fit=crop',
+    officialPath: '/media/about/about-hero.jpg',
+    alt: 'Bridal gown silhouette and veil arrangement'
+  },
+  story: {
+    current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
+    officialPath: '/media/about/about-story.jpg',
+    alt: 'Bridal gown back detailing and delicate fabric work'
+  },
+  craft: {
+    current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
+    officialPath: '/media/about/about-craft.jpg',
+    alt: 'Fine bridal lace and hand-finished beadwork'
+  },
+  global: {
+    current: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=1200&auto=format&fit=crop',
+    officialPath: '/media/about/about-global.jpg',
+    alt: 'Curated bridal fabrics, silk mikado, and lace rolls'
+  }
+} as const;
+
+// =========================================================================
 // CONSOLIDATED MEDIA REGISTRY
 // =========================================================================
 export const MEDIA_REGISTRY = {
@@ -914,7 +940,8 @@ export const MEDIA_REGISTRY = {
   rentals: RENTALS_MEDIA_ASSETS,
   bespoke: BESPOKE_MEDIA_ASSETS,
   gallery: GALLERY_MEDIA_ASSETS,
-  editorial: EDITORIAL_MEDIA_ASSETS
+  editorial: EDITORIAL_MEDIA_ASSETS,
+  about: ABOUT_MEDIA_ASSETS
 } as const;
 
 export default MEDIA_REGISTRY;

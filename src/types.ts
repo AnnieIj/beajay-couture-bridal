@@ -168,3 +168,20 @@ export interface BespokeJourneyStage {
   description: string;
   image?: string;
 }
+
+export type ContactEnquiryType = 
+  | 'General Enquiry'
+  | 'Bridal Collection'
+  | 'Gown Rental'
+  | 'Bespoke Couture'
+  | 'Appointment';
+
+export interface GeneralContactFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  enquiryType: ContactEnquiryType;
+  message: string;
+}

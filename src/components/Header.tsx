@@ -16,6 +16,8 @@ interface HeaderProps {
   onNavigateRentals?: () => void;
   onNavigateBespoke?: () => void;
   onNavigateGallery?: () => void;
+  onNavigateAbout?: () => void;
+  onNavigateContact?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -25,7 +27,9 @@ export const Header: React.FC<HeaderProps> = ({
   onNavigateCollections,
   onNavigateRentals,
   onNavigateBespoke,
-  onNavigateGallery
+  onNavigateGallery,
+  onNavigateAbout,
+  onNavigateContact
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -67,6 +71,18 @@ export const Header: React.FC<HeaderProps> = ({
 
     if (modalType === 'gallery' && onNavigateGallery) {
       onNavigateGallery();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (modalType === 'about' && onNavigateAbout) {
+      onNavigateAbout();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (modalType === 'contact' && onNavigateContact) {
+      onNavigateContact();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -176,8 +192,10 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* About */}
             <button 
-              onClick={() => onOpenModal('about')}
-              className="py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
+              onClick={() => handleNavClick('about-page', 'about')}
+              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
+                activeView === 'about' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
               About
             </button>
@@ -192,8 +210,10 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Contact */}
             <button 
-              onClick={() => onOpenModal('contact')}
-              className="py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
+              onClick={() => handleNavClick('contact-page', 'contact')}
+              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
+                activeView === 'contact' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
               Contact
             </button>
@@ -287,13 +307,12 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
 
             <button 
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenModal('about');
-              }}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+              onClick={() => handleNavClick('about-page', 'about')}
+              className={`text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer ${
+                activeView === 'about' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
-              <span>About Atelier</span>
+              <span>About</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">06</span>
             </button>
 
@@ -309,11 +328,10 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
 
             <button 
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenModal('contact');
-              }}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+              onClick={() => handleNavClick('contact-page', 'contact')}
+              className={`text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer ${
+                activeView === 'contact' ? 'text-[#C59B3F] font-semibold' : ''
+              }`}
             >
               <span>Contact</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">08</span>

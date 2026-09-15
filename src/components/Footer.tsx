@@ -14,6 +14,8 @@ interface FooterProps {
   onNavigateRentals?: () => void;
   onNavigateBespoke?: () => void;
   onNavigateGallery?: () => void;
+  onNavigateAbout?: () => void;
+  onNavigateContact?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ 
@@ -22,7 +24,9 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateCollections,
   onNavigateRentals,
   onNavigateBespoke,
-  onNavigateGallery
+  onNavigateGallery,
+  onNavigateAbout,
+  onNavigateContact
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -57,31 +61,24 @@ export const Footer: React.FC<FooterProps> = ({
               Crafted in Nigeria. Made for Brides Everywhere.
             </div>
 
-            <div className="pt-1 text-[11px] tracking-wider text-[#C59B3F]/90 uppercase font-sans">
-              Bridal Gowns • Rentals • Bespoke • Fittings • Alterations
+            <div className="flex items-center gap-2 text-xs text-neutral-300 font-light pt-1">
+              <MapPin className="w-3.5 h-3.5 text-[#C59B3F] shrink-0" />
+              <span>Enugu, Nigeria</span>
             </div>
           </div>
 
-          {/* Quick Links Column */}
-          <div className="lg:col-span-3 space-y-4">
+          {/* Navigation Links Column */}
+          <div className="lg:col-span-4 space-y-4">
             <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-white pb-1 border-b border-[#262420] inline-block">
-              Quick Links
+              Navigation
             </h3>
-            <ul className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-xs text-neutral-300 font-light">
+            <ul className="grid grid-cols-2 gap-y-3 gap-x-4 text-xs text-neutral-300 font-light">
               <li>
                 <button 
                   onClick={onNavigateHome}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
                 >
                   Home
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onOpenModal('about')}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
-                >
-                  About Atelier
                 </button>
               </li>
               <li>
@@ -93,23 +90,9 @@ export const Footer: React.FC<FooterProps> = ({
                       onOpenModal('collections');
                     }
                   }}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
                 >
                   Collections
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    if (onNavigateGallery) {
-                      onNavigateGallery();
-                    } else {
-                      onOpenModal('gallery');
-                    }
-                  }}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
-                >
-                  Gallery
                 </button>
               </li>
               <li>
@@ -121,17 +104,9 @@ export const Footer: React.FC<FooterProps> = ({
                       onOpenModal('rentals');
                     }
                   }}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
                 >
                   Rentals
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onOpenModal('appointment')}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
-                >
-                  Book Appointment
                 </button>
               </li>
               <li>
@@ -143,73 +118,107 @@ export const Footer: React.FC<FooterProps> = ({
                       onOpenModal('bespoke');
                     }
                   }}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
                 >
                   Bespoke
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => onOpenModal('contact')}
-                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left"
+                  onClick={() => {
+                    if (onNavigateGallery) {
+                      onNavigateGallery();
+                    } else {
+                      onOpenModal('gallery');
+                    }
+                  }}
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
                 >
-                  Contact & Location
+                  Gallery
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    if (onNavigateAbout) {
+                      onNavigateAbout();
+                    } else {
+                      onOpenModal('about');
+                    }
+                  }}
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
+                >
+                  About
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    if (onNavigateContact) {
+                      onNavigateContact();
+                    } else {
+                      onOpenModal('contact');
+                    }
+                  }}
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
+                >
+                  Contact
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => onOpenModal('appointment')}
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
+                >
+                  Book Appointment
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Visit Our Studio Column */}
-          <div className="lg:col-span-3 space-y-4">
-            <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-white pb-1 border-b border-[#262420] inline-block">
-              Location
-            </h3>
-            
-            <div className="space-y-3 text-xs text-neutral-300 font-light">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#C59B3F] shrink-0 mt-0.5" />
-                <span>Enugu, Nigeria</span>
-              </div>
-
-              <div className="border-t border-[#262420] pt-2 text-[11px] text-neutral-400 space-y-1">
-                <p className="text-white font-medium">Consultations & Fittings:</p>
-                <p>By Appointment Only</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Connect & Appointments */}
-          <div className="lg:col-span-2 space-y-4">
+          {/* Connect & Appointments Column */}
+          <div className="lg:col-span-4 space-y-4">
             <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-white pb-1 border-b border-[#262420] inline-block">
               Connect
             </h3>
             
-            <div className="flex flex-col space-y-2.5 text-xs">
-              <a 
-                href="https://instagram.com/beajaycouture_bridal"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 text-neutral-300 hover:text-[#E6C875] transition-colors"
-              >
-                <Instagram className="w-4 h-4 text-[#C59B3F]" />
-                <span>@beajaycouture_bridal</span>
-              </a>
+            <div className="space-y-3 text-xs text-neutral-300 font-light">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[#C59B3F] shrink-0" />
+                <span>Enugu, Nigeria • By Appointment Only</span>
+              </div>
 
-              <button 
-                onClick={() => onOpenModal('contact')}
-                className="flex items-center gap-2 text-neutral-300 hover:text-[#E6C875] transition-colors text-left cursor-pointer"
-              >
-                <MessageSquare className="w-4 h-4 text-[#C59B3F]" />
-                <span>Send Atelier Inquiry</span>
-              </button>
+              <div className="pt-1">
+                <a 
+                  href="https://instagram.com/beajaycouture_bridal"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-neutral-300 hover:text-[#E6C875] transition-colors"
+                >
+                  <Instagram className="w-4 h-4 text-[#C59B3F]" />
+                  <span>@beajaycouture_bridal</span>
+                </a>
+              </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => onOpenModal('appointment')}
-                className="w-full bg-[#C59B3F] hover:bg-[#B3892F] text-white py-2.5 px-3 text-[10.5px] font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer"
+                className="bg-[#C59B3F] hover:bg-[#B3892F] text-white py-2.5 px-4 text-[10.5px] font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer text-center"
               >
                 REQUEST FITTING
+              </button>
+              <button
+                onClick={() => {
+                  if (onNavigateContact) {
+                    onNavigateContact();
+                  } else {
+                    onOpenModal('contact');
+                  }
+                }}
+                className="border border-[#3E3A32] hover:border-[#C59B3F] text-neutral-300 hover:text-white py-2.5 px-4 text-[10.5px] font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer text-center"
+              >
+                CONTACT US
               </button>
             </div>
           </div>
@@ -222,18 +231,11 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="space-y-1 text-center sm:text-left">
             <p>© 2026 BEAJAY COUTURE BRIDAL. All rights reserved.</p>
             <p className="text-[10px] text-neutral-600">
-              Luxury Bridal Couture • Gown Rentals • Bespoke Alterations • Enugu, Nigeria
+              Crafted in Nigeria. Made for Brides Everywhere. • Enugu, Nigeria
             </p>
           </div>
 
           <div className="flex items-center gap-6">
-            <button
-              onClick={() => onOpenModal('rentals')}
-              className="text-[11px] hover:text-[#E6C875] transition-colors cursor-pointer"
-            >
-              Gown Rentals
-            </button>
-
             <button
               onClick={scrollToTop}
               className="inline-flex items-center gap-1.5 text-[11px] text-neutral-400 hover:text-[#E6C875] transition-colors cursor-pointer"
