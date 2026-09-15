@@ -19,6 +19,8 @@ export interface MediaAsset {
   current: string;
   /** The designated canonical local path in /public/media/... */
   officialPath: string;
+  /** Whether this asset has a verified official file currently uploaded */
+  hasOfficial?: boolean;
   /** Accessible description / label */
   alt?: string;
   /** Optional caption */
@@ -26,16 +28,93 @@ export interface MediaAsset {
 }
 
 /**
- * Toggle for serving official local media files versus current working placeholders.
- * Defaults to `false` until official BEAJAY assets are uploaded to /public/media/.
+ * Master toggle: when true, official BEAJAY media takes priority whenever an official asset is available.
  */
-export const USE_OFFICIAL_MEDIA = false;
+export const USE_OFFICIAL_MEDIA = true;
+
+/**
+ * Registry of verified official media files physically present in /public/media/.
+ */
+export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
+  '/media/collections/ball-gown/ball-gown 001.jpeg',
+  '/media/collections/ball-gown/ball-gown 002.jpeg',
+  '/media/collections/ball-gown/ball-gown 003.jpeg',
+  '/media/collections/mermaid/mermaid 001.jpeg',
+  '/media/collections/mermaid/mermaid 002.jpeg',
+  '/media/collections/mermaid/mermaid 003.jpeg',
+  '/media/collections/mermaid/mermaid 004.jpeg',
+  '/media/collections/mermaid/mermaid 007.jpeg',
+  '/media/collections/sheath/sheath 001.jpeg',
+  '/media/collections/sheath/sheath 002.jpeg'
+]);
+
+/**
+ * Official BEAJAY brand media assets organized strictly by silhouette category.
+ */
+export const OFFICIAL_COLLECTION_ASSETS = {
+  ballGown: [
+    {
+      officialPath: '/media/collections/ball-gown/ball-gown 001.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL ball gown'
+    },
+    {
+      officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL ball gown'
+    },
+    {
+      officialPath: '/media/collections/ball-gown/ball-gown 003.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL ball gown'
+    }
+  ],
+  mermaid: [
+    {
+      officialPath: '/media/collections/mermaid/mermaid 001.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
+    },
+    {
+      officialPath: '/media/collections/mermaid/mermaid 002.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
+    },
+    {
+      officialPath: '/media/collections/mermaid/mermaid 003.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
+    },
+    {
+      officialPath: '/media/collections/mermaid/mermaid 004.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
+    },
+    {
+      officialPath: '/media/collections/mermaid/mermaid 007.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
+    }
+  ],
+  sheath: [
+    {
+      officialPath: '/media/collections/sheath/sheath 001.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL sheath gown'
+    },
+    {
+      officialPath: '/media/collections/sheath/sheath 002.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL sheath gown'
+    }
+  ]
+} as const;
 
 /**
  * Resolves an asset to its active URL based on current environment settings.
+ * If USE_OFFICIAL_MEDIA is enabled and the asset has a verified official file uploaded,
+ * it returns the canonical local path; otherwise seamlessly falls back to the placeholder.
  */
 export const resolveMedia = (asset: MediaAsset): string => {
-  return USE_OFFICIAL_MEDIA ? asset.officialPath : asset.current;
+  if (USE_OFFICIAL_MEDIA) {
+    if (asset.hasOfficial && asset.officialPath) {
+      return asset.officialPath;
+    }
+    if (asset.officialPath && VERIFIED_OFFICIAL_MEDIA_PATHS.has(asset.officialPath)) {
+      return asset.officialPath;
+    }
+  }
+  return asset.current;
 };
 
 // =========================================================================
@@ -61,32 +140,38 @@ export const COLLECTION_MEDIA_ASSETS = {
   categories: {
     ballGown: {
       current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/collections/ball-gown/ball-gown-cover.jpg',
-      alt: 'Royal Ball Gown Collection'
+      officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg',
+      hasOfficial: true,
+      alt: 'BEAJAY COUTURE BRIDAL ball gown collection'
     },
     mermaid: {
       current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/collections/mermaid/mermaid-cover.jpg',
-      alt: 'Mermaid & Fit-and-Flare Silhouette Collection'
+      officialPath: '/media/collections/mermaid/mermaid 001.jpeg',
+      hasOfficial: true,
+      alt: 'BEAJAY COUTURE BRIDAL mermaid silhouette collection'
     },
     aLine: {
       current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
       officialPath: '/media/collections/a-line/a-line-cover.jpg',
+      hasOfficial: false,
       alt: 'Classic A-Line Collection'
     },
     sheath: {
       current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/collections/sheath/sheath-cover.jpg',
-      alt: 'Modern Sheath Collection'
+      officialPath: '/media/collections/sheath/sheath 001.jpeg',
+      hasOfficial: true,
+      alt: 'BEAJAY COUTURE BRIDAL sheath gown collection'
     },
     reception: {
       current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=900&auto=format&fit=crop',
       officialPath: '/media/collections/reception/reception-cover.jpg',
+      hasOfficial: false,
       alt: 'Evening & Reception Glamour'
     },
     accessories: {
       current: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=900&auto=format&fit=crop',
       officialPath: '/media/collections/accessories/veil-cover.jpg',
+      hasOfficial: false,
       alt: 'Veils & Bridal Accessories'
     }
   },
@@ -94,38 +179,44 @@ export const COLLECTION_MEDIA_ASSETS = {
     bj01: {
       primary: {
         current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/ball-gown/ball-gown-01.jpg',
-        alt: 'The Amara Sovereign Gown'
+        officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg',
+        hasOfficial: true,
+        alt: 'BEAJAY COUTURE BRIDAL ball gown - The Amara Sovereign Gown'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/ball-gown/ball-gown-01-a.jpg'
+          officialPath: '/media/collections/ball-gown/ball-gown 001.jpeg',
+          hasOfficial: true,
+          alt: 'BEAJAY COUTURE BRIDAL ball gown'
         },
         {
           current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/ball-gown/ball-gown-01-b.jpg'
-        },
-        {
-          current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/ball-gown/ball-gown-01-c.jpg'
+          officialPath: '/media/collections/ball-gown/ball-gown 003.jpeg',
+          hasOfficial: true,
+          alt: 'BEAJAY COUTURE BRIDAL ball gown'
         }
       ]
     },
     bj02: {
       primary: {
         current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/mermaid/mermaid-01.jpg',
-        alt: 'The Kamsi Sculpted Mermaid'
+        officialPath: '/media/collections/mermaid/mermaid 001.jpeg',
+        hasOfficial: true,
+        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Chiamaka Sculpted Mermaid'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/mermaid/mermaid-01-a.jpg'
+          officialPath: '/media/collections/mermaid/mermaid 002.jpeg',
+          hasOfficial: true,
+          alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
         },
         {
           current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/mermaid/mermaid-01-b.jpg'
+          officialPath: '/media/collections/mermaid/mermaid 003.jpeg',
+          hasOfficial: true,
+          alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
         }
       ]
     },
@@ -133,50 +224,55 @@ export const COLLECTION_MEDIA_ASSETS = {
       primary: {
         current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/a-line/a-line-01.jpg',
-        alt: 'The Nkechi Grace A-Line'
+        hasOfficial: false,
+        alt: 'The Ngozi Ethereal A-Line'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/a-line/a-line-01-a.jpg'
+          officialPath: '/media/collections/a-line/a-line-01-a.jpg',
+          hasOfficial: false
         },
         {
           current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/a-line/a-line-01-b.jpg'
+          officialPath: '/media/collections/a-line/a-line-01-b.jpg',
+          hasOfficial: false
         }
       ]
     },
     bj04: {
       primary: {
-        current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/reception/reception-01.jpg',
-        alt: 'The Adaeze Luminary Gown'
+        current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
+        officialPath: '/media/collections/sheath/sheath 001.jpeg',
+        hasOfficial: true,
+        alt: 'BEAJAY COUTURE BRIDAL sheath gown - The Kamsi Modern Column Sheath'
       },
       gallery: [
         {
-          current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/reception/reception-01-a.jpg'
-        },
-        {
-          current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/reception/reception-01-b.jpg'
+          current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
+          officialPath: '/media/collections/sheath/sheath 002.jpeg',
+          hasOfficial: true,
+          alt: 'BEAJAY COUTURE BRIDAL sheath gown'
         }
       ]
     },
     bj05: {
       primary: {
-        current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/sheath/sheath-01.jpg',
-        alt: 'The Somto Minimalist Column'
+        current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
+        officialPath: '/media/collections/reception/reception-01.jpg',
+        hasOfficial: false,
+        alt: 'The Somto Luminary Reception Gown'
       },
       gallery: [
         {
-          current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/sheath/sheath-01-a.jpg'
+          current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
+          officialPath: '/media/collections/reception/reception-01-a.jpg',
+          hasOfficial: false
         },
         {
-          current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/sheath/sheath-01-b.jpg'
+          current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
+          officialPath: '/media/collections/reception/reception-01-b.jpg',
+          hasOfficial: false
         }
       ]
     },
@@ -184,42 +280,51 @@ export const COLLECTION_MEDIA_ASSETS = {
       primary: {
         current: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/accessories/veil-01.jpg',
-        alt: 'The Ogechi Cathedral Veil'
+        hasOfficial: false,
+        alt: 'The Crown Heirloom Cathedral Veil'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/accessories/veil-01-a.jpg'
+          officialPath: '/media/collections/accessories/veil-01-a.jpg',
+          hasOfficial: false
         },
         {
           current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/accessories/veil-01-b.jpg'
+          officialPath: '/media/collections/accessories/veil-01-b.jpg',
+          hasOfficial: false
         }
       ]
     },
     bj07: {
       primary: {
         current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/ball-gown/ball-gown-02.jpg',
-        alt: 'The Chidinma Pearl Ball Gown'
+        officialPath: '/media/collections/ball-gown/ball-gown 003.jpeg',
+        hasOfficial: true,
+        alt: 'BEAJAY COUTURE BRIDAL ball gown - The Adanna Royal Empress Gown'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/ball-gown/ball-gown-02-a.jpg'
+          officialPath: '/media/collections/ball-gown/ball-gown 001.jpeg',
+          hasOfficial: true,
+          alt: 'BEAJAY COUTURE BRIDAL ball gown'
         }
       ]
     },
     bj08: {
       primary: {
         current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/mermaid/mermaid-02.jpg',
-        alt: 'The Ifeoma Illusion Trumpet'
+        officialPath: '/media/collections/mermaid/mermaid 004.jpeg',
+        hasOfficial: true,
+        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Ifeoma Draped Pearl Mermaid'
       },
       gallery: [
         {
-          current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/mermaid/mermaid-02-a.jpg'
+          current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
+          officialPath: '/media/collections/mermaid/mermaid 007.jpeg',
+          hasOfficial: true,
+          alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
         }
       ]
     },
@@ -227,25 +332,30 @@ export const COLLECTION_MEDIA_ASSETS = {
       primary: {
         current: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/a-line/a-line-02.jpg',
-        alt: 'The Uchechi Botanical A-Line'
+        hasOfficial: false,
+        alt: 'The Uchechi Grace A-Line'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/a-line/a-line-02-a.jpg'
+          officialPath: '/media/collections/a-line/a-line-02-a.jpg',
+          hasOfficial: false
         }
       ]
     },
     bj10: {
       primary: {
         current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/sheath/sheath-02.jpg',
-        alt: 'The Ngozi High-Neck Halter'
+        officialPath: '/media/collections/sheath/sheath 002.jpeg',
+        hasOfficial: true,
+        alt: 'BEAJAY COUTURE BRIDAL sheath gown - The Nneka Minimalist Crepe Sheath'
       },
       gallery: [
         {
-          current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/sheath/sheath-02-a.jpg'
+          current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
+          officialPath: '/media/collections/sheath/sheath 001.jpeg',
+          hasOfficial: true,
+          alt: 'BEAJAY COUTURE BRIDAL sheath gown'
         }
       ]
     },
@@ -253,16 +363,19 @@ export const COLLECTION_MEDIA_ASSETS = {
       primary: {
         current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/reception/reception-02.jpg',
+        hasOfficial: false,
         alt: 'The Chioma Shimmer Reception Dress'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/reception/reception-02-a.jpg'
+          officialPath: '/media/collections/reception/reception-02-a.jpg',
+          hasOfficial: false
         },
         {
           current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/reception/reception-02-b.jpg'
+          officialPath: '/media/collections/reception/reception-02-b.jpg',
+          hasOfficial: false
         }
       ]
     },
@@ -270,12 +383,14 @@ export const COLLECTION_MEDIA_ASSETS = {
       primary: {
         current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/accessories/veil-02.jpg',
-        alt: 'The Royal Pearl & Crystal Tiara'
+        hasOfficial: false,
+        alt: 'The Royale Embellished Cape & Tiara'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/accessories/veil-02-a.jpg'
+          officialPath: '/media/collections/accessories/veil-02-a.jpg',
+          hasOfficial: false
         }
       ]
     }
@@ -513,12 +628,13 @@ export const BESPOKE_MEDIA_ASSETS = {
 export const HOMEPAGE_GALLERY_MEDIA_ASSETS = [
   {
     id: 'gal-1',
-    title: 'Cathedral Veil Drama',
-    category: 'veils-accessories' as const,
+    title: 'Cathedral Majesty Ball Gown',
+    category: 'bridal-looks' as const,
     current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-    officialPath: '/media/gallery/gallery-01.jpg',
-    alt: 'Cathedral-length bridal veil trailing gracefully in natural light',
-    caption: 'Cathedral veil with handcrafted border trim and sheer illusion drape.'
+    officialPath: '/media/collections/ball-gown/ball-gown 003.jpeg',
+    hasOfficial: true,
+    alt: 'BEAJAY COUTURE BRIDAL ball gown',
+    caption: 'Full-skirted ivory ball gown with sculpted basque waist.'
   },
   {
     id: 'gal-2',
@@ -526,26 +642,29 @@ export const HOMEPAGE_GALLERY_MEDIA_ASSETS = [
     category: 'couture-details' as const,
     current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-02.jpg',
+    hasOfficial: false,
     alt: 'Intricate bridal gown back with fabric-covered buttons along spine',
     caption: 'Meticulously spaced satin-covered buttons on sheer illusion tulle.'
   },
   {
     id: 'gal-3',
-    title: 'The Radiant Bride with Bouquet',
+    title: 'Contoured Mermaid Silhouette',
     category: 'bridal-looks' as const,
     current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-    officialPath: '/media/gallery/gallery-03.jpg',
-    alt: 'Bridal portrait showcasing textured lace gown and classic bouquet',
-    caption: 'Refined silhouette featuring delicate textured lace and soft floral notes.'
+    officialPath: '/media/collections/mermaid/mermaid 003.jpeg',
+    hasOfficial: true,
+    alt: 'BEAJAY COUTURE BRIDAL mermaid gown',
+    caption: 'Precision-tailored mermaid silhouette celebrating natural bridal contours.'
   },
   {
     id: 'gal-4',
-    title: 'Fitting & Silhouette Alignment',
-    category: 'behind-the-craft' as const,
+    title: 'Understated Column Sheath',
+    category: 'bridal-looks' as const,
     current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-    officialPath: '/media/gallery/gallery-04.jpg',
-    alt: 'Bridal gown fitting session focusing on waistline contours and drape',
-    caption: 'Careful proportioning and pin-fitting during gown development.'
+    officialPath: '/media/collections/sheath/sheath 002.jpeg',
+    hasOfficial: true,
+    alt: 'BEAJAY COUTURE BRIDAL sheath gown',
+    caption: 'Clean architectural lines and fluid drape for the modern bride.'
   },
   {
     id: 'gal-5',
@@ -553,6 +672,7 @@ export const HOMEPAGE_GALLERY_MEDIA_ASSETS = [
     category: 'behind-the-craft' as const,
     current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-05.jpg',
+    hasOfficial: false,
     videoCurrent: 'https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4',
     videoOfficialPath: '/media/gallery/gallery-story-reel.mp4',
     alt: 'Bridal silhouette and veil motion in the atelier',
@@ -573,9 +693,10 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
     category: 'bridal-looks' as const,
     categoryLabel: 'Bridal Looks',
     current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1600&auto=format&fit=crop',
-    officialPath: '/media/gallery/gallery-editorial-01.jpg',
-    alt: 'Regal bridal ball gown with sweeping cathedral train in architectural setting',
-    caption: 'Full-skirted ivory ball gown with sculpted bodice and sweeping gossamer train.',
+    officialPath: '/media/collections/ball-gown/ball-gown 003.jpeg',
+    hasOfficial: true,
+    alt: 'BEAJAY COUTURE BRIDAL ball gown',
+    caption: 'Full-skirted ivory ball gown with sculpted bodice and basque waist.',
     orientation: 'portrait' as const,
     featured: true,
     aspectRatio: 'aspect-[3/4]',
@@ -587,8 +708,9 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
     category: 'bridal-looks' as const,
     categoryLabel: 'Bridal Looks',
     current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1400&auto=format&fit=crop',
-    officialPath: '/media/gallery/gallery-editorial-02.jpg',
-    alt: 'Contoured mermaid wedding gown featuring illusion back and dramatic flare',
+    officialPath: '/media/collections/mermaid/mermaid 003.jpeg',
+    hasOfficial: true,
+    alt: 'BEAJAY COUTURE BRIDAL mermaid gown',
     caption: 'Precision-tailored mermaid silhouette celebrating natural bridal contours.',
     orientation: 'portrait' as const,
     featured: false,
@@ -602,6 +724,7 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
     categoryLabel: 'Bridal Looks',
     current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-editorial-03.jpg',
+    hasOfficial: false,
     alt: 'Graceful A-line wedding gown with floral lace bodice and flowing skirt',
     caption: 'Balanced A-line proportions cascading gracefully in soft bridal tulle.',
     orientation: 'portrait' as const,
@@ -615,8 +738,9 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
     category: 'bridal-looks' as const,
     categoryLabel: 'Bridal Looks',
     current: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1400&auto=format&fit=crop',
-    officialPath: '/media/gallery/gallery-editorial-04.jpg',
-    alt: 'Contemporary sheath bridal gown in liquid silk satin with minimalist lines',
+    officialPath: '/media/collections/sheath/sheath 002.jpeg',
+    hasOfficial: true,
+    alt: 'BEAJAY COUTURE BRIDAL sheath gown',
     caption: 'Clean architectural lines and fluid drape for the modern minimalist bride.',
     orientation: 'portrait' as const,
     featured: false,
@@ -877,18 +1001,21 @@ export const EDITORIAL_MEDIA_ASSETS = {
   perfectDress: {
     collection: {
       current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/collections/ball-gown/ball-gown-01.jpg',
-      alt: 'Luxury bridal ball gown with cathedral train'
+      officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg',
+      hasOfficial: true,
+      alt: 'BEAJAY COUTURE BRIDAL ball gown collection'
     },
     rent: {
       current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/rentals/rental-card.jpg',
-      alt: 'Bride wearing exquisite off-shoulder gown for rental'
+      officialPath: '/media/collections/mermaid/mermaid 001.jpeg',
+      hasOfficial: true,
+      alt: 'BEAJAY COUTURE BRIDAL mermaid gown rental collection'
     },
     bespoke: {
       current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/bespoke/bespoke-card.jpg',
-      alt: 'Intricate bridal back detailing and fine lace fitting'
+      officialPath: '/media/collections/sheath/sheath 001.jpeg',
+      hasOfficial: true,
+      alt: 'BEAJAY COUTURE BRIDAL sheath gown'
     }
   },
   bespokeSection: {

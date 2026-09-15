@@ -34,7 +34,7 @@ export interface CollectionCategory {
   slug: 'ball-gown' | 'mermaid' | 'a-line' | 'sheath' | 'reception' | 'veils-accessories';
   description: string;
   image: string;
-  itemCount: number;
+  itemCount?: number;
 }
 
 export interface Testimonial {

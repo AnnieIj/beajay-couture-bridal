@@ -25,48 +25,42 @@ export const CATEGORIES: CollectionCategory[] = [
     name: 'Ball Gowns',
     slug: 'ball-gown',
     description: 'Classic silhouettes with dramatic full skirts and structured bodices.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.ballGown),
-    itemCount: 14
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.ballGown)
   },
   {
     id: 'mermaid',
     name: 'Mermaid',
     slug: 'mermaid',
     description: 'Form-fitting allure celebrating feminine curves, tapering down into dramatic lace flares.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.mermaid),
-    itemCount: 18
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.mermaid)
   },
   {
     id: 'a-line',
     name: 'A-Line',
     slug: 'a-line',
     description: 'Timeless grace and flattering proportions tailored with delicate lace and refined fabrics.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.aLine),
-    itemCount: 12
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.aLine)
   },
   {
     id: 'sheath',
     name: 'Sheath',
     slug: 'sheath',
     description: 'Effortless modern luxury featuring clean column silhouettes, subtle accents, and flowing fabrics.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.sheath),
-    itemCount: 9
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.sheath)
   },
   {
     id: 'reception',
     name: 'Reception Dresses',
     slug: 'reception',
     description: 'Glamorous show-stoppers made with hand-finished beading, metallic accents, and detachable capes.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.reception),
-    itemCount: 16
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.reception)
   },
   {
     id: 'veils-accessories',
     name: 'Veils & Accessories',
     slug: 'veils-accessories',
     description: 'Cathedral veils, hair accessories, bridal tiaras, and handcrafted finishing pieces.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.accessories),
-    itemCount: 22
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.accessories)
   }
 ];
 
@@ -97,14 +91,14 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Grand Ball Gown with Structured Bodice',
     description: 'A regal royal bridal gown featuring an illusion detailed bodice, hand-placed embellishments, and a cascading 3-meter cathedral train.',
     images: [
-      'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj01.primary),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj01.gallery[0]),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj01.gallery[1])
     ],
-    image: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj01.primary),
     gallery: [
-      'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj01.gallery[0]),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj01.gallery[1])
     ],
     sizes: ['UK 8', 'UK 10', 'Tailored Sizing'],
     fabric: 'Dutchess Satin & Embroidered Tulle',
@@ -129,12 +123,14 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Fit-and-Flare Sculpted Mermaid',
     description: 'Sculpted elegance designed to contour the silhouette, featuring a sweetheart neckline, sheer back button detailing, and godet lace skirt.',
     images: [
-      'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1549416869-3738b556f8f5?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj02.primary),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj02.gallery[0]),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj02.gallery[1])
     ],
-    image: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj02.primary),
     gallery: [
-      'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj02.gallery[0]),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj02.gallery[1])
     ],
     sizes: ['UK 8', 'UK 10', 'Tailored Sizing'],
     fabric: 'Structured Satin & Corded Lace',
@@ -159,10 +155,10 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Romantic Classic A-Line',
     description: 'An ode to romantic purity. Gentle sweetheart bustier with off-the-shoulder draped sleeves, flowing seamlessly into soft layered fabrics that float when walking.',
     images: [
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj03.primary),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj03.gallery[0])
     ],
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj03.primary),
     sizes: ['UK 8', 'UK 10', 'UK 12'],
     fabric: 'Bridal Organza & Delicate Lace',
     details: 'Scattered micro-sequins with subtle shimmer under lighting',
@@ -186,10 +182,13 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Clean Architectural Sheath',
     description: 'For the contemporary minimalist bride. A sleek architectural column with square neckline, modest slit option, and detachable watteau train.',
     images: [
-      'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj04.primary),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj04.gallery[0])
     ],
-    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj04.primary),
+    gallery: [
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj04.gallery[0])
+    ],
     sizes: ['UK 6', 'UK 8'],
     fabric: 'Tailored Crepe & Fine Lining',
     details: 'Covered buttons down spine, minimalist cuff detail',
@@ -213,10 +212,9 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Glamour Contour with Illusion Slit',
     description: 'Designed for celebration and evening presence. Finished with shimmering fringe beading, structured bodice, and an optional shoulder cape.',
     images: [
-      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj05.primary)
     ],
-    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj05.primary),
     sizes: ['UK 8', 'UK 10'],
     fabric: 'Champagne Metallic Mesh & Tulle',
     details: 'Fringe beading that catches motion with celebration',
@@ -240,10 +238,9 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Royal Cathedral Veil',
     description: 'Hand-cut 4-meter bridal tulle veil trimmed with beaded scallop lace and accompanied by a gold-tone bridal tiara.',
     images: [
-      'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj06.primary)
     ],
-    image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj06.primary),
     sizes: ['One Size (4.0 Meters)'],
     fabric: 'Soft Illusion Bridal Tulle',
     details: 'Hand-placed scalloped lace border with subtle beadwork',
@@ -267,10 +264,13 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Modest Royal Ball Gown',
     description: 'Long-sleeved bridal elegance with an intricately detailed bodice, high neckline collar, and voluminous skirt for church and cathedral ceremonies.',
     images: [
-      'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.primary),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.gallery[0])
     ],
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.primary),
+    gallery: [
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.gallery[0])
+    ],
     sizes: ['UK 10', 'Custom Sizing Available'],
     fabric: 'Damask & Metallic Threaded Lace',
     details: 'Fine beading, metallic accents, and detailed embroidery',
@@ -294,10 +294,13 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Low-Back Dramatic Mermaid',
     description: 'Dramatic low back with cascading bead strands draping across the back and an elegant flounce of embroidered lace.',
     images: [
-      'https://images.unsplash.com/photo-1549416869-3738b556f8f5?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj08.primary),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj08.gallery[0])
     ],
-    image: 'https://images.unsplash.com/photo-1549416869-3738b556f8f5?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj08.primary),
+    gallery: [
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj08.gallery[0])
+    ],
     sizes: ['UK 8', 'UK 10'],
     fabric: 'Stretch Crepe & Embroidered Lace',
     details: 'Beaded back draping and scalloped hemline',
@@ -321,10 +324,9 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'V-Neckline Pleated A-Line',
     description: 'Understated poise featuring crisp pleating, deep plunging illusion V-neckline, and side pockets in tailored bridal fabric.',
     images: [
-      'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj09.primary)
     ],
-    image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj09.primary),
     sizes: ['UK 8', 'UK 10', 'UK 12'],
     fabric: 'Structured Bridal Satin',
     details: 'Hand-pressed box pleats, concealed in-seam pockets, covered buttons',
@@ -348,10 +350,13 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'High-Neck Halter Column Sheath',
     description: 'Clean modern minimalism with an asymmetrical high halter collar, draped cowl back, and fluid drape.',
     images: [
-      'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj10.primary),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj10.gallery[0])
     ],
-    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj10.primary),
+    gallery: [
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj10.gallery[0])
+    ],
     sizes: ['UK 6', 'UK 8', 'UK 10'],
     fabric: 'Fluid Bridal Crepe',
     details: 'Halter tie finish, low draped cowl back line',
@@ -375,10 +380,9 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Sculpted Midi with Detachable Train',
     description: 'Evening reception elegance featuring a structured detailed bodice with fine shimmer, a fitted skirt, and a detachable dramatic satin overskirt.',
     images: [
-      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj11.primary)
     ],
-    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj11.primary),
     sizes: ['UK 8', 'UK 10'],
     fabric: 'Shimmer Netting & Duchesse Satin',
     details: 'Structured bodice with subtle beading, convertible silhouette',
@@ -402,10 +406,9 @@ export const GOWNS_CATALOG: GownItem[] = [
     silhouette: 'Shoulder-Draped Cathedral Bridal Cape',
     description: 'An ethereal alternative to the classic veil. Lightweight bridal tulle adorned with delicate accents, cascading from tailored shoulder clasps.',
     images: [
-      'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop'
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj12.primary)
     ],
-    image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj12.primary),
     sizes: ['One Size Fits All'],
     fabric: 'Soft Bridal Illusion Tulle',
     details: 'Delicate bead accents, tailored shoulder closures',
