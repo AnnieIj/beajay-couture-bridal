@@ -96,9 +96,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Cinematic Background Video with Poster Fallback */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
         
-        {/* High-definition poster image (always present as base background) */}
+        {/* High-definition poster image (base background during initial load, smoothly yields to video) */}
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+            videoLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          }`}
           style={{ backgroundImage: `url(${heroPosterSrc})` }}
         />
 
@@ -117,8 +119,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             onCanPlay={() => setVideoLoaded(true)}
             onPlaying={() => setVideoLoaded(true)}
             onError={() => setVideoError(true)}
-            className={`absolute inset-0 w-full h-full object-cover object-[center_20%] sm:object-[center_25%] md:object-center transition-opacity duration-1000 ${
-              videoLoaded && (!prefersReducedMotion || isPlaying) ? 'opacity-85 sm:opacity-90' : 'opacity-0'
+            className={`absolute inset-0 w-full h-full object-cover object-[center_20%] sm:object-[center_25%] md:object-center lg:object-contain lg:object-right xl:object-[85%_center] 2xl:object-[78%_center] transition-opacity duration-1000 ${
+              videoLoaded && (!prefersReducedMotion || isPlaying) ? 'opacity-85 sm:opacity-90 lg:opacity-100' : 'opacity-0'
             }`}
           />
         )}
@@ -126,6 +128,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Directional Readability Gradients: Darker on left behind text, tapering transparent to center & right */}
         {/* Desktop & tablet horizontal gradient concentrated around the text */}
         <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent w-full lg:w-3/4 pointer-events-none" />
+
+        {/* Desktop right-edge atmospheric blending gradient to integrate widescreen space */}
+        <div className="hidden lg:block absolute inset-y-0 right-0 w-24 xl:w-40 bg-gradient-to-l from-[#0D0D0D]/70 via-[#0D0D0D]/20 to-transparent pointer-events-none" />
 
         {/* Mobile vertical gradient protecting text readability while showcasing gown */}
         <div className="sm:hidden absolute inset-0 bg-gradient-to-b from-black/85 via-black/55 to-black/75 pointer-events-none" />
