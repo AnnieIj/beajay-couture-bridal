@@ -31,22 +31,39 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const heroPosterSrc = resolveMedia(HERO_MEDIA_ASSETS.poster);
 
   useEffect(() => {
-    // Respect prefers-reduced-motion
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const handleMotionPreference = (matches: boolean) => {
-      setPrefersReducedMotion(matches);
-      if (matches && videoRef.current) {
-        videoRef.current.pause();
-        setIsPlaying(false);
+    // Respect prefers-reduced-motion with cross-browser fallback
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    try {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const handleMotionPreference = (matches: boolean) => {
+        setPrefersReducedMotion(matches);
+        if (matches && videoRef.current) {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        }
+      };
+
+      handleMotionPreference(mediaQuery.matches);
+
+      const listener = (e: MediaQueryListEvent) => handleMotionPreference(e.matches);
+      if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener('change', listener);
+        return () => mediaQuery.removeEventListener('change', listener);
+      } else if ((mediaQuery as any).addListener) {
+        (mediaQuery as any).addListener(listener);
+        return () => (mediaQuery as any).removeListener(listener);
       }
-    };
-
-    handleMotionPreference(mediaQuery.matches);
-
-    const listener = (e: MediaQueryListEvent) => handleMotionPreference(e.matches);
-    mediaQuery.addEventListener('change', listener);
-    return () => mediaQuery.removeEventListener('change', listener);
+    } catch {
+      // Fallback gracefully if media query is unsupported
+    }
   }, []);
+
+  // Sync DOM muted property directly to HTMLMediaElement to satisfy browser autoplay policies
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   const togglePlayPause = () => {
     if (!videoRef.current) return;
@@ -97,6 +114,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             playsInline
             preload="metadata"
             onLoadedData={() => setVideoLoaded(true)}
+            onCanPlay={() => setVideoLoaded(true)}
+            onPlaying={() => setVideoLoaded(true)}
             onError={() => setVideoError(true)}
             className={`absolute inset-0 w-full h-full object-cover object-[center_20%] sm:object-[center_25%] md:object-center transition-opacity duration-1000 ${
               videoLoaded && (!prefersReducedMotion || isPlaying) ? 'opacity-85 sm:opacity-90' : 'opacity-0'
