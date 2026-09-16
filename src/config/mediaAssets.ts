@@ -36,7 +36,7 @@ export const USE_OFFICIAL_MEDIA = true;
  * Registry of verified official media files physically present in /public/media/.
  */
 export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
-  '/media/hero/bridal-hero.mp4',
+  '/media/hero/bridal-hero-v2.mp4',
   '/media/collections/ball-gown/ball-gown 001.jpeg',
   '/media/collections/ball-gown/ball-gown 002.jpeg',
   '/media/collections/ball-gown/ball-gown 003.jpeg',
@@ -122,7 +122,7 @@ export const resolveMedia = (asset: MediaAsset): string => {
 export const HERO_MEDIA_ASSETS = {
   video: {
     current: 'https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4',
-    officialPath: '/media/hero/bridal-hero.mp4',
+    officialPath: '/media/hero/bridal-hero-v2.mp4',
     hasOfficial: true,
     alt: 'BEAJAY Couture Bridal cinematic hero video'
   },
