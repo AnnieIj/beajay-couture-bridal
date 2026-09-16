@@ -37,14 +37,50 @@ export interface CollectionCategory {
   itemCount?: number;
 }
 
+// =========================================================================
+// TESTIMONIAL DATA CONTRACT (FOR APPROVED REVIEWS & SUBMISSION PIPELINE)
+// =========================================================================
+
+export type TestimonialServiceType = 
+  | 'bridal-collection'
+  | 'gown-rental'
+  | 'bridal-consultation'
+  | 'fitting-appointment'
+  | 'other';
+
+export type TestimonialModerationStatus = 
+  | 'pending'
+  | 'approved'
+  | 'rejected'
+  | 'hidden';
+
 export interface Testimonial {
   id: string;
-  brideName: string;
-  weddingDate?: string;
-  location: string;
-  quote: string;
-  gownType: string;
-  image: string;
+  customerName: string;
+  email: string;
+  serviceUsed: TestimonialServiceType;
+  serviceLabel?: string;
+  testimonialText: string;
+  rating?: number; // 1 to 5 stars
+  photoUrl?: string;
+  consentToPublish: boolean;
+  moderationStatus: TestimonialModerationStatus;
+  relatedAppointmentId?: string;
+  relatedRentalId?: string;
+  submittedAt: string; // ISO 8601 UTC
+  approvedAt?: string;  // ISO 8601 UTC
+  featured?: boolean;
+}
+
+export interface TestimonialFormData {
+  fullName: string;
+  email: string;
+  serviceUsed: TestimonialServiceType;
+  experienceText: string;
+  rating: number; // 0 if unrated, 1-5 when selected
+  photoFile: File | null;
+  photoPreviewUrl: string | null;
+  consentToPublish: boolean;
 }
 
 export type GalleryCategory =
@@ -84,7 +120,9 @@ export type ActiveModal =
   | 'about' 
   | 'contact' 
   | 'search' 
-  | 'gown-detail';
+  | 'gown-detail'
+  | 'testimonial'
+  | 'share-experience';
 
 export type AppointmentServiceType = 
   | 'bridal-consultation'

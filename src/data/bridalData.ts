@@ -424,44 +424,12 @@ export const GOWNS_CATALOG: GownItem[] = [
   }
 ];
 
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    id: 't-1',
-    brideName: 'Chiamaka U.',
-    weddingDate: 'Wedding Reflection',
-    location: 'Enugu, Nigeria',
-    quote: 'Beajay Couture Bridal made me feel truly regal. The gown was everything I imagined. The private fitting session in Enugu was seamless, calm, and exquisitely professional.',
-    gownType: 'Cathedral Silhouette',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop'
-  },
-  {
-    id: 't-2',
-    brideName: 'Adaobi N.',
-    weddingDate: 'Gown Rental Experience',
-    location: 'Enugu, Nigeria',
-    quote: 'Renting a bridal gown from BEAJAY was an outstanding experience. The gown condition was immaculate, the fitting adjustments were tailored with care, and the process was stress-free.',
-    gownType: 'Gown Rental',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop'
-  },
-  {
-    id: 't-3',
-    brideName: 'Somtochukwu E.',
-    weddingDate: 'Bridal Styling Experience',
-    location: 'Enugu, Nigeria',
-    quote: 'Finding bridal craftsmanship with genuine attention to fit and silhouette was essential for me. The team delivered thoughtful tailoring, and I felt completely confident stepping into my celebration.',
-    gownType: 'Custom Fitting Experience',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop'
-  },
-  {
-    id: 't-4',
-    brideName: 'Kelechi O.',
-    weddingDate: 'Bridal Stylist Experience',
-    location: 'Enugu, Nigeria',
-    quote: 'Renting from BEAJAY Couture Bridal is a wonderful resource. The selection of silhouettes and the care given to gown maintenance make wedding consultations smooth and dependable.',
-    gownType: 'Gown Rental Service',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop'
-  }
-];
+// =========================================================================
+// APPROVED BRIDAL TESTIMONIALS
+// Currently empty. Populated solely by verified real submissions once approved.
+// =========================================================================
+export const APPROVED_TESTIMONIALS: Testimonial[] = [];
+export const TESTIMONIALS: Testimonial[] = APPROVED_TESTIMONIALS;
 
 export const HOMEPAGE_GALLERY_ITEMS: GalleryItem[] = HOMEPAGE_GALLERY_MEDIA_ASSETS.map((item) => ({
   id: item.id,

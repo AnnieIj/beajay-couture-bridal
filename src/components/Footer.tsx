@@ -157,6 +157,14 @@ export const Footer: React.FC<FooterProps> = ({
                   Book Appointment
                 </button>
               </li>
+              <li>
+                <button 
+                  onClick={() => onOpenModal('share-experience')}
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
+                >
+                  Bride Stories
+                </button>
+              </li>
             </ul>
           </div>
 

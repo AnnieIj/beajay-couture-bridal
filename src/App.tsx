@@ -7,6 +7,7 @@ import { FeaturedCollectionSection } from './components/FeaturedCollectionSectio
 import { GownRentalsSection } from './components/GownRentalsSection';
 import { BridalExperienceSection } from './components/BridalExperienceSection';
 import { GallerySection } from './components/GallerySection';
+import { TestimonialsSection } from './components/TestimonialsSection';
 import { AppointmentCtaSection } from './components/AppointmentCtaSection';
 import { Footer } from './components/Footer';
 
@@ -23,9 +24,10 @@ import { CollectionsModal } from './components/CollectionsModal';
 import { GownDetailModal } from './components/GownDetailModal';
 import { GalleryLightbox } from './components/GalleryLightbox';
 import { SearchModal } from './components/SearchModal';
+import { ShareExperienceModal } from './components/ShareExperienceModal';
 
 import { ActiveModal, GownItem, GalleryItem } from './types';
-import { GOWNS_CATALOG, EDITORIAL_GALLERY_ITEMS } from './data/bridalData';
+import { GOWNS_CATALOG, EDITORIAL_GALLERY_ITEMS, APPROVED_TESTIMONIALS } from './data/bridalData';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -329,6 +331,12 @@ export default function App() {
               onNavigateGallery={navigateToGallery}
             />
 
+            {/* SECTION 7 — STORIES FROM OUR BRIDES (Customer Testimonials & Experiences) */}
+            <TestimonialsSection
+              onOpenModal={openModal}
+              testimonials={APPROVED_TESTIMONIALS}
+            />
+
             {/* SECTION 8 — APPOINTMENT CTA */}
             <AppointmentCtaSection
               onOpenModal={openModal}
@@ -404,6 +412,13 @@ export default function App() {
         isOpen={activeModal === 'search'}
         onClose={closeModal}
         onSelectGown={navigateToGownDetail}
+      />
+
+      {/* 8. Share Experience / Testimonial Modal */}
+      <ShareExperienceModal
+        isOpen={activeModal === 'share-experience' || activeModal === 'testimonial'}
+        onClose={closeModal}
+        onOpenContact={() => navigateToContact()}
       />
 
     </div>
