@@ -94,7 +94,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
             <p className="text-sm sm:text-[15px] text-[#C2BDB2] font-light leading-relaxed max-w-xl mx-auto mb-8">
               As our brides celebrate their special days, their cherished moments, 
               fitting experiences, and wedding reflections will be featured in this space. 
-              Every testimonial displayed here is shared with permission following verified bridal appointments and rentals.
+              Testimonials shared here will come from BEAJAY brides and clients and will be reviewed before publication.
             </p>
 
             {/* Elegant Call to Action */}

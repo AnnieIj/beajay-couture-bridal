@@ -187,7 +187,7 @@ export default function App() {
     closeModal();
     openModal('appointment', { 
       preselectedGown: gownName, 
-      defaultService: service || 'bridal-styling' 
+      defaultService: service || 'bridal-consultation' 
     });
   };
 
@@ -283,7 +283,7 @@ export default function App() {
               setGalleryLightboxItems(items && items.length > 0 ? items : EDITORIAL_GALLERY_ITEMS);
             }}
             onNavigateCollections={() => navigateToCollections('all')}
-            onBookAppointment={() => handleBookFittingFromGown(undefined, 'bridal-styling')}
+            onBookAppointment={() => handleBookFittingFromGown(undefined, 'bridal-consultation')}
           />
         ) : (
           /* Homepage */
@@ -365,7 +365,8 @@ export default function App() {
         isOpen={activeModal === 'appointment'}
         onClose={closeModal}
         preselectedGown={modalPayload?.preselectedGown}
-        defaultService={modalPayload?.defaultService || 'bridal-styling'}
+        defaultService={modalPayload?.defaultService || 'bridal-consultation'}
+        onOpenContact={() => navigateToContact()}
       />
 
       {/* 2. Unified Rentals Modal */}

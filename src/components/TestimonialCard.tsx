@@ -84,7 +84,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial })
             {testimonial.customerName}
           </h4>
           <span className="text-[11px] text-neutral-400 font-light block">
-            Verified Bride Experience
+            Bride Reflection
           </span>
         </div>
       </div>

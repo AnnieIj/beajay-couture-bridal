@@ -9,7 +9,6 @@ import {
   Info, 
   Trash2, 
   RefreshCw,
-  MessageCircle,
   Mail
 } from 'lucide-react';
 import { TestimonialServiceType } from '../types';
@@ -252,22 +251,12 @@ export const ShareExperienceModal: React.FC<ShareExperienceModalProps> = ({
                 </p>
                 <p className="text-xs text-neutral-400 font-light leading-relaxed">
                   In the meantime, if you would love to share your bridal photos or wedding story directly with the team, 
-                  we welcome your message via WhatsApp or our Contact enquiry form.
+                  we welcome your message via our Contact enquiry form.
                 </p>
               </div>
 
               {/* Direct Alternative Actions */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
-                <a
-                  href="https://wa.me/2348000000000?text=Hello%20BEAJAY%20Couture%20Bridal%2C%20I%20would%20love%20to%20share%20my%20bridal%20experience%20and%20photos."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer min-h-[44px] w-full sm:w-auto"
-                >
-                  <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                  <span>Message on WhatsApp</span>
-                </a>
-
                 {onOpenContact && (
                   <button
                     type="button"
@@ -275,7 +264,7 @@ export const ShareExperienceModal: React.FC<ShareExperienceModalProps> = ({
                       onClose();
                       onOpenContact();
                     }}
-                    className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/5 text-[#EFECE5] border border-white/20 px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer min-h-[44px] w-full sm:w-auto"
+                    className="inline-flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer min-h-[44px] w-full sm:w-auto"
                   >
                     <Mail className="w-4 h-4" aria-hidden="true" />
                     <span>Contact Studio</span>

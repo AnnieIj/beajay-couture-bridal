@@ -128,7 +128,7 @@ export type AppointmentServiceType =
   | 'bridal-consultation'
   | 'gown-viewing'
   | 'rental-fitting'
-  | 'fitting-alteration';
+  | 'fitting-appointment';
 
 export interface BookingFormData {
   fullName: string;
@@ -136,11 +136,11 @@ export interface BookingFormData {
   email: string;
   weddingDate: string;
   serviceType: AppointmentServiceType;
-  budgetRange: string;
   preferredDate: string;
   preferredTime: string;
   notes: string;
   silhouetteInterest: string[];
+  interestedGown?: string;
 }
 
 export type RenterType = 'individual' | 'vendor';
