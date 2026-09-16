@@ -241,7 +241,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
               Inspired by Our Silhouettes?
             </h2>
             <p className="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed max-w-xl">
-              Explore our full catalog of bridal gowns across ball gowns, mermaids, classical A-lines, and contemporary column pieces. Available for order and couture gown rental.
+              Explore our full catalog of bridal gowns across royal ball gowns, sculpted mermaid silhouettes, and handcrafted veils & accessories. Available for order and couture gown rental.
             </p>
             <div className="pt-2">
               <button

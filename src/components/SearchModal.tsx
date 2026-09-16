@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Search, ArrowRight } from 'lucide-react';
-import { GOWNS_CATALOG } from '../data/bridalData';
+import { ACTIVE_GOWNS_CATALOG } from '../data/bridalData';
 import { GownItem } from '../types';
 
 interface SearchModalProps {
@@ -20,7 +20,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   const results = query.trim() === ''
     ? []
-    : GOWNS_CATALOG.filter(g => 
+    : ACTIVE_GOWNS_CATALOG.filter(g => 
         g.name.toLowerCase().includes(query.toLowerCase()) ||
         g.silhouette.toLowerCase().includes(query.toLowerCase()) ||
         g.categoryLabel.toLowerCase().includes(query.toLowerCase()) ||
@@ -29,7 +29,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         g.tags?.some(t => t.toLowerCase().includes(query.toLowerCase()))
       );
 
-  const quickTags = ['Ball Gown', 'Mermaid', 'Rental', 'Cathedral Veil', 'Pearl', 'Reception'];
+  const quickTags = ['Ball Gown', 'Mermaid Gowns', 'Veils & Accessories', 'Rental', 'Cathedral Veil'];
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-16 sm:pt-24 bg-black/85 backdrop-blur-sm animate-in fade-in duration-150">

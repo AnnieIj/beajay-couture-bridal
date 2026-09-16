@@ -14,7 +14,7 @@ import {
   HelpCircle,
   Scissors
 } from 'lucide-react';
-import { GOWNS_CATALOG, COLLECTION_NAV_CATEGORIES } from '../data/bridalData';
+import { ACTIVE_GOWNS_CATALOG, COLLECTION_NAV_CATEGORIES } from '../data/bridalData';
 import { GownItem } from '../types';
 
 interface RentalsPageProps {
@@ -32,9 +32,9 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'available' | 'reserved' | 'unavailable' | 'coming-soon'>('all');
 
-  // Single source of truth: GOWNS_CATALOG filtered for rentalEligible === true
+  // Single source of truth: ACTIVE_GOWNS_CATALOG filtered for rentalEligible === true
   const rentalGowns = useMemo(() => {
-    return GOWNS_CATALOG.filter((gown) => {
+    return ACTIVE_GOWNS_CATALOG.filter((gown) => {
       if (!gown.rentalEligible) return false;
 
       if (selectedCategory !== 'all' && gown.category !== selectedCategory) {
@@ -50,7 +50,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
   }, [selectedCategory, availabilityFilter]);
 
   const allRentalGownsCount = useMemo(() => {
-    return GOWNS_CATALOG.filter(g => g.rentalEligible).length;
+    return ACTIVE_GOWNS_CATALOG.filter(g => g.rentalEligible).length;
   }, []);
 
   const scrollToCatalogue = () => {
@@ -198,7 +198,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
               Silhouette:
             </span>
             {COLLECTION_NAV_CATEGORIES.map((cat) => {
-              const count = GOWNS_CATALOG.filter(g => g.rentalEligible && (cat.id === 'all' || g.category === cat.id)).length;
+              const count = ACTIVE_GOWNS_CATALOG.filter(g => g.rentalEligible && (cat.id === 'all' || g.category === cat.id)).length;
               if (count === 0 && cat.id !== 'all') return null;
 
               return (

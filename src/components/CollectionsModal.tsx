@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Sparkles, ArrowRight } from 'lucide-react';
-import { GOWNS_CATALOG, CATEGORIES } from '../data/bridalData';
+import { ACTIVE_GOWNS_CATALOG, ACTIVE_CATEGORIES } from '../data/bridalData';
 import { GownItem } from '../types';
 
 interface CollectionsModalProps {
@@ -23,7 +23,7 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
 
   if (!isOpen) return null;
 
-  const filteredGowns = GOWNS_CATALOG.filter((gown) => {
+  const filteredGowns = ACTIVE_GOWNS_CATALOG.filter((gown) => {
     // Category filter
     if (selectedCategory !== 'all' && gown.category !== selectedCategory) {
       return false;
@@ -75,7 +75,7 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
               All Silhouettes
             </button>
 
-            {CATEGORIES.map((cat) => (
+            {ACTIVE_CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.slug)}

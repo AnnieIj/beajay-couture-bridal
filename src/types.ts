@@ -35,6 +35,7 @@ export interface CollectionCategory {
   description: string;
   image: string;
   itemCount?: number;
+  active: boolean;
 }
 
 // =========================================================================

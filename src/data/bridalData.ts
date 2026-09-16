@@ -22,62 +22,70 @@ export const BUSINESS_INFO = {
 export const CATEGORIES: CollectionCategory[] = [
   {
     id: 'ball-gown',
-    name: 'Ball Gowns',
+    name: 'Ball Gown',
     slug: 'ball-gown',
     description: 'Classic silhouettes with dramatic full skirts and structured bodices.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.ballGown)
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.ballGown),
+    active: true
   },
   {
     id: 'mermaid',
-    name: 'Mermaid',
+    name: 'Mermaid Gowns',
     slug: 'mermaid',
     description: 'Form-fitting allure celebrating feminine curves, tapering down into dramatic lace flares.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.mermaid)
-  },
-  {
-    id: 'a-line',
-    name: 'A-Line',
-    slug: 'a-line',
-    description: 'Timeless grace and flattering proportions tailored with delicate lace and refined fabrics.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.aLine)
-  },
-  {
-    id: 'sheath',
-    name: 'Sheath',
-    slug: 'sheath',
-    description: 'Effortless modern luxury featuring clean column silhouettes, subtle accents, and flowing fabrics.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.sheath)
-  },
-  {
-    id: 'reception',
-    name: 'Reception Dresses',
-    slug: 'reception',
-    description: 'Glamorous show-stoppers made with hand-finished beading, metallic accents, and detachable capes.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.reception)
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.mermaid),
+    active: true
   },
   {
     id: 'veils-accessories',
     name: 'Veils & Accessories',
     slug: 'veils-accessories',
     description: 'Cathedral veils, hair accessories, bridal tiaras, and handcrafted finishing pieces.',
-    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.accessories)
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.accessories),
+    active: true
+  },
+  {
+    id: 'a-line',
+    name: 'A-Line',
+    slug: 'a-line',
+    description: 'Timeless grace and flattering proportions tailored with delicate lace and refined fabrics.',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.aLine),
+    active: false
+  },
+  {
+    id: 'sheath',
+    name: 'Sheath',
+    slug: 'sheath',
+    description: 'Effortless modern luxury featuring clean column silhouettes, subtle accents, and flowing fabrics.',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.sheath),
+    active: false
+  },
+  {
+    id: 'reception',
+    name: 'Reception Dresses',
+    slug: 'reception',
+    description: 'Glamorous show-stoppers made with hand-finished beading, metallic accents, and detachable capes.',
+    image: resolveMedia(COLLECTION_MEDIA_ASSETS.categories.reception),
+    active: false
   }
 ];
+
+export const ACTIVE_CATEGORIES: CollectionCategory[] = CATEGORIES.filter((cat) => cat.active);
+export const ACTIVE_CATEGORY_SLUGS: ReadonlySet<string> = new Set(ACTIVE_CATEGORIES.map((cat) => cat.slug));
 
 export interface CollectionCategoryNav {
   id: string;
   name: string;
-  slug: 'all' | 'ball-gown' | 'mermaid' | 'a-line' | 'sheath' | 'reception' | 'veils-accessories';
+  slug: 'all' | 'ball-gown' | 'mermaid' | 'veils-accessories';
 }
 
 export const COLLECTION_NAV_CATEGORIES: CollectionCategoryNav[] = [
   { id: 'all', name: 'All Gowns', slug: 'all' },
-  { id: 'ball-gown', name: 'Ball Gown', slug: 'ball-gown' },
-  { id: 'mermaid', name: 'Mermaid', slug: 'mermaid' },
-  { id: 'a-line', name: 'A-Line', slug: 'a-line' },
-  { id: 'sheath', name: 'Sheath', slug: 'sheath' },
-  { id: 'reception', name: 'Reception Dresses', slug: 'reception' },
-  { id: 'veils-accessories', name: 'Veils & Accessories', slug: 'veils-accessories' }
+  ...ACTIVE_CATEGORIES.map((cat) => ({
+    id: cat.id,
+    name: cat.name,
+    slug: cat.slug as 'ball-gown' | 'mermaid' | 'veils-accessories'
+  }))
 ];
 
 export const GOWNS_CATALOG: GownItem[] = [
@@ -176,11 +184,11 @@ export const GOWNS_CATALOG: GownItem[] = [
     id: 'bj-04',
     slug: 'the-kamsi-modern-column-sheath',
     code: 'BJ-04',
-    name: 'The Kamsi Modern Column Sheath',
-    category: 'sheath',
-    categoryLabel: 'Sheath',
-    silhouette: 'Clean Architectural Sheath',
-    description: 'For the contemporary minimalist bride. A sleek architectural column with square neckline, modest slit option, and detachable watteau train.',
+    name: 'The Kamsi Gown',
+    category: 'mermaid',
+    categoryLabel: 'Mermaid Gowns',
+    silhouette: 'Sculpted Mermaid',
+    description: 'A striking mermaid silhouette celebrating feminine contours with tailored elegance and fluid drape.',
     images: [
       resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj04.primary),
       resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj04.gallery[0])
@@ -200,7 +208,7 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'reserved',
     featured: true,
     isFeatured: true,
-    tags: ['Minimalist Luxury', 'Civil Wedding', 'Intimate Ceremony']
+    tags: ['Mermaid Gowns', 'Bridal Elegance', 'Hourglass']
   },
   {
     id: 'bj-05',
@@ -344,11 +352,11 @@ export const GOWNS_CATALOG: GownItem[] = [
     id: 'bj-10',
     slug: 'the-nneka-silk-crepe-sheath',
     code: 'BJ-10',
-    name: 'The Nneka Minimalist Crepe Sheath',
-    category: 'sheath',
-    categoryLabel: 'Sheath',
-    silhouette: 'High-Neck Halter Column Sheath',
-    description: 'Clean modern minimalism with an asymmetrical high halter collar, draped cowl back, and fluid drape.',
+    name: 'The Nneka Gown',
+    category: 'mermaid',
+    categoryLabel: 'Mermaid Gowns',
+    silhouette: 'Contoured Mermaid',
+    description: 'Clean modern elegance featuring an asymmetrical high halter collar, draped cowl back, and fluid contour.',
     images: [
       resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj10.primary),
       resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj10.gallery[0])
@@ -368,7 +376,7 @@ export const GOWNS_CATALOG: GownItem[] = [
     availability: 'available',
     featured: false,
     isFeatured: false,
-    tags: ['Halter Neck', 'Minimalist', 'Civil Chic']
+    tags: ['Mermaid Gowns', 'Halter Neck', 'Civil Chic']
   },
   {
     id: 'bj-11',
@@ -423,6 +431,9 @@ export const GOWNS_CATALOG: GownItem[] = [
     tags: ['Bridal Cape', 'Accents', 'Statement Piece']
   }
 ];
+
+// Active Gowns Catalog (Active collections only: Ball Gown, Mermaid Gowns, Veils & Accessories)
+export const ACTIVE_GOWNS_CATALOG: GownItem[] = GOWNS_CATALOG.filter((gown) => ACTIVE_CATEGORY_SLUGS.has(gown.category));
 
 // =========================================================================
 // APPROVED BRIDAL TESTIMONIALS

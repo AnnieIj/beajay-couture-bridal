@@ -44,9 +44,9 @@ export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
   '/media/collections/mermaid/mermaid 002.jpeg',
   '/media/collections/mermaid/mermaid 003.jpeg',
   '/media/collections/mermaid/mermaid 004.jpeg',
-  '/media/collections/mermaid/mermaid 007.jpeg',
-  '/media/collections/sheath/sheath 001.jpeg',
-  '/media/collections/sheath/sheath 002.jpeg'
+  '/media/collections/mermaid/mermaid 005.jpeg',
+  '/media/collections/mermaid/mermaid 006.jpeg',
+  '/media/collections/mermaid/mermaid 007.jpeg'
 ]);
 
 /**
@@ -85,18 +85,16 @@ export const OFFICIAL_COLLECTION_ASSETS = {
       alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
     },
     {
-      officialPath: '/media/collections/mermaid/mermaid 007.jpeg',
+      officialPath: '/media/collections/mermaid/mermaid 005.jpeg',
       alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
-    }
-  ],
-  sheath: [
-    {
-      officialPath: '/media/collections/sheath/sheath 001.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL sheath gown'
     },
     {
-      officialPath: '/media/collections/sheath/sheath 002.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL sheath gown'
+      officialPath: '/media/collections/mermaid/mermaid 006.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
+    },
+    {
+      officialPath: '/media/collections/mermaid/mermaid 007.jpeg',
+      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
     }
   ]
 } as const;
@@ -161,9 +159,9 @@ export const COLLECTION_MEDIA_ASSETS = {
     },
     sheath: {
       current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/collections/sheath/sheath 001.jpeg',
-      hasOfficial: true,
-      alt: 'BEAJAY COUTURE BRIDAL sheath gown collection'
+      officialPath: '/media/collections/sheath/sheath-cover.jpg',
+      hasOfficial: false,
+      alt: 'Sheath Column Gown Collection'
     },
     reception: {
       current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=900&auto=format&fit=crop',
@@ -246,16 +244,16 @@ export const COLLECTION_MEDIA_ASSETS = {
     bj04: {
       primary: {
         current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/sheath/sheath 001.jpeg',
+        officialPath: '/media/collections/mermaid/mermaid 005.jpeg',
         hasOfficial: true,
-        alt: 'BEAJAY COUTURE BRIDAL sheath gown - The Kamsi Modern Column Sheath'
+        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Kamsi Gown'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/sheath/sheath 002.jpeg',
+          officialPath: '/media/collections/mermaid/mermaid 006.jpeg',
           hasOfficial: true,
-          alt: 'BEAJAY COUTURE BRIDAL sheath gown'
+          alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
         }
       ]
     },
@@ -349,16 +347,16 @@ export const COLLECTION_MEDIA_ASSETS = {
     bj10: {
       primary: {
         current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/sheath/sheath 002.jpeg',
+        officialPath: '/media/collections/mermaid/mermaid 006.jpeg',
         hasOfficial: true,
-        alt: 'BEAJAY COUTURE BRIDAL sheath gown - The Nneka Minimalist Crepe Sheath'
+        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Nneka Gown'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/sheath/sheath 001.jpeg',
+          officialPath: '/media/collections/mermaid/mermaid 005.jpeg',
           hasOfficial: true,
-          alt: 'BEAJAY COUTURE BRIDAL sheath gown'
+          alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
         }
       ]
     },
@@ -661,13 +659,13 @@ export const HOMEPAGE_GALLERY_MEDIA_ASSETS = [
   },
   {
     id: 'gal-4',
-    title: 'Understated Column Sheath',
+    title: 'Sculpted Mermaid Silhouette',
     category: 'bridal-looks' as const,
     current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-    officialPath: '/media/collections/sheath/sheath 002.jpeg',
+    officialPath: '/media/collections/mermaid/mermaid 006.jpeg',
     hasOfficial: true,
-    alt: 'BEAJAY COUTURE BRIDAL sheath gown',
-    caption: 'Clean architectural lines and fluid drape for the modern bride.'
+    alt: 'BEAJAY COUTURE BRIDAL mermaid gown',
+    caption: 'Sculpted elegance and fluid drape for the modern BEAJAY bride.'
   },
   {
     id: 'gal-5',
@@ -737,14 +735,14 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
   },
   {
     id: 'eg-04',
-    title: 'Understated Column Sheath',
+    title: 'Sculpted Mermaid Silhouette',
     category: 'bridal-looks' as const,
     categoryLabel: 'Bridal Looks',
     current: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1400&auto=format&fit=crop',
-    officialPath: '/media/collections/sheath/sheath 002.jpeg',
+    officialPath: '/media/collections/mermaid/mermaid 006.jpeg',
     hasOfficial: true,
-    alt: 'BEAJAY COUTURE BRIDAL sheath gown',
-    caption: 'Clean architectural lines and fluid drape for the modern minimalist bride.',
+    alt: 'BEAJAY COUTURE BRIDAL mermaid gown',
+    caption: 'Sculpted lines and fluid drape for the modern BEAJAY bride.',
     orientation: 'portrait' as const,
     featured: false,
     aspectRatio: 'aspect-[3/4]',
@@ -1016,9 +1014,9 @@ export const EDITORIAL_MEDIA_ASSETS = {
     },
     bespoke: {
       current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/collections/sheath/sheath 001.jpeg',
+      officialPath: '/media/collections/mermaid/mermaid 005.jpeg',
       hasOfficial: true,
-      alt: 'BEAJAY COUTURE BRIDAL sheath gown'
+      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
     }
   },
   bespokeSection: {

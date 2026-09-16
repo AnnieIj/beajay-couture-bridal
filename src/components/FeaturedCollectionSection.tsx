@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
-import { CATEGORIES, GOWNS_CATALOG } from '../data/bridalData';
+import { ACTIVE_CATEGORIES, ACTIVE_GOWNS_CATALOG } from '../data/bridalData';
 import { ActiveModal, GownItem } from '../types';
 
 interface FeaturedCollectionSectionProps {
@@ -69,8 +69,8 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F]" />
             </button>
 
-            {/* Prev / Next Carousel Navigation */}
-            <div className="flex items-center gap-2">
+            {/* Prev / Next Carousel Navigation (visible on mobile where scrolling applies) */}
+            <div className="flex items-center gap-2 md:hidden">
               <button
                 onClick={() => scroll('left')}
                 aria-label="Scroll left"
@@ -89,21 +89,21 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
           </div>
         </div>
 
-        {/* Horizontal Editorial Collection Strip */}
+        {/* Editorial Collection Layout - 3 Balanced Categories on Desktop */}
         <div 
           ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory scroll-smooth"
+          className="flex md:grid md:grid-cols-3 gap-6 sm:gap-8 overflow-x-auto md:overflow-visible pb-6 md:pb-0 scrollbar-none snap-x snap-mandatory scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {CATEGORIES.map((category) => {
-            // Find a featured gown matching this category for quick peek
-            const sampleGown = GOWNS_CATALOG.find(g => g.category === category.slug);
+          {ACTIVE_CATEGORIES.map((category) => {
+            // Find a featured gown matching this active category
+            const sampleGown = ACTIVE_GOWNS_CATALOG.find(g => g.category === category.slug);
 
             return (
               <div 
                 key={category.id}
                 onClick={() => handleCategoryClick(category.slug)}
-                className="group shrink-0 w-[260px] sm:w-[290px] md:w-[320px] snap-start cursor-pointer flex flex-col"
+                className="group shrink-0 w-[280px] sm:w-[320px] md:w-auto snap-start cursor-pointer flex flex-col"
               >
                 {/* Image Container with Editorial Proportions */}
                 <div className="relative aspect-[3/4] overflow-hidden bg-neutral-200 border border-[#E9E4DB] group-hover:border-[#C59B3F] transition-colors">
@@ -140,7 +140,7 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
                   <h3 className="font-sans text-xs sm:text-[13px] font-semibold tracking-[0.24em] uppercase text-[#111111] group-hover:text-[#C59B3F] transition-colors">
                     {category.name}
                   </h3>
-                  <p className="text-[12px] text-neutral-500 font-light line-clamp-1">
+                  <p className="text-[12px] text-neutral-500 font-light line-clamp-2">
                     {category.description}
                   </p>
                 </div>

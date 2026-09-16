@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Sparkles, Calendar, RotateCcw, Check } from 'lucide-react';
-import { GOWNS_CATALOG, COLLECTION_NAV_CATEGORIES } from '../data/bridalData';
+import { ACTIVE_GOWNS_CATALOG, COLLECTION_NAV_CATEGORIES } from '../data/bridalData';
 import { GownItem, GownCategory } from '../types';
 import { CollectionsHero } from './CollectionsHero';
 import { GownCard } from './GownCard';
@@ -22,9 +22,9 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
   const [rentalOnly, setRentalOnly] = useState<boolean>(initialRentalOnly);
   const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'available' | 'reserved' | 'unavailable' | 'coming-soon'>('all');
 
-  // Filtered Gowns Logic
+  // Filtered Gowns Logic - strictly from active collections (Ball Gown, Mermaid Gowns, Veils & Accessories)
   const filteredGowns = useMemo(() => {
-    return GOWNS_CATALOG.filter((gown) => {
+    return ACTIVE_GOWNS_CATALOG.filter((gown) => {
       // Category filter
       if (selectedCategory !== 'all' && gown.category !== selectedCategory) {
         return false;
@@ -69,10 +69,10 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
           <div className="mt-3 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
             {COLLECTION_NAV_CATEGORIES.map((cat) => {
               const isSelected = selectedCategory === cat.slug;
-              // Compute count for each category
+              // Compute count for each active category
               const count = cat.slug === 'all' 
-                ? GOWNS_CATALOG.length 
-                : GOWNS_CATALOG.filter(g => g.category === cat.slug).length;
+                ? ACTIVE_GOWNS_CATALOG.length 
+                : ACTIVE_GOWNS_CATALOG.filter(g => g.category === cat.slug).length;
 
               return (
                 <button

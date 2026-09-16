@@ -147,7 +147,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </p>
 
             <p className="text-xs sm:text-sm text-neutral-700 font-light leading-relaxed">
-              From majestic ball gowns with delicate hand-beaded details to sleek mermaid cuts and clean, modern columns, our designs combine timeless romance with contemporary grace. Through our curated collections and rental options, we ensure every bride experiences bridal elegance tailored with care and attention to detail.
+              From majestic ball gowns with delicate hand-beaded details to sculpted mermaid silhouettes and handcrafted accessories, our designs combine timeless romance with contemporary grace. Through our curated collections and rental options, we ensure every bride experiences bridal elegance tailored with care and attention to detail.
             </p>
 
             <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-[#EAE3D5]">
@@ -156,7 +156,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                   Bridal Collections
                 </h3>
                 <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                  Curated gowns spanning royal ball gowns, elegant sheath cuts, and reception showstoppers.
+                  Curated gowns spanning royal ball gowns, sculpted mermaid silhouettes, and handcrafted veils & accessories.
                 </p>
               </div>
 
