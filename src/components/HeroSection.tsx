@@ -107,6 +107,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Native HTML5 Background Video Element */}
         {!videoError && (
           <video
+            key={heroVideoSrc}
             ref={videoRef}
             src={heroVideoSrc}
             poster={heroPosterSrc}

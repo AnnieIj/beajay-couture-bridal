@@ -40,13 +40,54 @@ export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
   '/media/collections/ball-gown/ball-gown 001.jpeg',
   '/media/collections/ball-gown/ball-gown 002.jpeg',
   '/media/collections/ball-gown/ball-gown 003.jpeg',
+  '/media/collections/ball-gown/ball-gown 004.jpg',
+  '/media/collections/ball-gown/ball-gown 005.jpg',
+  '/media/collections/ball-gown/ball-gown 006.jpg',
+  '/media/collections/ball-gown/ball-gown 007.jpg',
+  '/media/collections/ball-gown/ball-gown 008.jpg',
+  '/media/collections/ball-gown/ball-gown 009.jpg',
+  '/media/collections/ball-gown/ball-gown 010.jpg',
+  '/media/collections/ball-gown/ball-gown 01017.jpg',
+  '/media/collections/ball-gown/ball-gown 011.jpg',
+  '/media/collections/ball-gown/ball-gown 012.jpg',
+  '/media/collections/ball-gown/ball-gown 013.jpg',
+  '/media/collections/ball-gown/ball-gown 014.jpg',
+  '/media/collections/ball-gown/ball-gown 015.jpg',
+  '/media/collections/ball-gown/ball-gown 016.jpg',
+  '/media/collections/ball-gown/ball-gown 018.jpg',
+  '/media/collections/ball-gown/ball-gown 019.jpg',
+  '/media/collections/ball-gown/ball-gown 020.jpg',
+  '/media/collections/ball-gown/ball-gown 021.jpg',
+  '/media/collections/ball-gown/ball-gown 022.jpg',
+  '/media/collections/ball-gown/ball-gown 023.jpg',
+  '/media/collections/ball-gown/ball-gown 024.jpg',
   '/media/collections/mermaid/mermaid 001.jpeg',
   '/media/collections/mermaid/mermaid 002.jpeg',
   '/media/collections/mermaid/mermaid 003.jpeg',
   '/media/collections/mermaid/mermaid 004.jpeg',
   '/media/collections/mermaid/mermaid 005.jpeg',
   '/media/collections/mermaid/mermaid 006.jpeg',
-  '/media/collections/mermaid/mermaid 007.jpeg'
+  '/media/collections/mermaid/mermaid 007.jpeg',
+  '/media/collections/mermaid/mermaid 008.jpg',
+  '/media/collections/mermaid/mermaid 009.jpg',
+  '/media/collections/mermaid/mermaid 010.jpg',
+  '/media/collections/mermaid/mermaid 011.jpg',
+  '/media/collections/mermaid/mermaid 012.jpg',
+  '/media/collections/mermaid/mermaid 013.jpg',
+  '/media/collections/mermaid/mermaid 014.jpg',
+  '/media/collections/mermaid/mermaid 015.jpg',
+  '/media/collections/mermaid/mermaid 016.jpg',
+  '/media/collections/mermaid/mermaid 017.jpg',
+  '/media/collections/mermaid/mermaid 020.jpg',
+  '/media/collections/accessories/veil 001.jpg',
+  '/media/collections/accessories/veil 002.jpg',
+  '/media/collections/accessories/veil 003.jpg',
+  '/media/collections/accessories/veil 004.jpg',
+  '/media/collections/accessories/veil 005.jpg',
+  '/media/collections/accessories/veil 006.jpg',
+  '/media/collections/accessories/veil 008.jpg',
+  '/media/collections/accessories/veil 009.jpg',
+  '/media/collections/accessories/veil 010.jpg'
 ]);
 
 /**
@@ -106,11 +147,19 @@ export const OFFICIAL_COLLECTION_ASSETS = {
  */
 export const resolveMedia = (asset: MediaAsset): string => {
   if (USE_OFFICIAL_MEDIA) {
+    let resolved: string | null = null;
     if (asset.hasOfficial && asset.officialPath) {
-      return asset.officialPath;
+      resolved = asset.officialPath;
+    } else if (asset.officialPath && VERIFIED_OFFICIAL_MEDIA_PATHS.has(asset.officialPath)) {
+      resolved = asset.officialPath;
     }
-    if (asset.officialPath && VERIFIED_OFFICIAL_MEDIA_PATHS.has(asset.officialPath)) {
-      return asset.officialPath;
+
+    if (resolved) {
+      // Diagnostic cache-busting for hero video to guarantee fresh browser fetch
+      if (resolved === '/media/hero/bridal-hero-v2.mp4') {
+        return '/media/hero/bridal-hero-v2.mp4?v=20260916-v2-official';
+      }
+      return resolved;
     }
   }
   return asset.current;
