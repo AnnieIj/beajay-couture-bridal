@@ -289,13 +289,20 @@ export default function App() {
         ) : (
           /* Homepage */
           <main>
-            {/* HERO SECTION — Cinematic Visuals */}
+            {/* 1. HERO SECTION — "Your Dream Dress Starts Here" */}
             <HeroSection
               onOpenModal={openModal}
               onExploreCollections={() => navigateToCollections('all')}
             />
 
-            {/* SECTION 2 — BEGIN YOUR BEAJAY EXPERIENCE (Pathways: Collections, Rentals, Gallery) */}
+            {/* 2. DISCOVER THE COLLECTIONS — "Explore BEAJAY's current bridal collections." */}
+            <FeaturedCollectionSection
+              onOpenModal={openModal}
+              onSelectGown={navigateToGownDetail}
+              onNavigateCollections={navigateToCollections}
+            />
+
+            {/* 3. YOUR BRIDAL PATHWAY — "Begin Your BEAJAY Experience" */}
             <PerfectDressSection
               onOpenModal={openModal}
               onViewCollections={() => navigateToCollections('all')}
@@ -303,26 +310,19 @@ export default function App() {
               onNavigateGallery={navigateToGallery}
             />
 
-            {/* SECTION 3 — DISCOVER THE COLLECTIONS (Official Visual Collection Showcase) */}
-            <FeaturedCollectionSection
-              onOpenModal={openModal}
-              onSelectGown={navigateToGownDetail}
-              onNavigateCollections={navigateToCollections}
-            />
-
-            {/* SECTION 4 — GOWN RENTALS (Unified Rental Service) */}
+            {/* 4. GOWN RENTALS — Selected Gowns Available for Rental Requests */}
             <GownRentalsSection
               onOpenModal={openModal}
               onSelectGown={navigateToGownDetail}
               onNavigateRentals={navigateToRentals}
             />
 
-            {/* SECTION 5 — THE BRIDAL EXPERIENCE (01 to 04) */}
+            {/* 5. THE BRIDAL EXPERIENCE — Bespoke Atelier Journey */}
             <BridalExperienceSection
               onOpenModal={openModal}
             />
 
-            {/* SECTION 6 — MOMENTS THAT MATTER (Bridal Gallery) */}
+            {/* 6. MOMENTS THAT MATTER / BRIDAL STORIES — Editorial Bridal Stories */}
             <GallerySection
               onOpenModal={openModal}
               onOpenLightbox={(item, items) => {
@@ -332,13 +332,13 @@ export default function App() {
               onNavigateGallery={navigateToGallery}
             />
 
-            {/* SECTION 7 — STORIES FROM OUR BRIDES (Customer Testimonials & Experiences) */}
+            {/* 7. STORIES FROM OUR BRIDES — Customer Testimonials & Experiences */}
             <TestimonialsSection
               onOpenModal={openModal}
               testimonials={APPROVED_TESTIMONIALS}
             />
 
-            {/* SECTION 8 — APPOINTMENT CTA */}
+            {/* 8. APPOINTMENT CTA — Atelier Consultation Booking */}
             <AppointmentCtaSection
               onOpenModal={openModal}
             />

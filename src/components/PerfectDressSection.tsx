@@ -62,7 +62,7 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
           </h2>
           <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto my-3" />
           <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed">
-            Select your journey to browse couture silhouettes, discover selected rental gowns, or immerse in authentic bridal stories.
+            Select your journey to explore the collections, discover selected rental gowns, or experience BEAJAY bridal stories.
           </p>
         </div>
 

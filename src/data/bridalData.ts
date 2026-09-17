@@ -499,23 +499,4 @@ export const GALLERY_CATEGORIES: { id: GalleryCategory; label: string; count?: n
   { id: 'bridal-moments', label: 'BRIDAL MOMENTS / EVENTS' }
 ];
 
-export const RENTAL_POLICIES = [
-  {
-    title: 'Rental Booking & Duration',
-    detail: 'Rental periods are coordinated around your ceremony dates, fitting schedule, and return timeline. Specific pickup and return windows are confirmed upon reservation.'
-  },
-  {
-    title: 'Refundable Caution Deposit',
-    detail: 'A refundable security deposit is held for the duration of the gown rental and returned upon inspection following the safe return of the dress.'
-  },
-  {
-    title: 'Professional Cleaning & Sanitization',
-    detail: 'All gowns undergo specialized couture steam pressing and sanitization before pickup and after return. Clients and vendors must not attempt external washing or dry cleaning.'
-  },
-  {
-    title: 'Fitting & Silhouette Adjustments',
-    detail: 'Professional fitting consultations ensure an optimal silhouette. All allowable temporary adjustments are executed strictly in-house by our bridal tailors.'
-  }
-];
-
 
