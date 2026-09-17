@@ -25,6 +25,7 @@ import { GownDetailModal } from './components/GownDetailModal';
 import { GalleryLightbox } from './components/GalleryLightbox';
 import { SearchModal } from './components/SearchModal';
 import { ShareExperienceModal } from './components/ShareExperienceModal';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 import { ActiveModal, GownItem, GalleryItem } from './types';
 import { GOWNS_CATALOG, EDITORIAL_GALLERY_ITEMS, APPROVED_TESTIMONIALS } from './data/bridalData';
@@ -420,6 +421,11 @@ export default function App() {
         isOpen={activeModal === 'share-experience' || activeModal === 'testimonial'}
         onClose={closeModal}
         onOpenContact={() => navigateToContact()}
+      />
+
+      {/* Global Floating WhatsApp Action with zero collision when modals/lightboxes are active */}
+      <FloatingWhatsApp 
+        isHidden={Boolean(activeModal !== null || selectedGown !== null || selectedGalleryItem !== null)} 
       />
 
     </div>

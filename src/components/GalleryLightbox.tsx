@@ -45,8 +45,11 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
     }
   };
 
-  // Keyboard navigation
+  // Keyboard navigation & body scroll lock
   useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') {
         e.preventDefault();
@@ -60,8 +63,11 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [safeIndex, totalCount, onSelectItem]);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [safeIndex, totalCount, onSelectItem, onClose]);
 
   // Touch Swipe handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {

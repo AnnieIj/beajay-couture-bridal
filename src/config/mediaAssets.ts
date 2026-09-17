@@ -37,6 +37,7 @@ export const USE_OFFICIAL_MEDIA = true;
  */
 export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
   '/media/hero/bridal-hero-v2.mp4',
+  // Ball Gown Collection (24 verified official images)
   '/media/collections/ball-gown/ball-gown 001.jpeg',
   '/media/collections/ball-gown/ball-gown 002.jpeg',
   '/media/collections/ball-gown/ball-gown 003.jpeg',
@@ -47,13 +48,13 @@ export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
   '/media/collections/ball-gown/ball-gown 008.jpg',
   '/media/collections/ball-gown/ball-gown 009.jpg',
   '/media/collections/ball-gown/ball-gown 010.jpg',
-  '/media/collections/ball-gown/ball-gown 01017.jpg',
   '/media/collections/ball-gown/ball-gown 011.jpg',
   '/media/collections/ball-gown/ball-gown 012.jpg',
   '/media/collections/ball-gown/ball-gown 013.jpg',
   '/media/collections/ball-gown/ball-gown 014.jpg',
   '/media/collections/ball-gown/ball-gown 015.jpg',
   '/media/collections/ball-gown/ball-gown 016.jpg',
+  '/media/collections/ball-gown/ball-gown 017.jpg',
   '/media/collections/ball-gown/ball-gown 018.jpg',
   '/media/collections/ball-gown/ball-gown 019.jpg',
   '/media/collections/ball-gown/ball-gown 020.jpg',
@@ -61,6 +62,7 @@ export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
   '/media/collections/ball-gown/ball-gown 022.jpg',
   '/media/collections/ball-gown/ball-gown 023.jpg',
   '/media/collections/ball-gown/ball-gown 024.jpg',
+  // Mermaid Gowns Collection (18 verified official images)
   '/media/collections/mermaid/mermaid 001.jpeg',
   '/media/collections/mermaid/mermaid 002.jpeg',
   '/media/collections/mermaid/mermaid 003.jpeg',
@@ -79,6 +81,7 @@ export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
   '/media/collections/mermaid/mermaid 016.jpg',
   '/media/collections/mermaid/mermaid 017.jpg',
   '/media/collections/mermaid/mermaid 020.jpg',
+  // Veils & Accessories Collection (9 verified official images)
   '/media/collections/accessories/veil 001.jpg',
   '/media/collections/accessories/veil 002.jpg',
   '/media/collections/accessories/veil 003.jpg',
@@ -92,74 +95,81 @@ export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
 
 /**
  * Official BEAJAY brand media assets organized strictly by silhouette category.
+ * Contains all 51 physically verified collection photographs.
  */
 export const OFFICIAL_COLLECTION_ASSETS = {
   ballGown: [
-    {
-      officialPath: '/media/collections/ball-gown/ball-gown 001.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL ball gown'
-    },
-    {
-      officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL ball gown'
-    },
-    {
-      officialPath: '/media/collections/ball-gown/ball-gown 003.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL ball gown'
-    }
+    { officialPath: '/media/collections/ball-gown/ball-gown 001.jpeg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 003.jpeg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 004.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 005.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 006.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 007.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 008.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 009.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 010.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 011.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 012.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 013.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 014.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 015.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 016.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 017.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 018.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 019.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 020.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 021.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 022.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 023.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' },
+    { officialPath: '/media/collections/ball-gown/ball-gown 024.jpg', alt: 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography' }
   ],
   mermaid: [
-    {
-      officialPath: '/media/collections/mermaid/mermaid 001.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
-    },
-    {
-      officialPath: '/media/collections/mermaid/mermaid 002.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
-    },
-    {
-      officialPath: '/media/collections/mermaid/mermaid 003.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
-    },
-    {
-      officialPath: '/media/collections/mermaid/mermaid 004.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
-    },
-    {
-      officialPath: '/media/collections/mermaid/mermaid 005.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
-    },
-    {
-      officialPath: '/media/collections/mermaid/mermaid 006.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
-    },
-    {
-      officialPath: '/media/collections/mermaid/mermaid 007.jpeg',
-      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
-    }
+    { officialPath: '/media/collections/mermaid/mermaid 001.jpeg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 002.jpeg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 003.jpeg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 004.jpeg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 005.jpeg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 006.jpeg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 007.jpeg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 008.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 009.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 010.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 011.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 012.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 013.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 014.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 015.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 016.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 017.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' },
+    { officialPath: '/media/collections/mermaid/mermaid 020.jpg', alt: 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography' }
+  ],
+  accessories: [
+    { officialPath: '/media/collections/accessories/veil 001.jpg', alt: 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography' },
+    { officialPath: '/media/collections/accessories/veil 002.jpg', alt: 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography' },
+    { officialPath: '/media/collections/accessories/veil 003.jpg', alt: 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography' },
+    { officialPath: '/media/collections/accessories/veil 004.jpg', alt: 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography' },
+    { officialPath: '/media/collections/accessories/veil 005.jpg', alt: 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography' },
+    { officialPath: '/media/collections/accessories/veil 006.jpg', alt: 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography' },
+    { officialPath: '/media/collections/accessories/veil 008.jpg', alt: 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography' },
+    { officialPath: '/media/collections/accessories/veil 009.jpg', alt: 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography' },
+    { officialPath: '/media/collections/accessories/veil 010.jpg', alt: 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography' }
   ]
 } as const;
 
 /**
  * Resolves an asset to its active URL based on current environment settings.
  * If USE_OFFICIAL_MEDIA is enabled and the asset has a verified official file uploaded,
- * it returns the canonical local path; otherwise seamlessly falls back to the placeholder.
+ * it returns the canonical local path (with spaces safely percent-encoded);
+ * otherwise seamlessly falls back to the placeholder.
  */
 export const resolveMedia = (asset: MediaAsset): string => {
   if (USE_OFFICIAL_MEDIA) {
-    let resolved: string | null = null;
     if (asset.hasOfficial && asset.officialPath) {
-      resolved = asset.officialPath;
-    } else if (asset.officialPath && VERIFIED_OFFICIAL_MEDIA_PATHS.has(asset.officialPath)) {
-      resolved = asset.officialPath;
+      return encodeURI(decodeURI(asset.officialPath));
     }
-
-    if (resolved) {
-      // Diagnostic cache-busting for hero video to guarantee fresh browser fetch
-      if (resolved === '/media/hero/bridal-hero-v2.mp4') {
-        return '/media/hero/bridal-hero-v2.mp4?v=20260916-v2-official';
-      }
-      return resolved;
+    if (asset.officialPath && VERIFIED_OFFICIAL_MEDIA_PATHS.has(asset.officialPath)) {
+      return encodeURI(decodeURI(asset.officialPath));
     }
   }
   return asset.current;
@@ -220,9 +230,9 @@ export const COLLECTION_MEDIA_ASSETS = {
     },
     accessories: {
       current: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/collections/accessories/veil-cover.jpg',
-      hasOfficial: false,
-      alt: 'Veils & Bridal Accessories'
+      officialPath: '/media/collections/accessories/veil 001.jpg',
+      hasOfficial: true,
+      alt: 'BEAJAY COUTURE BRIDAL Veils & Accessories Collection'
     }
   },
   gowns: {
@@ -359,6 +369,12 @@ export const COLLECTION_MEDIA_ASSETS = {
           officialPath: '/media/collections/ball-gown/ball-gown 001.jpeg',
           hasOfficial: true,
           alt: 'BEAJAY COUTURE BRIDAL ball gown'
+        },
+        {
+          current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
+          officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg',
+          hasOfficial: true,
+          alt: 'BEAJAY COUTURE BRIDAL ball gown'
         }
       ]
     },
@@ -464,214 +480,7 @@ export const RENTALS_MEDIA_ASSETS = {
 } as const;
 
 // =========================================================================
-// 4. BESPOKE MEDIA
-// =========================================================================
-export const BESPOKE_MEDIA_ASSETS = {
-  hero: {
-    current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1600&auto=format&fit=crop',
-    officialPath: '/media/bespoke/bespoke-hero.jpg',
-    alt: 'Bridal gown construction and fabric draping on dressmaker form'
-  },
-  atelier: {
-    sketching: {
-      current: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop',
-      officialPath: '/media/bespoke/atelier-sketching.jpg',
-      alt: 'Concept sketching and design ideation'
-    },
-    draping: {
-      current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200&auto=format&fit=crop',
-      officialPath: '/media/bespoke/atelier-draping.jpg',
-      alt: 'Artisan draping on mannequin'
-    },
-    structure: {
-      current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-      officialPath: '/media/bespoke/atelier-structure.jpg',
-      alt: 'Thoughtful gown structure and inner support'
-    },
-    fitting: {
-      current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
-      officialPath: '/media/bespoke/atelier-fitting.jpg',
-      alt: 'Precision fitting and silhouette alignment'
-    }
-  },
-  details: {
-    beading: {
-      current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
-      officialPath: '/media/bespoke/details-beading.jpg',
-      alt: 'Delicate hand-sewn beadwork'
-    },
-    lace: {
-      current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-      officialPath: '/media/bespoke/details-lace.jpg',
-      alt: 'Careful lace appliqué placement'
-    },
-    veils: {
-      current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-      officialPath: '/media/bespoke/details-veils.jpg',
-      alt: 'Veil and train tailoring'
-    },
-    finishing: {
-      current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
-      officialPath: '/media/bespoke/details-finishing.jpg',
-      alt: 'Fine bridal finishing and closures'
-    }
-  },
-  journey: [
-    {
-      step: '01',
-      title: 'CONSULTATION',
-      subtitle: "Understanding the Bride's Vision",
-      description: "Understanding the bride's vision, wedding aesthetic and preferred direction.",
-      current: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/journey-01.jpg'
-    },
-    {
-      step: '02',
-      title: 'DESIGN',
-      subtitle: 'Developing the Gown Concept',
-      description: 'Developing the creative direction and gown concept.',
-      current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/journey-02.jpg'
-    },
-    {
-      step: '03',
-      title: 'FABRIC & DETAILS',
-      subtitle: 'Materials & Embellishment',
-      description: 'Exploring materials, embellishment and finishing details.',
-      current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/journey-03.jpg'
-    },
-    {
-      step: '04',
-      title: 'FITTINGS',
-      subtitle: 'Refining Fit & Silhouette',
-      description: "Refining the gown's fit and silhouette during the creation process.",
-      current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/journey-04.jpg'
-    },
-    {
-      step: '05',
-      title: 'FINAL CREATION',
-      subtitle: 'The Finished Bridal Piece',
-      description: 'Completing the finished BEAJAY bridal piece.',
-      current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/journey-05.jpg'
-    }
-  ],
-  silhouettes: {
-    ballGown: {
-      current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/bespoke/silhouette-ball-gown.jpg'
-    },
-    mermaid: {
-      current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/bespoke/silhouette-mermaid.jpg'
-    },
-    aLine: {
-      current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/bespoke/silhouette-a-line.jpg'
-    },
-    sheath: {
-      current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=900&auto=format&fit=crop',
-      officialPath: '/media/bespoke/silhouette-sheath.jpg'
-    }
-  },
-  craftsmanship: {
-    lace: {
-      current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/craft-lace.jpg'
-    },
-    beading: {
-      current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/craft-beading.jpg'
-    },
-    structure: {
-      current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/craft-structure.jpg'
-    },
-    draping: {
-      current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/craft-draping.jpg'
-    },
-    veils: {
-      current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/craft-veils.jpg'
-    },
-    finishing: {
-      current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop',
-      officialPath: '/media/bespoke/craft-finishing.jpg'
-    }
-  },
-  inspirationGallery: [
-    {
-      id: 'bg-1',
-      title: 'Concept & Silhouette Exploration',
-      category: 'Craftsmanship' as const,
-      current: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop',
-      officialPath: '/media/bespoke/inspiration-01.jpg',
-      caption: 'Exploring silhouette proportions, line work, and drape during design development.'
-    },
-    {
-      id: 'bg-2',
-      title: 'Draped Bodice on Form',
-      category: 'Atelier' as const,
-      current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop',
-      officialPath: '/media/bespoke/inspiration-02.jpg',
-      caption: 'Arranging fabric folds and exploring structure on the dress form.'
-    },
-    {
-      id: 'bg-3',
-      title: 'Lace Appliqué Placement',
-      category: 'Details' as const,
-      current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000&auto=format&fit=crop',
-      officialPath: '/media/bespoke/inspiration-03.jpg',
-      caption: 'Exploring delicate lace motifs and textured floral accents.'
-    },
-    {
-      id: 'bg-4',
-      title: 'Illusion Back & Covered Buttons',
-      category: 'Details' as const,
-      current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1000&auto=format&fit=crop',
-      officialPath: '/media/bespoke/inspiration-04.jpg',
-      caption: 'Meticulously spaced fabric-covered buttons along an illusion back line.'
-    },
-    {
-      id: 'bg-5',
-      title: 'Hand-Finished Detailing',
-      category: 'Craftsmanship' as const,
-      current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1000&auto=format&fit=crop',
-      officialPath: '/media/bespoke/inspiration-05.jpg',
-      caption: 'Subtle beadwork and textural detailing catching the light.'
-    },
-    {
-      id: 'bg-6',
-      title: 'Silhouette Fitting & Proportions',
-      category: 'Atelier' as const,
-      current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1000&auto=format&fit=crop',
-      officialPath: '/media/bespoke/inspiration-06.jpg',
-      caption: 'Evaluating comfort, balance, and hemline alignment during fitting.'
-    },
-    {
-      id: 'bg-7',
-      title: 'Veil & Train Detailing',
-      category: 'Silhouettes' as const,
-      current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1000&auto=format&fit=crop',
-      officialPath: '/media/bespoke/inspiration-07.jpg',
-      caption: 'Soft bridal veil bordered with delicate coordinating lace.'
-    },
-    {
-      id: 'bg-8',
-      title: 'Bridal Silhouette Inspiration',
-      category: 'Bridal Inspiration' as const,
-      current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1000&auto=format&fit=crop',
-      officialPath: '/media/bespoke/inspiration-08.jpg',
-      caption: 'A graceful bridal silhouette crafted with care and presence.'
-    }
-  ]
-} as const;
-
-// =========================================================================
-// 5. GALLERY MEDIA
+// 4. GALLERY MEDIA
 // =========================================================================
 
 /** Curated gallery items for homepage preview */
@@ -1035,7 +844,7 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
 ] as const;
 
 // =========================================================================
-// 6. EDITORIAL & SECTION MEDIA
+// 5. EDITORIAL & SECTION MEDIA
 // =========================================================================
 export const EDITORIAL_MEDIA_ASSETS = {
   aboutModal: {
@@ -1061,29 +870,17 @@ export const EDITORIAL_MEDIA_ASSETS = {
       hasOfficial: true,
       alt: 'BEAJAY COUTURE BRIDAL mermaid gown rental collection'
     },
-    bespoke: {
+    gallery: {
       current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
       officialPath: '/media/collections/mermaid/mermaid 005.jpeg',
       hasOfficial: true,
-      alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
-    }
-  },
-  bespokeSection: {
-    primary: {
-      current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-      officialPath: '/media/bespoke/bespoke-section-primary.jpg',
-      alt: 'Bride bridal gown back with buttons and lace'
-    },
-    secondary: {
-      current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop',
-      officialPath: '/media/bespoke/bespoke-section-secondary.jpg',
-      alt: 'Hand tailoring and lace embroidery detail'
+      alt: 'BEAJAY COUTURE BRIDAL bridal gallery'
     }
   }
 } as const;
 
 // =========================================================================
-// 7. ABOUT PAGE MEDIA ASSETS
+// 6. ABOUT PAGE MEDIA ASSETS
 // =========================================================================
 export const ABOUT_MEDIA_ASSETS = {
   hero: {
@@ -1115,7 +912,6 @@ export const MEDIA_REGISTRY = {
   hero: HERO_MEDIA_ASSETS,
   collections: COLLECTION_MEDIA_ASSETS,
   rentals: RENTALS_MEDIA_ASSETS,
-  bespoke: BESPOKE_MEDIA_ASSETS,
   gallery: GALLERY_MEDIA_ASSETS,
   editorial: EDITORIAL_MEDIA_ASSETS,
   about: ABOUT_MEDIA_ASSETS

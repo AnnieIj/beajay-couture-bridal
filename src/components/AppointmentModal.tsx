@@ -11,6 +11,8 @@ import {
   Layers
 } from 'lucide-react';
 import { BookingFormData, AppointmentServiceType } from '../types';
+import { buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface AppointmentModalProps {
   isOpen: boolean;
@@ -316,6 +318,16 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
               {/* Direct Alternative Actions */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+                <a
+                  href={buildWhatsAppUrl({ type: 'appointment' })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-[#121A15] hover:bg-[#1A261F] text-white border border-[#25D366]/50 hover:border-[#25D366] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer min-h-[44px] w-full sm:w-auto"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                  <span>WhatsApp Atelier</span>
+                </a>
+
                 {onOpenContact && (
                   <button
                     id="appointment-temp-contact-btn"
@@ -688,7 +700,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               </div>
 
               {/* Submit CTA */}
-              <div className="pt-2">
+              <div className="pt-2 space-y-2.5">
                 <button
                   id="appointment-submit-request-btn"
                   type="submit"
@@ -704,7 +716,18 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                     </>
                   )}
                 </button>
-                <p className="text-[11px] text-center text-neutral-500 font-light mt-2.5">
+
+                <a
+                  href={buildWhatsAppUrl({ type: 'appointment' })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#0E1611] hover:bg-[#15231A] text-white border border-[#25D366]/40 hover:border-[#25D366] py-3.5 px-6 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer min-h-[44px]"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                  <span>OR ENQUIRE VIA WHATSAPP</span>
+                </a>
+
+                <p className="text-[11px] text-center text-neutral-500 font-light pt-1">
                   No payment required today. Private appointments in Enugu, Nigeria.
                 </p>
               </div>

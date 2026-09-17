@@ -1,6 +1,8 @@
 import React from 'react';
 import { X, Sparkles, Instagram } from 'lucide-react';
 import { GownItem } from '../types';
+import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface GownDetailModalProps {
   gown: GownItem | null;
@@ -145,17 +147,27 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
             </button>
 
             <a
-              href="https://instagram.com/beajaycouture_bridal"
+              href={buildWhatsAppUrl({ type: 'gown', gownName: gown.name, gownCode: gown.code })}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-[#0E1511] hover:bg-[#16231B] text-white py-3 px-5 text-xs font-semibold tracking-[0.18em] uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer border border-[#25D366]/40 hover:border-[#25D366]"
+            >
+              <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+              <span>WHATSAPP GOWN ENQUIRY</span>
+            </a>
+
+            <a
+              href={BRAND_CONTACT.socials.instagram.url}
               target="_blank"
               rel="noreferrer"
               className="w-full border border-neutral-800 hover:border-[#C59B3F] hover:text-[#C59B3F] text-neutral-900 py-3 px-5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer"
             >
               <Instagram className="w-4 h-4 text-[#C59B3F]" />
-              <span>Inquire on Instagram</span>
+              <span>Inquire on Instagram ({BRAND_CONTACT.socials.instagram.handle})</span>
             </a>
 
             <p className="text-[10.5px] text-center text-neutral-500 font-light pt-1">
-              Enugu, Nigeria
+              {BRAND_CONTACT.location} • {BRAND_CONTACT.whatsapp.internationalDisplay}
             </p>
           </div>
         </div>

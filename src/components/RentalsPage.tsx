@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 import { ACTIVE_GOWNS_CATALOG, COLLECTION_NAV_CATEGORIES } from '../data/bridalData';
 import { GownItem } from '../types';
+import { buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface RentalsPageProps {
   onSelectGown: (gown: GownItem) => void;
@@ -110,6 +112,16 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
             >
               <span>REQUEST A RENTAL</span>
             </button>
+
+            <a
+              href={buildWhatsAppUrl({ type: 'rental' })}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#101A14] hover:bg-[#18281E] text-white border border-[#25D366]/40 hover:border-[#25D366] px-6 py-3.5 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 cursor-pointer inline-flex items-center gap-2"
+            >
+              <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+              <span>RENTAL WHATSAPP</span>
+            </a>
           </div>
 
         </div>

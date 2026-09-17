@@ -11,6 +11,8 @@ import {
   HeartHandshake
 } from 'lucide-react';
 import { ABOUT_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
+import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface AboutPageProps {
   onNavigateHome: () => void;
@@ -149,6 +151,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <p className="text-xs sm:text-sm text-neutral-700 font-light leading-relaxed">
               From majestic ball gowns with delicate hand-beaded details to sculpted mermaid silhouettes and handcrafted accessories, our designs combine timeless romance with contemporary grace. Through our curated collections and rental options, we ensure every bride experiences bridal elegance tailored with care and attention to detail.
             </p>
+
+            {/* Confirmed Creative Direction Attribution */}
+            <div className="pt-5 border-t border-[#EAE3D5] flex items-center gap-4">
+              <div className="w-11 h-11 rounded-full bg-[#111111] text-[#C59B3F] flex items-center justify-center font-serif text-sm font-medium border border-[#C59B3F]/40 shrink-0">
+                BO
+              </div>
+              <div>
+                <span className="font-serif text-base text-[#111111] block font-normal">
+                  {BRAND_CONTACT.founder.name}
+                </span>
+                <span className="text-[11px] uppercase tracking-[0.22em] text-[#856122] font-semibold block">
+                  {BRAND_CONTACT.founder.title}
+                </span>
+              </div>
+            </div>
 
             <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-[#EAE3D5]">
               <div className="p-4 bg-white border border-[#E8E2D4]">
@@ -421,20 +438,43 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 BEAJAY COUTURE BRIDAL is proudly based in Enugu, Nigeria, designing for brides locally and beyond. Whether you are planning a traditional celebration or a cathedral wedding, our gowns are crafted to make your day unforgettable. Brides outside Enugu can easily get in touch and submit enquiries through our website.
               </p>
 
-              <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 <a
-                  href="https://instagram.com/beajaycouture_bridal"
+                  href={buildWhatsAppUrl({ type: 'general' })}
                   target="_blank"
-                  rel="noreferrer"
-                  className="min-h-[44px] inline-flex items-center gap-2.5 px-6 py-3 bg-[#111111] hover:bg-[#2A2824] text-white text-xs font-semibold tracking-widest uppercase transition-colors"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3 bg-[#111111] hover:bg-[#1C2820] text-white text-xs font-semibold tracking-widest uppercase transition-colors border border-[#25D366]/40"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                  <span>WHATSAPP ATELIER</span>
+                </a>
+
+                <a
+                  href={BRAND_CONTACT.socials.instagram.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit BEAJAY COUTURE BRIDAL on Instagram"
+                  className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3 bg-white hover:bg-[#F2ECE1] text-[#111111] border border-[#DDD4C1] text-xs font-semibold tracking-widest uppercase transition-colors"
                 >
                   <Instagram className="w-4 h-4 text-[#C59B3F]" />
-                  <span>FOLLOW @beajaycouture_bridal</span>
+                  <span>{BRAND_CONTACT.socials.instagram.handle}</span>
                 </a>
+
+                {BRAND_CONTACT.socials.facebook.url && (
+                  <a
+                    href={BRAND_CONTACT.socials.facebook.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visit BEAJAY COUTURE BRIDAL on Facebook"
+                    className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3 bg-white hover:bg-[#F2ECE1] text-[#111111] border border-[#DDD4C1] text-xs font-semibold tracking-widest uppercase transition-colors"
+                  >
+                    <span>{BRAND_CONTACT.socials.facebook.handle}</span>
+                  </a>
+                )}
 
                 <button
                   onClick={onNavigateContact}
-                  className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3 border border-[#856122] hover:bg-white text-[#141312] text-xs font-semibold tracking-widest uppercase transition-colors cursor-pointer"
+                  className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3 border border-[#856122] hover:bg-white text-[#141312] text-xs font-semibold tracking-widest uppercase transition-colors cursor-pointer"
                 >
                   <span>CONTACT BEAJAY</span>
                   <ArrowRight className="w-3.5 h-3.5" />

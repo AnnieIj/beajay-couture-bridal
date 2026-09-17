@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { X, Sparkles, ArrowRight } from 'lucide-react';
-import { ACTIVE_GOWNS_CATALOG, ACTIVE_CATEGORIES } from '../data/bridalData';
-import { GownItem } from '../types';
+import React, { useState, useMemo } from 'react';
+import { X, Sparkles, ArrowRight, Eye } from 'lucide-react';
+import { COLLECTION_MEDIA_ITEMS, COLLECTION_NAV_CATEGORIES } from '../data/bridalData';
+import { CollectionMediaItem, GalleryItem, GownItem } from '../types';
+import { GalleryLightbox } from './GalleryLightbox';
 
 interface CollectionsModalProps {
   isOpen: boolean;
@@ -15,25 +16,45 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
   isOpen,
   onClose,
   defaultCategory,
-  onSelectGown,
   onBookAppointment
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>(defaultCategory || 'all');
-  const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'rent'>('all');
+  const normalizeSlug = (slug?: string) => {
+    if (!slug || slug === 'all') return 'all';
+    if (slug === 'accessories') return 'veils-accessories';
+    return slug;
+  };
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => normalizeSlug(defaultCategory));
+  const [lightboxItem, setLightboxItem] = useState<GalleryItem | null>(null);
+
+  const filteredMedia = useMemo(() => {
+    return COLLECTION_MEDIA_ITEMS.filter((item) => {
+      if (selectedCategory === 'all') return true;
+      if (selectedCategory === 'ball-gown') return item.category === 'ball-gown';
+      if (selectedCategory === 'mermaid') return item.category === 'mermaid';
+      if (selectedCategory === 'veils-accessories' || selectedCategory === 'accessories') {
+        return item.category === 'accessories';
+      }
+      return true;
+    });
+  }, [selectedCategory]);
+
+  const mediaToGalleryItem = (media: CollectionMediaItem): GalleryItem => ({
+    id: media.id,
+    title: `BEAJAY Couture ${media.categoryLabel}`,
+    category: 'bridal-looks',
+    categoryLabel: media.categoryLabel,
+    image: media.src,
+    alt: media.alt,
+    caption: 'Official BEAJAY COUTURE BRIDAL collection photography, Enugu, Nigeria.',
+    featured: media.featured
+  });
+
+  const lightboxItems = useMemo(() => {
+    return filteredMedia.map(mediaToGalleryItem);
+  }, [filteredMedia]);
 
   if (!isOpen) return null;
-
-  const filteredGowns = ACTIVE_GOWNS_CATALOG.filter((gown) => {
-    // Category filter
-    if (selectedCategory !== 'all' && gown.category !== selectedCategory) {
-      return false;
-    }
-    // Availability filter
-    if (availabilityFilter === 'rent' && !gown.isAvailableForRent) {
-      return false;
-    }
-    return true;
-  });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
@@ -48,7 +69,7 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
               BEAJAY COUTURE ARCHIVE
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111]">
-              Bridal Collections Showcase
+              Bridal Collections Lookbook
             </h2>
           </div>
           <button
@@ -60,161 +81,83 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
           </button>
         </div>
 
-        {/* Filter Bar */}
-        <div className="p-4 sm:px-8 border-b border-[#E8E1D2] bg-[#FAF7F0] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-          {/* Silhouette Categories */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none text-xs">
-            <button
-              onClick={() => setSelectedCategory('all')}
-              className={`px-3.5 py-1.5 whitespace-nowrap transition-colors cursor-pointer font-medium tracking-wider uppercase text-[11px] ${
-                selectedCategory === 'all'
-                  ? 'bg-[#111111] text-white'
-                  : 'bg-white text-neutral-700 hover:bg-[#F2EDE2]'
-              }`}
-            >
-              All Silhouettes
-            </button>
+        {/* Filter Bar - Strictly Active Silhouettes Only */}
+        <div className="p-4 sm:px-8 border-b border-[#E8E1D2] bg-[#FAF7F0] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none text-xs">
+            {COLLECTION_NAV_CATEGORIES.map((cat) => {
+              const isSelected = selectedCategory === cat.slug;
+              const count = cat.slug === 'all'
+                ? COLLECTION_MEDIA_ITEMS.length
+                : cat.slug === 'veils-accessories'
+                ? COLLECTION_MEDIA_ITEMS.filter((i) => i.category === 'accessories').length
+                : COLLECTION_MEDIA_ITEMS.filter((i) => i.category === cat.slug).length;
 
-            {ACTIVE_CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.slug)}
-                className={`px-3.5 py-1.5 whitespace-nowrap transition-colors cursor-pointer font-medium tracking-wider uppercase text-[11px] ${
-                  selectedCategory === cat.slug
-                    ? 'bg-[#C59B3F] text-white'
-                    : 'bg-white text-neutral-700 hover:bg-[#F2EDE2]'
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.slug)}
+                  className={`px-3.5 py-1.5 whitespace-nowrap transition-all cursor-pointer font-semibold tracking-[0.16em] uppercase text-[10.5px] border ${
+                    isSelected
+                      ? 'bg-[#111111] text-white border-[#111111]'
+                      : 'bg-white text-neutral-700 border-[#DDD5C7] hover:border-[#C59B3F] hover:text-[#C59B3F]'
+                  }`}
+                >
+                  <span>{cat.name}</span>
+                  <span className={`ml-1.5 font-mono text-[9.5px] ${isSelected ? 'text-[#C59B3F]' : 'text-neutral-400'}`}>
+                    ({count})
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Availability Filter */}
-          <div className="flex items-center gap-2 self-end md:self-auto text-xs">
-            <button
-              onClick={() => setAvailabilityFilter('all')}
-              className={`px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
-                availabilityFilter === 'all' ? 'text-[#856122] font-semibold underline' : 'text-neutral-600'
-              }`}
-            >
-              All Gowns
-            </button>
-            <span className="text-neutral-400">|</span>
-            <button
-              onClick={() => setAvailabilityFilter('rent')}
-              className={`px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
-                availabilityFilter === 'rent' ? 'text-[#856122] font-semibold underline' : 'text-neutral-600'
-              }`}
-            >
-              Available For Rent
-            </button>
-          </div>
+          <span className="text-[11px] text-neutral-500 font-light hidden sm:inline">
+            Click any image to view in high resolution
+          </span>
         </div>
 
         {/* Content Body Grid */}
         <div className="flex-1 overflow-y-auto p-5 sm:p-8">
-          {filteredGowns.length === 0 ? (
-            <div className="py-20 text-center space-y-3">
-              <Sparkles className="w-8 h-8 text-[#C59B3F] mx-auto opacity-50" />
-              <h3 className="font-serif text-xl text-neutral-700">No gowns found in this selection</h3>
-              <p className="text-xs text-neutral-500 max-w-sm mx-auto">
-                Try selecting a different silhouette category or reset filters to browse our full couture catalog.
-              </p>
-              <button
-                onClick={() => {
-                  setSelectedCategory('all');
-                  setAvailabilityFilter('all');
-                }}
-                className="mt-2 text-xs text-[#C59B3F] underline uppercase tracking-wider font-semibold cursor-pointer"
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            {filteredMedia.map((item, idx) => (
+              <div
+                key={item.id}
+                onClick={() => setLightboxItem(mediaToGalleryItem(item))}
+                className="group relative flex flex-col bg-white border border-[#EBE5DA] hover:border-[#C59B3F] transition-all cursor-pointer overflow-hidden shadow-xs hover:shadow-md"
               >
-                Reset All Filters
-              </button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredGowns.map((gown) => (
-                <div
-                  key={gown.id}
-                  className="group bg-white border border-[#E9E3D6] hover:border-[#C59B3F] transition-all flex flex-col overflow-hidden shadow-xs hover:shadow-lg"
-                >
-                  {/* Gown Photo */}
-                  <div className="relative aspect-[3/4] bg-neutral-100 overflow-hidden cursor-pointer">
-                    <img
-                      src={gown.image}
-                      alt={gown.name}
-                      loading="lazy"
-                      onClick={() => onSelectGown(gown)}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                    
-                    {/* Top Badges */}
-                    <div className="absolute top-3 left-3 flex flex-col gap-1">
-                      <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] px-2 py-0.5 tracking-wider uppercase font-sans">
-                        {gown.categoryLabel}
-                      </span>
-                      {gown.isAvailableForRent && (
-                        <span className="bg-[#C59B3F] text-white text-[9px] px-2 py-0.5 tracking-wider uppercase font-sans font-medium">
-                          Available For Rent
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Quick Inspect Button on Hover */}
-                    <div className="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      <button
-                        onClick={() => onSelectGown(gown)}
-                        className="w-full bg-[#111111]/90 hover:bg-black text-white py-2 text-[11px] font-semibold tracking-wider uppercase transition-colors shadow-xs cursor-pointer"
-                      >
-                        View Details & Fit
-                      </button>
-                    </div>
+                <div className="relative aspect-[3/4] bg-[#F3EFE7] overflow-hidden">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="bg-white/90 text-[#111111] text-[10px] uppercase font-semibold tracking-wider px-3 py-1.5 flex items-center gap-1.5">
+                      <Eye className="w-3 h-3 text-[#C59B3F]" />
+                      <span>View</span>
+                    </span>
                   </div>
-
-                  {/* Content */}
-                  <div className="p-4 flex flex-col justify-between flex-1 space-y-3">
-                    <div>
-                      <h4 
-                        onClick={() => onSelectGown(gown)}
-                        className="font-serif text-base text-[#111111] hover:text-[#C59B3F] transition-colors cursor-pointer"
-                      >
-                        {gown.name}
-                      </h4>
-                      <p className="text-[11px] text-neutral-500 font-light mt-1 line-clamp-2">
-                        {gown.description}
-                      </p>
-                    </div>
-
-                    <div className="pt-2 border-t border-[#F2ECE0]">
-                      <div className="grid grid-cols-2 gap-2">
-                        <button
-                          onClick={() => onSelectGown(gown)}
-                          className="py-2 text-[10.5px] border border-neutral-300 hover:border-neutral-800 text-neutral-800 uppercase tracking-wider text-center cursor-pointer"
-                        >
-                          Details
-                        </button>
-                        <button
-                          onClick={() => onBookAppointment(gown.name)}
-                          className="py-2 text-[10.5px] bg-[#C59B3F] hover:bg-[#B3892F] text-white uppercase tracking-wider text-center font-semibold cursor-pointer"
-                        >
-                          Book Fitting
-                        </button>
-                      </div>
-                    </div>
+                  <div className="absolute top-2 left-2">
+                    <span className="bg-[#111111]/80 text-white text-[8.5px] tracking-[0.18em] uppercase px-2 py-0.5 font-mono">
+                      {item.categoryLabel}
+                    </span>
                   </div>
-
                 </div>
-              ))}
-            </div>
-          )}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Footer */}
         <div className="p-4 border-t border-[#EAE3D5] bg-white flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
-          <span>Enugu, Nigeria</span>
+          <span>Official BEAJAY Collection Archive • Enugu, Nigeria</span>
           <button
-            onClick={() => onBookAppointment()}
-            className="text-xs font-semibold text-[#856122] hover:underline flex items-center gap-1 uppercase tracking-wider cursor-pointer"
+            onClick={() => {
+              onClose();
+              onBookAppointment();
+            }}
+            className="text-xs font-semibold text-[#856122] hover:underline flex items-center gap-1.5 uppercase tracking-wider cursor-pointer"
           >
             <span>Book In-Studio Fitting Consultation</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -222,6 +165,15 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
         </div>
 
       </div>
+
+      {lightboxItem && (
+        <GalleryLightbox
+          item={lightboxItem}
+          items={lightboxItems}
+          onClose={() => setLightboxItem(null)}
+          onSelectItem={(item) => setLightboxItem(item)}
+        />
+      )}
     </div>
   );
 };

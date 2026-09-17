@@ -39,6 +39,21 @@ export interface CollectionCategory {
 }
 
 // =========================================================================
+// COLLECTION MEDIA DATA CONTRACT (OFFICIAL EDITORIAL PHOTOGRAPHY)
+// =========================================================================
+
+export type CollectionMediaCategory = 'ball-gown' | 'mermaid' | 'accessories';
+
+export interface CollectionMediaItem {
+  id: string;
+  src: string;
+  category: CollectionMediaCategory;
+  categoryLabel: string;
+  alt: string;
+  featured?: boolean;
+}
+
+// =========================================================================
 // TESTIMONIAL DATA CONTRACT (FOR APPROVED REVIEWS & SUBMISSION PIPELINE)
 // =========================================================================
 

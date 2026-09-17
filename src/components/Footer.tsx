@@ -3,9 +3,12 @@ import {
   MapPin, 
   Instagram, 
   MessageSquare, 
-  ArrowUp
+  ArrowUp,
+  Globe
 } from 'lucide-react';
 import { ActiveModal } from '../types';
+import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface FooterProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -171,25 +174,87 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Connect & Appointments Column */}
           <div className="lg:col-span-4 space-y-4">
             <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-white pb-1 border-b border-[#262420] inline-block">
-              Connect
+              Connect & Atelier
             </h3>
             
-            <div className="space-y-3 text-xs text-neutral-300 font-light">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#C59B3F] shrink-0" />
-                <span>Enugu, Nigeria</span>
+            <div className="space-y-2.5 text-xs text-neutral-300 font-light">
+              <div className="flex items-center gap-2 text-neutral-400">
+                <MapPin className="w-3.5 h-3.5 text-[#C59B3F] shrink-0" />
+                <span>{BRAND_CONTACT.location}</span>
               </div>
 
-              <div className="pt-1">
+              {/* Clickable WhatsApp */}
+              <div className="pt-0.5">
                 <a 
-                  href="https://instagram.com/beajaycouture_bridal"
+                  href={buildWhatsAppUrl({ type: 'general' })}
                   target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-neutral-300 hover:text-[#E6C875] transition-colors"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[#25D366] hover:text-[#58f390] transition-colors"
                 >
-                  <Instagram className="w-4 h-4 text-[#C59B3F]" />
-                  <span>@beajaycouture_bridal</span>
+                  <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />
+                  <span className="font-mono text-xs">{BRAND_CONTACT.whatsapp.internationalDisplay}</span>
                 </a>
+              </div>
+
+              {/* Social Channels List */}
+              <div className="pt-1.5 space-y-1.5 text-[11px] text-neutral-400">
+                <div className="flex items-center gap-2">
+                  <a 
+                    href={BRAND_CONTACT.socials.instagram.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-[#E6C875] transition-colors flex items-center gap-1.5"
+                  >
+                    <Instagram className="w-3.5 h-3.5 text-[#C59B3F] shrink-0" />
+                    <span>Instagram: {BRAND_CONTACT.socials.instagram.handle}</span>
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-neutral-500">•</span>
+                  {BRAND_CONTACT.socials.facebook.url ? (
+                    <a 
+                      href={BRAND_CONTACT.socials.facebook.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Visit BEAJAY COUTURE BRIDAL on Facebook"
+                      className="hover:text-[#E6C875] transition-colors"
+                    >
+                      Facebook: {BRAND_CONTACT.socials.facebook.handle}
+                    </a>
+                  ) : (
+                    <span>Facebook: {BRAND_CONTACT.socials.facebook.handle}</span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-neutral-500">•</span>
+                  {BRAND_CONTACT.socials.tiktok.url ? (
+                    <a 
+                      href={BRAND_CONTACT.socials.tiktok.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-[#E6C875] transition-colors"
+                    >
+                      TikTok: {BRAND_CONTACT.socials.tiktok.handle}
+                    </a>
+                  ) : (
+                    <span>TikTok: {BRAND_CONTACT.socials.tiktok.handle}</span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Globe className="w-3 h-3 text-[#C59B3F] shrink-0" />
+                  {BRAND_CONTACT.socials.global.url ? (
+                    <a 
+                      href={BRAND_CONTACT.socials.global.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-[#E6C875] transition-colors"
+                    >
+                      Global: {BRAND_CONTACT.socials.global.handle}
+                    </a>
+                  ) : (
+                    <span>Global: {BRAND_CONTACT.socials.global.handle}</span>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -200,18 +265,15 @@ export const Footer: React.FC<FooterProps> = ({
               >
                 REQUEST FITTING
               </button>
-              <button
-                onClick={() => {
-                  if (onNavigateContact) {
-                    onNavigateContact();
-                  } else {
-                    onOpenModal('contact');
-                  }
-                }}
-                className="border border-[#3E3A32] hover:border-[#C59B3F] text-neutral-300 hover:text-white py-2.5 px-4 text-[10.5px] font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer text-center"
+              <a
+                href={buildWhatsAppUrl({ type: 'general' })}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 border border-[#25D366]/40 hover:border-[#25D366] text-neutral-300 hover:text-white py-2.5 px-4 text-[10.5px] font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer text-center"
               >
-                CONTACT US
-              </button>
+                <WhatsAppIcon className="w-3 h-3 text-[#25D366]" />
+                <span>WHATSAPP CHAT</span>
+              </a>
             </div>
           </div>
 

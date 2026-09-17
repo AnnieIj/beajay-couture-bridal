@@ -1,22 +1,29 @@
-import { GownItem, CollectionCategory, Testimonial, GalleryItem, GalleryCategory } from '../types';
+import { GownItem, CollectionCategory, Testimonial, GalleryItem, GalleryCategory, CollectionMediaItem } from '../types';
 import { 
   HERO_MEDIA_ASSETS, 
   COLLECTION_MEDIA_ASSETS,
+  OFFICIAL_COLLECTION_ASSETS,
   GALLERY_MEDIA_ASSETS,
   HOMEPAGE_GALLERY_MEDIA_ASSETS,
   EDITORIAL_GALLERY_MEDIA_ASSETS,
   resolveMedia 
 } from '../config/mediaAssets';
+import { BRAND_CONTACT } from '../config/brandConfig';
 
 export const HERO_VIDEO_URL = resolveMedia(HERO_MEDIA_ASSETS.video);
 export const HERO_POSTER_URL = resolveMedia(HERO_MEDIA_ASSETS.poster);
 
 export const BUSINESS_INFO = {
-  name: 'BEAJAY COUTURE BRIDAL',
-  location: 'Enugu, Nigeria',
-  instagramHandle: '@beajaycouture_bridal',
-  instagramUrl: 'https://instagram.com/beajaycouture_bridal',
-  schedule: 'Fittings & Consultations'
+  name: BRAND_CONTACT.brandName,
+  tagline: BRAND_CONTACT.tagline,
+  location: BRAND_CONTACT.location,
+  founder: BRAND_CONTACT.founder,
+  whatsapp: BRAND_CONTACT.whatsapp,
+  socials: BRAND_CONTACT.socials,
+  instagramHandle: BRAND_CONTACT.socials.instagram.handle,
+  instagramUrl: BRAND_CONTACT.socials.instagram.url,
+  facebookHandle: BRAND_CONTACT.socials.facebook.handle,
+  facebookUrl: BRAND_CONTACT.socials.facebook.url
 };
 
 export const CATEGORIES: CollectionCategory[] = [
@@ -80,11 +87,41 @@ export interface CollectionCategoryNav {
 }
 
 export const COLLECTION_NAV_CATEGORIES: CollectionCategoryNav[] = [
-  { id: 'all', name: 'All Gowns', slug: 'all' },
-  ...ACTIVE_CATEGORIES.map((cat) => ({
-    id: cat.id,
-    name: cat.name,
-    slug: cat.slug as 'ball-gown' | 'mermaid' | 'veils-accessories'
+  { id: 'all', name: 'ALL', slug: 'all' },
+  { id: 'ball-gown', name: 'BALL GOWN', slug: 'ball-gown' },
+  { id: 'mermaid', name: 'MERMAID GOWNS', slug: 'mermaid' },
+  { id: 'veils-accessories', name: 'VEILS & ACCESSORIES', slug: 'veils-accessories' }
+];
+
+/**
+ * COLLECTION MEDIA LAYER
+ * Official BEAJAY Couture Bridal collection photography registered independently from product records.
+ * Holds all 51 physically verified images across Ball Gown (24), Mermaid (18), and Veils & Accessories (9).
+ */
+export const COLLECTION_MEDIA_ITEMS: CollectionMediaItem[] = [
+  ...OFFICIAL_COLLECTION_ASSETS.ballGown.map((item, idx) => ({
+    id: `bg-media-${String(idx + 1).padStart(3, '0')}`,
+    src: encodeURI(decodeURI(item.officialPath)),
+    category: 'ball-gown' as const,
+    categoryLabel: 'Ball Gown',
+    alt: item.alt || 'BEAJAY COUTURE BRIDAL Ball Gown Editorial Photography',
+    featured: idx < 4
+  })),
+  ...OFFICIAL_COLLECTION_ASSETS.mermaid.map((item, idx) => ({
+    id: `mermaid-media-${String(idx + 1).padStart(3, '0')}`,
+    src: encodeURI(decodeURI(item.officialPath)),
+    category: 'mermaid' as const,
+    categoryLabel: 'Mermaid Gowns',
+    alt: item.alt || 'BEAJAY COUTURE BRIDAL Mermaid Gown Editorial Photography',
+    featured: idx < 3
+  })),
+  ...OFFICIAL_COLLECTION_ASSETS.accessories.map((item, idx) => ({
+    id: `accessories-media-${String(idx + 1).padStart(3, '0')}`,
+    src: encodeURI(decodeURI(item.officialPath)),
+    category: 'accessories' as const,
+    categoryLabel: 'Veils & Accessories',
+    alt: item.alt || 'BEAJAY COUTURE BRIDAL Veil & Accessory Editorial Photography',
+    featured: idx < 2
   }))
 ];
 
@@ -273,11 +310,13 @@ export const GOWNS_CATALOG: GownItem[] = [
     description: 'Long-sleeved bridal elegance with an intricately detailed bodice, high neckline collar, and voluminous skirt for church and cathedral ceremonies.',
     images: [
       resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.primary),
-      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.gallery[0])
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.gallery[0]),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.gallery[1])
     ],
     image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.primary),
     gallery: [
-      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.gallery[0])
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.gallery[0]),
+      resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj07.gallery[1])
     ],
     sizes: ['UK 10', 'Custom Sizing Available'],
     fabric: 'Damask & Metallic Threaded Lace',

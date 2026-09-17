@@ -43,7 +43,7 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
       description: 'Explore BEAJAY bridal looks, details and creative work.',
       cta: 'View Gallery',
       action: onNavigateGallery,
-      image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.bespoke),
+      image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.gallery),
       alt: 'BEAJAY bridal looks, details and creative work',
       tag: 'Moments & Details'
     }

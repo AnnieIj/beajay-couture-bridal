@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { X, MapPin, Instagram, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { X, MapPin, Instagram, Send, CheckCircle2 } from 'lucide-react';
+import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -74,19 +76,27 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   <span>Location</span>
                 </div>
                 <p className="text-neutral-600 font-light pl-6">
-                  Enugu, Nigeria
+                  {BRAND_CONTACT.location}
                 </p>
               </div>
 
+              {/* Direct Official WhatsApp */}
               <div className="space-y-1.5 border-t border-[#F2ECE0] pt-4">
                 <div className="flex items-center gap-2 text-neutral-900 font-semibold tracking-wider uppercase text-[11px]">
-                  <Clock className="w-4 h-4 text-[#C59B3F]" />
-                  <span>Fitting & Appointment Schedule</span>
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                  <span>Official WhatsApp</span>
                 </div>
-                <div className="pl-6 space-y-1.5 text-neutral-600 font-light text-xs">
-                  <p className="text-neutral-800 font-medium">By Private Appointment Only</p>
-                  <p className="text-[11px] text-neutral-500">
-                    Each bride or vendor partner is allocated dedicated studio time with our head bridal consultant.
+                <div className="pl-6 space-y-1">
+                  <a
+                    href={buildWhatsAppUrl({ type: 'general' })}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#25D366] hover:text-[#1ebe5d] font-mono text-xs font-semibold inline-flex items-center gap-1.5"
+                  >
+                    <span>{BRAND_CONTACT.whatsapp.internationalDisplay}</span>
+                  </a>
+                  <p className="text-[11px] text-neutral-500 font-light">
+                    Direct enquiry line with the BEAJAY atelier.
                   </p>
                 </div>
               </div>
@@ -98,14 +108,26 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </div>
                 <div className="pl-6 space-y-1 text-neutral-600 font-light">
                   <a 
-                    href="https://instagram.com/beajaycouture_bridal"
+                    href={BRAND_CONTACT.socials.instagram.url}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    aria-label="Visit BEAJAY COUTURE BRIDAL on Instagram"
                     className="text-[#856122] font-medium hover:underline flex items-center gap-1.5"
                   >
-                    <span>@beajaycouture_bridal</span>
+                    <span>Instagram: {BRAND_CONTACT.socials.instagram.handle}</span>
                   </a>
-                  <p className="text-[11px] text-neutral-400">Follow for our latest gown releases & runway reels.</p>
+                  {BRAND_CONTACT.socials.facebook.url && (
+                    <a 
+                      href={BRAND_CONTACT.socials.facebook.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Visit BEAJAY COUTURE BRIDAL on Facebook"
+                      className="text-[#856122] font-medium hover:underline flex items-center gap-1.5 pt-0.5"
+                    >
+                      <span>Facebook: {BRAND_CONTACT.socials.facebook.handle}</span>
+                    </a>
+                  )}
+                  <p className="text-[11px] text-neutral-400 pt-0.5">Follow for our latest gown releases & runway reels.</p>
                 </div>
               </div>
 
@@ -117,7 +139,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   }}
                   className="w-full flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3 px-4 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
                 >
-                  <Clock className="w-4 h-4" />
                   <span>Request Private Fitting Slot</span>
                 </button>
               </div>
@@ -131,11 +152,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   <CheckCircle2 className="w-12 h-12 text-[#C59B3F] mx-auto" />
                   <h4 className="font-serif text-2xl text-neutral-900">Message Sent</h4>
                   <p className="text-xs text-neutral-600 font-light max-w-xs mx-auto">
-                    Thank you, {name}. Our Enugu studio desk will get back to you shortly.
+                    Thank you, {name}. Your message has been received by BEAJAY COUTURE BRIDAL.
                   </p>
                   <button
                     onClick={() => setSent(false)}
-                    className="text-xs text-[#856122] underline tracking-wider uppercase"
+                    className="text-xs text-[#856122] underline tracking-wider uppercase cursor-pointer"
                   >
                     Send Another Note
                   </button>

@@ -16,6 +16,8 @@ import {
 import { GownItem } from '../types';
 import { GOWNS_CATALOG } from '../data/bridalData';
 import { GownCard } from './GownCard';
+import { buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface GownDetailPageProps {
   gown: GownItem;
@@ -364,6 +366,17 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                 <MessageSquare className="w-4 h-4 text-[#856122]" />
                 <span>ENQUIRE ABOUT THIS GOWN</span>
               </button>
+
+              {/* Action 4: WhatsApp Gown Enquiry */}
+              <a
+                href={buildWhatsAppUrl({ type: 'gown', gownName: gown.name, gownCode: gown.code })}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-[#0E1511] hover:bg-[#16231B] text-white py-3.5 px-6 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 border border-[#25D366]/40 hover:border-[#25D366] cursor-pointer"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                <span>WHATSAPP GOWN ENQUIRY</span>
+              </a>
 
             </div>
 

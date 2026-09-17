@@ -9,9 +9,12 @@ import {
   Compass, 
   Sparkles, 
   ArrowRight,
-  MessageSquare
+  MessageSquare,
+  Globe
 } from 'lucide-react';
 import { ContactEnquiryType, GeneralContactFormData } from '../types';
+import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface ContactPageProps {
   preselectedGown?: string | null;
@@ -488,11 +491,57 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
           </div>
 
-          {/* Right Column: Verified Public Information & Instagram */}
-          <div className="lg:col-span-4 space-y-8">
+          {/* Right Column: Confirmed Contact Points & Social Channels */}
+          <div className="lg:col-span-4 space-y-6">
             
-            {/* Verified Location Card */}
-            <div className="bg-white border border-[#E5DFD1] p-6 sm:p-8 space-y-5 shadow-sm">
+            {/* Confirmed Official WhatsApp Card */}
+            <div className="bg-[#FAF8F5] border-2 border-[#25D366]/30 p-6 sm:p-8 space-y-4 shadow-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+                  DIRECT MESSAGING
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#25D366]/10 text-[#1B8A44] text-[10px] font-semibold tracking-wider uppercase rounded-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]" />
+                  Active
+                </span>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#111111] text-[#25D366] flex items-center justify-center shrink-0 border border-[#25D366]/30">
+                  <WhatsAppIcon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-xl text-[#111111]">
+                    WhatsApp
+                  </h3>
+                  <a
+                    href={buildWhatsAppUrl({ type: 'general' })}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-base font-semibold text-[#111111] hover:text-[#25D366] transition-colors block mt-0.5 cursor-pointer"
+                  >
+                    {BRAND_CONTACT.whatsapp.internationalDisplay}
+                  </a>
+                </div>
+              </div>
+
+              <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                Connect directly with our atelier for consultations, custom fitting enquiries, and rental questions.
+              </p>
+
+              <a
+                href={buildWhatsAppUrl({ type: 'general' })}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-h-[44px] w-full inline-flex items-center justify-center gap-2.5 px-5 py-3 bg-[#111111] hover:bg-[#1E2B22] text-white text-xs font-semibold tracking-wider uppercase transition-colors border border-[#25D366]/40 cursor-pointer"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                <span>CHAT ON WHATSAPP</span>
+              </a>
+            </div>
+
+            {/* Confirmed Location Card */}
+            <div className="bg-white border border-[#E5DFD1] p-6 sm:p-8 space-y-4 shadow-sm">
               <div className="space-y-1">
                 <span className="text-[10px] tracking-[0.28em] font-semibold text-[#C59B3F] uppercase block">
                   LOCATION
@@ -510,58 +559,124 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       City & Country
                     </span>
                     <span className="text-neutral-600 font-light text-sm">
-                      Enugu, Nigeria
+                      {BRAND_CONTACT.location}
                     </span>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#F2EDE2] space-y-1">
+                <div className="pt-3 border-t border-[#F2EDE2] space-y-1">
                   <span className="font-semibold text-neutral-900 block text-[11px] tracking-wider uppercase">
                     Fittings & Visits
                   </span>
-                  <p className="text-neutral-600 font-light text-xs">
-                    Fittings can be scheduled through our appointment booking system or contact form.
+                  <p className="text-neutral-600 font-light text-xs leading-relaxed">
+                    Fittings are conducted by prior arrangement through our appointment booking system, contact form, or direct WhatsApp.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Verified Instagram Link */}
-            <div className="bg-[#F8F4EC] border border-[#DDD4C1] p-6 sm:p-8 space-y-4">
-              <div className="flex items-center gap-3">
-                <Instagram className="w-5 h-5 text-[#C59B3F] shrink-0" />
-                <div>
-                  <span className="font-semibold text-[#111111] block text-xs tracking-wider uppercase">
-                    FOLLOW BEAJAY
-                  </span>
-                  <span className="text-[11px] text-neutral-600 font-light">
-                    Official Social Channel
-                  </span>
-                </div>
+            {/* Connect With BEAJAY Section */}
+            <div className="bg-[#FAF7F2] border border-[#DDD4C1] p-6 sm:p-8 space-y-4">
+              <div className="space-y-1">
+                <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+                  OFFICIAL CHANNELS
+                </span>
+                <h3 className="font-serif text-xl text-[#111111]">
+                  Connect With BEAJAY
+                </h3>
               </div>
 
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Connect with our bridal design journey, collection releases, and gown details on Instagram.
+                Follow our bridal design journey, collection releases, and behind-the-scenes artistry across our confirmed channels:
               </p>
 
-              <a
-                href="https://instagram.com/beajaycouture_bridal"
-                target="_blank"
-                rel="noreferrer"
-                className="min-h-[44px] w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#111111] hover:bg-[#2A2824] text-white text-xs font-semibold tracking-wider uppercase transition-colors"
-              >
-                <span>@beajaycouture_bridal</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#C59B3F]" />
-              </a>
+              <div className="space-y-3 pt-2 text-xs">
+                {/* Instagram (Verified URL) */}
+                <div className="flex items-center justify-between py-2 border-b border-[#EAE3D5]">
+                  <div className="flex items-center gap-2.5">
+                    <Instagram className="w-4 h-4 text-[#C59B3F]" />
+                    <span className="font-medium text-neutral-900">Instagram</span>
+                  </div>
+                  <a
+                    href={BRAND_CONTACT.socials.instagram.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#856122] hover:text-[#111111] font-medium transition-colors cursor-pointer"
+                  >
+                    {BRAND_CONTACT.socials.instagram.handle}
+                  </a>
+                </div>
+
+                {/* Facebook (Confirmed name - no fabricated URL) */}
+                <div className="flex items-center justify-between py-2 border-b border-[#EAE3D5]">
+                  <span className="font-medium text-neutral-900">Facebook</span>
+                  {BRAND_CONTACT.socials.facebook.url ? (
+                    <a
+                      href={BRAND_CONTACT.socials.facebook.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Visit BEAJAY COUTURE BRIDAL on Facebook"
+                      className="text-[#856122] hover:text-[#111111] font-medium transition-colors cursor-pointer"
+                    >
+                      {BRAND_CONTACT.socials.facebook.handle}
+                    </a>
+                  ) : (
+                    <span className="text-neutral-700 font-medium">
+                      {BRAND_CONTACT.socials.facebook.handle}
+                    </span>
+                  )}
+                </div>
+
+                {/* TikTok (Confirmed handle - no fabricated URL) */}
+                <div className="flex items-center justify-between py-2 border-b border-[#EAE3D5]">
+                  <span className="font-medium text-neutral-900">TikTok</span>
+                  {BRAND_CONTACT.socials.tiktok.url ? (
+                    <a
+                      href={BRAND_CONTACT.socials.tiktok.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#856122] hover:text-[#111111] font-medium transition-colors cursor-pointer"
+                    >
+                      {BRAND_CONTACT.socials.tiktok.handle}
+                    </a>
+                  ) : (
+                    <span className="text-neutral-700 font-medium">
+                      {BRAND_CONTACT.socials.tiktok.handle}
+                    </span>
+                  )}
+                </div>
+
+                {/* Global (Confirmed as Global - NO platform invented) */}
+                <div className="flex items-center justify-between py-2">
+                  <div className="flex items-center gap-2">
+                    <Globe className="w-3.5 h-3.5 text-[#C59B3F]" />
+                    <span className="font-medium text-neutral-900">Global</span>
+                  </div>
+                  {BRAND_CONTACT.socials.global.url ? (
+                    <a
+                      href={BRAND_CONTACT.socials.global.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#856122] hover:text-[#111111] font-medium transition-colors cursor-pointer font-mono text-[11px]"
+                    >
+                      {BRAND_CONTACT.socials.global.handle}
+                    </a>
+                  ) : (
+                    <span className="text-neutral-700 font-medium font-mono text-[11px]">
+                      {BRAND_CONTACT.socials.global.handle}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
 
             {/* Brand Statement Banner */}
-            <div className="p-6 bg-white border border-[#E5DFD1] text-center space-y-2">
+            <div className="p-6 bg-white border border-[#E5DFD1] text-center space-y-2 shadow-xs">
               <p className="font-serif text-sm text-[#111111] italic font-normal">
-                “Crafted in Nigeria. Made for Brides Everywhere.”
+                “{BRAND_CONTACT.tagline}”
               </p>
               <p className="text-[10px] tracking-widest text-[#856122] uppercase font-sans">
-                BEAJAY COUTURE BRIDAL
+                {BRAND_CONTACT.brandName} • {BRAND_CONTACT.location}
               </p>
             </div>
 
