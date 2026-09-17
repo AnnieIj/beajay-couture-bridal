@@ -128,9 +128,9 @@ export const COLLECTION_MEDIA_ITEMS: CollectionMediaItem[] = [
 export const GOWNS_CATALOG: GownItem[] = [
   {
     id: 'bj-01',
-    slug: 'the-amara-sovereign-gown',
+    slug: 'the-sovereign-gown',
     code: 'BJ-01',
-    name: 'The Amara Sovereign Gown',
+    name: 'The Sovereign Gown',
     category: 'ball-gown',
     categoryLabel: 'Ball Gown',
     silhouette: 'Grand Ball Gown with Structured Bodice',
@@ -160,9 +160,9 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-02',
-    slug: 'the-chiamaka-sculpted-mermaid',
+    slug: 'the-sculpted-mermaid',
     code: 'BJ-02',
-    name: 'The Chiamaka Sculpted Mermaid',
+    name: 'The Sculpted Mermaid',
     category: 'mermaid',
     categoryLabel: 'Mermaid',
     silhouette: 'Fit-and-Flare Sculpted Mermaid',
@@ -192,9 +192,9 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-03',
-    slug: 'the-ngozi-ethereal-a-line',
+    slug: 'the-ethereal-a-line',
     code: 'BJ-03',
-    name: 'The Ngozi Ethereal A-Line',
+    name: 'The Ethereal A-Line',
     category: 'a-line',
     categoryLabel: 'A-Line',
     silhouette: 'Romantic Classic A-Line',
@@ -219,9 +219,9 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-04',
-    slug: 'the-kamsi-modern-column-sheath',
+    slug: 'the-mermaid-gown-01',
     code: 'BJ-04',
-    name: 'The Kamsi Gown',
+    name: 'The Mermaid Gown 01',
     category: 'mermaid',
     categoryLabel: 'Mermaid Gowns',
     silhouette: 'Sculpted Mermaid',
@@ -249,9 +249,9 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-05',
-    slug: 'the-somto-luminary-reception-gown',
+    slug: 'the-luminary-reception-gown',
     code: 'BJ-05',
-    name: 'The Somto Luminary Reception Gown',
+    name: 'The Luminary Reception Gown',
     category: 'reception',
     categoryLabel: 'Reception Dress',
     silhouette: 'Glamour Contour with Illusion Slit',
@@ -301,9 +301,9 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-07',
-    slug: 'the-adanna-royal-empress-gown',
+    slug: 'the-royal-empress-gown',
     code: 'BJ-07',
-    name: 'The Adanna Royal Empress Gown',
+    name: 'The Royal Empress Gown',
     category: 'ball-gown',
     categoryLabel: 'Ball Gown',
     silhouette: 'Modest Royal Ball Gown',
@@ -333,9 +333,9 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-08',
-    slug: 'the-ifeoma-draped-pearl-mermaid',
+    slug: 'the-draped-pearl-mermaid',
     code: 'BJ-08',
-    name: 'The Ifeoma Draped Pearl Mermaid',
+    name: 'The Draped Pearl Mermaid',
     category: 'mermaid',
     categoryLabel: 'Mermaid',
     silhouette: 'Low-Back Dramatic Mermaid',
@@ -363,9 +363,9 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-09',
-    slug: 'the-uchechi-grace-a-line',
+    slug: 'the-grace-a-line',
     code: 'BJ-09',
-    name: 'The Uchechi Grace A-Line',
+    name: 'The Grace A-Line',
     category: 'a-line',
     categoryLabel: 'A-Line',
     silhouette: 'V-Neckline Pleated A-Line',
@@ -389,9 +389,9 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-10',
-    slug: 'the-nneka-silk-crepe-sheath',
+    slug: 'the-mermaid-gown-02',
     code: 'BJ-10',
-    name: 'The Nneka Gown',
+    name: 'The Mermaid Gown 02',
     category: 'mermaid',
     categoryLabel: 'Mermaid Gowns',
     silhouette: 'Contoured Mermaid',
@@ -419,9 +419,9 @@ export const GOWNS_CATALOG: GownItem[] = [
   },
   {
     id: 'bj-11',
-    slug: 'the-chioma-shimmer-reception-dress',
+    slug: 'the-shimmer-reception-dress',
     code: 'BJ-11',
-    name: 'The Chioma Shimmer Reception Dress',
+    name: 'The Shimmer Reception Dress',
     category: 'reception',
     categoryLabel: 'Reception Dress',
     silhouette: 'Sculpted Midi with Detachable Train',
@@ -483,20 +483,20 @@ export const TESTIMONIALS: Testimonial[] = APPROVED_TESTIMONIALS;
 
 // =========================================================================
 // GALLERY MEDIA ITEMS
-// Dedicated Gallery media is reserved for authentic real brides, fittings,
-// couture details, and events. Fallback/stock/AI imagery is removed.
-// When official gallery assets are uploaded, populate here.
+// Dedicated Gallery media registry independent from Gown records,
+// CollectionMediaItem records (51 Collection assets), and rental inventory.
+// Populated from physically verified assets in /public/media/gallery/
 // =========================================================================
-export const HOMEPAGE_GALLERY_ITEMS: GalleryItem[] = [];
-export const GALLERY_ITEMS: GalleryItem[] = HOMEPAGE_GALLERY_ITEMS;
-export const EDITORIAL_GALLERY_ITEMS: GalleryItem[] = [];
+import {
+  EDITORIAL_GALLERY_REGISTRY,
+  HOMEPAGE_GALLERY_PREVIEW_ITEMS,
+  GALLERY_FILTERS
+} from '../config/galleryRegistry';
 
-export const GALLERY_CATEGORIES: { id: GalleryCategory; label: string; count?: number }[] = [
-  { id: 'all', label: 'ALL' },
-  { id: 'real-brides', label: 'BRIDAL PORTRAITS / REAL BRIDES' },
-  { id: 'couture-details', label: 'COUTURE DETAILS' },
-  { id: 'fittings-bts', label: 'FITTINGS & BEHIND THE SCENES' },
-  { id: 'bridal-moments', label: 'BRIDAL MOMENTS / EVENTS' }
-];
+export const HOMEPAGE_GALLERY_ITEMS: GalleryItem[] = HOMEPAGE_GALLERY_PREVIEW_ITEMS;
+export const GALLERY_ITEMS: GalleryItem[] = HOMEPAGE_GALLERY_ITEMS;
+export const EDITORIAL_GALLERY_ITEMS: GalleryItem[] = EDITORIAL_GALLERY_REGISTRY;
+export const GALLERY_CATEGORIES: { id: GalleryCategory; label: string; count?: number }[] = GALLERY_FILTERS;
+
 
 

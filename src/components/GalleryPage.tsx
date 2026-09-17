@@ -50,7 +50,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
 
         {/* Primary Heading */}
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-[#111111] tracking-tight mb-5 max-w-4xl mx-auto leading-[1.12]">
-          Moments in Couture.
+          BEAJAY Bridal Stories
         </h1>
 
         {/* Divider */}
@@ -58,7 +58,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
 
         {/* Supporting Copy */}
         <p className="font-sans text-sm sm:text-base text-neutral-600 font-light max-w-2xl mx-auto leading-relaxed mb-4">
-          A visual celebration of bridal artistry, beautiful details and unforgettable moments by BEAJAY COUTURE BRIDAL.
+          Bridal moments, fittings, details and stories from BEAJAY.
         </p>
 
         {/* Brand Statement */}
@@ -224,14 +224,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
                 BEAJAY BRIDAL STORIES
               </p>
               <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-[#111111] max-w-2xl mx-auto leading-snug">
-                Real brides, fittings, details and memorable bridal moments will be featured here.
+                Bridal moments, fittings, details and stories from BEAJAY.
               </h2>
             </div>
 
             <div className="w-12 h-[1.5px] bg-[#C59B3F] mx-auto" />
 
             <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed">
-              Our bridal gallery is reserved for authentic visual stories from BEAJAY COUTURE BRIDAL—including bespoke fittings at our atelier in Enugu, hand-crafted couture details, and real brides on their wedding day. As official media from upcoming fittings and ceremonies is curated, this space will bring our bridal world to life.
+              Our bridal gallery is reserved for authentic visual stories from BEAJAY COUTURE BRIDAL—including bespoke fittings at our atelier in Enugu, hand-crafted couture details, and memorable bridal moments.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">

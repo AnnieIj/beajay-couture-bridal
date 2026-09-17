@@ -94,10 +94,10 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
   };
 
   const displayCategory = item.categoryLabel || 
-    (item.category === 'bridal-looks' ? 'Bridal Looks' :
+    (item.category === 'bridal-portraits' ? 'Bridal Portraits' :
      item.category === 'couture-details' ? 'Couture Details' :
-     item.category === 'veils-accessories' ? 'Veils & Accessories' :
-     item.category === 'behind-the-craft' ? 'Behind The Craft' : 'Editorial Archive');
+     item.category === 'fittings-bts' ? 'Fittings & Behind the Scenes' :
+     item.category === 'all-moments' ? 'Bridal Stories' : 'BEAJAY Gallery');
 
   return (
     <div 

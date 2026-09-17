@@ -241,7 +241,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg',
         hasOfficial: true,
-        alt: 'BEAJAY COUTURE BRIDAL ball gown - The Amara Sovereign Gown'
+        alt: 'BEAJAY COUTURE BRIDAL ball gown - The Sovereign Gown'
       },
       gallery: [
         {
@@ -263,7 +263,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/mermaid/mermaid 001.jpeg',
         hasOfficial: true,
-        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Chiamaka Sculpted Mermaid'
+        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Sculpted Mermaid'
       },
       gallery: [
         {
@@ -285,7 +285,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/a-line/a-line-01.jpg',
         hasOfficial: false,
-        alt: 'The Ngozi Ethereal A-Line'
+        alt: 'The Ethereal A-Line'
       },
       gallery: [
         {
@@ -305,7 +305,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/mermaid/mermaid 005.jpeg',
         hasOfficial: true,
-        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Kamsi Gown'
+        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Mermaid Gown 01'
       },
       gallery: [
         {
@@ -321,7 +321,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/reception/reception-01.jpg',
         hasOfficial: false,
-        alt: 'The Somto Luminary Reception Gown'
+        alt: 'The Luminary Reception Gown'
       },
       gallery: [
         {
@@ -361,7 +361,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/ball-gown/ball-gown 003.jpeg',
         hasOfficial: true,
-        alt: 'BEAJAY COUTURE BRIDAL ball gown - The Adanna Royal Empress Gown'
+        alt: 'BEAJAY COUTURE BRIDAL ball gown - The Royal Empress Gown'
       },
       gallery: [
         {
@@ -383,7 +383,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/mermaid/mermaid 004.jpeg',
         hasOfficial: true,
-        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Ifeoma Draped Pearl Mermaid'
+        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Draped Pearl Mermaid'
       },
       gallery: [
         {
@@ -399,7 +399,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/a-line/a-line-02.jpg',
         hasOfficial: false,
-        alt: 'The Uchechi Grace A-Line'
+        alt: 'The Grace A-Line'
       },
       gallery: [
         {
@@ -414,7 +414,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/mermaid/mermaid 006.jpeg',
         hasOfficial: true,
-        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Nneka Gown'
+        alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Mermaid Gown 02'
       },
       gallery: [
         {
@@ -430,7 +430,7 @@ export const COLLECTION_MEDIA_ASSETS = {
         current: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1200&auto=format&fit=crop',
         officialPath: '/media/collections/reception/reception-02.jpg',
         hasOfficial: false,
-        alt: 'The Chioma Shimmer Reception Dress'
+        alt: 'The Shimmer Reception Dress'
       },
       gallery: [
         {

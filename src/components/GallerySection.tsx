@@ -62,7 +62,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
           </div>
         </div>
 
-        {/* Editorial Content Display: Elegant Intentional State when items empty, or grid when populated */}
+        {/* Editorial Content Display: Elegant Intentional State when items empty, or curated editorial preview */}
         {GALLERY_ITEMS.length === 0 ? (
           <div className="bg-white border border-[#E7E1D4] p-8 sm:p-12 lg:p-16 text-center max-w-4xl mx-auto shadow-xs relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#C59B3F]" />
@@ -76,7 +76,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
             </p>
 
             <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-[#111111] max-w-2xl mx-auto leading-snug mb-4">
-              Real brides, fittings, details and memorable bridal moments will be featured here.
+              Bridal moments, fittings, details and stories from BEAJAY.
             </h3>
 
             <div className="w-12 h-[1.5px] bg-[#C59B3F] mx-auto mb-5" />
@@ -114,69 +114,87 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
             </div>
           </div>
         ) : (
-          /* Editorial Photo Strip / Grid (Matches Reference Layout with 5 cards including Video Card) */
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-            {GALLERY_ITEMS.map((item) => {
-              if (item.isVideo) {
-                return (
+          /* Curated Editorial Teaser (Teases the Gallery without repeating Discover the Collections) */
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center bg-white border border-[#EAE3D5] p-6 sm:p-8 lg:p-10 shadow-xs">
+              {/* Spotlight Photograph */}
+              <div className="md:col-span-5 flex justify-center">
+                {GALLERY_ITEMS.map((item) => (
                   <div
                     key={item.id}
                     onClick={() => onOpenLightbox(item, GALLERY_ITEMS)}
-                    className="group relative aspect-[3/4] bg-[#111111] overflow-hidden cursor-pointer col-span-2 sm:col-span-1 border border-[#2D2A26] flex items-center justify-center text-center p-4"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onOpenLightbox(item, GALLERY_ITEMS);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`View photograph: ${item.title}`}
+                    className="group relative w-full max-w-sm aspect-[4/5] overflow-hidden bg-[#F5EFE4] border border-[#E3D9C6] hover:border-[#C59B3F] transition-all duration-300 shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C59B3F]"
                   >
                     <img
                       src={item.image}
-                      alt={item.title}
-                      className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700"
+                      alt={item.alt || item.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors" />
-                    
-                    <div className="relative z-10 flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 rounded-full border-2 border-[#C59B3F] bg-[#1A1918]/80 text-[#E6C875] flex items-center justify-center group-hover:scale-110 group-hover:bg-[#C59B3F] group-hover:text-black transition-all shadow-lg">
-                        <Play className="w-5 h-5 fill-current ml-0.5" />
-                      </div>
-                      <div>
-                        <span className="text-xs font-semibold tracking-[0.2em] uppercase text-white block">
-                          WATCH
-                        </span>
-                        <span className="text-[11px] tracking-[0.16em] uppercase text-[#E6C875] block">
-                          OUR STORY
-                        </span>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#111111] px-3.5 py-2 flex items-center gap-2 text-xs font-semibold tracking-wider uppercase shadow-md">
+                        <ZoomIn className="w-3.5 h-3.5 text-[#C59B3F]" />
+                        <span>View Photograph</span>
                       </div>
                     </div>
+                    <div className="absolute bottom-0 inset-x-0 p-3.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white text-left">
+                      <span className="text-[9px] tracking-[0.24em] uppercase text-[#E6C875] font-semibold block">
+                        {item.categoryLabel || 'Bridal Stories'}
+                      </span>
+                      <p className="font-serif text-xs text-white/95 truncate">
+                        {item.title}
+                      </p>
+                    </div>
                   </div>
-                );
-              }
+                ))}
+              </div>
 
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => onOpenLightbox(item, GALLERY_ITEMS)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      onOpenLightbox(item, GALLERY_ITEMS);
-                    }
-                  }}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`View photo: ${item.title}`}
-                  className="group relative aspect-[3/4] overflow-hidden bg-neutral-200 cursor-pointer border border-[#E9E3D6] hover:border-[#C59B3F] transition-all focus:outline-none focus:ring-2 focus:ring-[#C59B3F]"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/35 transition-colors flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 p-2 text-neutral-900 shadow">
-                      <ZoomIn className="w-4 h-4 text-[#C59B3F]" />
-                    </div>
-                  </div>
+              {/* Editorial Narrative Teaser */}
+              <div className="md:col-span-7 space-y-5 text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FAF6EE] border border-[#E8DFC8] text-[#856122] text-[10px] font-semibold tracking-[0.24em] uppercase">
+                  BEAJAY BRIDAL STORIES
                 </div>
-              );
-            })}
+
+                <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#111111] leading-snug">
+                  Bridal moments, fittings, details and stories from BEAJAY.
+                </h3>
+
+                <div className="w-12 h-[1.5px] bg-[#C59B3F]" />
+
+                <p className="font-sans text-sm text-neutral-600 font-light leading-relaxed">
+                  A visual celebration of bridal artistry, bespoke atelier fittings, and authentic moments by BEAJAY COUTURE BRIDAL. Explore our dedicated gallery archive to see our bridal world in motion.
+                </p>
+
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                  <button
+                    onClick={handleViewGallery}
+                    className="inline-flex items-center justify-center gap-2 bg-[#111111] hover:bg-[#252422] text-[#F3EFE6] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
+                  >
+                    <span>VIEW FULL GALLERY</span>
+                    <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
+                  </button>
+
+                  <a
+                    href="https://instagram.com/beajaycouture_bridal"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-[#FAF7F2] hover:bg-[#F2ECE0] text-[#111111] border border-[#D5CEC0] px-5 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
+                  >
+                    <Instagram className="w-4 h-4 text-[#C59B3F]" />
+                    <span>@beajaycouture_bridal</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 

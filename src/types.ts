@@ -101,18 +101,26 @@ export interface TestimonialFormData {
 
 export type GalleryCategory =
   | 'all'
-  | 'real-brides'
+  | 'all-moments'
+  | 'bridal-portraits'
   | 'couture-details'
   | 'fittings-bts'
-  | 'bridal-moments'
-  | 'bridal-looks'
-  | 'veils-accessories'
-  | 'behind-the-craft'
-  | 'bride'
-  | 'gown-details'
-  | 'fitting'
-  | 'studio'
-  | 'veil';
+  | 'bridal-looks';
+
+export interface GalleryMediaItem {
+  id: string;
+  src: string;
+  image: string;
+  category: GalleryCategory;
+  categoryLabel?: string;
+  title: string;
+  alt: string;
+  caption?: string;
+  orientation?: 'portrait' | 'landscape' | 'square';
+  aspectRatio?: string;
+  objectPosition?: string;
+  featured?: boolean;
+}
 
 export interface GalleryItem {
   id: string;
@@ -121,6 +129,7 @@ export interface GalleryItem {
   category: GalleryCategory;
   categoryLabel?: string;
   image: string;
+  src?: string;
   caption?: string;
   isVideo?: boolean;
   videoUrl?: string;
