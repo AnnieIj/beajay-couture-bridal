@@ -4,9 +4,7 @@ import {
   ZoomIn, 
   ArrowRight, 
   Instagram, 
-  Sparkles, 
-  Compass, 
-  SlidersHorizontal 
+  Sparkles 
 } from 'lucide-react';
 import { GalleryItem, GalleryCategory } from '../types';
 import { EDITORIAL_GALLERY_ITEMS, GALLERY_CATEGORIES } from '../data/bridalData';
@@ -25,6 +23,18 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
   const [visibleCount, setVisibleCount] = useState<number>(16);
 
+  // Determine which specific categories contain items (excluding 'all')
+  const categoriesWithItems = useMemo(() => {
+    return GALLERY_CATEGORIES.filter((cat) => {
+      if (cat.id === 'all') return false;
+      return EDITORIAL_GALLERY_ITEMS.some((item) => item.category === cat.id);
+    });
+  }, []);
+
+  // Requirement: Hide the entire filter navigation when there is only one non-empty category.
+  // Automatically show it again in the future when 2 or more verified categories contain photographs.
+  const shouldShowFilters = categoriesWithItems.length >= 2;
+
   const handleCategoryChange = (cat: GalleryCategory) => {
     setActiveCategory(cat);
     setVisibleCount(16);
@@ -38,7 +48,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
     return EDITORIAL_GALLERY_ITEMS.filter((item) => item.category === activeCategory);
   }, [activeCategory]);
 
-  // Progressive batch rendering
+  // Progressive batch rendering (16 initial items, expanding by 16 on Load More)
   const displayedItems = useMemo(() => {
     return filteredItems.slice(0, visibleCount);
   }, [filteredItems, visibleCount]);
@@ -99,134 +109,102 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
       </section>
 
       {/* =========================================================================
-          2. BROAD CATEGORY FILTERS (Touch-friendly & Horizontally Scrollable)
+          2. BROAD CATEGORY FILTERS (Only shown if 2 or more verified categories exist)
           ========================================================================= */}
-      <nav 
-        aria-label="Gallery category filters"
-        className="sticky top-[72px] sm:top-[80px] z-30 bg-[#FCFAF7]/95 backdrop-blur-md border-b border-[#EAE3D5] py-3.5 sm:py-4 px-4 sm:px-6 mb-10 shadow-xs"
-      >
-        <div className="max-w-7xl mx-auto flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar scroll-smooth gap-2 sm:gap-3 py-1">
-          {GALLERY_CATEGORIES.map((cat) => {
-            const isActive = activeCategory === cat.id;
-            const count = cat.id === 'all' 
-              ? EDITORIAL_GALLERY_ITEMS.length 
-              : EDITORIAL_GALLERY_ITEMS.filter((i) => i.category === cat.id).length;
+      {shouldShowFilters && (
+        <nav 
+          aria-label="Gallery category filters"
+          className="sticky top-[72px] sm:top-[80px] z-30 bg-[#FCFAF7]/95 backdrop-blur-md border-b border-[#EAE3D5] py-3.5 sm:py-4 px-4 sm:px-6 mb-10 shadow-xs"
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar scroll-smooth gap-2 sm:gap-3 py-1">
+            {GALLERY_CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              const count = cat.id === 'all' 
+                ? EDITORIAL_GALLERY_ITEMS.length 
+                : EDITORIAL_GALLERY_ITEMS.filter((i) => i.category === cat.id).length;
 
-            return (
-              <button
-                key={cat.id}
-                onClick={() => handleCategoryChange(cat.id)}
-                className={`min-h-[44px] px-4 sm:px-5 py-2 text-xs tracking-[0.16em] uppercase whitespace-nowrap transition-all duration-300 font-medium cursor-pointer border flex items-center gap-2 ${
-                  isActive
-                    ? 'bg-[#141312] text-[#F3EFE6] border-[#141312] shadow-sm'
-                    : 'bg-[#F9F6F0] text-neutral-700 hover:text-black border-[#E4DCD0] hover:border-[#C59B3F]'
-                }`}
-                aria-pressed={isActive}
-              >
-                <span>{cat.label}</span>
-                <span className={`text-[10px] font-mono ${isActive ? 'text-[#C59B3F]' : 'text-neutral-400'}`}>
-                  ({count})
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </nav>
+              // Hide empty categories
+              if (cat.id !== 'all' && count === 0) return null;
+
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategoryChange(cat.id)}
+                  className={`min-h-[44px] px-4 sm:px-5 py-2 text-xs tracking-[0.16em] uppercase whitespace-nowrap transition-all duration-300 font-medium cursor-pointer border flex items-center gap-2 ${
+                    isActive
+                      ? 'bg-[#141312] text-[#F3EFE6] border-[#141312] shadow-sm'
+                      : 'bg-[#F9F6F0] text-neutral-700 hover:text-black border-[#E4DCD0] hover:border-[#C59B3F]'
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  <span>{cat.label}</span>
+                  <span className={`text-[10px] font-mono ${isActive ? 'text-[#C59B3F]' : 'text-neutral-400'}`}>
+                    ({count})
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </nav>
+      )}
 
       {/* =========================================================================
           3. EDITORIAL MASONRY GALLERY LAYOUT
           ========================================================================= */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 mb-20">
         
-        {/* Editorial Masonry Grid using multi-column layout */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 sm:gap-8 space-y-6 sm:space-y-8">
-          {displayedItems.map((item) => {
-            const isFeatured = item.featured;
+        {/* Editorial Masonry Grid using multi-column layout with natural aspect ratios */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
+          {displayedItems.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => onOpenLightbox(item, filteredItems)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onOpenLightbox(item, filteredItems);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label={`View photograph: ${item.title}`}
+              className="group relative break-inside-avoid overflow-hidden bg-[#F3EFE6] cursor-pointer transition-all duration-300 border border-[#EAE3D5] hover:border-[#C59B3F] shadow-xs hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#C59B3F] focus:ring-offset-2"
+            >
+              {/* Image Container preserving natural orientation / editorial ratio */}
+              <div className={`relative w-full ${item.aspectRatio || 'aspect-[3/4]'} overflow-hidden bg-neutral-100`}>
+                <img
+                  src={item.image || item.src}
+                  alt={item.alt || item.title}
+                  loading="lazy"
+                  className={`w-full h-full object-cover ${item.objectPosition || 'object-center'} group-hover:scale-103 transition-transform duration-500 ease-out select-none`}
+                />
 
-            return (
-              <div
-                key={item.id}
-                onClick={() => onOpenLightbox(item, filteredItems)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onOpenLightbox(item, filteredItems);
-                  }
-                }}
-                tabIndex={0}
-                role="button"
-                aria-label={`View photo: ${item.title}`}
-                className={`group relative break-inside-avoid overflow-hidden bg-[#F3EFE6] cursor-pointer transition-all duration-500 border ${
-                  isFeatured 
-                    ? 'border-[#C59B3F]/60 shadow-md' 
-                    : 'border-[#EAE3D5] hover:border-[#C59B3F] shadow-xs'
-                } focus:outline-none focus:ring-2 focus:ring-[#C59B3F] focus:ring-offset-2`}
-              >
-                {/* Media Container */}
-                <div className={`relative w-full ${item.aspectRatio || 'aspect-[3/4]'} overflow-hidden bg-neutral-200`}>
-                  <img
-                    src={item.image}
-                    alt={item.alt || item.title}
-                    loading="lazy"
-                    className={`w-full h-full object-cover ${item.objectPosition || 'object-center'} group-hover:scale-105 transition-transform duration-700 ease-out`}
-                  />
+                {/* Subtle dark gradient overlay on hover/focus */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300" />
 
-                  {/* Dark gradient for text legibility on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300" />
+                {/* Video Reel Indicator if applicable */}
+                {item.isVideo && (
+                  <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 bg-black/75 backdrop-blur-xs text-white rounded-full border border-white/20">
+                    <Play className="w-3 h-3 fill-current text-[#C59B3F]" />
+                    <span className="text-[9px] tracking-widest uppercase font-semibold">Reel</span>
+                  </div>
+                )}
 
-                  {/* Video Indicator */}
-                  {item.isVideo && (
-                    <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 bg-black/75 backdrop-blur-xs text-white rounded-full border border-white/20">
-                      <Play className="w-3 h-3 fill-current text-[#C59B3F]" />
-                      <span className="text-[9px] tracking-widest uppercase font-semibold">Reel</span>
-                    </div>
-                  )}
-
-                  {/* Featured Statement Badge */}
-                  {isFeatured && (
-                    <div className="absolute top-3 right-3 z-10 px-2.5 py-0.5 bg-[#141312]/85 text-[#E6C875] border border-[#C59B3F]/40 text-[9px] tracking-[0.2em] uppercase font-semibold">
-                      Featured
-                    </div>
-                  )}
-
-                  {/* Hover Overlay Details */}
-                  <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 transform translate-y-2 group-hover:translate-y-0 group-focus-visible:translate-y-0 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-300 flex flex-col justify-end text-white">
-                    <span className="text-[9px] tracking-[0.24em] uppercase text-[#C59B3F] font-semibold mb-1">
-                      {item.categoryLabel || item.category}
-                    </span>
-                    <h3 className="font-serif text-base sm:text-lg font-normal leading-snug mb-1">
-                      {item.title}
-                    </h3>
-                    {item.caption && (
-                      <p className="text-[11px] text-neutral-300 font-light line-clamp-2 leading-relaxed">
-                        {item.caption}
-                      </p>
-                    )}
-                    <div className="mt-3 flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-[#C59B3F] font-medium">
-                      <ZoomIn className="w-3 h-3" />
-                      <span>View Photograph</span>
-                    </div>
+                {/* Restrained Hover / Focus Overlay Action: VIEW PHOTOGRAPH */}
+                <div className="absolute inset-0 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-300 pointer-events-none">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/80 backdrop-blur-xs text-white border border-[#C59B3F]/60 text-[11px] font-semibold tracking-[0.2em] uppercase shadow-lg">
+                    <ZoomIn className="w-3.5 h-3.5 text-[#C59B3F]" />
+                    <span>VIEW PHOTOGRAPH</span>
                   </div>
                 </div>
 
-                {/* Subtle permanent caption bar below image for editorial clarity */}
-                <div className="p-3.5 bg-white border-t border-[#EAE3D5] flex items-center justify-between">
-                  <div>
-                    <span className="text-[9px] tracking-[0.22em] uppercase text-[#856122] font-semibold block">
-                      {item.categoryLabel || item.category}
-                    </span>
-                    <h4 className="font-serif text-xs sm:text-sm text-[#111111] font-normal truncate max-w-[240px]">
-                      {item.title}
-                    </h4>
-                  </div>
-                  <div className="text-neutral-400 group-hover:text-[#C59B3F] transition-colors p-1">
-                    <ZoomIn className="w-4 h-4" />
-                  </div>
+                {/* Subtle Mobile Indicator for Clean Tapability */}
+                <div className="sm:hidden absolute bottom-2 right-2 p-1.5 bg-black/50 backdrop-blur-xs text-white/80 rounded-full">
+                  <ZoomIn className="w-3.5 h-3.5" />
                 </div>
-
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
         {/* Progressive Loading: Load More Action */}
@@ -238,7 +216,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
             <div className="w-24 h-[1px] bg-[#EAE3D5] mx-auto mb-4" />
             <button
               onClick={handleLoadMore}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#141312] hover:bg-[#252422] text-[#F3EFE6] text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 border border-transparent hover:border-[#C59B3F] cursor-pointer shadow-md hover:shadow-lg active:scale-98"
+              className="inline-flex items-center justify-center gap-3 min-h-[44px] px-8 py-4 bg-[#141312] hover:bg-[#252422] text-[#F3EFE6] text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 border border-transparent hover:border-[#C59B3F] cursor-pointer shadow-md hover:shadow-lg active:scale-98"
             >
               <span>LOAD MORE PHOTOGRAPHS</span>
               <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
@@ -252,7 +230,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
           </div>
         )}
 
-        {/* Editorial Intentional State when Gallery Media is being curated */}
+        {/* Fallback state if filteredItems is empty */}
         {filteredItems.length === 0 && (
           <div className="text-center py-16 sm:py-20 bg-white border border-[#EAE3D5] p-8 sm:p-12 max-w-3xl mx-auto shadow-xs space-y-6">
             <div className="w-12 h-12 rounded-full bg-[#FAF7F2] border border-[#E8E2D5] flex items-center justify-center text-[#C59B3F] mx-auto">
@@ -293,17 +271,6 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
                 <span>FOLLOW BEAJAY ON INSTAGRAM</span>
               </a>
             </div>
-
-            {activeCategory !== 'all' && (
-              <div className="pt-2">
-                <button
-                  onClick={() => setActiveCategory('all')}
-                  className="text-xs tracking-wider uppercase text-[#856122] hover:text-[#111111] underline underline-offset-4 cursor-pointer"
-                >
-                  View All Categories
-                </button>
-              </div>
-            )}
           </div>
         )}
 

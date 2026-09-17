@@ -35,7 +35,7 @@ export const OFFICIAL_GALLERY_ITEMS: GalleryMediaItem[] = [
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
     objectPosition: 'object-center',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-02',
@@ -91,7 +91,7 @@ export const OFFICIAL_GALLERY_ITEMS: GalleryMediaItem[] = [
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
     objectPosition: 'object-center',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-06',
@@ -147,7 +147,7 @@ export const OFFICIAL_GALLERY_ITEMS: GalleryMediaItem[] = [
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
     objectPosition: 'object-center',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-10',
@@ -175,7 +175,7 @@ export const OFFICIAL_GALLERY_ITEMS: GalleryMediaItem[] = [
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
     objectPosition: 'object-center',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-12',
@@ -301,7 +301,7 @@ export const OFFICIAL_GALLERY_ITEMS: GalleryMediaItem[] = [
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
     objectPosition: 'object-center',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-21',
@@ -441,7 +441,7 @@ export const OFFICIAL_GALLERY_ITEMS: GalleryMediaItem[] = [
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
     objectPosition: 'object-center',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-31',
@@ -581,7 +581,7 @@ export const OFFICIAL_GALLERY_ITEMS: GalleryMediaItem[] = [
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
     objectPosition: 'object-center',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-41',
@@ -721,7 +721,7 @@ export const OFFICIAL_GALLERY_ITEMS: GalleryMediaItem[] = [
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
     objectPosition: 'object-center',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-51',
@@ -861,7 +861,7 @@ export const OFFICIAL_GALLERY_ITEMS: GalleryMediaItem[] = [
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
     objectPosition: 'object-center',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-61',
@@ -952,7 +952,7 @@ export const HOMEPAGE_GALLERY_PREVIEW_ITEMS: GalleryItem[] = [
     caption: 'Bridal moments, fittings, details and stories from BEAJAY.',
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-05',
@@ -965,7 +965,7 @@ export const HOMEPAGE_GALLERY_PREVIEW_ITEMS: GalleryItem[] = [
     caption: 'Bridal moments, fittings, details and stories from BEAJAY.',
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-09',
@@ -978,7 +978,7 @@ export const HOMEPAGE_GALLERY_PREVIEW_ITEMS: GalleryItem[] = [
     caption: 'Bridal moments, fittings, details and stories from BEAJAY.',
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
-    featured: true,
+    featured: false,
   },
   {
     id: 'gallery-11',
@@ -991,7 +991,7 @@ export const HOMEPAGE_GALLERY_PREVIEW_ITEMS: GalleryItem[] = [
     caption: 'Bridal moments, fittings, details and stories from BEAJAY.',
     aspectRatio: 'aspect-[3/4]',
     orientation: 'portrait',
-    featured: true,
+    featured: false,
   },
 ];
 

@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GalleryItem } from '../types';
 import { HERO_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 
@@ -16,37 +17,37 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
   onClose,
   onSelectItem
 }) => {
+  const [mounted, setMounted] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
-  if (!item) return null;
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
-  const currentList = items && items.length > 0 ? items : [item];
-  const currentIndex = currentList.findIndex((i) => i.id === item.id);
+  const currentList = items && items.length > 0 ? items : (item ? [item] : []);
+  const currentIndex = item ? currentList.findIndex((i) => i.id === item.id) : -1;
   const safeIndex = currentIndex >= 0 ? currentIndex : 0;
   const totalCount = currentList.length;
-
   const canNavigate = totalCount > 1;
 
   const handleNext = () => {
-    if (!canNavigate) return;
+    if (!canNavigate || !onSelectItem) return;
     const nextIndex = (safeIndex + 1) % totalCount;
-    if (onSelectItem) {
-      onSelectItem(currentList[nextIndex]);
-    }
+    onSelectItem(currentList[nextIndex]);
   };
 
   const handlePrev = () => {
-    if (!canNavigate) return;
+    if (!canNavigate || !onSelectItem) return;
     const prevIndex = (safeIndex - 1 + totalCount) % totalCount;
-    if (onSelectItem) {
-      onSelectItem(currentList[prevIndex]);
-    }
+    onSelectItem(currentList[prevIndex]);
   };
 
   // Keyboard navigation & body scroll lock
   useEffect(() => {
+    if (!item) return;
+
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
@@ -62,16 +63,18 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
         onClose();
       }
     };
+
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [safeIndex, totalCount, onSelectItem, onClose]);
+  }, [item, safeIndex, totalCount, onSelectItem, onClose]);
 
   // Touch Swipe handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = null;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -83,70 +86,87 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
     const distance = touchStartX.current - touchEndX.current;
     const minSwipeDistance = 45;
     if (distance > minSwipeDistance) {
-      // Swiped Left -> Next Image
       handleNext();
     } else if (distance < -minSwipeDistance) {
-      // Swiped Right -> Previous Image
       handlePrev();
     }
     touchStartX.current = null;
     touchEndX.current = null;
   };
 
-  const displayCategory = item.categoryLabel || 
-    (item.category === 'bridal-portraits' ? 'Bridal Portraits' :
-     item.category === 'couture-details' ? 'Couture Details' :
-     item.category === 'fittings-bts' ? 'Fittings & Behind the Scenes' :
-     item.category === 'all-moments' ? 'Bridal Stories' : 'BEAJAY Gallery');
+  if (!item || !mounted) return null;
 
-  return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/95 backdrop-blur-md animate-in fade-in duration-200 select-none overflow-hidden"
+  const displayImageSrc = item.image || item.src || '';
+
+  const lightboxContent = (
+    <div
+      id="gallery-fullscreen-lightbox"
+      className="fixed inset-0 z-[9999] flex flex-col justify-between bg-black/95 backdrop-blur-md select-none overflow-hidden"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Gallery image viewer"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
-      {/* Outer wrapper to prevent click propagation */}
+      {/* Top Bar: Counter & Close Button */}
       <div 
-        ref={containerRef}
-        className="relative w-full max-w-5xl h-full max-h-[96vh] sm:max-h-[92vh] bg-[#0E0D0C] text-white border border-[#262420] shadow-2xl flex flex-col justify-between overflow-hidden"
+        className="relative z-20 flex items-center justify-between px-4 sm:px-8 py-4 bg-gradient-to-b from-black/90 via-black/50 to-transparent shrink-0"
         onClick={(e) => e.stopPropagation()}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
       >
-        {/* Top Floating Bar: Counter & Close Button */}
-        <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-6 py-3 bg-gradient-to-b from-black/80 via-black/40 to-transparent">
-          {/* Counter */}
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] tracking-[0.26em] uppercase font-semibold text-[#C59B3F]">
-              BEAJAY GALLERY
-            </span>
-            {canNavigate && (
-              <>
-                <span className="text-neutral-500">•</span>
-                <span className="font-mono text-xs text-neutral-300 tracking-wider">
-                  {String(safeIndex + 1).padStart(2, '0')} / {String(totalCount).padStart(2, '0')}
-                </span>
-              </>
-            )}
-          </div>
-
-          {/* Close Button */}
-          <button
-            onClick={onClose}
-            aria-label="Close image viewer (Esc)"
-            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-300 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer"
-          >
-            <X className="w-5 h-5" />
-          </button>
+        <div className="flex items-center gap-3">
+          <span className="font-serif text-sm tracking-[0.2em] uppercase text-[#E6C875] font-light">
+            BEAJAY
+          </span>
+          {canNavigate && (
+            <>
+              <span className="text-neutral-600">/</span>
+              <span className="font-mono text-xs text-neutral-300 tracking-widest">
+                {String(safeIndex + 1).padStart(2, '0')} of {String(totalCount).padStart(2, '0')}
+              </span>
+            </>
+          )}
         </div>
 
-        {/* Media Frame (Center viewport) */}
-        <div className="relative flex-1 w-full flex items-center justify-center bg-black/60 overflow-hidden pt-12 pb-2 px-2 sm:px-8">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          aria-label="Close fullscreen gallery (Escape)"
+          className="w-11 h-11 flex items-center justify-center text-neutral-400 hover:text-white bg-white/5 hover:bg-white/15 rounded-full transition-colors cursor-pointer border border-white/10"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Main Viewport: Center Stage with High-Resolution Image & Navigation Arrows */}
+      <div 
+        className="relative flex-1 w-full flex items-center justify-center p-2 sm:p-6 md:p-8 overflow-hidden"
+        onClick={onClose}
+      >
+        {/* Prev Arrow Desktop */}
+        {canNavigate && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handlePrev();
+            }}
+            aria-label="Previous photograph (Left Arrow)"
+            className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-black/60 hover:bg-[#1A1918] text-neutral-300 hover:text-[#C59B3F] border border-[#33302B] transition-all cursor-pointer shadow-2xl z-20"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+        )}
+
+        {/* Media Centerpiece */}
+        <div 
+          className="relative max-w-full max-h-full flex items-center justify-center"
+          onClick={(e) => e.stopPropagation()}
+        >
           {item.isVideo ? (
-            <div className="w-full max-w-3xl aspect-[16/9] bg-black relative flex items-center justify-center shadow-2xl border border-[#22201D]">
+            <div className="w-full max-w-4xl aspect-[16/9] bg-black shadow-2xl border border-neutral-800">
               <video
                 src={item.videoUrl || resolveMedia(HERO_MEDIA_ASSETS.video)}
                 controls
@@ -156,98 +176,70 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
               />
             </div>
           ) : (
-            <div className="relative w-full h-full flex items-center justify-center">
-              <img
-                src={item.image}
-                alt={item.alt || item.title}
-                className="max-h-[62vh] sm:max-h-[70vh] w-auto max-w-full object-contain shadow-2xl select-none"
-              />
-            </div>
-          )}
-
-          {/* Desktop Edge Navigation Arrows */}
-          {canNavigate && (
-            <>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrev();
-                }}
-                aria-label="Previous photograph (Left arrow)"
-                className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 items-center justify-center rounded-full bg-black/60 hover:bg-[#1A1918] text-white/80 hover:text-[#C59B3F] border border-[#33302B] transition-all cursor-pointer shadow-lg z-20"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNext();
-                }}
-                aria-label="Next photograph (Right arrow)"
-                className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 items-center justify-center rounded-full bg-black/60 hover:bg-[#1A1918] text-white/80 hover:text-[#C59B3F] border border-[#33302B] transition-all cursor-pointer shadow-lg z-20"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </>
+            <img
+              src={displayImageSrc}
+              alt={item.alt || item.title}
+              className="max-h-[78vh] sm:max-h-[82vh] md:max-h-[84vh] w-auto max-w-[95vw] md:max-w-[88vw] object-contain shadow-2xl select-none"
+            />
           )}
         </div>
 
-        {/* Bottom Editorial Bar: Category, Title, Neutral Caption & Actions */}
-        <div className="p-4 sm:p-5 bg-[#141312] border-t border-[#262420] shrink-0">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            
-            {/* Left Metadata */}
-            <div className="space-y-1 max-w-2xl">
-              <div className="flex items-center gap-2">
-                <span className="text-[9.5px] sm:text-[10px] tracking-[0.24em] uppercase text-[#C59B3F] font-medium">
-                  {displayCategory}
-                </span>
-                {item.featured && (
-                  <span className="text-[9px] tracking-widest uppercase bg-[#C59B3F]/15 text-[#E6C875] px-1.5 py-0.5 border border-[#C59B3F]/30">
-                    Featured
-                  </span>
-                )}
-              </div>
+        {/* Next Arrow Desktop */}
+        {canNavigate && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleNext();
+            }}
+            aria-label="Next photograph (Right Arrow)"
+            className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-black/60 hover:bg-[#1A1918] text-neutral-300 hover:text-[#C59B3F] border border-[#33302B] transition-all cursor-pointer shadow-2xl z-20"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        )}
+      </div>
 
-              <h3 className="font-serif text-lg sm:text-xl text-white font-normal tracking-wide">
-                {item.title}
-              </h3>
+      {/* Bottom Bar: Clean Editorial Controls */}
+      <div 
+        className="relative z-20 px-4 sm:px-8 py-3.5 bg-gradient-to-t from-black/90 via-black/60 to-transparent shrink-0 flex items-center justify-between"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="text-left">
+          <p className="font-serif text-sm sm:text-base text-white/90 font-light tracking-wide">
+            {item.title}
+          </p>
+          <span className="text-[10px] tracking-[0.22em] uppercase text-[#C59B3F] font-medium">
+            BEAJAY COUTURE BRIDAL • ENUGU
+          </span>
+        </div>
 
-              {item.caption && (
-                <p className="text-xs text-neutral-400 font-light leading-relaxed">
-                  {item.caption}
-                </p>
-              )}
-            </div>
-
-            {/* Right Controls: Navigation Controls on Mobile */}
-            {canNavigate && (
-              <div className="flex sm:hidden items-center justify-end gap-1.5 pt-2 border-t border-neutral-800/80">
-                <button
-                  onClick={handlePrev}
-                  aria-label="Previous photograph"
-                  className="w-10 h-10 flex items-center justify-center border border-[#33302B] text-neutral-300 hover:text-white bg-black/40 rounded-full cursor-pointer"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <span className="font-mono text-[11px] text-neutral-400 px-2">
-                  {safeIndex + 1} / {totalCount}
-                </span>
-                <button
-                  onClick={handleNext}
-                  aria-label="Next photograph"
-                  className="w-10 h-10 flex items-center justify-center border border-[#33302B] text-neutral-300 hover:text-white bg-black/40 rounded-full cursor-pointer"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            )}
-
+        {/* Mobile Navigation Controls (Touch friendly min-44px) */}
+        {canNavigate && (
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={handlePrev}
+              aria-label="Previous photograph"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/70 border border-[#33302B] text-neutral-200 hover:text-white"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <span className="font-mono text-xs text-neutral-300 px-1">
+              {safeIndex + 1}/{totalCount}
+            </span>
+            <button
+              onClick={handleNext}
+              aria-label="Next photograph"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/70 border border-[#33302B] text-neutral-200 hover:text-white"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
           </div>
-        </div>
-
+        )}
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined'
+    ? createPortal(lightboxContent, document.body)
+    : lightboxContent;
 };
