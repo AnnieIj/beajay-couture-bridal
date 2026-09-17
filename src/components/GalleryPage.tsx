@@ -23,6 +23,12 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
   onBookAppointment
 }) => {
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
+  const [visibleCount, setVisibleCount] = useState<number>(16);
+
+  const handleCategoryChange = (cat: GalleryCategory) => {
+    setActiveCategory(cat);
+    setVisibleCount(16);
+  };
 
   // Filter items based on active category
   const filteredItems = useMemo(() => {
@@ -31,6 +37,17 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
     }
     return EDITORIAL_GALLERY_ITEMS.filter((item) => item.category === activeCategory);
   }, [activeCategory]);
+
+  // Progressive batch rendering
+  const displayedItems = useMemo(() => {
+    return filteredItems.slice(0, visibleCount);
+  }, [filteredItems, visibleCount]);
+
+  const hasMore = visibleCount < filteredItems.length;
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 16, filteredItems.length));
+  };
 
   return (
     <div className="bg-[#FCFAF7] min-h-screen text-[#1A1A1A] pt-24 sm:pt-28 pb-20">
@@ -98,7 +115,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
             return (
               <button
                 key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
+                onClick={() => handleCategoryChange(cat.id)}
                 className={`min-h-[44px] px-4 sm:px-5 py-2 text-xs tracking-[0.16em] uppercase whitespace-nowrap transition-all duration-300 font-medium cursor-pointer border flex items-center gap-2 ${
                   isActive
                     ? 'bg-[#141312] text-[#F3EFE6] border-[#141312] shadow-sm'
@@ -123,7 +140,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
         
         {/* Editorial Masonry Grid using multi-column layout */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 sm:gap-8 space-y-6 sm:space-y-8">
-          {filteredItems.map((item) => {
+          {displayedItems.map((item) => {
             const isFeatured = item.featured;
 
             return (
@@ -211,6 +228,29 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
             );
           })}
         </div>
+
+        {/* Progressive Loading: Load More Action */}
+        {hasMore && (
+          <div className="mt-12 sm:mt-16 text-center space-y-3">
+            <div className="text-xs font-sans tracking-[0.2em] uppercase text-neutral-500">
+              Showing {displayedItems.length} of {filteredItems.length} Photographs
+            </div>
+            <div className="w-24 h-[1px] bg-[#EAE3D5] mx-auto mb-4" />
+            <button
+              onClick={handleLoadMore}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#141312] hover:bg-[#252422] text-[#F3EFE6] text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 border border-transparent hover:border-[#C59B3F] cursor-pointer shadow-md hover:shadow-lg active:scale-98"
+            >
+              <span>LOAD MORE PHOTOGRAPHS</span>
+              <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
+            </button>
+          </div>
+        )}
+
+        {!hasMore && filteredItems.length > 16 && (
+          <div className="mt-12 text-center text-xs font-sans tracking-[0.2em] uppercase text-neutral-400">
+            All {filteredItems.length} Photographs Loaded
+          </div>
+        )}
 
         {/* Editorial Intentional State when Gallery Media is being curated */}
         {filteredItems.length === 0 && (

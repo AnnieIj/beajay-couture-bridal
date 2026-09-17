@@ -115,84 +115,80 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
           </div>
         ) : (
           /* Curated Editorial Teaser (Teases the Gallery without repeating Discover the Collections) */
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center bg-white border border-[#EAE3D5] p-6 sm:p-8 lg:p-10 shadow-xs">
-              {/* Spotlight Photograph */}
-              <div className="md:col-span-5 flex justify-center">
-                {GALLERY_ITEMS.map((item) => (
-                  <div
-                    key={item.id}
-                    onClick={() => onOpenLightbox(item, GALLERY_ITEMS)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        onOpenLightbox(item, GALLERY_ITEMS);
-                      }
-                    }}
-                    tabIndex={0}
-                    role="button"
-                    aria-label={`View photograph: ${item.title}`}
-                    className="group relative w-full max-w-sm aspect-[4/5] overflow-hidden bg-[#F5EFE4] border border-[#E3D9C6] hover:border-[#C59B3F] transition-all duration-300 shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C59B3F]"
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.alt || item.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#111111] px-3.5 py-2 flex items-center gap-2 text-xs font-semibold tracking-wider uppercase shadow-md">
-                        <ZoomIn className="w-3.5 h-3.5 text-[#C59B3F]" />
-                        <span>View Photograph</span>
-                      </div>
-                    </div>
-                    <div className="absolute bottom-0 inset-x-0 p-3.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white text-left">
-                      <span className="text-[9px] tracking-[0.24em] uppercase text-[#E6C875] font-semibold block">
-                        {item.categoryLabel || 'Bridal Stories'}
-                      </span>
-                      <p className="font-serif text-xs text-white/95 truncate">
-                        {item.title}
-                      </p>
+          <div className="max-w-6xl mx-auto space-y-8">
+            {/* Small Curated Grid of 4 unique official Gallery photographs */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+              {GALLERY_ITEMS.map((item) => (
+                <div
+                  key={item.id}
+                  onClick={() => onOpenLightbox(item, GALLERY_ITEMS)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onOpenLightbox(item, GALLERY_ITEMS);
+                    }
+                  }}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`View photograph: ${item.title}`}
+                  className="group relative aspect-[3/4] overflow-hidden bg-[#F5EFE4] border border-[#E3D9C6] hover:border-[#C59B3F] transition-all duration-300 shadow-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C59B3F]"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.alt || item.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#111111] px-3 py-1.5 flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase shadow-md">
+                      <ZoomIn className="w-3.5 h-3.5 text-[#C59B3F]" />
+                      <span>View</span>
                     </div>
                   </div>
-                ))}
-              </div>
+                  <div className="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white text-left">
+                    <span className="text-[9px] tracking-[0.24em] uppercase text-[#E6C875] font-semibold block">
+                      {item.categoryLabel || 'Bridal Stories'}
+                    </span>
+                    <p className="font-serif text-xs text-white/95 truncate">
+                      {item.title}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-              {/* Editorial Narrative Teaser */}
-              <div className="md:col-span-7 space-y-5 text-left">
+            {/* Editorial Narrative Teaser Banner */}
+            <div className="bg-white border border-[#EAE3D5] p-6 sm:p-8 lg:p-10 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 text-left">
+              <div className="space-y-3 max-w-2xl">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FAF6EE] border border-[#E8DFC8] text-[#856122] text-[10px] font-semibold tracking-[0.24em] uppercase">
                   BEAJAY BRIDAL STORIES
                 </div>
-
-                <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#111111] leading-snug">
+                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111] leading-snug">
                   Bridal moments, fittings, details and stories from BEAJAY.
                 </h3>
-
-                <div className="w-12 h-[1.5px] bg-[#C59B3F]" />
-
-                <p className="font-sans text-sm text-neutral-600 font-light leading-relaxed">
-                  A visual celebration of bridal artistry, bespoke atelier fittings, and authentic moments by BEAJAY COUTURE BRIDAL. Explore our dedicated gallery archive to see our bridal world in motion.
+                <p className="font-sans text-xs sm:text-sm text-neutral-600 font-light leading-relaxed">
+                  Explore our dedicated 65-photograph bridal gallery archive celebrating authentic atelier fittings, handcrafted details, and memorable bridal moments in motion.
                 </p>
+              </div>
 
-                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                  <button
-                    onClick={handleViewGallery}
-                    className="inline-flex items-center justify-center gap-2 bg-[#111111] hover:bg-[#252422] text-[#F3EFE6] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
-                  >
-                    <span>VIEW FULL GALLERY</span>
-                    <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
-                  </button>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-auto shrink-0">
+                <button
+                  onClick={handleViewGallery}
+                  className="inline-flex items-center justify-center gap-2 bg-[#111111] hover:bg-[#252422] text-[#F3EFE6] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
+                >
+                  <span>VIEW FULL GALLERY</span>
+                  <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
+                </button>
 
-                  <a
-                    href="https://instagram.com/beajaycouture_bridal"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-[#FAF7F2] hover:bg-[#F2ECE0] text-[#111111] border border-[#D5CEC0] px-5 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
-                  >
-                    <Instagram className="w-4 h-4 text-[#C59B3F]" />
-                    <span>@beajaycouture_bridal</span>
-                  </a>
-                </div>
+                <a
+                  href="https://instagram.com/beajaycouture_bridal"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-[#FAF7F2] hover:bg-[#F2ECE0] text-[#111111] border border-[#D5CEC0] px-5 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
+                >
+                  <Instagram className="w-4 h-4 text-[#C59B3F]" />
+                  <span>@beajaycouture_bridal</span>
+                </a>
               </div>
             </div>
           </div>
