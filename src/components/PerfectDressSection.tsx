@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles, Calendar, Camera } from 'lucide-react';
 import { ActiveModal } from '../types';
-import { EDITORIAL_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 
 interface PerfectDressSectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -16,109 +15,111 @@ export const PerfectDressSection: React.FC<PerfectDressSectionProps> = ({
   onNavigateRentals,
   onNavigateGallery
 }) => {
-  const cards = [
+  const pathways = [
     {
-      id: 'collection',
-      title: 'BRIDAL COLLECTION',
-      description: 'Explore BEAJAY bridal designs.',
-      cta: 'View Collection',
+      id: 'explore-collections',
+      eyebrow: 'PATHWAY 01',
+      title: 'EXPLORE COLLECTIONS',
+      description: 'Browse Ball Gown, Mermaid Gowns, Veils & Accessories.',
+      cta: 'Explore Collections',
       action: onViewCollections,
-      image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.collection),
-      alt: EDITORIAL_MEDIA_ASSETS.perfectDress.collection.alt,
-      tag: 'Bridal Designs'
+      icon: Sparkles
     },
     {
-      id: 'rent',
+      id: 'gown-rentals',
+      eyebrow: 'PATHWAY 02',
       title: 'GOWN RENTALS',
       description: 'Discover selected gowns available for rental requests.',
       cta: 'Explore Rentals',
       action: onNavigateRentals,
-      image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.rent),
-      alt: EDITORIAL_MEDIA_ASSETS.perfectDress.rent.alt,
-      tag: 'Gown Rental Collection'
+      icon: Calendar
     },
     {
-      id: 'gallery',
+      id: 'bridal-gallery',
+      eyebrow: 'PATHWAY 03',
       title: 'BRIDAL GALLERY',
-      description: 'Explore BEAJAY bridal looks, details and creative work.',
+      description: 'Discover real brides, bridal moments, fittings and details from BEAJAY.',
       cta: 'View Gallery',
       action: onNavigateGallery,
-      image: resolveMedia(EDITORIAL_MEDIA_ASSETS.perfectDress.gallery),
-      alt: 'BEAJAY bridal looks, details and creative work',
-      tag: 'Moments & Details'
+      icon: Camera
     }
   ];
 
   return (
     <section 
-      id="find-your-perfect-dress"
-      className="py-20 lg:py-28 bg-[#FCFAF7] border-b border-[#EFECE5]"
+      id="begin-your-experience"
+      className="py-16 sm:py-20 lg:py-24 bg-[#FAF7F2] border-b border-[#EAE3D5]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <p className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-[#856122]">
+            YOUR BRIDAL PATHWAY
+          </p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-[#111111]">
-            Find Your Perfect Dress
+            Begin Your BEAJAY Experience
           </h2>
-          <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto my-2" />
-          <p className="font-sans text-xs sm:text-sm font-semibold tracking-[0.28em] uppercase text-[#C59B3F]">
-            BRIDAL COLLECTION • GOWN RENTALS • BRIDAL GALLERY
+          <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto my-3" />
+          <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed">
+            Select your journey to browse couture silhouettes, discover selected rental gowns, or immerse in authentic bridal stories.
           </p>
         </div>
 
-        {/* 3 Premium Editorial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-          {cards.map((card) => (
-            <div 
-              key={card.id}
-              className="group bg-white border border-[#E9E4DB] flex flex-col hover:border-[#C59B3F] transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden"
-            >
-              {/* Image Frame with Elegant Hover Zoom */}
-              <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100">
-                <img
-                  src={card.image}
-                  alt={card.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                
-                {/* Tag */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-[#111111]/85 backdrop-blur-md text-[#EFECE5] text-[10px] font-medium tracking-[0.16em] uppercase px-3 py-1.5 border border-[#C59B3F]/40">
-                    {card.tag}
-                  </span>
-                </div>
-              </div>
+        {/* 3 Restrained Editorial Pathway Navigation Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {pathways.map((item) => {
+            const IconComponent = item.icon;
+            return (
+              <div 
+                key={item.id}
+                className="group bg-white border border-[#E7E1D4] hover:border-[#C59B3F] p-8 sm:p-9 flex flex-col justify-between transition-all duration-300 shadow-xs hover:shadow-md relative overflow-hidden"
+              >
+                {/* Subtle Top Accent on Hover */}
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#C59B3F] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              {/* Card Body */}
-              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 bg-white space-y-5">
-                <div className="space-y-3">
-                  <h3 className="font-serif text-2xl sm:text-2xl font-normal text-[#111111] group-hover:text-[#C59B3F] transition-colors">
-                    {card.title}
+                <div className="space-y-4">
+                  {/* Eyebrow & Icon */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[#856122]">
+                      {item.eyebrow}
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-[#FAF7F2] border border-[#EAE3D5] flex items-center justify-center text-[#C59B3F] group-hover:border-[#C59B3F] group-hover:bg-[#111111] group-hover:text-[#FAF7F2] transition-colors">
+                      <IconComponent className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-serif text-2xl sm:text-[26px] font-normal text-[#111111] group-hover:text-[#856122] transition-colors leading-snug tracking-tight">
+                    {item.title}
                   </h3>
-                  <p className="text-sm text-neutral-600 leading-relaxed font-light">
-                    {card.description}
+
+                  {/* Restrained Accent Divider */}
+                  <div className="w-10 h-[1.5px] bg-[#C59B3F]/60 group-hover:w-14 transition-all duration-300" />
+
+                  {/* Description */}
+                  <p className="text-sm text-neutral-600 font-light leading-relaxed">
+                    {item.description}
                   </p>
                 </div>
 
-                <div className="pt-2">
+                {/* Navigation CTA Button */}
+                <div className="pt-8">
                   <button
-                    onClick={card.action}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#C59B3F] group-hover:bg-[#B3892F] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.18em] uppercase transition-colors shadow-sm cursor-pointer"
+                    onClick={item.action}
+                    className="w-full inline-flex items-center justify-between bg-[#FAF7F2] hover:bg-[#111111] hover:text-[#FAF7F2] text-[#111111] border border-[#DDD6C8] hover:border-[#111111] py-3.5 px-5 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 cursor-pointer shadow-xs group/btn"
                   >
-                    <span>{card.cta}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <span>{item.cta}</span>
+                    <ArrowRight className="w-4 h-4 text-[#C59B3F] group-hover/btn:text-[#FAF7F2] group-hover/btn:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bridal Consultation Banner */}
-        <div className="mt-14 p-6 sm:p-8 bg-[#F5F1E8] border border-[#E5DFD3] flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mt-12 sm:mt-14 p-6 sm:p-8 bg-[#F5F1E8] border border-[#E5DFD3] flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="font-serif text-lg sm:text-xl font-medium text-[#111111]">
               Need guidance on your bridal selection?

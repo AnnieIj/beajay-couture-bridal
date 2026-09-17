@@ -45,11 +45,11 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div className="space-y-2">
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#111111] tracking-tight">
-              Featured Bridal Gowns
+              DISCOVER THE COLLECTIONS
             </h2>
             <div className="w-12 h-[2px] bg-[#C59B3F]" />
-            <p className="font-sans text-xs sm:text-xs font-semibold tracking-[0.26em] uppercase text-[#856122]">
-              EXPLORE BRIDAL SILHOUETTES
+            <p className="font-sans text-xs sm:text-sm text-neutral-600 font-light">
+              Explore BEAJAY's current bridal collections.
             </p>
           </div>
 
@@ -65,7 +65,7 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
               }}
               className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.2em] uppercase text-[#111111] hover:text-[#C59B3F] transition-colors cursor-pointer"
             >
-              <span>VIEW ALL</span>
+              <span>VIEW ALL COLLECTIONS</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F]" />
             </button>
 

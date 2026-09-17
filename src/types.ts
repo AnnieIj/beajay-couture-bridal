@@ -101,8 +101,11 @@ export interface TestimonialFormData {
 
 export type GalleryCategory =
   | 'all'
-  | 'bridal-looks'
+  | 'real-brides'
   | 'couture-details'
+  | 'fittings-bts'
+  | 'bridal-moments'
+  | 'bridal-looks'
   | 'veils-accessories'
   | 'behind-the-craft'
   | 'bride'

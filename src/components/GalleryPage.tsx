@@ -212,17 +212,58 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
           })}
         </div>
 
-        {/* Empty state fallback */}
+        {/* Editorial Intentional State when Gallery Media is being curated */}
         {filteredItems.length === 0 && (
-          <div className="text-center py-20 bg-white border border-[#EAE3D5] p-8">
-            <Compass className="w-8 h-8 text-[#C59B3F] mx-auto mb-3" />
-            <p className="font-serif text-lg text-neutral-700 mb-2">No photographs found in this category.</p>
-            <button
-              onClick={() => setActiveCategory('all')}
-              className="text-xs uppercase tracking-widest text-[#C59B3F] font-semibold hover:underline"
-            >
-              View All Photographs
-            </button>
+          <div className="text-center py-16 sm:py-20 bg-white border border-[#EAE3D5] p-8 sm:p-12 max-w-3xl mx-auto shadow-xs space-y-6">
+            <div className="w-12 h-12 rounded-full bg-[#FAF7F2] border border-[#E8E2D5] flex items-center justify-center text-[#C59B3F] mx-auto">
+              <Sparkles className="w-5 h-5" />
+            </div>
+
+            <div className="space-y-2">
+              <p className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-[#856122]">
+                BEAJAY BRIDAL STORIES
+              </p>
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-[#111111] max-w-2xl mx-auto leading-snug">
+                Real brides, fittings, details and memorable bridal moments will be featured here.
+              </h2>
+            </div>
+
+            <div className="w-12 h-[1.5px] bg-[#C59B3F] mx-auto" />
+
+            <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed">
+              Our bridal gallery is reserved for authentic visual stories from BEAJAY COUTURE BRIDAL—including bespoke fittings at our atelier in Enugu, hand-crafted couture details, and real brides on their wedding day. As official media from upcoming fittings and ceremonies is curated, this space will bring our bridal world to life.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              <button
+                onClick={onNavigateCollections}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#111111] hover:bg-[#252422] text-[#F3EFE6] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
+              >
+                <span>EXPLORE COLLECTIONS</span>
+                <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
+              </button>
+
+              <a
+                href="https://instagram.com/beajaycouture_bridal"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FAF7F2] hover:bg-[#F2ECE0] text-[#111111] border border-[#D5CEC0] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
+              >
+                <Instagram className="w-4 h-4 text-[#C59B3F]" />
+                <span>FOLLOW BEAJAY ON INSTAGRAM</span>
+              </a>
+            </div>
+
+            {activeCategory !== 'all' && (
+              <div className="pt-2">
+                <button
+                  onClick={() => setActiveCategory('all')}
+                  className="text-xs tracking-wider uppercase text-[#856122] hover:text-[#111111] underline underline-offset-4 cursor-pointer"
+                >
+                  View All Categories
+                </button>
+              </div>
+            )}
           </div>
         )}
 

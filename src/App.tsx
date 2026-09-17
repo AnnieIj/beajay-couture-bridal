@@ -295,7 +295,7 @@ export default function App() {
               onExploreCollections={() => navigateToCollections('all')}
             />
 
-            {/* SECTION 2 — FIND YOUR PERFECT DRESS */}
+            {/* SECTION 2 — BEGIN YOUR BEAJAY EXPERIENCE (Pathways: Collections, Rentals, Gallery) */}
             <PerfectDressSection
               onOpenModal={openModal}
               onViewCollections={() => navigateToCollections('all')}
@@ -303,7 +303,7 @@ export default function App() {
               onNavigateGallery={navigateToGallery}
             />
 
-            {/* SECTION 3 — FEATURED BRIDAL COLLECTION */}
+            {/* SECTION 3 — DISCOVER THE COLLECTIONS (Official Visual Collection Showcase) */}
             <FeaturedCollectionSection
               onOpenModal={openModal}
               onSelectGown={navigateToGownDetail}

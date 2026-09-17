@@ -481,41 +481,22 @@ export const ACTIVE_GOWNS_CATALOG: GownItem[] = GOWNS_CATALOG.filter((gown) => A
 export const APPROVED_TESTIMONIALS: Testimonial[] = [];
 export const TESTIMONIALS: Testimonial[] = APPROVED_TESTIMONIALS;
 
-export const HOMEPAGE_GALLERY_ITEMS: GalleryItem[] = HOMEPAGE_GALLERY_MEDIA_ASSETS.map((item) => ({
-  id: item.id,
-  title: item.title,
-  alt: item.alt,
-  category: item.category,
-  image: resolveMedia(item),
-  caption: item.caption,
-  isVideo: 'isVideo' in item ? item.isVideo : false,
-  videoUrl: 'videoCurrent' in item ? resolveMedia({ current: item.videoCurrent, officialPath: item.videoOfficialPath }) : undefined
-}));
-
+// =========================================================================
+// GALLERY MEDIA ITEMS
+// Dedicated Gallery media is reserved for authentic real brides, fittings,
+// couture details, and events. Fallback/stock/AI imagery is removed.
+// When official gallery assets are uploaded, populate here.
+// =========================================================================
+export const HOMEPAGE_GALLERY_ITEMS: GalleryItem[] = [];
 export const GALLERY_ITEMS: GalleryItem[] = HOMEPAGE_GALLERY_ITEMS;
-
-export const EDITORIAL_GALLERY_ITEMS: GalleryItem[] = EDITORIAL_GALLERY_MEDIA_ASSETS.map((item) => ({
-  id: item.id,
-  title: item.title,
-  alt: item.alt,
-  category: item.category,
-  categoryLabel: item.categoryLabel,
-  image: resolveMedia(item),
-  caption: item.caption,
-  orientation: item.orientation,
-  featured: item.featured,
-  aspectRatio: item.aspectRatio,
-  objectPosition: item.objectPosition,
-  isVideo: 'isVideo' in item ? item.isVideo : false,
-  videoUrl: 'videoCurrent' in item ? resolveMedia({ current: item.videoCurrent, officialPath: item.videoOfficialPath }) : undefined
-}));
+export const EDITORIAL_GALLERY_ITEMS: GalleryItem[] = [];
 
 export const GALLERY_CATEGORIES: { id: GalleryCategory; label: string; count?: number }[] = [
   { id: 'all', label: 'ALL' },
-  { id: 'bridal-looks', label: 'BRIDAL LOOKS' },
+  { id: 'real-brides', label: 'BRIDAL PORTRAITS / REAL BRIDES' },
   { id: 'couture-details', label: 'COUTURE DETAILS' },
-  { id: 'veils-accessories', label: 'VEILS & ACCESSORIES' },
-  { id: 'behind-the-craft', label: 'BEHIND THE CRAFT' }
+  { id: 'fittings-bts', label: 'FITTINGS & BEHIND THE SCENES' },
+  { id: 'bridal-moments', label: 'BRIDAL MOMENTS / EVENTS' }
 ];
 
 export const RENTAL_POLICIES = [
