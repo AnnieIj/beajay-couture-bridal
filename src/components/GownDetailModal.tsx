@@ -100,7 +100,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
                 Gown Availability
               </span>
               <span className="font-medium text-neutral-900">
-                {gown.isAvailableForRent 
+                {gown.rentalEligible 
                   ? 'Rental Eligible' 
                   : 'Collection Gown'}
               </span>
@@ -129,12 +129,12 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
               </button>
             )}
 
-            {gown.isAvailableForRent && onRentGown && (
+            {gown.rentalEligible && onRentGown && (
               <button
                 onClick={() => onRentGown(gown.name)}
                 className="w-full bg-neutral-900 hover:bg-black text-white py-3 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>REQUEST GOWN RENTAL</span>
+                <span>REQUEST RENTAL AVAILABILITY</span>
               </button>
             )}
 

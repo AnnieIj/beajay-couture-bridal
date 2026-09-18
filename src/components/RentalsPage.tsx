@@ -86,7 +86,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
 
           {/* Supporting Copy */}
           <p className="font-serif text-base sm:text-lg md:text-xl text-neutral-700 max-w-2xl mx-auto font-light leading-relaxed">
-            Discover selected BEAJAY gowns available for rental — whether you're choosing for your own special occasion or sourcing a beautiful piece for a client.
+            Selected BEAJAY gowns may be available for rental. Browse rental-eligible designs and submit your rental availability request for BEAJAY review.
           </p>
 
           {/* Core Brand Statement */}
@@ -110,7 +110,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
               onClick={() => onRequestRental()}
               className="bg-white hover:bg-[#F5F0E6] text-[#111111] border border-[#D5CDBF] px-7 py-3.5 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 cursor-pointer inline-flex items-center gap-2"
             >
-              <span>REQUEST A RENTAL</span>
+              <span>REQUEST RENTAL AVAILABILITY</span>
             </button>
 
             <a
@@ -128,24 +128,24 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
       </section>
 
       {/* =======================================================
-          2. RENTAL PROCESS EXPLANATION (4 Steps)
+          2. RENTAL JOURNEY (6 Steps)
           ======================================================= */}
       <section className="border-b border-[#EAE3D5] bg-white py-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-8">
           
           <div className="text-center space-y-1">
             <span className="text-[10px] tracking-[0.22em] font-semibold text-[#856122] uppercase">
-              THE RENTAL PROCESS
+              THE RENTAL JOURNEY
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl text-[#111111]">
               How Couture Rental Works
             </h2>
             <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto">
-              A refined four-step request process to discover, select, request, and confirm your gown rental.
+              A refined six-step journey to discover, select, and submit a rental availability request for BEAJAY review.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             
             {/* Step 1 */}
             <div className="p-6 bg-[#FCFAF7] border border-[#EAE3D5] space-y-3">
@@ -154,7 +154,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
                 DISCOVER
               </h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Explore selected BEAJAY gowns available for rental.
+                Browse selected rental-eligible gowns.
               </p>
             </div>
 
@@ -165,7 +165,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
                 SELECT
               </h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Choose the gown that fits your vision.
+                Open the gown and review available verified information.
               </p>
             </div>
 
@@ -176,7 +176,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
                 REQUEST
               </h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Submit your preferred dates and contact details.
+                Request rental availability.
               </p>
             </div>
 
@@ -184,10 +184,32 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
             <div className="p-6 bg-[#FCFAF7] border border-[#EAE3D5] space-y-3">
               <span className="font-serif text-2xl text-[#C59B3F] font-light">04</span>
               <h3 className="font-serif text-base text-neutral-900 font-medium uppercase tracking-wider">
-                CONFIRM
+                DETAILS
               </h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                BEAJAY reviews the request and confirms availability.
+                Provide renter, event/use and collection/return information.
+              </p>
+            </div>
+
+            {/* Step 5 */}
+            <div className="p-6 bg-[#FCFAF7] border border-[#EAE3D5] space-y-3">
+              <span className="font-serif text-2xl text-[#C59B3F] font-light">05</span>
+              <h3 className="font-serif text-base text-neutral-900 font-medium uppercase tracking-wider">
+                REVIEW
+              </h3>
+              <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                Review the request before submission.
+              </p>
+            </div>
+
+            {/* Step 6 */}
+            <div className="p-6 bg-[#FCFAF7] border border-[#EAE3D5] space-y-3">
+              <span className="font-serif text-2xl text-[#C59B3F] font-light">06</span>
+              <h3 className="font-serif text-base text-neutral-900 font-medium uppercase tracking-wider">
+                SUBMIT
+              </h3>
+              <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                Submit the rental request for BEAJAY review.
               </p>
             </div>
 
@@ -377,7 +399,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
                           ? 'Unavailable'
                           : gown.availability === 'coming-soon'
                           ? 'Coming Soon'
-                          : 'Requires Confirmation'}
+                          : 'Availability requires confirmation'}
                       </span>
                     </div>
 
@@ -410,7 +432,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
                       )}
                     </div>
 
-                    {/* Actions: View Gown & Request Rental */}
+                    {/* Actions: View Gown, Request Rental Availability & WhatsApp Enquiry */}
                     <div className="pt-2 border-t border-[#F0EBE0] space-y-2">
                       <button
                         onClick={() => onSelectGown(gown)}
@@ -430,8 +452,18 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
                         }`}
                       >
                         <Layers className="w-3.5 h-3.5" />
-                        <span>{isUnavailable ? 'CURRENTLY UNAVAILABLE' : 'REQUEST RENTAL'}</span>
+                        <span>{isUnavailable ? 'CURRENTLY UNAVAILABLE' : 'REQUEST RENTAL AVAILABILITY'}</span>
                       </button>
+
+                      <a
+                        href={buildWhatsAppUrl({ type: 'rental', gownName: gown.name, gownCode: gown.code })}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center gap-2 bg-[#101A14] hover:bg-[#18281E] text-white border border-[#25D366]/40 hover:border-[#25D366] py-2 px-3 text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer"
+                      >
+                        <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366]" />
+                        <span>WHATSAPP RENTAL ENQUIRY</span>
+                      </a>
                     </div>
 
                   </div>
@@ -466,7 +498,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
               onClick={() => onRequestRental()}
               className="bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3.5 px-6 text-xs font-semibold tracking-[0.2em] uppercase transition-all text-center cursor-pointer shadow-sm"
             >
-              START A RENTAL REQUEST
+              REQUEST RENTAL AVAILABILITY
             </button>
             <button
               onClick={onExploreCollections}

@@ -58,7 +58,7 @@ export const BRAND_CONTACT = {
 
 export type WhatsAppEnquiryContext = 
   | { type: 'general' }
-  | { type: 'rental'; gownName?: string }
+  | { type: 'rental'; gownName?: string; gownCode?: string }
   | { type: 'appointment'; serviceName?: string }
   | { type: 'gown'; gownName: string; gownCode?: string };
 
@@ -70,7 +70,14 @@ export function buildWhatsAppUrl(context?: WhatsAppEnquiryContext): string {
   
   if (context) {
     if (context.type === 'rental') {
-      message = 'Hello BEAJAY COUTURE BRIDAL, I would like to enquire about gown rental.';
+      if (context.gownName) {
+        const identifier = context.gownCode 
+          ? `${context.gownName} (${context.gownCode})` 
+          : context.gownName;
+        message = `Hello BEAJAY COUTURE BRIDAL, I would like to enquire about rental availability for ${identifier}.`;
+      } else {
+        message = 'Hello BEAJAY COUTURE BRIDAL, I would like to enquire about rental availability.';
+      }
     } else if (context.type === 'appointment') {
       message = 'Hello BEAJAY COUTURE BRIDAL, I would like to enquire about booking an appointment.';
     } else if (context.type === 'gown') {

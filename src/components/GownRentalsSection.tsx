@@ -19,7 +19,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
   onSelectGown,
   onNavigateRentals
 }) => {
-  const previewRentalGowns = GOWNS_CATALOG.filter(g => g.isAvailableForRent).slice(0, 3);
+  const previewRentalGowns = GOWNS_CATALOG.filter(g => g.rentalEligible).slice(0, 3);
 
   const handleBrowseRentals = () => {
     if (onNavigateRentals) {
@@ -50,8 +50,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
           </h2>
           <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto my-3" />
           <p className="text-sm sm:text-base text-neutral-300 font-light max-w-xl mx-auto leading-relaxed">
-            Experience luxury bridal designs without the commitment of full purchase. 
-            Crafted in Nigeria. Made for Brides Everywhere.
+            Selected BEAJAY gowns may be available for rental. Discover rental-eligible silhouettes and submit a rental request to confirm availability.
           </p>
         </div>
 
@@ -63,7 +62,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
             </div>
             <h3 className="font-serif text-lg text-white">Curated Silhouettes</h3>
             <p className="text-xs text-neutral-400 font-light leading-relaxed">
-              Explore selected BEAJAY bridal designs available for rental.
+              Explore selected BEAJAY bridal designs that may be available for rental requests.
             </p>
           </div>
 
@@ -71,9 +70,9 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
             <div className="w-10 h-10 bg-[#22201D] border border-[#C59B3F]/30 flex items-center justify-center text-[#C59B3F]">
               <CheckCircle2 className="w-5 h-5" />
             </div>
-            <h3 className="font-serif text-lg text-white">Rental Service</h3>
+            <h3 className="font-serif text-lg text-white">Unified Service</h3>
             <p className="text-xs text-neutral-400 font-light leading-relaxed">
-              Individual brides and bridal vendors can submit rental requests with coordinated scheduling.
+              Individual brides and bridal vendors share one seamless rental request pathway.
             </p>
           </div>
 
@@ -93,17 +92,17 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-[#2A2824] pb-4">
             <div>
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C59B3F]">
-                Featured in Rental Archive
+                Selected Rental Gowns
               </span>
               <h3 className="font-serif text-2xl text-white">
-                Available Gowns for Rental
+                Available Gowns for Rental Requests
               </h3>
             </div>
             <button
               onClick={handleBrowseRentals}
               className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-[#E6C875] hover:underline cursor-pointer"
             >
-              <span>View All Rental Gowns</span>
+              <span>EXPLORE RENTALS</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -141,13 +140,13 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
                       onClick={() => onSelectGown ? onSelectGown(gown) : handleBrowseRentals()}
                       className="flex-1 py-2.5 px-3 text-[11px] border border-[#3E3A34] hover:border-white text-neutral-200 uppercase tracking-wider text-center transition-colors cursor-pointer"
                     >
-                      Details
+                      View Gown
                     </button>
                     <button
                       onClick={() => onOpenModal('rentals', { action: 'request', gownName: gown.name })}
                       className="flex-1 py-2.5 px-3 text-[11px] bg-[#C59B3F] hover:bg-[#B3892F] text-white uppercase tracking-wider text-center font-semibold transition-colors cursor-pointer"
                     >
-                      Rent Gown
+                      Check Availability
                     </button>
                   </div>
                 </div>
@@ -160,10 +159,10 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
         <div className="mt-14 p-8 bg-[#181715] border border-[#2D2A26] flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div className="space-y-1">
             <h4 className="font-serif text-xl text-white">
-              Request a BEAJAY Rental Gown
+              Request Rental Availability
             </h4>
             <p className="text-xs text-neutral-400 font-light max-w-lg">
-              Individual brides and bridal vendors share our unified rental process. Submit your inquiry to confirm date and gown availability.
+              Individual brides and bridal vendors share our unified rental process. Selected gowns may be available for rental upon availability confirmation.
             </p>
           </div>
 
@@ -172,13 +171,13 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
               onClick={handleBrowseRentals}
               className="py-3 px-6 text-xs uppercase tracking-wider font-semibold border border-[#C59B3F] text-[#E6C875] hover:bg-[#C59B3F]/10 transition-colors cursor-pointer"
             >
-              Browse All Rentals
+              EXPLORE RENTALS
             </button>
             <button
               onClick={() => onOpenModal('rentals', { action: 'request' })}
               className="py-3 px-6 text-xs uppercase tracking-wider font-semibold bg-[#C59B3F] hover:bg-[#B3892F] text-white transition-colors cursor-pointer shadow-md"
             >
-              Start Rental Request
+              REQUEST RENTAL AVAILABILITY
             </button>
           </div>
         </div>

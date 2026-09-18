@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 import { GOWNS_CATALOG } from '../data/bridalData';
 import { GownItem, RenterType, RentalInquiryFormData } from '../types';
+import { buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface RentalsModalProps {
   isOpen: boolean;
@@ -71,6 +73,18 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
   // Validation errors
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Close on Escape key press
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   // Reset or initialize on open
   useEffect(() => {
@@ -1016,16 +1030,16 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               </div>
 
               <div className="p-4 bg-[#FAF7F0] border border-[#EAE4D9] text-xs text-neutral-600 font-light text-center">
-                Submitting this request will send your dates and preferences to BEAJAY COUTURE BRIDAL for review.
+                Submitting this request will prepare your preferred dates and details for BEAJAY review.
               </div>
             </div>
           )}
 
           {/* =======================================================
-              STEP 7: SUBMITTED (Confirmation)
+              STEP 7: RENTAL REQUEST PREPARED (Confirmation)
               ======================================================= */}
           {step === 7 && (
-            <div className="bg-white border border-[#E5DEC9] p-8 sm:p-12 text-center space-y-6 shadow-xs animate-in zoom-in-95 duration-200">
+            <div className="bg-white border border-[#E5DEC9] p-6 sm:p-10 text-center space-y-6 shadow-xs animate-in zoom-in-95 duration-200">
               <div className="w-16 h-16 bg-[#FAF5E8] border border-[#C59B3F] rounded-full flex items-center justify-center mx-auto text-[#C59B3F]">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
@@ -1035,22 +1049,63 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   BEAJAY COUTURE BRIDAL
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl text-[#111111]">
-                  RENTAL REQUEST SUBMITTED
+                  RENTAL REQUEST PREPARED
                 </h3>
               </div>
 
               <p className="text-xs sm:text-sm text-neutral-600 max-w-md mx-auto font-light leading-relaxed">
-                Thank you for your request. BEAJAY COUTURE BRIDAL will review the details and confirm availability.
+                Online rental request submission will be available soon. You can contact BEAJAY via WhatsApp for rental availability.
               </p>
 
-              <div className="pt-4 border-t border-[#EAE4D9] flex flex-wrap items-center justify-center gap-4 text-xs">
+              {/* Prepared Summary Card */}
+              <div className="bg-[#FAF7F0] border border-[#E8E0CF] p-4 sm:p-5 text-left max-w-lg mx-auto space-y-2.5 text-xs">
+                <div className="text-[10px] font-semibold tracking-wider text-[#856122] uppercase border-b border-[#E8E0CF] pb-1.5 flex items-center justify-between">
+                  <span>Prepared Request Summary</span>
+                  <span className="font-normal text-neutral-500 lowercase">{formData.renterType === 'vendor' ? 'Bridal Vendor' : 'Individual'}</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-neutral-700">
+                  <div>
+                    <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Selected Gown</span>
+                    <span className="font-serif text-neutral-900 font-medium">{selectedGown.name} ({selectedGown.code})</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Renter</span>
+                    <span className="text-neutral-900">{formData.renterType === 'vendor' ? (formData.businessName || formData.fullName) : formData.fullName}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Event Date</span>
+                    <span className="text-neutral-900">{formData.eventDate || 'Not specified'}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Location</span>
+                    <span className="text-neutral-900">{formData.city ? `${formData.city}, ${formData.country}` : formData.country}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Direct verified WhatsApp CTA */}
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a
+                  href={buildWhatsAppUrl({
+                    type: 'rental',
+                    gownName: selectedGown.name,
+                    gownCode: selectedGown.code
+                  })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#101A14] hover:bg-[#18281E] text-white border border-[#25D366]/50 hover:border-[#25D366] px-6 py-3.5 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 cursor-pointer shadow-xs"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                  <span>CONTACT VIA WHATSAPP</span>
+                </a>
+
                 {onExploreCollections && (
                   <button
                     onClick={() => {
                       onClose();
                       onExploreCollections();
                     }}
-                    className="bg-[#111111] hover:bg-[#252422] text-white px-5 py-3 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
+                    className="w-full sm:w-auto bg-[#111111] hover:bg-[#252422] text-white px-5 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
                   >
                     EXPLORE ALL COLLECTIONS
                   </button>
@@ -1058,7 +1113,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
                 <button
                   onClick={onClose}
-                  className="bg-white hover:bg-[#FAF7F0] text-neutral-800 border border-[#D5CDBF] px-5 py-3 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
+                  className="w-full sm:w-auto bg-white hover:bg-[#FAF7F0] text-neutral-800 border border-[#D5CDBF] px-5 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
                 >
                   CLOSE
                 </button>
