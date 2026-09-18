@@ -26,7 +26,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         g.categoryLabel.toLowerCase().includes(query.toLowerCase()) ||
         g.description.toLowerCase().includes(query.toLowerCase()) ||
         g.fabric.toLowerCase().includes(query.toLowerCase()) ||
-        g.tags?.some(t => t.toLowerCase().includes(query.toLowerCase()))
+        g.tags?.some(t => t.toLowerCase().includes(query.toLowerCase())) ||
+        (query.toLowerCase().includes('rent') && g.rentalEligible)
       );
 
   const quickTags = ['Ball Gown', 'Mermaid Gowns', 'Veils & Accessories', 'Rental', 'Cathedral Veil'];
@@ -111,7 +112,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                     <span className="text-[9px] uppercase tracking-wider text-[#856122] font-semibold bg-[#FAF7F0] px-1.5 py-0.5 border border-[#E5DEC9]">
                       {gown.categoryLabel}
                     </span>
-                    {gown.isAvailableForRent && (
+                    {gown.rentalEligible && (
                       <span className="text-[9px] uppercase tracking-wider text-neutral-500">
                         Rental Available
                       </span>

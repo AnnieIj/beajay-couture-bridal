@@ -14,7 +14,7 @@ import {
   Clock,
   Edit3
 } from 'lucide-react';
-import { GOWNS_CATALOG } from '../data/bridalData';
+import { ACTIVE_RENTAL_GOWNS } from '../data/bridalData';
 import { GownItem, RenterType, RentalInquiryFormData } from '../types';
 import { buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
@@ -35,8 +35,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
   initialGownName,
   onExploreCollections
 }) => {
-  // Only gowns where rentalEligible is true
-  const rentalGowns = GOWNS_CATALOG.filter(g => g.rentalEligible);
+  // All active gowns are available for rental requests
+  const rentalGowns = ACTIVE_RENTAL_GOWNS;
 
   // Steps: 1: Select Gown, 2: Renter Type, 3: Event & Dates, 4: Details, 5: Notes, 6: Review, 7: Submitted
   const [step, setStep] = useState<number>(1);
@@ -47,7 +47,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
       const match = rentalGowns.find(g => g.name.toLowerCase() === initialGownName.toLowerCase());
       if (match) return match;
     }
-    return rentalGowns[0] || GOWNS_CATALOG[0];
+    return rentalGowns[0] || ACTIVE_RENTAL_GOWNS[0];
   });
 
   // Form state
@@ -247,8 +247,6 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
     });
   };
 
-  const isUnavailable = selectedGown.availability === 'unavailable';
-
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 md:p-6 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200"
@@ -338,7 +336,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   Choose Your Rental Silhouette
                 </h3>
                 <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                  Select the couture gown you wish to request for rental. All available pieces are curated from the official BEAJAY bridal collection.
+                  Select the couture gown you wish to request for rental. All BEAJAY bridal gowns and dresses are available for rental requests upon date confirmation.
                 </p>
               </div>
 
@@ -359,27 +357,6 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-[#856122]">
                       {selectedGown.categoryLabel}
-                    </span>
-                    
-                    {/* Availability Tag */}
-                    <span className={`text-[9.5px] uppercase tracking-wider font-semibold px-2 py-0.5 border ${
-                      selectedGown.availability === 'available'
-                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                        : selectedGown.availability === 'reserved'
-                        ? 'bg-amber-50 text-amber-800 border-amber-200'
-                        : selectedGown.availability === 'unavailable'
-                        ? 'bg-rose-50 text-rose-800 border-rose-200'
-                        : 'bg-neutral-50 text-neutral-700 border-neutral-200'
-                    }`}>
-                      {selectedGown.availability === 'available'
-                        ? 'Available'
-                        : selectedGown.availability === 'reserved'
-                        ? 'Reserved'
-                        : selectedGown.availability === 'unavailable'
-                        ? 'Unavailable'
-                        : selectedGown.availability === 'coming-soon'
-                        ? 'Coming Soon'
-                        : 'Availability requires confirmation'}
                     </span>
                   </div>
 
@@ -402,7 +379,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               {/* Gown Selector Dropdown */}
               <div className="space-y-1.5">
                 <label htmlFor="rental-gown-selector" className="block text-xs font-semibold tracking-wider uppercase text-neutral-800">
-                  Switch to Another Rental-Eligible Gown
+                  Select Gown for Rental Request
                 </label>
                 <select
                   id="rental-gown-selector"
@@ -417,17 +394,6 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   ))}
                 </select>
               </div>
-
-              {/* Unavailable warning if applicable */}
-              {isUnavailable && (
-                <div className="p-3.5 bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2.5">
-                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="font-semibold block">Gown Currently Unavailable</strong>
-                    This gown is currently unavailable for rental booking. Please select another style from the dropdown to continue.
-                  </div>
-                </div>
-              )}
 
               {errors.gown && (
                 <p className="text-xs text-rose-600 flex items-center gap-1">
@@ -1152,12 +1118,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
             <button
               type="button"
               onClick={handleNext}
-              disabled={step === 1 && isUnavailable}
-              className={`inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition-all cursor-pointer shadow-xs ${
-                step === 1 && isUnavailable
-                  ? 'bg-neutral-300 text-neutral-500 cursor-not-allowed'
-                  : 'bg-[#C59B3F] hover:bg-[#B3892F] text-white'
-              }`}
+              className="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition-all cursor-pointer shadow-xs bg-[#C59B3F] hover:bg-[#B3892F] text-white"
             >
               <span>{step === 6 ? 'SUBMIT RENTAL REQUEST' : 'NEXT STEP'}</span>
               <ArrowRight className="w-3.5 h-3.5" />

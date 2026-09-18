@@ -137,11 +137,6 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                 <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9.5px] tracking-[0.2em] uppercase px-3 py-1 font-medium font-sans">
                   {gown.code}
                 </span>
-                {gown.rentalEligible && (
-                  <span className="bg-[#C59B3F] text-white text-[9.5px] tracking-[0.16em] uppercase px-3 py-1 font-medium font-sans shadow-xs">
-                    Rental Eligible
-                  </span>
-                )}
               </div>
 
               {/* Lightbox Trigger Icon */}
@@ -310,18 +305,12 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
               )}
 
               <div className="grid grid-cols-3 gap-2">
-                <span className="text-neutral-500 font-medium">Rental Eligibility:</span>
+                <span className="text-neutral-500 font-medium">Rental Availability:</span>
                 <span className="col-span-2 font-normal">
-                  {gown.rentalEligible ? (
-                    <span className="text-[#856122] font-semibold flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#C59B3F]" />
-                      Rental Eligible
-                    </span>
-                  ) : (
-                    <span className="text-neutral-500">
-                      Collection Gown
-                    </span>
-                  )}
+                  <span className="text-[#856122] font-medium flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#C59B3F]" />
+                    Available for Rental Requests
+                  </span>
                 </span>
               </div>
             </div>
@@ -338,25 +327,14 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                 <span>BOOK A FITTING</span>
               </button>
 
-              {/* Action 2: Check Rental Availability (ONLY if rentalEligible is true) */}
-              {gown.rentalEligible && (
-                <button
-                  onClick={() => gown.availability !== 'unavailable' && onCheckRentalAvailability(gown.name)}
-                  disabled={gown.availability === 'unavailable'}
-                  className={`w-full flex items-center justify-center gap-2.5 py-3.5 px-6 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 shadow-xs border ${
-                    gown.availability === 'unavailable'
-                      ? 'bg-neutral-200 text-neutral-400 border-neutral-300 cursor-not-allowed'
-                      : 'bg-[#111111] hover:bg-[#262420] text-white cursor-pointer border-[#C59B3F]/60'
-                  }`}
-                >
-                  <Layers className="w-4 h-4 text-[#C59B3F]" />
-                  <span>
-                    {gown.availability === 'unavailable' 
-                      ? 'RENTAL CURRENTLY UNAVAILABLE' 
-                      : 'CHECK RENTAL AVAILABILITY'}
-                  </span>
-                </button>
-              )}
+              {/* Action 2: Request Rental Availability (Available for all gowns) */}
+              <button
+                onClick={() => onCheckRentalAvailability(gown.name)}
+                className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 shadow-xs border bg-[#111111] hover:bg-[#262420] text-white cursor-pointer border-[#C59B3F]/60"
+              >
+                <Layers className="w-4 h-4 text-[#C59B3F]" />
+                <span>REQUEST RENTAL AVAILABILITY</span>
+              </button>
 
               {/* Action 3: Enquire About This Gown */}
               <button

@@ -239,14 +239,14 @@ export const COLLECTION_MEDIA_ASSETS = {
     bj01: {
       primary: {
         current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg',
+        officialPath: '/media/collections/ball-gown/ball-gown 001.jpeg',
         hasOfficial: true,
         alt: 'BEAJAY COUTURE BRIDAL ball gown - The Sovereign Gown'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/ball-gown/ball-gown 001.jpeg',
+          officialPath: '/media/collections/ball-gown/ball-gown 002.jpeg',
           hasOfficial: true,
           alt: 'BEAJAY COUTURE BRIDAL ball gown'
         },
@@ -261,14 +261,14 @@ export const COLLECTION_MEDIA_ASSETS = {
     bj02: {
       primary: {
         current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/mermaid/mermaid 001.jpeg',
+        officialPath: '/media/collections/mermaid/mermaid 002.jpeg',
         hasOfficial: true,
         alt: 'BEAJAY COUTURE BRIDAL mermaid gown - The Sculpted Mermaid'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/mermaid/mermaid 002.jpeg',
+          officialPath: '/media/collections/mermaid/mermaid 001.jpeg',
           hasOfficial: true,
           alt: 'BEAJAY COUTURE BRIDAL mermaid gown'
         },
@@ -339,20 +339,20 @@ export const COLLECTION_MEDIA_ASSETS = {
     bj06: {
       primary: {
         current: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/accessories/veil-01.jpg',
-        hasOfficial: false,
+        officialPath: '/media/collections/accessories/veil 001.jpg',
+        hasOfficial: true,
         alt: 'The Crown Heirloom Cathedral Veil'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/accessories/veil-01-a.jpg',
-          hasOfficial: false
+          officialPath: '/media/collections/accessories/veil 002.jpg',
+          hasOfficial: true
         },
         {
           current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/accessories/veil-01-b.jpg',
-          hasOfficial: false
+          officialPath: '/media/collections/accessories/veil 003.jpg',
+          hasOfficial: true
         }
       ]
     },
@@ -448,15 +448,15 @@ export const COLLECTION_MEDIA_ASSETS = {
     bj12: {
       primary: {
         current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-        officialPath: '/media/collections/accessories/veil-02.jpg',
-        hasOfficial: false,
+        officialPath: '/media/collections/accessories/veil 004.jpg',
+        hasOfficial: true,
         alt: 'The Royale Embellished Cape & Tiara'
       },
       gallery: [
         {
           current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-          officialPath: '/media/collections/accessories/veil-02-a.jpg',
-          hasOfficial: false
+          officialPath: '/media/collections/accessories/veil 005.jpg',
+          hasOfficial: true
         }
       ]
     }
@@ -468,13 +468,15 @@ export const COLLECTION_MEDIA_ASSETS = {
 // =========================================================================
 export const RENTALS_MEDIA_ASSETS = {
   hero: {
-    current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-    officialPath: '/media/rentals/rentals-hero.jpg',
+    current: '/media/collections/ball-gown/ball-gown 004.jpg',
+    officialPath: '/media/collections/ball-gown/ball-gown 004.jpg',
+    hasOfficial: true,
     alt: 'BEAJAY Gown Rental Collection'
   },
   featured: {
-    current: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?q=80&w=1200&auto=format&fit=crop',
-    officialPath: '/media/rentals/rental-featured.jpg',
+    current: '/media/collections/mermaid/mermaid 003.jpeg',
+    officialPath: '/media/collections/mermaid/mermaid 003.jpeg',
+    hasOfficial: true,
     alt: 'Featured Rental Gown'
   }
 } as const;

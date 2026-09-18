@@ -94,15 +94,13 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
               )}
             </div>
 
-            {/* Availability info - Display NO PRICE if verified pricing is unavailable */}
+            {/* Availability info */}
             <div className="p-4 border border-[#D9CEBA] bg-[#FAF6EE] text-xs">
               <span className="text-[10px] uppercase tracking-wider text-neutral-500 block mb-1">
                 Gown Availability
               </span>
               <span className="font-medium text-neutral-900">
-                {gown.rentalEligible 
-                  ? 'Rental Eligible' 
-                  : 'Collection Gown'}
+                Available for Rental Requests upon Date Confirmation
               </span>
             </div>
 
@@ -129,7 +127,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
               </button>
             )}
 
-            {gown.rentalEligible && onRentGown && (
+            {onRentGown && (
               <button
                 onClick={() => onRentGown(gown.name)}
                 className="w-full bg-neutral-900 hover:bg-black text-white py-3 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"

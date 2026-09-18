@@ -5,7 +5,7 @@ import {
   ShieldCheck, 
   Sparkles 
 } from 'lucide-react';
-import { GOWNS_CATALOG } from '../data/bridalData';
+import { ACTIVE_RENTAL_GOWNS } from '../data/bridalData';
 import { ActiveModal, GownItem } from '../types';
 
 interface GownRentalsSectionProps {
@@ -19,7 +19,13 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
   onSelectGown,
   onNavigateRentals
 }) => {
-  const previewRentalGowns = GOWNS_CATALOG.filter(g => g.rentalEligible).slice(0, 3);
+  // Deterministic preview of 3 distinct gowns with zero image repetition relative to Discover the Collections:
+  // Discover Collections features: ball-gown 002.jpeg, mermaid 001.jpeg, veil 001.jpg
+  // Gown Rentals Preview features: bj-01 (ball-gown 001.jpeg), bj-07 (ball-gown 003.jpeg), bj-04 (mermaid 005.jpeg)
+  const previewGownIds = ['bj-01', 'bj-07', 'bj-04'];
+  const previewRentalGowns = previewGownIds
+    .map(id => ACTIVE_RENTAL_GOWNS.find(g => g.id === id))
+    .filter(Boolean) as GownItem[];
 
   const handleBrowseRentals = () => {
     if (onNavigateRentals) {
@@ -50,7 +56,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
           </h2>
           <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto my-3" />
           <p className="text-sm sm:text-base text-neutral-300 font-light max-w-xl mx-auto leading-relaxed">
-            Selected BEAJAY gowns may be available for rental. Discover rental-eligible silhouettes and submit a rental request to confirm availability.
+            All BEAJAY bridal gowns and dresses are available for rental requests. Select your silhouette and submit your preferred event dates to confirm date availability.
           </p>
         </div>
 
@@ -60,9 +66,9 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
             <div className="w-10 h-10 bg-[#22201D] border border-[#C59B3F]/30 flex items-center justify-center text-[#C59B3F]">
               <Sparkles className="w-5 h-5" />
             </div>
-            <h3 className="font-serif text-lg text-white">Curated Silhouettes</h3>
+            <h3 className="font-serif text-lg text-white">All Gowns Rentable</h3>
             <p className="text-xs text-neutral-400 font-light leading-relaxed">
-              Explore selected BEAJAY bridal designs that may be available for rental requests.
+              Every active BEAJAY bridal silhouette is available for rental requests upon date confirmation.
             </p>
           </div>
 
@@ -92,7 +98,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-[#2A2824] pb-4">
             <div>
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C59B3F]">
-                Selected Rental Gowns
+                BEAJAY Bridal Collection
               </span>
               <h3 className="font-serif text-2xl text-white">
                 Available Gowns for Rental Requests
@@ -102,7 +108,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
               onClick={handleBrowseRentals}
               className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-[#E6C875] hover:underline cursor-pointer"
             >
-              <span>EXPLORE RENTALS</span>
+              <span>EXPLORE ALL RENTALS</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -120,8 +126,11 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-xs text-white text-[9px] px-2.5 py-1 tracking-wider uppercase font-sans">
-                    RENTAL SELECTION
+                  <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-xs text-white text-[9px] px-2.5 py-1 tracking-wider uppercase font-sans">
+                    {gown.code}
+                  </div>
+                  <div className="absolute bottom-3 left-3 bg-[#111111]/90 backdrop-blur-xs text-[#E6C875] text-[9px] px-2.5 py-1 tracking-widest uppercase font-sans border border-[#C59B3F]/40">
+                    {gown.categoryLabel}
                   </div>
                 </div>
 
@@ -135,18 +144,18 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-[#292723] flex items-center gap-2">
-                    <button
-                      onClick={() => onSelectGown ? onSelectGown(gown) : handleBrowseRentals()}
-                      className="flex-1 py-2.5 px-3 text-[11px] border border-[#3E3A34] hover:border-white text-neutral-200 uppercase tracking-wider text-center transition-colors cursor-pointer"
-                    >
-                      View Gown
-                    </button>
+                  <div className="pt-3 border-t border-[#292723] flex flex-col gap-2">
                     <button
                       onClick={() => onOpenModal('rentals', { action: 'request', gownName: gown.name })}
-                      className="flex-1 py-2.5 px-3 text-[11px] bg-[#C59B3F] hover:bg-[#B3892F] text-white uppercase tracking-wider text-center font-semibold transition-colors cursor-pointer"
+                      className="w-full py-2.5 px-3 text-[11px] bg-[#C59B3F] hover:bg-[#B3892F] text-white uppercase tracking-[0.16em] text-center font-semibold transition-colors cursor-pointer shadow-xs"
                     >
-                      Check Availability
+                      REQUEST RENTAL AVAILABILITY
+                    </button>
+                    <button
+                      onClick={() => onSelectGown ? onSelectGown(gown) : handleBrowseRentals()}
+                      className="w-full py-2 px-3 text-[11px] border border-[#3E3A34] hover:border-neutral-400 text-neutral-300 hover:text-white uppercase tracking-wider text-center transition-colors cursor-pointer"
+                    >
+                      View Gown Details
                     </button>
                   </div>
                 </div>
@@ -162,7 +171,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
               Request Rental Availability
             </h4>
             <p className="text-xs text-neutral-400 font-light max-w-lg">
-              Individual brides and bridal vendors share our unified rental process. Selected gowns may be available for rental upon availability confirmation.
+              Individual brides and bridal vendors share our unified rental process. All gowns are available for rental requests upon date availability confirmation.
             </p>
           </div>
 
@@ -171,7 +180,7 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
               onClick={handleBrowseRentals}
               className="py-3 px-6 text-xs uppercase tracking-wider font-semibold border border-[#C59B3F] text-[#E6C875] hover:bg-[#C59B3F]/10 transition-colors cursor-pointer"
             >
-              EXPLORE RENTALS
+              EXPLORE ALL RENTALS
             </button>
             <button
               onClick={() => onOpenModal('rentals', { action: 'request' })}

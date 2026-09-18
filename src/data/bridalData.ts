@@ -324,9 +324,9 @@ export const GOWNS_CATALOG: GownItem[] = [
     embellishments: 'Fine beading, metallic accents, and detailed embroidery',
     trainStyle: '3.5 Meters Royal Train',
     trainLength: '3.5 Meters Royal Train',
-    rentalEligible: false,
-    isAvailableForRent: false,
-    availability: 'coming-soon',
+    rentalEligible: true,
+    isAvailableForRent: true,
+    availability: 'available',
     featured: false,
     isFeatured: false,
     tags: ['Modest Royal', 'Long Sleeve', 'Cathedral Wedding']
@@ -410,8 +410,8 @@ export const GOWNS_CATALOG: GownItem[] = [
     embellishments: 'Minimalist clean finish without external beadwork',
     trainStyle: 'Sweep Train',
     trainLength: '1.2 Meters Sweep Train',
-    rentalEligible: false,
-    isAvailableForRent: false,
+    rentalEligible: true,
+    isAvailableForRent: true,
     availability: 'available',
     featured: false,
     isFeatured: false,
@@ -473,6 +473,11 @@ export const GOWNS_CATALOG: GownItem[] = [
 
 // Active Gowns Catalog (Active collections only: Ball Gown, Mermaid Gowns, Veils & Accessories)
 export const ACTIVE_GOWNS_CATALOG: GownItem[] = GOWNS_CATALOG.filter((gown) => ACTIVE_CATEGORY_SLUGS.has(gown.category));
+
+// All active BEAJAY dresses and gowns are available for rental requests upon date confirmation
+export const ACTIVE_RENTAL_GOWNS: GownItem[] = ACTIVE_GOWNS_CATALOG.filter(
+  (gown) => gown.rentalEligible && gown.category !== 'veils-accessories'
+);
 
 // =========================================================================
 // APPROVED BRIDAL TESTIMONIALS

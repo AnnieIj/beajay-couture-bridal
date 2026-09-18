@@ -90,17 +90,12 @@ export const GownCard: React.FC<GownCardProps> = ({
           />
         )}
 
-        {/* Top Badges: Gown Code, Rental Eligibility & Relevant Availability */}
+        {/* Top Badges: Gown Code & Relevant Availability */}
         <div className="absolute top-3 inset-x-3 flex items-start justify-between pointer-events-none gap-2 z-10">
           <div className="flex flex-col gap-1.5 items-start">
             <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 font-sans font-medium">
               {gown.code || 'COUTURE'}
             </span>
-            {gown.rentalEligible && (
-              <span className="bg-[#C59B3F] text-white text-[9px] tracking-[0.16em] uppercase px-2.5 py-0.5 font-sans font-medium shadow-xs">
-                Rental Eligible
-              </span>
-            )}
           </div>
 
           <div className="flex flex-col gap-1 items-end">
@@ -144,11 +139,9 @@ export const GownCard: React.FC<GownCardProps> = ({
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </span>
 
-          {gown.rentalEligible && (
-            <span className="text-[10.5px] text-[#856122] tracking-wider uppercase font-medium">
-              Rental Eligible
-            </span>
-          )}
+          <span className="text-[10px] text-[#856122] tracking-wider uppercase font-medium">
+            Rental on Request
+          </span>
         </div>
       </div>
     </article>

@@ -14,7 +14,7 @@ import {
   HelpCircle,
   Scissors
 } from 'lucide-react';
-import { ACTIVE_GOWNS_CATALOG, COLLECTION_NAV_CATEGORIES } from '../data/bridalData';
+import { ACTIVE_RENTAL_GOWNS, COLLECTION_NAV_CATEGORIES } from '../data/bridalData';
 import { GownItem } from '../types';
 import { buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
@@ -32,28 +32,14 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
 }) => {
   // Filter states
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [availabilityFilter, setAvailabilityFilter] = useState<'all' | 'available' | 'reserved' | 'unavailable' | 'coming-soon'>('all');
 
-  // Single source of truth: ACTIVE_GOWNS_CATALOG filtered for rentalEligible === true
+  // Single source of truth: ACTIVE_RENTAL_GOWNS
   const rentalGowns = useMemo(() => {
-    return ACTIVE_GOWNS_CATALOG.filter((gown) => {
-      if (!gown.rentalEligible) return false;
+    if (selectedCategory === 'all') return ACTIVE_RENTAL_GOWNS;
+    return ACTIVE_RENTAL_GOWNS.filter((gown) => gown.category === selectedCategory);
+  }, [selectedCategory]);
 
-      if (selectedCategory !== 'all' && gown.category !== selectedCategory) {
-        return false;
-      }
-
-      if (availabilityFilter !== 'all' && gown.availability !== availabilityFilter) {
-        return false;
-      }
-
-      return true;
-    });
-  }, [selectedCategory, availabilityFilter]);
-
-  const allRentalGownsCount = useMemo(() => {
-    return ACTIVE_GOWNS_CATALOG.filter(g => g.rentalEligible).length;
-  }, []);
+  const allRentalGownsCount = ACTIVE_RENTAL_GOWNS.length;
 
   const scrollToCatalogue = () => {
     const el = document.getElementById('rental-catalogue-grid');
@@ -86,7 +72,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
 
           {/* Supporting Copy */}
           <p className="font-serif text-base sm:text-lg md:text-xl text-neutral-700 max-w-2xl mx-auto font-light leading-relaxed">
-            Selected BEAJAY gowns may be available for rental. Browse rental-eligible designs and submit your rental availability request for BEAJAY review.
+            All BEAJAY bridal gowns and dresses are available for rental requests. Browse our silhouettes and submit your preferred event dates to confirm rental availability.
           </p>
 
           {/* Core Brand Statement */}
@@ -226,108 +212,46 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
         {/* Filter Bar */}
         <div className="bg-white border border-[#EAE3D5] p-4 sm:p-5 space-y-4 shadow-xs">
           
-          {/* Silhouette Category Buttons */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10.5px] uppercase tracking-wider text-neutral-500 mr-2 font-semibold">
-              Silhouette:
-            </span>
-            {COLLECTION_NAV_CATEGORIES.map((cat) => {
-              const count = ACTIVE_GOWNS_CATALOG.filter(g => g.rentalEligible && (cat.id === 'all' || g.category === cat.id)).length;
-              if (count === 0 && cat.id !== 'all') return null;
-
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-3 py-1.5 text-xs tracking-wider uppercase transition-colors cursor-pointer border ${
-                    selectedCategory === cat.id
-                      ? 'bg-[#111111] text-white border-[#111111] font-semibold'
-                      : 'bg-[#FCFAF7] text-neutral-700 border-[#E2DAD0] hover:border-neutral-800'
-                  }`}
-                >
-                  {cat.name} ({count})
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="border-t border-[#F0EBE0] pt-3 flex flex-wrap items-center justify-between gap-3 text-xs">
-            
-            {/* Availability Filter Buttons */}
-            <div className="flex flex-wrap items-center gap-1">
-              <span className="text-[10.5px] uppercase tracking-wider text-neutral-500 mr-1 font-semibold">
-                Status:
+          {/* Silhouette Category Buttons & Count Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[10.5px] uppercase tracking-wider text-neutral-500 mr-2 font-semibold">
+                Silhouette:
               </span>
-              <button
-                onClick={() => setAvailabilityFilter('all')}
-                className={`px-2.5 py-1 text-[11px] uppercase tracking-wider cursor-pointer ${
-                  availabilityFilter === 'all'
-                    ? 'text-[#856122] font-semibold underline'
-                    : 'text-neutral-600 hover:text-neutral-900'
-                }`}
-              >
-                All Availability
-              </button>
-              <button
-                onClick={() => setAvailabilityFilter('available')}
-                className={`px-2.5 py-1 text-[11px] uppercase tracking-wider cursor-pointer ${
-                  availabilityFilter === 'available'
-                    ? 'text-[#856122] font-semibold underline'
-                    : 'text-neutral-600 hover:text-neutral-900'
-                }`}
-              >
-                Available
-              </button>
-              <button
-                onClick={() => setAvailabilityFilter('reserved')}
-                className={`px-2.5 py-1 text-[11px] uppercase tracking-wider cursor-pointer ${
-                  availabilityFilter === 'reserved'
-                    ? 'text-[#856122] font-semibold underline'
-                    : 'text-neutral-600 hover:text-neutral-900'
-                }`}
-              >
-                Reserved
-              </button>
-              <button
-                onClick={() => setAvailabilityFilter('unavailable')}
-                className={`px-2.5 py-1 text-[11px] uppercase tracking-wider cursor-pointer ${
-                  availabilityFilter === 'unavailable'
-                    ? 'text-[#856122] font-semibold underline'
-                    : 'text-neutral-600 hover:text-neutral-900'
-                }`}
-              >
-                Unavailable
-              </button>
-              <button
-                onClick={() => setAvailabilityFilter('coming-soon')}
-                className={`px-2.5 py-1 text-[11px] uppercase tracking-wider cursor-pointer ${
-                  availabilityFilter === 'coming-soon'
-                    ? 'text-[#856122] font-semibold underline'
-                    : 'text-neutral-600 hover:text-neutral-900'
-                }`}
-              >
-                Coming Soon
-              </button>
+              {COLLECTION_NAV_CATEGORIES.map((cat) => {
+                const count = ACTIVE_RENTAL_GOWNS.filter(g => (cat.id === 'all' || g.category === cat.id)).length;
+                if (count === 0 && cat.id !== 'all') return null;
+
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={`px-3 py-1.5 text-xs tracking-wider uppercase transition-colors cursor-pointer border ${
+                      selectedCategory === cat.id
+                        ? 'bg-[#111111] text-white border-[#111111] font-semibold'
+                        : 'bg-[#FCFAF7] text-neutral-700 border-[#E2DAD0] hover:border-neutral-800'
+                    }`}
+                  >
+                    {cat.name} ({count})
+                  </button>
+                );
+              })}
             </div>
 
             {/* Live Count & Reset */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 text-xs">
               <span className="text-[11px] text-neutral-500 font-light">
                 Showing <strong className="font-semibold text-neutral-900">{rentalGowns.length}</strong> of {allRentalGownsCount} rental gowns
               </span>
-              {(selectedCategory !== 'all' || availabilityFilter !== 'all') && (
+              {selectedCategory !== 'all' && (
                 <button
-                  onClick={() => {
-                    setSelectedCategory('all');
-                    setAvailabilityFilter('all');
-                  }}
+                  onClick={() => setSelectedCategory('all')}
                   className="text-[11px] text-[#856122] underline uppercase font-semibold cursor-pointer hover:text-neutral-900"
                 >
                   Reset
                 </button>
               )}
             </div>
-
           </div>
 
         </div>
@@ -337,16 +261,13 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
           <div className="py-16 text-center bg-white border border-[#EAE3D5] p-8 space-y-4">
             <Layers className="w-10 h-10 text-neutral-300 mx-auto" />
             <h3 className="font-serif text-xl text-neutral-800">
-              No Gowns Match This Selection
+              No Gowns Match This Silhouette
             </h3>
             <p className="text-xs text-neutral-500 max-w-sm mx-auto font-light">
-              Try adjusting your silhouette or availability filter to view other rental pieces.
+              Select another silhouette to view available rental pieces.
             </p>
             <button
-              onClick={() => {
-                setSelectedCategory('all');
-                setAvailabilityFilter('all');
-              }}
+              onClick={() => setSelectedCategory('all')}
               className="px-5 py-2.5 bg-[#111111] text-white text-xs uppercase tracking-wider font-semibold cursor-pointer"
             >
               View All Rental Gowns
@@ -355,9 +276,6 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {rentalGowns.map((gown) => {
-              const isUnavailable = gown.availability === 'unavailable';
-              const isReserved = gown.availability === 'reserved';
-
               return (
                 <article
                   key={gown.id}
@@ -378,29 +296,6 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
                     {/* Code badge */}
                     <div className="absolute top-3 left-3 bg-[#111111]/85 backdrop-blur-xs text-white text-[10px] tracking-wider uppercase px-2.5 py-1 font-medium">
                       {gown.code}
-                    </div>
-
-                    {/* Availability Tag */}
-                    <div className="absolute top-3 right-3">
-                      <span className={`text-[9.5px] uppercase tracking-wider font-semibold px-2 py-0.5 border shadow-xs ${
-                        gown.availability === 'available'
-                          ? 'bg-emerald-50/95 text-emerald-900 border-emerald-300'
-                          : isReserved
-                          ? 'bg-amber-50/95 text-amber-900 border-amber-300'
-                          : isUnavailable
-                          ? 'bg-rose-50/95 text-rose-900 border-rose-300'
-                          : 'bg-neutral-50/95 text-neutral-800 border-neutral-300'
-                      }`}>
-                        {gown.availability === 'available'
-                          ? 'Available'
-                          : isReserved
-                          ? 'Reserved'
-                          : isUnavailable
-                          ? 'Unavailable'
-                          : gown.availability === 'coming-soon'
-                          ? 'Coming Soon'
-                          : 'Availability requires confirmation'}
-                      </span>
                     </div>
 
                     {/* Silhouette Label */}
@@ -443,16 +338,11 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
                       </button>
 
                       <button
-                        onClick={() => !isUnavailable && onRequestRental(gown.name)}
-                        disabled={isUnavailable}
-                        className={`w-full flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-200 border ${
-                          isUnavailable
-                            ? 'bg-neutral-200 text-neutral-400 border-neutral-300 cursor-not-allowed'
-                            : 'bg-[#C59B3F] hover:bg-[#B3892F] text-white border-[#C59B3F] cursor-pointer shadow-xs'
-                        }`}
+                        onClick={() => onRequestRental(gown.name)}
+                        className="w-full flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-200 border bg-[#C59B3F] hover:bg-[#B3892F] text-white border-[#C59B3F] cursor-pointer shadow-xs"
                       >
                         <Layers className="w-3.5 h-3.5" />
-                        <span>{isUnavailable ? 'CURRENTLY UNAVAILABLE' : 'REQUEST RENTAL AVAILABILITY'}</span>
+                        <span>REQUEST RENTAL AVAILABILITY</span>
                       </button>
 
                       <a
