@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Play, 
   ZoomIn, 
@@ -15,6 +15,35 @@ interface GalleryPageProps {
   onBookAppointment?: () => void;
 }
 
+// Hook to detect responsive column count matching editorial breakpoints:
+// Mobile (<768px): 1 column
+// Tablet (768px - 1023px): 2 columns
+// Desktop (1024px - 1279px): 3 columns (editorial moodboard)
+// Wide Desktop (1280px+ / 1440px+): 4 columns (scattered editorial masonry)
+const useGalleryColumns = () => {
+  const [cols, setCols] = useState<number>(() => {
+    if (typeof window === 'undefined') return 3;
+    const w = window.innerWidth;
+    if (w < 768) return 1;
+    if (w < 1024) return 2;
+    if (w < 1280) return 3;
+    return 4;
+  });
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      const next = w < 768 ? 1 : w < 1024 ? 2 : w < 1280 ? 3 : 4;
+      setCols((prev) => (prev !== next ? next : prev));
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  return cols;
+};
+
 export const GalleryPage: React.FC<GalleryPageProps> = ({
   onOpenLightbox,
   onNavigateCollections,
@@ -22,6 +51,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
 }) => {
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
   const [visibleCount, setVisibleCount] = useState<number>(16);
+  const columnCount = useGalleryColumns();
 
   // Determine which specific categories contain items (excluding 'all')
   const categoriesWithItems = useMemo(() => {
@@ -53,10 +83,61 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
     return filteredItems.slice(0, visibleCount);
   }, [filteredItems, visibleCount]);
 
+  // Distribute displayed items into balanced columns while preserving order and stability on Load More
+  const columnsData = useMemo(() => {
+    const colsArray: { item: GalleryItem; globalIndex: number }[][] = Array.from(
+      { length: columnCount },
+      () => []
+    );
+    displayedItems.forEach((item, globalIndex) => {
+      colsArray[globalIndex % columnCount].push({ item, globalIndex });
+    });
+    return colsArray;
+  }, [displayedItems, columnCount]);
+
   const hasMore = visibleCount < filteredItems.length;
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => Math.min(prev + 16, filteredItems.length));
+  };
+
+  // Deterministic top staggering for columns on desktop to ensure non-aligned starts
+  const getColumnTopPadding = (colIndex: number, totalCols: number) => {
+    if (totalCols === 1) return 'pt-0';
+    if (totalCols === 2) {
+      return colIndex === 1 ? 'pt-4' : 'pt-0';
+    }
+    if (totalCols === 3) {
+      // 1024px: Column 0 starts at top, Column 1 starts 48px lower, Column 2 starts 20px lower
+      if (colIndex === 1) return 'pt-12';
+      if (colIndex === 2) return 'pt-5';
+      return 'pt-0';
+    }
+    // 1280px / 1366px / 1440px+: 4 columns with rich asymmetric offsets
+    if (colIndex === 1) return 'pt-14';
+    if (colIndex === 2) return 'pt-6';
+    if (colIndex === 3) return 'pt-16';
+    return 'pt-0';
+  };
+
+  // Deterministic subtle spacing rhythm between photographs in a column
+  const getItemMarginBottom = (globalIndex: number, totalCols: number) => {
+    if (totalCols === 1) return 'mb-4 sm:mb-6';
+    if (totalCols === 2) return 'mb-6';
+    // Subtle rhythm based on global index: creates breathing room without large gaps
+    const r = globalIndex % 7;
+    switch (r) {
+      case 1:
+        return 'mb-10'; // 40px - visual breathing room
+      case 4:
+        return 'mb-9';  // 36px
+      case 2:
+        return 'mb-5';  // 20px
+      case 5:
+        return 'mb-8';  // 32px
+      default:
+        return 'mb-6';  // 24px standard
+    }
   };
 
   return (
@@ -149,60 +230,67 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
       )}
 
       {/* =========================================================================
-          3. EDITORIAL MASONRY GALLERY LAYOUT
+          3. EDITORIAL MASONRY GALLERY LAYOUT (ORGANIC & SCATTERED DESKTOP RHYTHM)
           ========================================================================= */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 mb-20">
         
-        {/* Editorial Masonry Grid using multi-column layout with natural aspect ratios */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
-          {displayedItems.map((item) => (
+        {/* Responsive Column-Based Editorial Masonry */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+          {columnsData.map((column, colIdx) => (
             <div
-              key={item.id}
-              onClick={() => onOpenLightbox(item, filteredItems)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  onOpenLightbox(item, filteredItems);
-                }
-              }}
-              tabIndex={0}
-              role="button"
-              aria-label={`View photograph: ${item.title}`}
-              className="group relative break-inside-avoid overflow-hidden bg-[#F3EFE6] cursor-pointer transition-all duration-300 border border-[#EAE3D5] hover:border-[#C59B3F] shadow-xs hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#C59B3F] focus:ring-offset-2"
+              key={`gallery-col-${colIdx}`}
+              className={`flex-1 min-w-0 w-full flex flex-col ${getColumnTopPadding(colIdx, columnCount)}`}
             >
-              {/* Image Container preserving natural orientation / editorial ratio */}
-              <div className={`relative w-full ${item.aspectRatio || 'aspect-[3/4]'} overflow-hidden bg-neutral-100`}>
-                <img
-                  src={item.image || item.src}
-                  alt={item.alt || item.title}
-                  loading="lazy"
-                  className={`w-full h-full object-cover ${item.objectPosition || 'object-center'} group-hover:scale-103 transition-transform duration-500 ease-out select-none`}
-                />
+              {column.map(({ item, globalIndex }) => (
+                <div
+                  key={item.id}
+                  onClick={() => onOpenLightbox(item, filteredItems)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onOpenLightbox(item, filteredItems);
+                    }
+                  }}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`View photograph: ${item.title}`}
+                  className={`group relative overflow-hidden bg-[#F3EFE6] cursor-pointer transition-all duration-300 border border-[#EAE3D5] hover:border-[#C59B3F] shadow-xs hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#C59B3F] focus:ring-offset-2 ${getItemMarginBottom(globalIndex, columnCount)}`}
+                >
+                  {/* Image Container preserving natural orientation and natural image heights */}
+                  <div className="relative w-full overflow-hidden bg-neutral-100">
+                    <img
+                      src={item.image || item.src}
+                      alt={item.alt || item.title}
+                      loading="lazy"
+                      className={`w-full h-auto block ${item.objectPosition || 'object-center'} group-hover:scale-103 transition-transform duration-500 ease-out select-none`}
+                    />
 
-                {/* Subtle dark gradient overlay on hover/focus */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300" />
+                    {/* Subtle dark gradient overlay on hover/focus */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                {/* Video Reel Indicator if applicable */}
-                {item.isVideo && (
-                  <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 bg-black/75 backdrop-blur-xs text-white rounded-full border border-white/20">
-                    <Play className="w-3 h-3 fill-current text-[#C59B3F]" />
-                    <span className="text-[9px] tracking-widest uppercase font-semibold">Reel</span>
-                  </div>
-                )}
+                    {/* Video Reel Indicator if applicable */}
+                    {item.isVideo && (
+                      <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 bg-black/75 backdrop-blur-xs text-white rounded-full border border-white/20 pointer-events-none">
+                        <Play className="w-3 h-3 fill-current text-[#C59B3F]" />
+                        <span className="text-[9px] tracking-widest uppercase font-semibold">Reel</span>
+                      </div>
+                    )}
 
-                {/* Restrained Hover / Focus Overlay Action: VIEW PHOTOGRAPH */}
-                <div className="absolute inset-0 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-300 pointer-events-none">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/80 backdrop-blur-xs text-white border border-[#C59B3F]/60 text-[11px] font-semibold tracking-[0.2em] uppercase shadow-lg">
-                    <ZoomIn className="w-3.5 h-3.5 text-[#C59B3F]" />
-                    <span>VIEW PHOTOGRAPH</span>
+                    {/* Restrained Hover / Focus Overlay Action: VIEW PHOTOGRAPH */}
+                    <div className="absolute inset-0 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-300 pointer-events-none">
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/80 backdrop-blur-xs text-white border border-[#C59B3F]/60 text-[11px] font-semibold tracking-[0.2em] uppercase shadow-lg">
+                        <ZoomIn className="w-3.5 h-3.5 text-[#C59B3F]" />
+                        <span>VIEW PHOTOGRAPH</span>
+                      </div>
+                    </div>
+
+                    {/* Subtle Mobile Indicator for Clean Tapability */}
+                    <div className="sm:hidden absolute bottom-2 right-2 p-1.5 bg-black/50 backdrop-blur-xs text-white/80 rounded-full pointer-events-none">
+                      <ZoomIn className="w-3.5 h-3.5" />
+                    </div>
                   </div>
                 </div>
-
-                {/* Subtle Mobile Indicator for Clean Tapability */}
-                <div className="sm:hidden absolute bottom-2 right-2 p-1.5 bg-black/50 backdrop-blur-xs text-white/80 rounded-full">
-                  <ZoomIn className="w-3.5 h-3.5" />
-                </div>
-              </div>
+              ))}
             </div>
           ))}
         </div>
