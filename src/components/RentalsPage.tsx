@@ -286,20 +286,40 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
                     onClick={() => onSelectGown(gown)}
                     className="relative aspect-[3/4] bg-[#F4F0E8] overflow-hidden cursor-pointer block"
                   >
+                    {/* Primary Image */}
                     <img
-                      src={gown.images?.[0] || gown.image}
+                      src={gown.image}
                       alt={gown.name}
-                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      className={`w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none ${
+                        gown.secondaryImage ? '[@media(hover:hover)]:group-hover:opacity-0' : ''
+                      }`}
                       loading="lazy"
                     />
 
+                    {/* Secondary Angle Image (Smooth crossfade on desktop hover if verified for this gown) */}
+                    {gown.secondaryImage && (
+                      <img
+                        src={gown.secondaryImage}
+                        alt={`${gown.name} - Alternate view`}
+                        className="absolute inset-0 w-full h-full object-cover object-top opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none"
+                        loading="lazy"
+                      />
+                    )}
+
                     {/* Code badge */}
-                    <div className="absolute top-3 left-3 bg-[#111111]/85 backdrop-blur-xs text-white text-[10px] tracking-wider uppercase px-2.5 py-1 font-medium">
+                    <div className="absolute top-3 left-3 bg-[#111111]/85 backdrop-blur-xs text-white text-[10px] tracking-wider uppercase px-2.5 py-1 font-medium z-10 pointer-events-none">
                       {gown.code}
                     </div>
 
+                    {/* Subtle Desktop Hover Indicator */}
+                    <div className="absolute top-3 right-3 opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                      <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] tracking-widest uppercase px-2 py-1 font-medium border border-[#C59B3F]/40">
+                        VIEW DETAILS
+                      </span>
+                    </div>
+
                     {/* Silhouette Label */}
-                    <div className="absolute bottom-3 left-3 right-3">
+                    <div className="absolute bottom-3 left-3 right-3 z-10 pointer-events-none">
                       <span className="bg-white/95 backdrop-blur-xs text-[#856122] text-[9.5px] tracking-widest uppercase font-semibold px-2.5 py-1 border border-[#DDD4C4] inline-block">
                         {gown.categoryLabel}
                       </span>
@@ -373,13 +393,13 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
           <div className="lg:col-span-8 space-y-3">
             <div className="inline-flex items-center gap-2 text-[#E6C875] text-xs uppercase tracking-widest font-semibold">
               <Globe className="w-4 h-4 text-[#C59B3F]" />
-              <span>Worldwide Rental & Styling Inquiries</span>
+              <span>Rental Inquiries & Availability Requests</span>
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl text-white font-light">
               Crafted in Nigeria. Made for Brides Everywhere.
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-2xl">
-              Based in Enugu, Nigeria, BEAJAY COUTURE BRIDAL welcomes rental inquiries from brides and bridal vendors across Nigeria and internationally. Submit your preferred dates, country, and city, and our bridal team will review whether your request can be fulfilled and confirm availability.
+              Based in Enugu, Nigeria, BEAJAY COUTURE BRIDAL welcomes rental inquiries from brides and bridal vendors. Submit your preferred dates and location, and our bridal team will review whether your request can be fulfilled and confirm availability.
             </p>
           </div>
 
@@ -424,7 +444,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
             Looking to Explore All BEAJAY Designs?
           </h3>
           <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed">
-            While our Rentals collection features selected gowns ready for hire, our complete bridal collection includes our full range of silhouettes, statement designs, and signature bridal gowns.
+            Explore our complete bridal showcase, signature silhouettes, couture lookbooks, and cathedral veils in our collections.
           </p>
           <div>
             <button

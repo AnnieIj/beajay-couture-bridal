@@ -192,10 +192,6 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
   const handleNext = () => {
     if (step === 1) {
-      if (selectedGown.availability === 'unavailable') {
-        setErrors({ gown: 'This gown is currently unavailable for rental. Please select another style.' });
-        return;
-      }
       setErrors({});
       setStep(2);
     } else if (step === 2) {

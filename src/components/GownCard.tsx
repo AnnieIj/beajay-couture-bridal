@@ -16,8 +16,8 @@ export const GownCard: React.FC<GownCardProps> = ({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const primaryImage = gown.images?.[0] || gown.image;
-  const secondaryImage = gown.images?.[1] || null;
+  const primaryImage = gown.image || gown.images?.[0];
+  const secondaryImage = gown.secondaryImage || null;
 
   const handleCardClick = () => {
     onSelectGown(gown);
@@ -28,25 +28,6 @@ export const GownCard: React.FC<GownCardProps> = ({
       e.preventDefault();
       onSelectGown(gown);
     }
-  };
-
-  // Only display availability indicator where relevant (e.g. reserved or coming soon)
-  const renderAvailabilityBadge = () => {
-    if (gown.availability === 'reserved') {
-      return (
-        <span className="bg-[#111111]/85 backdrop-blur-xs text-[#EAE4D9] text-[9.5px] tracking-[0.16em] uppercase px-2.5 py-0.5 border border-[#EAE4D9]/20 font-sans">
-          Reserved
-        </span>
-      );
-    }
-    if (gown.availability === 'coming-soon') {
-      return (
-        <span className="bg-[#111111]/85 backdrop-blur-xs text-[#C59B3F] text-[9.5px] tracking-[0.16em] uppercase px-2.5 py-0.5 border border-[#C59B3F]/40 font-sans">
-          Preview
-        </span>
-      );
-    }
-    return null;
   };
 
   return (
@@ -75,32 +56,26 @@ export const GownCard: React.FC<GownCardProps> = ({
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
           onError={() => setHasError(true)}
-          className={`w-full h-full object-cover object-top transition-all duration-700 ease-out group-hover:scale-105 ${
-            secondaryImage ? 'group-hover:opacity-0' : ''
+          className={`w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none ${
+            secondaryImage ? '[@media(hover:hover)]:group-hover:opacity-0' : ''
           }`}
         />
 
-        {/* Secondary Angle Image (reveals smoothly on hover if available) */}
+        {/* Secondary Angle Image (reveals smoothly on desktop hover if verified for this gown) */}
         {secondaryImage && (
           <img
             src={secondaryImage}
             alt={`${gown.name} - Alternate view`}
             loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover object-top opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover object-top opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none"
           />
         )}
 
-        {/* Top Badges: Gown Code & Relevant Availability */}
-        <div className="absolute top-3 inset-x-3 flex items-start justify-between pointer-events-none gap-2 z-10">
-          <div className="flex flex-col gap-1.5 items-start">
-            <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 font-sans font-medium">
-              {gown.code || 'COUTURE'}
-            </span>
-          </div>
-
-          <div className="flex flex-col gap-1 items-end">
-            {renderAvailabilityBadge()}
-          </div>
+        {/* Top Badges: Gown Code */}
+        <div className="absolute top-3 left-3 pointer-events-none z-10">
+          <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 font-sans font-medium">
+            {gown.code || 'COUTURE'}
+          </span>
         </div>
 
         {/* Subtle Bottom Vignette on Hover */}

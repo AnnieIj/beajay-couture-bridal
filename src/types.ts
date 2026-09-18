@@ -13,6 +13,7 @@ export interface GownItem {
   description: string;
   images: string[];
   image: string; // Primary image for compatibility
+  secondaryImage?: string; // Verified second photograph of the same gown for hover swap
   gallery?: string[]; // Supporting gallery for compatibility
   sizes?: string[];
   fabric?: string;

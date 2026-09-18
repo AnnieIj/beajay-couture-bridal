@@ -317,7 +317,7 @@ export default function App() {
               onNavigateRentals={navigateToRentals}
             />
 
-            {/* 5. THE BRIDAL EXPERIENCE — Bespoke Atelier Journey */}
+            {/* 5. THE BRIDAL EXPERIENCE — Bridal Journey */}
             <BridalExperienceSection
               onOpenModal={openModal}
             />

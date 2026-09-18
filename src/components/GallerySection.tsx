@@ -82,7 +82,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
             <div className="w-12 h-[1.5px] bg-[#C59B3F] mx-auto mb-5" />
 
             <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed mb-8">
-              A visual chronicle celebrating BEAJAY couture in motion—from private atelier fittings and intricate hand-appliquéd lace to memorable wedding days. Follow our official channel for real-time bridal updates.
+              A visual chronicle celebrating BEAJAY couture in motion—from atelier bridal fittings and intricate hand-appliquéd lace to memorable wedding days. Follow our official channel for real-time bridal updates.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">

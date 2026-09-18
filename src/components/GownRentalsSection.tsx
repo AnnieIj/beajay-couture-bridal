@@ -119,17 +119,44 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
                 key={gown.id}
                 className="group bg-[#1A1917] border border-[#2C2925] hover:border-[#C59B3F] transition-all flex flex-col overflow-hidden shadow-xl"
               >
-                <div className="relative aspect-[3/4] bg-neutral-900 overflow-hidden">
+                <div 
+                  onClick={() => onSelectGown ? onSelectGown(gown) : handleBrowseRentals()}
+                  className="relative aspect-[3/4] bg-neutral-900 overflow-hidden cursor-pointer"
+                >
+                  {/* Primary Image */}
                   <img
                     src={gown.image}
                     alt={gown.name}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className={`w-full h-full object-cover transition-opacity duration-400 ease-out motion-reduce:transition-none ${
+                      gown.secondaryImage ? '[@media(hover:hover)]:group-hover:opacity-0' : ''
+                    }`}
                   />
-                  <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-xs text-white text-[9px] px-2.5 py-1 tracking-wider uppercase font-sans">
+
+                  {/* Secondary Angle Image (Smooth crossfade on desktop hover if verified for this gown) */}
+                  {gown.secondaryImage && (
+                    <img
+                      src={gown.secondaryImage}
+                      alt={`${gown.name} - Alternate view`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none"
+                    />
+                  )}
+
+                  {/* Gown Code Badge */}
+                  <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-xs text-white text-[9px] px-2.5 py-1 tracking-wider uppercase font-sans pointer-events-none z-10">
                     {gown.code}
                   </div>
-                  <div className="absolute bottom-3 left-3 bg-[#111111]/90 backdrop-blur-xs text-[#E6C875] text-[9px] px-2.5 py-1 tracking-widest uppercase font-sans border border-[#C59B3F]/40">
+
+                  {/* Subtle Desktop Hover Indicator */}
+                  <div className="absolute top-3 right-3 opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                    <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] tracking-widest uppercase px-2 py-1 font-medium border border-[#C59B3F]/40">
+                      VIEW DETAILS
+                    </span>
+                  </div>
+
+                  {/* Category Label */}
+                  <div className="absolute bottom-3 left-3 bg-[#111111]/90 backdrop-blur-xs text-[#E6C875] text-[9px] px-2.5 py-1 tracking-widest uppercase font-sans border border-[#C59B3F]/40 pointer-events-none z-10">
                     {gown.categoryLabel}
                   </div>
                 </div>

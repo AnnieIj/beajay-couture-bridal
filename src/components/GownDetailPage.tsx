@@ -214,18 +214,6 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                 <span className="text-[10px] tracking-[0.26em] font-semibold text-[#856122] uppercase">
                   {gown.code} • {gown.categoryLabel}
                 </span>
-
-                {/* Relevant Status Badge ONLY if applicable */}
-                {gown.availability === 'reserved' && (
-                  <span className="text-[10px] uppercase tracking-wider font-semibold text-amber-700 bg-amber-50 px-2.5 py-0.5 border border-amber-200">
-                    Reserved for Fitting
-                  </span>
-                )}
-                {gown.availability === 'coming-soon' && (
-                  <span className="text-[10px] uppercase tracking-wider font-semibold text-purple-700 bg-purple-50 px-2.5 py-0.5 border border-purple-200">
-                    Collection Preview
-                  </span>
-                )}
               </div>
 
               <h1 className="font-serif text-3xl sm:text-4xl text-[#111111] font-normal tracking-tight leading-snug">
@@ -287,29 +275,12 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                 </div>
               )}
 
-              {gown.availability && (
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-neutral-500 font-medium">Availability:</span>
-                  <span className="col-span-2 text-neutral-900 font-normal capitalize">
-                    {gown.availability === 'available'
-                      ? 'Available'
-                      : gown.availability === 'reserved'
-                      ? 'Reserved'
-                      : gown.availability === 'unavailable'
-                      ? 'Unavailable'
-                      : gown.availability === 'coming-soon'
-                      ? 'Coming Soon'
-                      : 'Availability requires confirmation'}
-                  </span>
-                </div>
-              )}
-
               <div className="grid grid-cols-3 gap-2">
                 <span className="text-neutral-500 font-medium">Rental Availability:</span>
                 <span className="col-span-2 font-normal">
                   <span className="text-[#856122] font-medium flex items-center gap-1">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#C59B3F]" />
-                    Available for Rental Requests
+                    Available on Request
                   </span>
                 </span>
               </div>

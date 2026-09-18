@@ -242,7 +242,7 @@ export const GOWNS_CATALOG: GownItem[] = [
     trainLength: 'Detachable 2.5m Watteau Cape Train',
     rentalEligible: true,
     isAvailableForRent: true,
-    availability: 'reserved',
+    availability: 'available',
     featured: true,
     isFeatured: true,
     tags: ['Mermaid Gowns', 'Bridal Elegance', 'Hourglass']
@@ -345,6 +345,7 @@ export const GOWNS_CATALOG: GownItem[] = [
       resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj08.gallery[0])
     ],
     image: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj08.primary),
+    secondaryImage: resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj08.gallery[0]),
     gallery: [
       resolveMedia(COLLECTION_MEDIA_ASSETS.gowns.bj08.gallery[0])
     ],

@@ -337,7 +337,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
             <div className="w-12 h-[1.5px] bg-[#C59B3F] mx-auto" />
 
             <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed">
-              Our bridal gallery is reserved for authentic visual stories from BEAJAY COUTURE BRIDAL—including bespoke fittings at our atelier in Enugu, hand-crafted couture details, and memorable bridal moments.
+              Our bridal gallery is reserved for authentic visual stories from BEAJAY COUTURE BRIDAL—including personalized bridal fittings at our atelier in Enugu, hand-crafted couture details, and memorable bridal moments.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
