@@ -325,7 +325,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   className="inline-flex items-center justify-center gap-2 bg-[#121A15] hover:bg-[#1A261F] text-white border border-[#25D366]/50 hover:border-[#25D366] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer min-h-[44px] w-full sm:w-auto"
                 >
                   <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-                  <span>WhatsApp Atelier</span>
+                  <span>WhatsApp Us</span>
                 </a>
 
                 {onOpenContact && (

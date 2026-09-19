@@ -174,7 +174,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Connect & Appointments Column */}
           <div className="lg:col-span-4 space-y-4">
             <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-white pb-1 border-b border-[#262420] inline-block">
-              Connect & Atelier
+              Connect With Us
             </h3>
             
             <div className="space-y-2.5 text-xs text-neutral-300 font-light">

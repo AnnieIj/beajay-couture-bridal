@@ -96,7 +96,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     <span>{BRAND_CONTACT.whatsapp.internationalDisplay}</span>
                   </a>
                   <p className="text-[11px] text-neutral-500 font-light">
-                    Direct enquiry line with the BEAJAY atelier.
+                    Direct enquiry line with the BEAJAY team.
                   </p>
                 </div>
               </div>

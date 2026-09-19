@@ -7,6 +7,8 @@ import {
   Sparkles
 } from 'lucide-react';
 import { ActiveModal } from '../types';
+import { buildWhatsAppUrl } from '../config/brandConfig';
+import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface HeaderProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -310,7 +312,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
-          <div className="pt-2 space-y-3">
+          <div className="pt-2 space-y-2.5">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -322,7 +324,17 @@ export const Header: React.FC<HeaderProps> = ({
               <span>BOOK AN APPOINTMENT</span>
             </button>
 
-            <p className="text-center text-[11px] text-neutral-500 tracking-wider">
+            <a
+              href={buildWhatsAppUrl({ type: 'general' })}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 bg-[#121A15] hover:bg-[#1A261F] text-white border border-[#25D366]/40 py-3 px-4 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
+            >
+              <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+              <span>CHAT ON WHATSAPP</span>
+            </a>
+
+            <p className="text-center text-[11px] text-neutral-500 tracking-wider pt-1">
               Enugu, Nigeria
             </p>
           </div>

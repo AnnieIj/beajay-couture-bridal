@@ -526,7 +526,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               </div>
 
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Connect directly with our atelier for consultations, custom fitting enquiries, and rental questions.
+                Connect directly with our team for consultations, custom fitting enquiries, and rental questions.
               </p>
 
               <a
