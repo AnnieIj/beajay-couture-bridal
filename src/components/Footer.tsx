@@ -9,6 +9,7 @@ import {
 import { ActiveModal } from '../types';
 import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
+import { BrandIdentity } from './BrandIdentity';
 
 interface FooterProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -42,22 +43,13 @@ export const Footer: React.FC<FooterProps> = ({
           
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-4">
-            {/* Official Brand Logo */}
+            {/* Official Refined Brand Identity */}
             <button
               onClick={onNavigateHome}
-              className="text-left group cursor-pointer focus:outline-none block pb-1"
+              className="text-left group cursor-pointer focus:outline-none block pb-2"
               aria-label="BEAJAY COUTURE BRIDAL - Home"
             >
-              <img 
-                src={BRAND_CONTACT.logo.src}
-                alt={BRAND_CONTACT.logo.alt}
-                width={BRAND_CONTACT.logo.width}
-                height={BRAND_CONTACT.logo.height}
-                loading="lazy"
-                decoding="async"
-                className="h-16 sm:h-20 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
-                style={{ aspectRatio: BRAND_CONTACT.logo.aspectRatio }}
-              />
+              <BrandIdentity variant="footer" />
             </button>
 
             <p className="text-xs text-neutral-400 font-light leading-relaxed max-w-sm pt-1">

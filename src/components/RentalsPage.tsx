@@ -25,6 +25,131 @@ interface RentalsPageProps {
   onExploreCollections: () => void;
 }
 
+interface RentalGownCardProps {
+  gown: GownItem;
+  onSelectGown: (gown: GownItem) => void;
+  onRequestRental: (gownName?: string) => void;
+}
+
+const RentalGownCard: React.FC<RentalGownCardProps> = ({
+  gown,
+  onSelectGown,
+  onRequestRental
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [secondaryLoaded, setSecondaryLoaded] = useState(false);
+
+  const showSecondary = isHovered && secondaryLoaded;
+
+  return (
+    <article
+      key={gown.id}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="bg-white border border-[#E8E1D2] hover:border-[#C59B3F]/70 transition-all duration-300 flex flex-col overflow-hidden group shadow-xs hover:shadow-md"
+    >
+      {/* Gown Image Container */}
+      <div 
+        onClick={() => onSelectGown(gown)}
+        className="relative aspect-[3/4] bg-[#F4F0E8] overflow-hidden cursor-pointer block"
+      >
+        {/* Primary Image: Stays visible until secondary has completely loaded */}
+        <img
+          src={gown.image}
+          alt={gown.name}
+          className={`w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none ${
+            showSecondary ? 'opacity-0' : 'opacity-100'
+          }`}
+          loading="lazy"
+        />
+
+        {/* Secondary Angle Image (Only fetched upon user hover on desktop, never eagerly requested) */}
+        {gown.secondaryImage && isHovered && (
+          <img
+            src={gown.secondaryImage}
+            alt={`${gown.name} - Alternate view`}
+            onLoad={() => setSecondaryLoaded(true)}
+            className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none ${
+              secondaryLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            loading="lazy"
+          />
+        )}
+
+        {/* Code badge */}
+        <div className="absolute top-3 left-3 bg-[#111111]/85 backdrop-blur-xs text-white text-[10px] tracking-wider uppercase px-2.5 py-1 font-medium z-10 pointer-events-none">
+          {gown.code}
+        </div>
+
+        {/* Subtle Desktop Hover Indicator */}
+        <div className="absolute top-3 right-3 opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+          <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] tracking-widest uppercase px-2 py-1 font-medium border border-[#C59B3F]/40">
+            VIEW DETAILS
+          </span>
+        </div>
+
+        {/* Silhouette Label */}
+        <div className="absolute bottom-3 left-3 right-3 z-10 pointer-events-none">
+          <span className="bg-white/95 backdrop-blur-xs text-[#856122] text-[9.5px] tracking-widest uppercase font-semibold px-2.5 py-1 border border-[#DDD4C4] inline-block">
+            {gown.categoryLabel}
+          </span>
+        </div>
+      </div>
+
+      {/* Card Content */}
+      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+        <div className="space-y-2">
+          <h3 
+            onClick={() => onSelectGown(gown)}
+            className="font-serif text-lg text-[#111111] group-hover:text-[#856122] transition-colors cursor-pointer leading-snug"
+          >
+            {gown.name}
+          </h3>
+
+          <p className="text-xs text-neutral-600 font-light line-clamp-2 leading-relaxed">
+            {gown.description}
+          </p>
+
+          {gown.fabric && (
+            <p className="text-[11px] text-neutral-500 font-light">
+              <strong className="font-medium text-neutral-700">Fabric:</strong> {gown.fabric}
+            </p>
+          )}
+        </div>
+
+        {/* Actions: View Gown, Request Rental Availability & WhatsApp Enquiry */}
+        <div className="pt-2 border-t border-[#F0EBE0] space-y-2">
+          <button
+            onClick={() => onSelectGown(gown)}
+            className="w-full flex items-center justify-center gap-2 bg-white hover:bg-[#FAF7F0] text-neutral-900 border border-[#D5CDBF] hover:border-neutral-800 py-2.5 px-4 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
+          >
+            <Eye className="w-3.5 h-3.5 text-[#856122]" />
+            <span>VIEW GOWN</span>
+          </button>
+
+          <button
+            onClick={() => onRequestRental(gown.name)}
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-200 border bg-[#C59B3F] hover:bg-[#B3892F] text-white border-[#C59B3F] cursor-pointer shadow-xs"
+          >
+            <Layers className="w-3.5 h-3.5" />
+            <span>REQUEST RENTAL AVAILABILITY</span>
+          </button>
+
+          <a
+            href={buildWhatsAppUrl({ type: 'rental', gownName: gown.name, gownCode: gown.code })}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 bg-[#101A14] hover:bg-[#18281E] text-white border border-[#25D366]/40 hover:border-[#25D366] py-2 px-3 text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer"
+          >
+            <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366]" />
+            <span>WHATSAPP RENTAL ENQUIRY</span>
+          </a>
+        </div>
+      </div>
+    </article>
+  );
+};
+
 export const RentalsPage: React.FC<RentalsPageProps> = ({
   onSelectGown,
   onRequestRental,
@@ -275,111 +400,14 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {rentalGowns.map((gown) => {
-              return (
-                <article
-                  key={gown.id}
-                  className="bg-white border border-[#E8E1D2] hover:border-[#C59B3F]/70 transition-all duration-300 flex flex-col overflow-hidden group shadow-xs hover:shadow-md"
-                >
-                  {/* Gown Image Container */}
-                  <div 
-                    onClick={() => onSelectGown(gown)}
-                    className="relative aspect-[3/4] bg-[#F4F0E8] overflow-hidden cursor-pointer block"
-                  >
-                    {/* Primary Image */}
-                    <img
-                      src={gown.image}
-                      alt={gown.name}
-                      className={`w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none ${
-                        gown.secondaryImage ? '[@media(hover:hover)]:group-hover:opacity-0' : ''
-                      }`}
-                      loading="lazy"
-                    />
-
-                    {/* Secondary Angle Image (Smooth crossfade on desktop hover if verified for this gown) */}
-                    {gown.secondaryImage && (
-                      <img
-                        src={gown.secondaryImage}
-                        alt={`${gown.name} - Alternate view`}
-                        className="absolute inset-0 w-full h-full object-cover object-top opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none"
-                        loading="lazy"
-                      />
-                    )}
-
-                    {/* Code badge */}
-                    <div className="absolute top-3 left-3 bg-[#111111]/85 backdrop-blur-xs text-white text-[10px] tracking-wider uppercase px-2.5 py-1 font-medium z-10 pointer-events-none">
-                      {gown.code}
-                    </div>
-
-                    {/* Subtle Desktop Hover Indicator */}
-                    <div className="absolute top-3 right-3 opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
-                      <span className="bg-[#111111]/85 backdrop-blur-xs text-white text-[9px] tracking-widest uppercase px-2 py-1 font-medium border border-[#C59B3F]/40">
-                        VIEW DETAILS
-                      </span>
-                    </div>
-
-                    {/* Silhouette Label */}
-                    <div className="absolute bottom-3 left-3 right-3 z-10 pointer-events-none">
-                      <span className="bg-white/95 backdrop-blur-xs text-[#856122] text-[9.5px] tracking-widest uppercase font-semibold px-2.5 py-1 border border-[#DDD4C4] inline-block">
-                        {gown.categoryLabel}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-2">
-                      <h3 
-                        onClick={() => onSelectGown(gown)}
-                        className="font-serif text-lg text-[#111111] group-hover:text-[#856122] transition-colors cursor-pointer leading-snug"
-                      >
-                        {gown.name}
-                      </h3>
-
-                      <p className="text-xs text-neutral-600 font-light line-clamp-2 leading-relaxed">
-                        {gown.description}
-                      </p>
-
-                      {gown.fabric && (
-                        <p className="text-[11px] text-neutral-500 font-light">
-                          <strong className="font-medium text-neutral-700">Fabric:</strong> {gown.fabric}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Actions: View Gown, Request Rental Availability & WhatsApp Enquiry */}
-                    <div className="pt-2 border-t border-[#F0EBE0] space-y-2">
-                      <button
-                        onClick={() => onSelectGown(gown)}
-                        className="w-full flex items-center justify-center gap-2 bg-white hover:bg-[#FAF7F0] text-neutral-900 border border-[#D5CDBF] hover:border-neutral-800 py-2.5 px-4 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
-                      >
-                        <Eye className="w-3.5 h-3.5 text-[#856122]" />
-                        <span>VIEW GOWN</span>
-                      </button>
-
-                      <button
-                        onClick={() => onRequestRental(gown.name)}
-                        className="w-full flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-200 border bg-[#C59B3F] hover:bg-[#B3892F] text-white border-[#C59B3F] cursor-pointer shadow-xs"
-                      >
-                        <Layers className="w-3.5 h-3.5" />
-                        <span>REQUEST RENTAL AVAILABILITY</span>
-                      </button>
-
-                      <a
-                        href={buildWhatsAppUrl({ type: 'rental', gownName: gown.name, gownCode: gown.code })}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full flex items-center justify-center gap-2 bg-[#101A14] hover:bg-[#18281E] text-white border border-[#25D366]/40 hover:border-[#25D366] py-2 px-3 text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer"
-                      >
-                        <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366]" />
-                        <span>WHATSAPP RENTAL ENQUIRY</span>
-                      </a>
-                    </div>
-
-                  </div>
-                </article>
-              );
-            })}
+            {rentalGowns.map((gown) => (
+              <RentalGownCard
+                key={gown.id}
+                gown={gown}
+                onSelectGown={onSelectGown}
+                onRequestRental={onRequestRental}
+              />
+            ))}
           </div>
         )}
 

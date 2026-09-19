@@ -71,6 +71,25 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
     };
   }, [item, safeIndex, totalCount, onSelectItem, onClose]);
 
+  // Preload ONLY adjacent previous and next images for smooth, bandwidth-conserving navigation
+  useEffect(() => {
+    if (!canNavigate || !item) return;
+    const nextItem = currentList[(safeIndex + 1) % totalCount];
+    const prevItem = currentList[(safeIndex - 1 + totalCount) % totalCount];
+
+    const nextSrc = nextItem?.image || nextItem?.src;
+    const prevSrc = prevItem?.image || prevItem?.src;
+
+    if (nextSrc && !nextItem?.isVideo) {
+      const nextImg = new Image();
+      nextImg.src = nextSrc;
+    }
+    if (prevSrc && !prevItem?.isVideo) {
+      const prevImg = new Image();
+      prevImg.src = prevSrc;
+    }
+  }, [canNavigate, safeIndex, totalCount, item, currentList]);
+
   // Touch Swipe handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;

@@ -15,9 +15,12 @@ export const GownCard: React.FC<GownCardProps> = ({
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [secondaryLoaded, setSecondaryLoaded] = useState(false);
 
   const primaryImage = gown.image || gown.images?.[0];
   const secondaryImage = gown.secondaryImage || null;
+  const showSecondary = isHovered && secondaryLoaded;
 
   const handleCardClick = () => {
     onSelectGown(gown);
@@ -35,6 +38,8 @@ export const GownCard: React.FC<GownCardProps> = ({
       id={`gown-card-${gown.slug || gown.id}`}
       onClick={handleCardClick}
       onKeyDown={handleKeyDown}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       tabIndex={0}
       role="button"
       aria-label={`View ${gown.name}`}
@@ -49,7 +54,7 @@ export const GownCard: React.FC<GownCardProps> = ({
           <div className="absolute inset-0 bg-[#EFE9DF] animate-pulse" />
         )}
 
-        {/* Primary Image */}
+        {/* Primary Image: stays visible until secondary image is loaded */}
         <img
           src={primaryImage}
           alt={`${gown.name} - ${gown.categoryLabel}`}
@@ -57,17 +62,20 @@ export const GownCard: React.FC<GownCardProps> = ({
           onLoad={() => setImageLoaded(true)}
           onError={() => setHasError(true)}
           className={`w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none ${
-            secondaryImage ? '[@media(hover:hover)]:group-hover:opacity-0' : ''
+            showSecondary ? 'opacity-0' : 'opacity-100'
           }`}
         />
 
-        {/* Secondary Angle Image (reveals smoothly on desktop hover if verified for this gown) */}
-        {secondaryImage && (
+        {/* Secondary Angle Image (reveals smoothly on desktop hover only once loaded, never eagerly fetched) */}
+        {secondaryImage && isHovered && (
           <img
             src={secondaryImage}
             alt={`${gown.name} - Alternate view`}
             loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover object-top opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none"
+            onLoad={() => setSecondaryLoaded(true)}
+            className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none ${
+              secondaryLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
           />
         )}
 

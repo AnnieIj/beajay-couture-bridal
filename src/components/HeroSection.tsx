@@ -1,11 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { 
   ArrowRight, 
-  Sparkles, 
-  Play, 
-  Pause,
-  Volume2,
-  VolumeX
+  Sparkles 
 } from 'lucide-react';
 import { HERO_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 import { ActiveModal } from '../types';
@@ -20,8 +16,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onExploreCollections
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -39,7 +33,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         setPrefersReducedMotion(matches);
         if (matches && videoRef.current) {
           videoRef.current.pause();
-          setIsPlaying(false);
         }
       };
 
@@ -58,36 +51,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     }
   }, []);
 
-  // Sync DOM muted property directly to HTMLMediaElement to satisfy browser autoplay policies
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
-    }
-  }, [isMuted]);
-
-  const togglePlayPause = () => {
-    if (!videoRef.current) return;
-    if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      videoRef.current.play().catch(() => {});
-      setIsPlaying(true);
-    }
-  };
-
-  const toggleMute = () => {
-    if (!videoRef.current) return;
-    const nextMuted = !isMuted;
-    videoRef.current.muted = nextMuted;
-    if (!nextMuted) {
-      // When unmuting upon user interaction, ensure playback is active
-      videoRef.current.play().catch(() => {});
-      setIsPlaying(true);
-    }
-    setIsMuted(nextMuted);
-  };
-
   return (
     <section 
       id="hero-section"
@@ -96,23 +59,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Cinematic Background Video with Poster Fallback */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
         
-        {/* High-definition poster image (base background during initial load, smoothly yields to video) */}
+        {/* High-definition poster image (base background during initial load and reduced-motion fallback) */}
         <div 
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-            videoLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            videoLoaded && !prefersReducedMotion ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
           style={{ backgroundImage: `url(${heroPosterSrc})` }}
         />
 
-        {/* Native HTML5 Background Video Element */}
-        {!videoError && (
+        {/* Native HTML5 Background Video Element (Silently looping cinematic background) */}
+        {!videoError && !prefersReducedMotion && (
           <video
             key={heroVideoSrc}
             ref={videoRef}
             src={heroVideoSrc}
             poster={heroPosterSrc}
-            autoPlay={!prefersReducedMotion}
-            muted={isMuted}
+            autoPlay
+            muted
             loop
             playsInline
             preload="metadata"
@@ -121,7 +84,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             onPlaying={() => setVideoLoaded(true)}
             onError={() => setVideoError(true)}
             className={`absolute inset-0 w-full h-full object-cover object-[center_20%] sm:object-[center_25%] md:object-center lg:object-contain lg:object-right xl:object-[85%_center] 2xl:object-[78%_center] transition-opacity duration-1000 ${
-              videoLoaded && (!prefersReducedMotion || isPlaying) ? 'opacity-85 sm:opacity-90 lg:opacity-100' : 'opacity-0'
+              videoLoaded ? 'opacity-85 sm:opacity-90 lg:opacity-100' : 'opacity-0'
             }`}
           />
         )}
@@ -136,7 +99,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Mobile vertical gradient protecting text readability while showcasing gown */}
         <div className="sm:hidden absolute inset-0 bg-gradient-to-b from-black/85 via-black/55 to-black/75 pointer-events-none" />
 
-        {/* Subtle vignette top & bottom for header and controls framing */}
+        {/* Subtle vignette top & bottom for header and framing */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/35 pointer-events-none" />
       </div>
 
@@ -202,60 +165,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </span>
           </div>
         </div>
-      </div>
-
-      {/* Video Controls (Tasteful lower-right area) */}
-      <div 
-        id="hero-video-controls"
-        className="absolute bottom-6 right-4 sm:right-6 lg:right-10 z-20 flex items-center gap-2.5 sm:gap-3"
-        role="toolbar"
-        aria-label="Video playback and sound controls"
-      >
-        {/* Play / Pause Toggle */}
-        <button
-          id="hero-video-play-pause-btn"
-          type="button"
-          onClick={togglePlayPause}
-          aria-label={isPlaying ? "Pause background video" : "Play background video"}
-          className="group flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 min-h-[44px] bg-black/60 hover:bg-black/85 active:bg-black text-white/90 hover:text-white border border-white/20 hover:border-[#C59B3F]/70 text-[11px] sm:text-xs font-semibold tracking-wider uppercase backdrop-blur-md transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C59B3F]"
-        >
-          {isPlaying ? (
-            <>
-              <Pause className="w-3.5 h-3.5 text-[#C59B3F] group-hover:scale-110 transition-transform" aria-hidden="true" />
-              <span>Pause</span>
-            </>
-          ) : (
-            <>
-              <Play className="w-3.5 h-3.5 text-[#C59B3F] group-hover:scale-110 transition-transform" aria-hidden="true" />
-              <span>Play</span>
-            </>
-          )}
-        </button>
-
-        {/* Sound On / Sound Off Toggle */}
-        <button
-          id="hero-video-sound-toggle-btn"
-          type="button"
-          onClick={toggleMute}
-          aria-label={isMuted ? "Sound On" : "Sound Off"}
-          className={`group flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 min-h-[44px] border text-[11px] sm:text-xs font-semibold tracking-wider uppercase backdrop-blur-md transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C59B3F] ${
-            isMuted
-              ? 'bg-black/60 hover:bg-black/85 active:bg-black text-white/90 hover:text-white border-white/20 hover:border-[#C59B3F]/70'
-              : 'bg-[#C59B3F]/35 hover:bg-[#C59B3F]/45 active:bg-[#C59B3F]/55 text-white border-[#C59B3F] shadow-lg shadow-[#C59B3F]/20'
-          }`}
-        >
-          {isMuted ? (
-            <>
-              <VolumeX className="w-3.5 h-3.5 text-[#C59B3F] group-hover:scale-110 transition-transform" aria-hidden="true" />
-              <span>Sound On</span>
-            </>
-          ) : (
-            <>
-              <Volume2 className="w-3.5 h-3.5 text-[#E6C875] group-hover:scale-110 transition-transform" aria-hidden="true" />
-              <span>Sound Off</span>
-            </>
-          )}
-        </button>
       </div>
     </section>
   );

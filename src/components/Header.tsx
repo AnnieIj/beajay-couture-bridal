@@ -9,6 +9,7 @@ import {
 import { ActiveModal } from '../types';
 import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
+import { BrandIdentity } from './BrandIdentity';
 
 interface HeaderProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -115,22 +116,13 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Official Brand Logo */}
+          {/* Official Refined Brand Identity */}
           <button 
             onClick={() => handleNavClick('home')}
-            className="flex items-center group cursor-pointer focus:outline-none py-0.5"
+            className="flex items-center cursor-pointer focus:outline-none py-0.5"
             aria-label="BEAJAY COUTURE BRIDAL - Home"
           >
-            <img 
-              src={BRAND_CONTACT.logo.src}
-              alt={BRAND_CONTACT.logo.alt}
-              width={BRAND_CONTACT.logo.width}
-              height={BRAND_CONTACT.logo.height}
-              fetchPriority="high"
-              decoding="sync"
-              className="h-10 sm:h-12 lg:h-13 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
-              style={{ aspectRatio: BRAND_CONTACT.logo.aspectRatio }}
-            />
+            <BrandIdentity variant="header" />
           </button>
 
           {/* Desktop Navigation Links */}
