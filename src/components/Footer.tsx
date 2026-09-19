@@ -42,16 +42,22 @@ export const Footer: React.FC<FooterProps> = ({
           
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-4">
+            {/* Official Brand Logo */}
             <button
               onClick={onNavigateHome}
-              className="text-left group cursor-pointer focus:outline-none"
+              className="text-left group cursor-pointer focus:outline-none block pb-1"
+              aria-label="BEAJAY COUTURE BRIDAL - Home"
             >
-              <span className="font-serif text-2xl sm:text-3xl tracking-[0.24em] text-white uppercase block font-light group-hover:text-[#E6C875] transition-colors">
-                BEAJAY
-              </span>
-              <span className="font-sans text-[10px] tracking-[0.38em] text-[#C59B3F] font-semibold uppercase block mt-1">
-                COUTURE BRIDAL
-              </span>
+              <img 
+                src={BRAND_CONTACT.logo.src}
+                alt={BRAND_CONTACT.logo.alt}
+                width={BRAND_CONTACT.logo.width}
+                height={BRAND_CONTACT.logo.height}
+                loading="lazy"
+                decoding="async"
+                className="h-16 sm:h-20 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                style={{ aspectRatio: BRAND_CONTACT.logo.aspectRatio }}
+              />
             </button>
 
             <p className="text-xs text-neutral-400 font-light leading-relaxed max-w-sm pt-1">

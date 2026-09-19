@@ -14,6 +14,14 @@ export const BRAND_CONTACT = {
   brandName: 'BEAJAY COUTURE BRIDAL',
   tagline: 'Crafted in Nigeria. Made for Brides Everywhere.',
   location: 'Enugu, Nigeria',
+  logo: {
+    src: '/media/brand/beajay-logo.png',
+    originalSrc: '/media/brand/beajay-logo-original.png',
+    alt: 'BEAJAY COUTURE BRIDAL',
+    aspectRatio: '815 / 1080',
+    width: 815,
+    height: 1080,
+  },
   founder: {
     name: 'Beauty Okiemute',
     title: 'Founder & Creative Director'

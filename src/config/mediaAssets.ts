@@ -36,6 +36,9 @@ export const USE_OFFICIAL_MEDIA = true;
  * Registry of verified official media files physically present in /public/media/.
  */
 export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
+  // Official BEAJAY Brand Identity
+  '/media/brand/beajay-logo.png',
+  '/media/brand/beajay-logo-original.png',
   '/media/hero/bridal-hero-v2.mp4',
   // Ball Gown Collection (24 verified official images)
   '/media/collections/ball-gown/ball-gown 001.jpeg',
@@ -963,9 +966,28 @@ export const ABOUT_MEDIA_ASSETS = {
 } as const;
 
 // =========================================================================
+// BRAND IDENTITY MEDIA
+// =========================================================================
+export const BRAND_LOGO_ASSET: MediaAsset = {
+  current: '/media/brand/beajay-logo.png',
+  officialPath: '/media/brand/beajay-logo.png',
+  hasOfficial: true,
+  alt: 'BEAJAY COUTURE BRIDAL'
+};
+
+// =========================================================================
 // CONSOLIDATED MEDIA REGISTRY
 // =========================================================================
 export const MEDIA_REGISTRY = {
+  brand: {
+    logo: BRAND_LOGO_ASSET,
+    logoOriginal: {
+      current: '/media/brand/beajay-logo-original.png',
+      officialPath: '/media/brand/beajay-logo-original.png',
+      hasOfficial: true,
+      alt: 'BEAJAY COUTURE BRIDAL Original Logo'
+    }
+  },
   hero: HERO_MEDIA_ASSETS,
   collections: COLLECTION_MEDIA_ASSETS,
   rentals: RENTALS_MEDIA_ASSETS,

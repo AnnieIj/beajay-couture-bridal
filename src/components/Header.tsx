@@ -7,7 +7,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { ActiveModal } from '../types';
-import { buildWhatsAppUrl } from '../config/brandConfig';
+import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface HeaderProps {
@@ -115,21 +115,22 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Brand Logo / Monogram */}
+          {/* Official Brand Logo */}
           <button 
             onClick={() => handleNavClick('home')}
-            className="flex flex-col text-left group cursor-pointer"
-            aria-label="BEAJAY Couture Bridal - Home"
+            className="flex items-center group cursor-pointer focus:outline-none py-0.5"
+            aria-label="BEAJAY COUTURE BRIDAL - Home"
           >
-            <span className="font-serif text-xl sm:text-2xl md:text-[26px] tracking-[0.14em] font-normal text-[#111111] group-hover:text-[#C59B3F] transition-colors uppercase">
-              BEAJAY
-            </span>
-            <span className="text-[8.5px] sm:text-[9.5px] tracking-[0.38em] uppercase text-[#666666] font-light -mt-0.5">
-              COUTURE BRIDAL
-            </span>
-            <span className="text-[7.5px] tracking-[0.22em] text-[#C59B3F] uppercase font-medium">
-              Enugu, Nigeria
-            </span>
+            <img 
+              src={BRAND_CONTACT.logo.src}
+              alt={BRAND_CONTACT.logo.alt}
+              width={BRAND_CONTACT.logo.width}
+              height={BRAND_CONTACT.logo.height}
+              fetchPriority="high"
+              decoding="sync"
+              className="h-10 sm:h-12 lg:h-13 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+              style={{ aspectRatio: BRAND_CONTACT.logo.aspectRatio }}
+            />
           </button>
 
           {/* Desktop Navigation Links */}
