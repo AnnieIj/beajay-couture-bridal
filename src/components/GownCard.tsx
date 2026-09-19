@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { GownItem } from '../types';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface GownCardProps {
   gown: GownItem;
@@ -21,6 +22,9 @@ export const GownCard: React.FC<GownCardProps> = ({
   const primaryImage = gown.image || gown.images?.[0];
   const secondaryImage = gown.secondaryImage || null;
   const showSecondary = isHovered && secondaryLoaded;
+
+  const primaryOpt = getOptimizedMedia(primaryImage);
+  const secondaryOpt = secondaryImage ? getOptimizedMedia(secondaryImage) : null;
 
   const handleCardClick = () => {
     onSelectGown(gown);
@@ -56,9 +60,12 @@ export const GownCard: React.FC<GownCardProps> = ({
 
         {/* Primary Image: stays visible until secondary image is loaded */}
         <img
-          src={primaryImage}
+          src={primaryOpt.src}
+          srcSet={primaryOpt.srcSet}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           alt={`${gown.name} - ${gown.categoryLabel}`}
           loading="lazy"
+          decoding="async"
           onLoad={() => setImageLoaded(true)}
           onError={() => setHasError(true)}
           className={`w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none ${
@@ -67,11 +74,14 @@ export const GownCard: React.FC<GownCardProps> = ({
         />
 
         {/* Secondary Angle Image (reveals smoothly on desktop hover only once loaded, never eagerly fetched) */}
-        {secondaryImage && isHovered && (
+        {secondaryImage && isHovered && secondaryOpt && (
           <img
-            src={secondaryImage}
+            src={secondaryOpt.src}
+            srcSet={secondaryOpt.srcSet}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             alt={`${gown.name} - Alternate view`}
             loading="lazy"
+            decoding="async"
             onLoad={() => setSecondaryLoaded(true)}
             className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none ${
               secondaryLoaded ? 'opacity-100' : 'opacity-0'

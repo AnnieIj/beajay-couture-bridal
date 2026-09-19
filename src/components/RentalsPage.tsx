@@ -18,6 +18,7 @@ import { ACTIVE_RENTAL_GOWNS, COLLECTION_NAV_CATEGORIES } from '../data/bridalDa
 import { GownItem } from '../types';
 import { buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface RentalsPageProps {
   onSelectGown: (gown: GownItem) => void;
@@ -39,6 +40,8 @@ const RentalGownCard: React.FC<RentalGownCardProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [secondaryLoaded, setSecondaryLoaded] = useState(false);
 
+  const primaryOpt = getOptimizedMedia(gown.image);
+  const secondaryOpt = gown.secondaryImage ? getOptimizedMedia(gown.secondaryImage) : null;
   const showSecondary = isHovered && secondaryLoaded;
 
   return (
@@ -55,24 +58,30 @@ const RentalGownCard: React.FC<RentalGownCardProps> = ({
       >
         {/* Primary Image: Stays visible until secondary has completely loaded */}
         <img
-          src={gown.image}
+          src={primaryOpt.src}
+          srcSet={primaryOpt.srcSet}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           alt={gown.name}
           className={`w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none ${
             showSecondary ? 'opacity-0' : 'opacity-100'
           }`}
           loading="lazy"
+          decoding="async"
         />
 
         {/* Secondary Angle Image (Only fetched upon user hover on desktop, never eagerly requested) */}
-        {gown.secondaryImage && isHovered && (
+        {gown.secondaryImage && isHovered && secondaryOpt && (
           <img
-            src={gown.secondaryImage}
+            src={secondaryOpt.src}
+            srcSet={secondaryOpt.srcSet}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             alt={`${gown.name} - Alternate view`}
             onLoad={() => setSecondaryLoaded(true)}
             className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none ${
               secondaryLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             loading="lazy"
+            decoding="async"
           />
         )}
 

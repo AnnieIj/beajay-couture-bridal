@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Sparkles, Heart, Award, MapPin, ArrowRight } from 'lucide-react';
 import { EDITORIAL_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface AboutModalProps {
   isOpen: boolean;
@@ -48,11 +49,20 @@ export const AboutModal: React.FC<AboutModalProps> = ({
           {/* Editorial Split */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="aspect-[4/5] bg-neutral-100 overflow-hidden border border-[#E5DEC9] shadow-md relative">
-              <img
-                src={resolveMedia(EDITORIAL_MEDIA_ASSETS.aboutModal)}
-                alt={EDITORIAL_MEDIA_ASSETS.aboutModal.alt}
-                className="w-full h-full object-cover"
-              />
+              {(() => {
+                const opt = getOptimizedMedia(EDITORIAL_MEDIA_ASSETS.aboutModal.current);
+                return (
+                  <img
+                    src={opt.src}
+                    srcSet={opt.srcSet}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    alt={EDITORIAL_MEDIA_ASSETS.aboutModal.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
+                );
+              })()}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white text-xs font-serif italic text-center">
                 “Every bride is a queen stepping into her sacred destiny.”

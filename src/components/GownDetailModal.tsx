@@ -3,6 +3,7 @@ import { X, Sparkles, Instagram } from 'lucide-react';
 import { GownItem } from '../types';
 import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface GownDetailModalProps {
   gown: GownItem | null;
@@ -38,11 +39,19 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
 
         {/* Left Column: Gown Imagery */}
         <div className="md:w-1/2 relative bg-neutral-100 min-h-[350px] md:min-h-full">
-          <img
-            src={gown.image}
-            alt={gown.name}
-            className="w-full h-full object-cover object-center"
-          />
+          {(() => {
+            const opt = getOptimizedMedia(gown.image);
+            return (
+              <img
+                src={opt.src}
+                srcSet={opt.srcSet}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                alt={gown.name}
+                decoding="async"
+                className="w-full h-full object-cover object-center"
+              />
+            );
+          })()}
           <div className="absolute top-4 left-4 flex flex-col gap-1.5">
             <span className="bg-black/85 text-white text-[10px] font-medium tracking-[0.2em] uppercase px-3 py-1 border border-[#C59B3F]/40 font-sans">
               {gown.categoryLabel}

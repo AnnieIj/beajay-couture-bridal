@@ -6,6 +6,7 @@ import {
 import { ABOUT_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface AboutPageProps {
   onNavigateHome: () => void;
@@ -24,11 +25,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onNavigateContact,
   onOpenAppointment
 }) => {
-  const founderPrimary = resolveMedia(ABOUT_MEDIA_ASSETS.founderPrimary);
-  const founderJourney = resolveMedia(ABOUT_MEDIA_ASSETS.founderJourney);
-  const founderVision = resolveMedia(ABOUT_MEDIA_ASSETS.founderVision);
+  const founderPrimaryOpt = getOptimizedMedia(ABOUT_MEDIA_ASSETS.founderPrimary.current);
+  const founderJourneyOpt = getOptimizedMedia(ABOUT_MEDIA_ASSETS.founderJourney.current);
+  const founderVisionOpt = getOptimizedMedia(ABOUT_MEDIA_ASSETS.founderVision.current);
   const teamImages = ABOUT_MEDIA_ASSETS.team.map(item => ({
-    src: resolveMedia(item),
+    opt: getOptimizedMedia(item.current),
     alt: item.alt
   }));
 
@@ -98,10 +99,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="lg:col-span-5">
             <div className="relative aspect-[3/4] max-w-md mx-auto overflow-hidden bg-[#ECE6D9] shadow-xl border border-[#DDD4C1]">
               <img
-                src={founderPrimary}
+                src={founderPrimaryOpt.src}
+                srcSet={founderPrimaryOpt.srcSet}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 450px"
                 alt={ABOUT_MEDIA_ASSETS.founderPrimary.alt}
                 className="w-full h-full object-cover object-top"
                 loading="eager"
+                decoding="async"
                 width={2800}
                 height={3919}
               />
@@ -158,7 +162,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="relative aspect-[3/4] max-w-md mx-auto overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-lg">
               <img
-                src={founderJourney}
+                src={founderJourneyOpt.src}
+                srcSet={founderJourneyOpt.srcSet}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 450px"
                 alt={ABOUT_MEDIA_ASSETS.founderJourney.alt}
                 className="w-full h-full object-cover object-center"
                 loading="lazy"
@@ -411,7 +417,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <div className="md:col-span-5 flex flex-col">
               <div className="relative aspect-[3/2] overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-sm flex-1">
                 <img
-                  src={teamImages[0].src}
+                  src={teamImages[0].opt.src}
+                  srcSet={teamImages[0].opt.srcSet}
+                  sizes="(max-width: 768px) 100vw, 40vw"
                   alt={teamImages[0].alt}
                   className="w-full h-full object-cover object-center"
                   loading="lazy"
@@ -429,7 +437,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <div className="md:col-span-3 flex flex-col">
               <div className="relative aspect-[3/4] overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-sm flex-1">
                 <img
-                  src={teamImages[1].src}
+                  src={teamImages[1].opt.src}
+                  srcSet={teamImages[1].opt.srcSet}
+                  sizes="(max-width: 768px) 100vw, 25vw"
                   alt={teamImages[1].alt}
                   className="w-full h-full object-cover object-center"
                   loading="lazy"
@@ -447,7 +457,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <div className="md:col-span-4 flex flex-col">
               <div className="relative aspect-[3/2] overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-sm flex-1">
                 <img
-                  src={teamImages[2].src}
+                  src={teamImages[2].opt.src}
+                  srcSet={teamImages[2].opt.srcSet}
+                  sizes="(max-width: 768px) 100vw, 35vw"
                   alt={teamImages[2].alt}
                   className="w-full h-full object-cover object-center"
                   loading="lazy"
@@ -560,7 +572,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="lg:col-span-5">
             <div className="relative aspect-[3/4] max-w-md mx-auto overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-xl">
               <img
-                src={founderVision}
+                src={founderVisionOpt.src}
+                srcSet={founderVisionOpt.srcSet}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 450px"
                 alt={ABOUT_MEDIA_ASSETS.founderVision.alt}
                 className="w-full h-full object-cover object-center"
                 loading="lazy"

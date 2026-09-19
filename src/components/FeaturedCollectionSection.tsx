@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { ACTIVE_CATEGORIES, ACTIVE_GOWNS_CATALOG } from '../data/bridalData';
 import { ActiveModal, GownItem } from '../types';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface FeaturedCollectionSectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -99,6 +100,8 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
             // Find a featured gown matching this active category
             const sampleGown = ACTIVE_GOWNS_CATALOG.find(g => g.category === category.slug);
 
+            const catOpt = getOptimizedMedia(category.image);
+
             return (
               <div 
                 key={category.id}
@@ -108,9 +111,12 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
                 {/* Image Container with Editorial Proportions */}
                 <div className="relative aspect-[3/4] overflow-hidden bg-neutral-200 border border-[#E9E4DB] group-hover:border-[#C59B3F] transition-colors">
                   <img
-                    src={category.image}
+                    src={catOpt.src}
+                    srcSet={catOpt.srcSet}
+                    sizes="(max-width: 640px) 280px, (max-width: 1024px) 320px, 33vw"
                     alt={`${category.name} Bridal Couture`}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
                   />
                   

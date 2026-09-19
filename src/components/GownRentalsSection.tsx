@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { ACTIVE_RENTAL_GOWNS } from '../data/bridalData';
 import { ActiveModal, GownItem } from '../types';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface GownRentalsSectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -114,34 +115,44 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {previewRentalGowns.map((gown) => (
-              <div
-                key={gown.id}
-                className="group bg-[#1A1917] border border-[#2C2925] hover:border-[#C59B3F] transition-all flex flex-col overflow-hidden shadow-xl"
-              >
-                <div 
-                  onClick={() => onSelectGown ? onSelectGown(gown) : handleBrowseRentals()}
-                  className="relative aspect-[3/4] bg-neutral-900 overflow-hidden cursor-pointer"
-                >
-                  {/* Primary Image */}
-                  <img
-                    src={gown.image}
-                    alt={gown.name}
-                    loading="lazy"
-                    className={`w-full h-full object-cover transition-opacity duration-400 ease-out motion-reduce:transition-none ${
-                      gown.secondaryImage ? '[@media(hover:hover)]:group-hover:opacity-0' : ''
-                    }`}
-                  />
+            {previewRentalGowns.map((gown) => {
+              const opt = getOptimizedMedia(gown.image);
+              const secOpt = gown.secondaryImage ? getOptimizedMedia(gown.secondaryImage) : null;
 
-                  {/* Secondary Angle Image (Smooth crossfade on desktop hover if verified for this gown) */}
-                  {gown.secondaryImage && (
+              return (
+                <div
+                  key={gown.id}
+                  className="group bg-[#1A1917] border border-[#2C2925] hover:border-[#C59B3F] transition-all flex flex-col overflow-hidden shadow-xl"
+                >
+                  <div 
+                    onClick={() => onSelectGown ? onSelectGown(gown) : handleBrowseRentals()}
+                    className="relative aspect-[3/4] bg-neutral-900 overflow-hidden cursor-pointer"
+                  >
+                    {/* Primary Image */}
                     <img
-                      src={gown.secondaryImage}
-                      alt={`${gown.name} - Alternate view`}
+                      src={opt.src}
+                      srcSet={opt.srcSet}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      alt={gown.name}
                       loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none"
+                      decoding="async"
+                      className={`w-full h-full object-cover transition-opacity duration-400 ease-out motion-reduce:transition-none ${
+                        gown.secondaryImage ? '[@media(hover:hover)]:group-hover:opacity-0' : ''
+                      }`}
                     />
-                  )}
+
+                    {/* Secondary Angle Image (Smooth crossfade on desktop hover if verified for this gown) */}
+                    {secOpt && (
+                      <img
+                        src={secOpt.src}
+                        srcSet={secOpt.srcSet}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        alt={`${gown.name} - Alternate view`}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 w-full h-full object-cover opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-400 ease-out motion-reduce:transition-none pointer-events-none"
+                      />
+                    )}
 
                   {/* Gown Code Badge */}
                   <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-xs text-white text-[9px] px-2.5 py-1 tracking-wider uppercase font-sans pointer-events-none z-10">
@@ -187,7 +198,8 @@ export const GownRentalsSection: React.FC<GownRentalsSectionProps> = ({
                   </div>
                 </div>
               </div>
-            ))}
+            );
+          })}
           </div>
         </div>
 

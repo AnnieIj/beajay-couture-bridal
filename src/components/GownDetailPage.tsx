@@ -18,6 +18,7 @@ import { GOWNS_CATALOG } from '../data/bridalData';
 import { GownCard } from './GownCard';
 import { buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface GownDetailPageProps {
   gown: GownItem;
@@ -126,11 +127,20 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
-              <img
-                src={currentImage}
-                alt={`${gown.name} - View ${activeImageIndex + 1}`}
-                className="w-full h-full object-cover object-top transition-transform duration-700 ease-out"
-              />
+              {(() => {
+                const opt = getOptimizedMedia(currentImage);
+                return (
+                  <img
+                    src={opt.src}
+                    srcSet={opt.srcSet}
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    alt={`${gown.name} - View ${activeImageIndex + 1}`}
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out"
+                  />
+                );
+              })()}
 
               {/* Badges Overlay */}
               <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
@@ -188,11 +198,18 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
                         : 'border-[#EAE4D9] opacity-60 hover:opacity-100'
                     }`}
                   >
-                    <img
-                      src={img}
-                      alt={`Thumbnail ${idx + 1}`}
-                      className="w-full h-full object-cover object-top"
-                    />
+                    {(() => {
+                      const thumbOpt = getOptimizedMedia(img);
+                      return (
+                        <img
+                          src={thumbOpt.thumbnail || thumbOpt.src}
+                          alt={`Thumbnail ${idx + 1}`}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      );
+                    })()}
                   </button>
                 ))}
               </div>
@@ -388,11 +405,19 @@ export const GownDetailPage: React.FC<GownDetailPageProps> = ({
             className="relative max-w-5xl max-h-[90vh] flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={currentImage}
-              alt={gown.name}
-              className="max-w-full max-h-[88vh] object-contain shadow-2xl"
-            />
+            {(() => {
+              const opt = getOptimizedMedia(currentImage);
+              return (
+                <img
+                  src={opt.src}
+                  srcSet={opt.srcSet}
+                  sizes="100vw"
+                  alt={gown.name}
+                  decoding="async"
+                  className="max-w-full max-h-[88vh] object-contain shadow-2xl"
+                />
+              );
+            })()}
 
             {images.length > 1 && (
               <>

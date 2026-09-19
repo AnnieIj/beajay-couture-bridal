@@ -18,6 +18,7 @@ import { ACTIVE_RENTAL_GOWNS } from '../data/bridalData';
 import { GownItem, RenterType, RentalInquiryFormData } from '../types';
 import { buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface RentalsModalProps {
   isOpen: boolean;
@@ -339,11 +340,18 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               {/* Selected Gown Feature Card */}
               <div className="bg-white border border-[#EAE3D5] p-4 sm:p-5 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start shadow-xs">
                 <div className="relative w-28 sm:w-32 aspect-[3/4] bg-[#F4F0E8] overflow-hidden shrink-0 border border-[#E0D8C8]">
-                  <img
-                    src={selectedGown.images?.[0] || selectedGown.image}
-                    alt={selectedGown.name}
-                    className="w-full h-full object-cover object-top"
-                  />
+                  {(() => {
+                    const opt = getOptimizedMedia(selectedGown.images?.[0] || selectedGown.image);
+                    return (
+                      <img
+                        src={opt.thumbnail || opt.src}
+                        alt={selectedGown.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    );
+                  })()}
                   <div className="absolute top-1.5 left-1.5 bg-[#111111]/85 text-white text-[8.5px] px-1.5 py-0.5 tracking-wider uppercase font-medium">
                     {selectedGown.code}
                   </div>
@@ -859,11 +867,18 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                 {/* 1. Gown */}
                 <div className="p-4 flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <img 
-                      src={selectedGown.images?.[0] || selectedGown.image} 
-                      alt={selectedGown.name}
-                      className="w-12 h-16 object-cover object-top border border-[#E2DAD0]"
-                    />
+                    {(() => {
+                      const opt = getOptimizedMedia(selectedGown.images?.[0] || selectedGown.image);
+                      return (
+                        <img 
+                          src={opt.thumbnail || opt.src} 
+                          alt={selectedGown.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-12 h-16 object-cover object-top border border-[#E2DAD0]"
+                        />
+                      );
+                    })()}
                     <div>
                       <span className="text-[9.5px] font-semibold tracking-wider text-[#856122] uppercase block">
                         {selectedGown.code} • {selectedGown.categoryLabel}

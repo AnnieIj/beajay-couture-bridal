@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Search, ArrowRight } from 'lucide-react';
 import { ACTIVE_GOWNS_CATALOG } from '../data/bridalData';
 import { GownItem } from '../types';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -101,11 +102,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 className="group flex items-center gap-4 p-3 bg-white border border-[#EAE3D5] hover:border-[#C59B3F] transition-all cursor-pointer shadow-2xs"
               >
                 <div className="w-16 h-20 bg-neutral-100 shrink-0 overflow-hidden">
-                  <img
-                    src={gown.image}
-                    alt={gown.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                  />
+                  {(() => {
+                    const opt = getOptimizedMedia(gown.image);
+                    return (
+                      <img
+                        src={opt.thumbnail || opt.src}
+                        alt={gown.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      />
+                    );
+                  })()}
                 </div>
                 <div className="flex-1 min-w-0 space-y-1">
                   <div className="flex items-center gap-2">

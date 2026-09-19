@@ -4,6 +4,7 @@ import { COLLECTION_MEDIA_ITEMS, COLLECTION_NAV_CATEGORIES } from '../data/brida
 import { CollectionMediaItem, GalleryItem, GownItem } from '../types';
 import { CollectionsHero } from './CollectionsHero';
 import { GalleryLightbox } from './GalleryLightbox';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface CollectionsPageProps {
   onSelectGown?: (gown: GownItem) => void;
@@ -170,29 +171,35 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
 
         {/* Editorial Lookbook Photography Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-          {visibleItems.map((item, idx) => (
-            <div
-              key={item.id}
-              onClick={() => handleOpenLightbox(item)}
-              className="group relative flex flex-col bg-white border border-[#EFE9DF] hover:border-[#C59B3F]/70 transition-all duration-500 cursor-pointer overflow-hidden shadow-xs hover:shadow-md"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  handleOpenLightbox(item);
-                }
-              }}
-              aria-label={`View ${item.categoryLabel} photograph`}
-            >
-              {/* Image Frame with Editorial 3:4 Proportions */}
-              <div className="relative aspect-[3/4] w-full bg-[#F4F0E8] overflow-hidden">
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                />
+          {visibleItems.map((item, idx) => {
+            const opt = getOptimizedMedia(item.src);
+
+            return (
+              <div
+                key={item.id}
+                onClick={() => handleOpenLightbox(item)}
+                className="group relative flex flex-col bg-white border border-[#EFE9DF] hover:border-[#C59B3F]/70 transition-all duration-500 cursor-pointer overflow-hidden shadow-xs hover:shadow-md"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleOpenLightbox(item);
+                  }
+                }}
+                aria-label={`View ${item.categoryLabel} photograph`}
+              >
+                {/* Image Frame with Editorial 3:4 Proportions */}
+                <div className="relative aspect-[3/4] w-full bg-[#F4F0E8] overflow-hidden">
+                  <img
+                    src={opt.src}
+                    srcSet={opt.srcSet}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    alt={item.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
 
                 {/* Subtle Luxury Gradient Overlay on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -226,7 +233,8 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                 </span>
               </div>
             </div>
-          ))}
+          );
+        })}
         </div>
 
         {/* Progressive Reveal / Load More Button */}

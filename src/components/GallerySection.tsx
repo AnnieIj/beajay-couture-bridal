@@ -2,6 +2,7 @@ import React from 'react';
 import { Play, ArrowRight, Instagram, ZoomIn } from 'lucide-react';
 import { GALLERY_ITEMS } from '../data/bridalData';
 import { ActiveModal, GalleryItem } from '../types';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface GallerySectionProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -118,27 +119,32 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
           <div className="max-w-6xl mx-auto space-y-8">
             {/* Small Curated Grid of 4 unique official Gallery photographs */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-              {GALLERY_ITEMS.map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() => onOpenLightbox(item, GALLERY_ITEMS)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      onOpenLightbox(item, GALLERY_ITEMS);
-                    }
-                  }}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`View photograph: ${item.title}`}
-                  className="group relative aspect-[3/4] overflow-hidden bg-[#F5EFE4] border border-[#E3D9C6] hover:border-[#C59B3F] transition-all duration-300 shadow-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C59B3F]"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.alt || item.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
+              {GALLERY_ITEMS.map((item) => {
+                const opt = getOptimizedMedia(item.image);
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => onOpenLightbox(item, GALLERY_ITEMS)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onOpenLightbox(item, GALLERY_ITEMS);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`View photograph: ${item.title}`}
+                    className="group relative aspect-[3/4] overflow-hidden bg-[#F5EFE4] border border-[#E3D9C6] hover:border-[#C59B3F] transition-all duration-300 shadow-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C59B3F]"
+                  >
+                    <img
+                      src={opt.src}
+                      srcSet={opt.srcSet}
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                      alt={item.alt || item.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#111111] px-3 py-1.5 flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase shadow-md">
                       <ZoomIn className="w-3.5 h-3.5 text-[#C59B3F]" />
@@ -154,7 +160,8 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
                     </p>
                   </div>
                 </div>
-              ))}
+              );
+            })}
             </div>
 
             {/* Editorial Narrative Teaser Banner */}

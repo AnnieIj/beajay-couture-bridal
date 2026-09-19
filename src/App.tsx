@@ -338,7 +338,7 @@ export default function App() {
               testimonials={APPROVED_TESTIMONIALS}
             />
 
-            {/* 8. APPOINTMENT CTA — Atelier Consultation Booking */}
+            {/* 8. APPOINTMENT CTA — Bridal Consultation Booking */}
             <AppointmentCtaSection
               onOpenModal={openModal}
             />

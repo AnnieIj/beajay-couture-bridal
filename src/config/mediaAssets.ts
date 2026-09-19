@@ -547,7 +547,7 @@ export const HOMEPAGE_GALLERY_MEDIA_ASSETS = [
     hasOfficial: false,
     videoCurrent: 'https://assets.mixkit.co/videos/preview/mixkit-bride-wearing-a-veil-and-a-wedding-dress-41852-large.mp4',
     videoOfficialPath: '/media/gallery/gallery-story-reel.mp4',
-    alt: 'Bridal silhouette and veil motion in the atelier',
+    alt: 'Bridal silhouette and veil motion in the BEAJAY design studio',
     caption: 'Couture movements, fabric flow, and bridal artistry in motion.',
     isVideo: true
   }
@@ -802,7 +802,7 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
     categoryLabel: 'Behind The Craft',
     current: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=1600&auto=format&fit=crop',
     officialPath: '/media/gallery/gallery-editorial-17.jpg',
-    alt: 'Rolls of premium bridal silk, satin, and lace in the atelier workspace',
+    alt: 'Rolls of premium bridal silk, satin, and lace in the BEAJAY design workspace',
     caption: 'Curating silk mikado, French lace, and gossamer tulle for upcoming creations.',
     orientation: 'landscape' as const,
     featured: true,
@@ -870,7 +870,7 @@ export const EDITORIAL_MEDIA_ASSETS = {
     current: '/media/collections/ball-gown/ball-gown 016.jpg',
     officialPath: '/media/collections/ball-gown/ball-gown 016.jpg',
     hasOfficial: true,
-    alt: 'BEAJAY COUTURE BRIDAL atelier bridal gown creation'
+    alt: 'BEAJAY COUTURE BRIDAL couture bridal gown creation'
   },
   perfectDress: {
     collection: {
@@ -909,7 +909,7 @@ export const ABOUT_MEDIA_ASSETS = {
     current: '/media/about/founder/beauty-okiemute-02.jpg',
     officialPath: '/media/about/founder/beauty-okiemute-02.jpg',
     hasOfficial: true,
-    alt: 'Beauty Okiemute, Founder & Creative Director in atelier design reflection'
+    alt: 'Beauty Okiemute, Founder & Creative Director in design reflection'
   },
   founderVision: {
     current: '/media/about/founder/beauty-okiemute-03.jpg',
@@ -949,7 +949,7 @@ export const ABOUT_MEDIA_ASSETS = {
     current: '/media/about/founder/beauty-okiemute-02.jpg',
     officialPath: '/media/about/founder/beauty-okiemute-02.jpg',
     hasOfficial: true,
-    alt: 'Beauty Okiemute, Founder & Creative Director in atelier design reflection'
+    alt: 'Beauty Okiemute, Founder & Creative Director in design reflection'
   },
   craft: {
     current: '/media/about/team/beajay-team-01.jpeg',

@@ -3,6 +3,7 @@ import { X, Sparkles, ArrowRight, Eye } from 'lucide-react';
 import { COLLECTION_MEDIA_ITEMS, COLLECTION_NAV_CATEGORIES } from '../data/bridalData';
 import { CollectionMediaItem, GalleryItem, GownItem } from '../types';
 import { GalleryLightbox } from './GalleryLightbox';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface CollectionsModalProps {
   isOpen: boolean;
@@ -126,12 +127,20 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
                 className="group relative flex flex-col bg-white border border-[#EBE5DA] hover:border-[#C59B3F] transition-all cursor-pointer overflow-hidden shadow-xs hover:shadow-md"
               >
                 <div className="relative aspect-[3/4] bg-[#F3EFE7] overflow-hidden">
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
-                  />
+                  {(() => {
+                    const opt = getOptimizedMedia(item.src);
+                    return (
+                      <img
+                        src={opt.src}
+                        srcSet={opt.srcSet}
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        alt={item.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                    );
+                  })()}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span className="bg-white/90 text-[#111111] text-[10px] uppercase font-semibold tracking-wider px-3 py-1.5 flex items-center gap-1.5">
                       <Eye className="w-3 h-3 text-[#C59B3F]" />

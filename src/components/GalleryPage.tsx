@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { GalleryItem, GalleryCategory } from '../types';
 import { EDITORIAL_GALLERY_ITEMS, GALLERY_CATEGORIES } from '../data/bridalData';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface GalleryPageProps {
   onOpenLightbox: (item: GalleryItem, items: GalleryItem[]) => void;
@@ -241,29 +242,35 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
               key={`gallery-col-${colIdx}`}
               className={`flex-1 min-w-0 w-full flex flex-col ${getColumnTopPadding(colIdx, columnCount)}`}
             >
-              {column.map(({ item, globalIndex }) => (
-                <div
-                  key={item.id}
-                  onClick={() => onOpenLightbox(item, filteredItems)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      onOpenLightbox(item, filteredItems);
-                    }
-                  }}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`View photograph: ${item.title}`}
-                  className={`group relative overflow-hidden bg-[#F3EFE6] cursor-pointer transition-all duration-300 border border-[#EAE3D5] hover:border-[#C59B3F] shadow-xs hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#C59B3F] focus:ring-offset-2 ${getItemMarginBottom(globalIndex, columnCount)}`}
-                >
-                  {/* Image Container preserving natural orientation and natural image heights */}
-                  <div className="relative w-full overflow-hidden bg-neutral-100">
-                    <img
-                      src={item.image || item.src}
-                      alt={item.alt || item.title}
-                      loading="lazy"
-                      className={`w-full h-auto block ${item.objectPosition || 'object-center'} group-hover:scale-103 transition-transform duration-500 ease-out select-none`}
-                    />
+              {column.map(({ item, globalIndex }) => {
+                const opt = getOptimizedMedia(item.image || item.src);
+
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => onOpenLightbox(item, filteredItems)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onOpenLightbox(item, filteredItems);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`View photograph: ${item.title}`}
+                    className={`group relative overflow-hidden bg-[#F3EFE6] cursor-pointer transition-all duration-300 border border-[#EAE3D5] hover:border-[#C59B3F] shadow-xs hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#C59B3F] focus:ring-offset-2 ${getItemMarginBottom(globalIndex, columnCount)}`}
+                  >
+                    {/* Image Container preserving natural orientation and natural image heights */}
+                    <div className="relative w-full overflow-hidden bg-neutral-100">
+                      <img
+                        src={opt.src}
+                        srcSet={opt.srcSet}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        alt={item.alt || item.title}
+                        loading="lazy"
+                        decoding="async"
+                        className={`w-full h-auto block ${item.objectPosition || 'object-center'} group-hover:scale-103 transition-transform duration-500 ease-out select-none`}
+                      />
 
                     {/* Subtle dark gradient overlay on hover/focus */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -290,7 +297,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
                     </div>
                   </div>
                 </div>
-              ))}
+              );
+            })}
             </div>
           ))}
         </div>

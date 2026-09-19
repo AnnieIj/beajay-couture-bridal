@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GalleryItem } from '../types';
 import { HERO_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
+import { getOptimizedMedia } from '../utils/optimizedMedia';
 
 interface GalleryLightboxProps {
   item: GalleryItem | null;
@@ -82,11 +83,11 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
 
     if (nextSrc && !nextItem?.isVideo) {
       const nextImg = new Image();
-      nextImg.src = nextSrc;
+      nextImg.src = getOptimizedMedia(nextSrc).src;
     }
     if (prevSrc && !prevItem?.isVideo) {
       const prevImg = new Image();
-      prevImg.src = prevSrc;
+      prevImg.src = getOptimizedMedia(prevSrc).src;
     }
   }, [canNavigate, safeIndex, totalCount, item, currentList]);
 
@@ -115,7 +116,8 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
 
   if (!item || !mounted) return null;
 
-  const displayImageSrc = item.image || item.src || '';
+  const rawSrc = item.image || item.src || '';
+  const optMedia = getOptimizedMedia(rawSrc);
 
   const lightboxContent = (
     <div
@@ -196,8 +198,11 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
             </div>
           ) : (
             <img
-              src={displayImageSrc}
+              src={optMedia.src}
+              srcSet={optMedia.srcSet}
+              sizes="100vw"
               alt={item.alt || item.title}
+              decoding="async"
               className="max-h-[78vh] sm:max-h-[82vh] md:max-h-[84vh] w-auto max-w-[95vw] md:max-w-[88vw] object-contain shadow-2xl select-none"
             />
           )}

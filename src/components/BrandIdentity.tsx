@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Minimal Couture Atelier Emblem
+ * Minimal Couture House Emblem
  * Delicate editorial line-art insignia: fine couture needle and celestial bridal veil arc.
  * Restrained, sophisticated, and strictly secondary to the BEAJAY wordmark.
  */
@@ -46,7 +46,7 @@ export const CoutureEmblem: React.FC<{
         strokeLinecap="round" 
         opacity="0.6" 
       />
-      {/* Delicate Atelier Baseline Dash */}
+      {/* Delicate Couture Baseline Dash */}
       <line x1="13" y1="26" x2="19" y2="26" stroke={strokeColor} strokeWidth="0.8" strokeLinecap="round" opacity="0.7" />
     </svg>
   );
@@ -76,29 +76,29 @@ export const BrandIdentity: React.FC<BrandIdentityProps> = ({
       <div 
         id="beajay-brand-header"
         onClick={onClick}
-        className={`flex items-center gap-2 sm:gap-3 select-none text-left cursor-pointer group ${className}`}
+        className={`flex items-center gap-1.5 sm:gap-2.5 lg:gap-3 select-none text-left cursor-pointer group shrink-0 ${className}`}
         role="banner"
         aria-label="BEAJAY COUTURE BRIDAL"
       >
         {/* Dominant Wordmark: BEAJAY */}
-        <div className="flex items-baseline">
-          <span className="font-serif text-[21px] sm:text-2xl lg:text-[27px] font-normal tracking-[0.16em] sm:tracking-[0.18em] text-[#111111] group-hover:text-[#856122] transition-colors leading-none">
+        <div className="flex items-baseline whitespace-nowrap">
+          <span className="font-serif text-[18px] min-[360px]:text-[20px] sm:text-2xl lg:text-[27px] font-normal tracking-[0.14em] min-[360px]:tracking-[0.16em] sm:tracking-[0.18em] text-[#111111] group-hover:text-[#856122] transition-colors leading-none">
             BEA<span className="font-serif italic font-normal text-[#856122] pr-[0.5px]">J</span>AY
           </span>
         </div>
 
-        {/* Slender Vertical Atelier Divider */}
+        {/* Slender Vertical Fine Divider */}
         <span 
-          className="w-[1px] h-6 sm:h-7 bg-[#DDD6C8] shrink-0" 
+          className="w-[1px] h-5 min-[360px]:h-6 sm:h-7 bg-[#DDD6C8] shrink-0" 
           aria-hidden="true" 
         />
 
         {/* Couture & Bridal Lockup */}
-        <div className="flex flex-col justify-center leading-none space-y-[2px] sm:space-y-[3px]">
-          <span className="font-sans text-[8px] sm:text-[9.5px] font-semibold tracking-[0.32em] uppercase text-[#1A1A1A]">
+        <div className="flex flex-col justify-center leading-none space-y-[2px] sm:space-y-[3px] whitespace-nowrap">
+          <span className="font-sans text-[7.5px] min-[360px]:text-[8.5px] sm:text-[9.5px] font-semibold tracking-[0.28em] min-[360px]:tracking-[0.32em] uppercase text-[#1A1A1A]">
             COUTURE
           </span>
-          <span className="font-sans text-[7.5px] sm:text-[9px] font-semibold tracking-[0.34em] uppercase text-[#856122]">
+          <span className="font-sans text-[7px] min-[360px]:text-[8px] sm:text-[9px] font-semibold tracking-[0.30em] min-[360px]:tracking-[0.34em] uppercase text-[#856122]">
             BRIDAL
           </span>
         </div>
@@ -114,7 +114,7 @@ export const BrandIdentity: React.FC<BrandIdentityProps> = ({
         className={`space-y-4 select-none text-left cursor-pointer group ${className}`}
         aria-label="BEAJAY COUTURE BRIDAL"
       >
-        {/* Optional Couture Line-Art Emblem */}
+        {/* Couture Line-Art Emblem */}
         <div className="flex items-center gap-2">
           <CoutureEmblem 
             className="w-6 h-6 text-[#E6C875] transition-transform duration-300 group-hover:scale-105" 
