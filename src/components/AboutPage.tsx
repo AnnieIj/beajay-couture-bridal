@@ -1,14 +1,7 @@
 import React from 'react';
 import { 
   Sparkles, 
-  ArrowRight, 
-  MapPin, 
-  Instagram, 
-  Calendar, 
-  Layers, 
-  Compass, 
-  MessageSquare,
-  HeartHandshake
+  MapPin
 } from 'lucide-react';
 import { ABOUT_MEDIA_ASSETS, resolveMedia } from '../config/mediaAssets';
 import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
@@ -31,9 +24,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onNavigateContact,
   onOpenAppointment
 }) => {
-  const heroImg = resolveMedia(ABOUT_MEDIA_ASSETS.hero);
-  const storyImg = resolveMedia(ABOUT_MEDIA_ASSETS.story);
-  const globalImg = resolveMedia(ABOUT_MEDIA_ASSETS.global);
+  const founderPrimary = resolveMedia(ABOUT_MEDIA_ASSETS.founderPrimary);
+  const founderJourney = resolveMedia(ABOUT_MEDIA_ASSETS.founderJourney);
+  const founderVision = resolveMedia(ABOUT_MEDIA_ASSETS.founderVision);
+  const teamImages = ABOUT_MEDIA_ASSETS.team.map(item => ({
+    src: resolveMedia(item),
+    alt: item.alt
+  }));
 
   return (
     <main id="about-page" className="min-h-screen bg-[#FCFAF7] text-[#141312] pt-24 sm:pt-28 pb-20">
@@ -52,31 +49,31 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </nav>
       </div>
 
-      {/* 1. HERO SECTION */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 border-b border-[#EAE3D5]">
+      {/* 1. EDITORIAL OPENING / HERO SECTION */}
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14 border-b border-[#EAE3D5]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#F2EDE2] border border-[#DDD4C1] text-[#856122] text-[10.5px] font-semibold tracking-[0.24em] uppercase">
               <Sparkles className="w-3.5 h-3.5 text-[#C59B3F]" />
-              <span>BEAJAY COUTURE BRIDAL</span>
+              <span>OUR STORY</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#111111] font-normal leading-[1.15] tracking-tight">
-              Where Bridal Dreams <br className="hidden sm:inline" />
-              <span className="italic font-light text-[#856122]">Take Form.</span>
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#111111] font-normal leading-[1.12] tracking-tight">
+              From a Dream in Enugu to a Bridal Brand with a{' '}
+              <span className="italic font-light text-[#856122]">Global Vision.</span>
             </h1>
 
-            <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed max-w-2xl">
-              BEAJAY COUTURE BRIDAL creates bridal experiences shaped around elegance, individuality, and thoughtful design. Every gown is conceived to reflect the inner radiance and grace of the bride who wears it.
+            <p className="text-base sm:text-lg text-neutral-800 font-light leading-relaxed max-w-2xl">
+              BEAJAY COUTURE BRIDAL is more than a bridal fashion brand. It is the story of a woman who chose to start again, trust her gift, and build something different.
             </p>
 
             <div className="p-5 sm:p-6 bg-[#F8F4EC] border-l-2 border-[#C59B3F] max-w-xl">
-              <p className="font-serif text-base sm:text-lg text-[#111111] font-normal tracking-wide italic">
+              <p className="font-serif text-base sm:text-lg text-[#111111] font-normal italic">
                 “Crafted in Nigeria. Made for Brides Everywhere.”
               </p>
-              <p className="text-[11px] tracking-wider text-neutral-500 uppercase font-sans mt-1.5">
-                The BEAJAY Bridal Promise
+              <p className="text-[11px] tracking-wider text-neutral-600 uppercase font-sans mt-1.5 font-medium">
+                BEAJAY COUTURE BRIDAL • ENUGU, NIGERIA
               </p>
             </div>
 
@@ -97,17 +94,25 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
           </div>
 
+          {/* Primary Founder Portrait (beauty-okiemute-01.jpg) */}
           <div className="lg:col-span-5">
-            <div className="relative aspect-[3/4] max-w-md mx-auto overflow-hidden bg-[#ECE6D9] shadow-lg border border-[#DDD4C1]">
+            <div className="relative aspect-[3/4] max-w-md mx-auto overflow-hidden bg-[#ECE6D9] shadow-xl border border-[#DDD4C1]">
               <img
-                src={heroImg}
-                alt={ABOUT_MEDIA_ASSETS.hero.alt}
-                className="w-full h-full object-cover object-center"
+                src={founderPrimary}
+                alt={ABOUT_MEDIA_ASSETS.founderPrimary.alt}
+                className="w-full h-full object-cover object-top"
                 loading="eager"
+                width={2800}
+                height={3919}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 right-4 text-white text-[11px] tracking-widest uppercase font-serif">
-                BEAJAY COUTURE BRIDAL • ENUGU, NIGERIA
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <span className="font-serif text-sm tracking-wide block">
+                  {BRAND_CONTACT.founder.name}
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.24em] text-[#E6C875] font-medium block mt-0.5">
+                  {BRAND_CONTACT.founder.title}
+                </span>
               </div>
             </div>
           </div>
@@ -115,385 +120,537 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </div>
       </section>
 
-      {/* 2. BRAND STORY SECTION */}
+      {/* 2. MEET BEAUTY OKIEMUTE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5]">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <span className="text-[10.5px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+              THE CREATIVE FORCE
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#111111] font-normal tracking-tight">
+              Meet Beauty Okiemute
+            </h2>
+            <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto mt-2" />
+            <p className="text-xs uppercase tracking-[0.22em] text-[#856122] font-medium pt-1">
+              Founder & Creative Director
+            </p>
+          </div>
+
+          <div className="space-y-6 text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+            <p>
+              Beauty’s journey into fashion began with a genuine passion for creativity and a love for seeing people look and feel beautiful. She started sewing while she was still in school, and what began as a personal skill gradually became a business.
+            </p>
+            <p>
+              The original name, <strong className="font-medium text-neutral-900">BJ Couture</strong>, came from the combination of Beauty and Jessica — Beauty’s husband’s sister and her roommate during school. Created during the early days of her fashion journey, the name was officially registered around 2019.
+            </p>
+            <p>
+              Beauty spent years working in ready-to-wear and serving clients within and outside Nigeria. Yet even while dressing women for everyday elegance, she knew in her heart that she wanted to build something more focused, more deliberate, and profoundly personal.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. THE TURNING POINT — STARTING AGAIN */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
+          {/* Founder Photo 2 (beauty-okiemute-02.jpg) */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <div className="relative aspect-[4/5] overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-md">
+            <div className="relative aspect-[3/4] max-w-md mx-auto overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-lg">
               <img
-                src={storyImg}
-                alt={ABOUT_MEDIA_ASSETS.story.alt}
+                src={founderJourney}
+                alt={ABOUT_MEDIA_ASSETS.founderJourney.alt}
                 className="w-full h-full object-cover object-center"
                 loading="lazy"
+                decoding="async"
+                width={2800}
+                height={4200}
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-4 left-4 right-4 text-white text-[11px] tracking-wider uppercase font-serif">
+                BEAUTY OKIEMUTE • DESIGN REFLECTION
+              </div>
             </div>
             <p className="mt-3 text-[11px] text-neutral-500 tracking-wider uppercase font-light text-center">
-              Careful tailoring, delicate lace and balanced proportions
+              Trusting the gift and committing fully to bridal couture
             </p>
           </div>
 
           <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
             <div className="space-y-2">
-              <span className="text-[10px] tracking-[0.28em] font-semibold text-[#C59B3F] uppercase block">
-                OUR STORY
+              <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+                THE TURNING POINT
               </span>
               <h2 className="font-serif text-2xl sm:text-4xl text-[#111111] font-normal leading-tight">
-                An Individual Approach to <br />
-                Bridal Elegance.
+                Starting Again.
               </h2>
             </div>
 
-            <p className="text-xs sm:text-sm text-neutral-700 font-light leading-relaxed">
-              At BEAJAY COUTURE BRIDAL, bridal design is approached as an intimate celebration of identity. No two brides share the exact same silhouette, cadence, or vision for their walk down the aisle. Each piece is designed to embrace that unique essence.
+            <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+              In 2022, after spending about three years intentionally learning bridal design through online courses and investing deeply in her craft, Beauty made a defining decision: 2023 would be the year she went fully into bridal.
             </p>
 
-            <p className="text-xs sm:text-sm text-neutral-700 font-light leading-relaxed">
-              From majestic ball gowns with delicate hand-beaded details to sculpted mermaid silhouettes and handcrafted accessories, our designs combine timeless romance with contemporary grace. Through our curated collections and rental options, we ensure every bride experiences bridal elegance tailored with care and attention to detail.
+            <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+              It was not an easy decision. She stopped taking ready-to-wear jobs, gave out the remaining fabrics from that chapter of the business, and began building BEAJAY COUTURE BRIDAL from her parlour.
             </p>
 
-            {/* Confirmed Creative Direction Attribution */}
-            <div className="pt-5 border-t border-[#EAE3D5] flex items-center gap-4">
-              <div className="w-11 h-11 rounded-full bg-[#111111] text-[#C59B3F] flex items-center justify-center font-serif text-sm font-medium border border-[#C59B3F]/40 shrink-0">
-                BO
+            <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+              There was no established bridal clientele and no guarantee of how the decision would turn out. What she had was the conviction that she wanted something different and the belief that there was more ahead.
+            </p>
+
+            <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+              Social media became an important tool in the early growth of the business. Beauty created the bridal platform, shared the work, invested in advertising, collaborated with vendors and creatives, and began building the brand one bride at a time.
+            </p>
+
+            <div className="p-4 bg-white border border-[#E8E2D4] text-xs text-neutral-700 font-light italic leading-relaxed">
+              “Every bride who trusted us in those early days laid the foundation for the house we are building today.”
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. FROM ONE PARLOUR TO A GROWING BRIDAL NETWORK & MILESTONE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5]">
+        <div className="max-w-4xl mx-auto space-y-12">
+          
+          <div className="space-y-4 text-center">
+            <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+              EXPANSION & TRUST
+            </span>
+            <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#111111] font-normal leading-tight">
+              From One Parlour to a Growing Bridal Network
+            </h2>
+            <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto mt-2" />
+          </div>
+
+          <div className="space-y-6 text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+            <p>
+              As BEAJAY grew, bridal businesses began noticing the work and coming to the brand for gowns. What began from home gradually developed into a trusted production relationship with bridal vendors and bridal houses purchasing BEAJAY gowns to serve their own clients.
+            </p>
+            <p>
+              Today, that network reaches bridal businesses across Nigeria, extending through all 36 states. BEAJAY therefore serves not only brides who come directly to the brand, but also supports fellow bridal houses and rental businesses in serving their brides with confidence.
+            </p>
+            <p>
+              That steady momentum led to the growth from the original home beginning to BEAJAY operating from a dedicated space in New Haven, Enugu. Alongside local brides, the brand has welcomed and styled clients traveling from other states across Nigeria as well as international brides.
+            </p>
+          </div>
+
+          {/* Milestone: Pampered Brides Experience in Lagos */}
+          <div className="p-8 sm:p-10 bg-[#F8F5EE] border border-[#DDD4C1] space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#111111] text-[#E6C875] flex items-center justify-center text-xs font-serif shrink-0">
+                ✦
               </div>
               <div>
-                <span className="font-serif text-base text-[#111111] block font-normal">
-                  {BRAND_CONTACT.founder.name}
+                <span className="text-[10px] uppercase tracking-[0.24em] text-[#856122] font-semibold block">
+                  AN IMPORTANT MILESTONE
                 </span>
-                <span className="text-[11px] uppercase tracking-[0.22em] text-[#856122] font-semibold block">
-                  {BRAND_CONTACT.founder.title}
-                </span>
-              </div>
-            </div>
-
-            <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-[#EAE3D5]">
-              <div className="p-4 bg-white border border-[#E8E2D4]">
-                <h3 className="font-serif text-base text-[#111111] mb-1">
-                  Bridal Collections
+                <h3 className="font-serif text-lg sm:text-xl text-[#111111] font-normal">
+                  The Pampered Brides Experience, Lagos
                 </h3>
-                <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                  Curated gowns spanning royal ball gowns, sculpted mermaid silhouettes, and handcrafted veils & accessories.
-                </p>
-              </div>
-
-              <div className="p-4 bg-white border border-[#E8E2D4]">
-                <h3 className="font-serif text-base text-[#111111] mb-1">
-                  Careful Fit & Styling
-                </h3>
-                <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                  Attentive guidance to ensure each gown sits with comfort, confidence, and natural grace.
-                </p>
               </div>
             </div>
 
+            <p className="text-xs sm:text-sm text-neutral-700 font-light leading-relaxed">
+              BEAJAY COUTURE BRIDAL was presented at the Pampered Brides Experience in Lagos. Beauty describes this runway as the brand’s first bridal presentation outside Enugu — an affirming moment and an enduring reminder that a small, faithful beginning could grow into something recognized nationwide.
+            </p>
           </div>
 
         </div>
       </section>
 
-      {/* 3. BRAND PHILOSOPHY (SIMPLIFIED LUXURY TERMINOLOGY) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5]">
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <span className="text-[10px] tracking-[0.28em] font-semibold text-[#C59B3F] uppercase block">
-            OUR PHILOSOPHY
+      {/* 5. EDITORIAL QUOTE & BRIDAL PHILOSOPHY */}
+      <section className="bg-[#111111] text-white py-20 sm:py-26 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
+          <span className="text-[10.5px] tracking-[0.28em] font-semibold text-[#C59B3F] uppercase block">
+            MORE THAN A GOWN
           </span>
-          <h2 className="font-serif text-2xl sm:text-4xl text-[#111111] font-normal">
-            Our Bridal Philosophy
-          </h2>
-          <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto" />
-          <p className="text-xs sm:text-sm text-neutral-600 font-light leading-relaxed">
-            Three guiding ideals that shape our design approach, fittings, and the gowns we create for our brides.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          {/* Pillar 1: BEAUTIFUL BRIDAL DESIGN */}
-          <div className="bg-white border border-[#E5DFD1] p-8 sm:p-10 flex flex-col justify-between space-y-6 shadow-sm hover:border-[#C59B3F] transition-colors">
-            <div className="space-y-4">
-              <span className="text-[11px] font-mono text-[#856122] tracking-widest block">
-                01 / PRINCIPLE
-              </span>
-              <h3 className="font-serif text-xl sm:text-2xl text-[#111111] tracking-wide uppercase">
-                Beautiful Bridal Design
-              </h3>
-              <div className="w-8 h-[1px] bg-[#C59B3F]" />
-              <p className="text-sm font-serif italic text-neutral-800">
-                Every bridal look begins with the bride's personal vision.
-              </p>
-              <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                We create gowns that balance timeless romance with modern grace, giving each bride a silhouette that feels memorable and uniquely hers.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-[#F2EDE2] text-[10.5px] uppercase tracking-widest text-[#856122] font-medium">
-              Distinctive Bridal Style
-            </div>
-          </div>
+          <blockquote className="font-serif text-2xl sm:text-4xl lg:text-5xl font-light italic leading-snug sm:leading-tight text-[#FAF7F2] max-w-3xl mx-auto">
+            “I want to create the dress she remembers years later — the dress that makes her look in the mirror and say, ‘This is me.’”
+          </blockquote>
 
-          {/* Pillar 2: CAREFUL FIT & FINISHING */}
-          <div className="bg-white border border-[#E5DFD1] p-8 sm:p-10 flex flex-col justify-between space-y-6 shadow-sm hover:border-[#C59B3F] transition-colors">
-            <div className="space-y-4">
-              <span className="text-[11px] font-mono text-[#856122] tracking-widest block">
-                02 / PRINCIPLE
-              </span>
-              <h3 className="font-serif text-xl sm:text-2xl text-[#111111] tracking-wide uppercase">
-                Careful Fit & Finishing
-              </h3>
-              <div className="w-8 h-[1px] bg-[#C59B3F]" />
-              <p className="text-sm font-serif italic text-neutral-800">
-                A gown that feels as comfortable as it is stunning.
-              </p>
-              <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Every dress is tailored with supportive structures, clean seam lines, and thoughtful finishing so brides can move with effortless confidence.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-[#F2EDE2] text-[10.5px] uppercase tracking-widest text-[#856122] font-medium">
-              Comfort & Poise
-            </div>
-          </div>
-
-          {/* Pillar 3: ATTENTION TO DETAIL */}
-          <div className="bg-white border border-[#E5DFD1] p-8 sm:p-10 flex flex-col justify-between space-y-6 shadow-sm hover:border-[#C59B3F] transition-colors">
-            <div className="space-y-4">
-              <span className="text-[11px] font-mono text-[#856122] tracking-widest block">
-                03 / PRINCIPLE
-              </span>
-              <h3 className="font-serif text-xl sm:text-2xl text-[#111111] tracking-wide uppercase">
-                Attention to Detail
-              </h3>
-              <div className="w-8 h-[1px] bg-[#C59B3F]" />
-              <p className="text-sm font-serif italic text-neutral-800">
-                Thoughtful details brought together with care.
-              </p>
-              <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                From delicate lace placement to harmonious neckline contours, we focus on the subtle touches that elevate each bridal gown into a lasting memory.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-[#F2EDE2] text-[10.5px] uppercase tracking-widest text-[#856122] font-medium">
-              Careful Attention to Detail
-            </div>
-          </div>
-
+          <div className="w-16 h-[1px] bg-[#C59B3F] mx-auto pt-2" />
         </div>
       </section>
 
-      {/* 4. THE 5 APPROVED CONTINUATION PATHWAYS */}
+      {/* 6. MORE THAN A GOWN — THE CREATIVE PHILOSOPHY */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5]">
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <span className="text-[10px] tracking-[0.28em] font-semibold text-[#C59B3F] uppercase block">
-            CONTINUE EXPLORING
-          </span>
-          <h2 className="font-serif text-2xl sm:text-4xl text-[#111111] font-normal">
-            The BEAJAY Experience
-          </h2>
-          <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto" />
-          <p className="text-xs sm:text-sm text-neutral-600 font-light leading-relaxed">
-            Choose how you would like to explore our bridal designs and services.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-          
-          {/* Pathway 1: EXPLORE COLLECTIONS */}
-          <div className="bg-white border border-[#E5DFD1] p-6 flex flex-col justify-between group hover:border-[#856122] transition-colors shadow-sm">
-            <div className="space-y-3">
-              <div className="w-10 h-10 bg-[#FAF7F2] border border-[#DDD4C1] flex items-center justify-center text-[#856122] mb-4">
-                <Layers className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-base text-[#111111] uppercase tracking-wide">
-                Explore Collections
-              </h3>
-              <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Discover signature bridal silhouettes and gown designs.
-              </p>
-            </div>
-            <div className="pt-6">
-              <button
-                onClick={onNavigateCollections}
-                className="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2.5 bg-[#F8F4EC] hover:bg-[#111111] text-[#141312] hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-colors cursor-pointer border border-[#DDD4C1]"
-              >
-                <span>View Gowns</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
+        <div className="max-w-4xl mx-auto space-y-10">
+          <div className="text-center space-y-3">
+            <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+              DESIGN PHILOSOPHY
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#111111] font-normal leading-tight">
+              Designing With the Bride at the Centre
+            </h2>
+            <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto" />
           </div>
 
-          {/* Pathway 2: DISCOVER RENTALS */}
-          <div className="bg-white border border-[#E5DFD1] p-6 flex flex-col justify-between group hover:border-[#856122] transition-colors shadow-sm">
-            <div className="space-y-3">
-              <div className="w-10 h-10 bg-[#FAF7F2] border border-[#DDD4C1] flex items-center justify-center text-[#856122] mb-4">
-                <Compass className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-base text-[#111111] uppercase tracking-wide">
-                Discover Rentals
-              </h3>
-              <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Explore selected gowns available for rental requests.
-              </p>
-            </div>
-            <div className="pt-6">
-              <button
-                onClick={onNavigateRentals}
-                className="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2.5 bg-[#F8F4EC] hover:bg-[#111111] text-[#141312] hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-colors cursor-pointer border border-[#DDD4C1]"
-              >
-                <span>Explore Rentals</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
+          <div className="space-y-6 text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+            <p>
+              BEAJAY works with a bride’s vision, including when that vision is not yet completely clear, and helps develop it into a finished bridal look. Every consultation begins with listening: understanding how the bride wishes to feel, the scale of her celebration, and the silhouette that honors her body.
+            </p>
+            <p>
+              Beauty describes herself as deeply detail-oriented. She pays meticulous attention to fabric, silhouette, structure, comfort, finishing, and the subtle nuances that make the final look feel authentically personal to the bride.
+            </p>
+            <p>
+              Beauty also describes creativity as a gift from God. During consultations and the design process, ideas often begin naturally from the fabric, the bride’s thoughts, and her own creative interpretation — always keeping the bride at the very center of every choice.
+            </p>
           </div>
 
-          {/* Pathway 3: VIEW GALLERY */}
-          <div className="bg-white border border-[#E5DFD1] p-6 flex flex-col justify-between group hover:border-[#856122] transition-colors shadow-sm">
-            <div className="space-y-3">
-              <div className="w-10 h-10 bg-[#FAF7F2] border border-[#DDD4C1] flex items-center justify-center text-[#856122] mb-4">
-                <Sparkles className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-base text-[#111111] uppercase tracking-wide">
-                View Gallery
-              </h3>
+          {/* Pillars of Design Attention */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 pt-4">
+            <div className="p-6 bg-white border border-[#E5DFD1] space-y-2">
+              <span className="text-[10px] uppercase font-mono tracking-widest text-[#856122] block">01 / TEXTILE</span>
+              <h3 className="font-serif text-base text-[#111111]">Curated Fabric & Lace</h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                See real brides and editorial gown moments.
+                Selecting fabrics that drape naturally and capture light with gentle sophistication.
               </p>
             </div>
-            <div className="pt-6">
-              <button
-                onClick={onNavigateGallery}
-                className="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2.5 bg-[#F8F4EC] hover:bg-[#111111] text-[#141312] hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-colors cursor-pointer border border-[#DDD4C1]"
-              >
-                <span>Open Gallery</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
 
-          {/* Pathway 4: BOOK AN APPOINTMENT */}
-          <div className="bg-white border border-[#E5DFD1] p-6 flex flex-col justify-between group hover:border-[#856122] transition-colors shadow-sm">
-            <div className="space-y-3">
-              <div className="w-10 h-10 bg-[#FAF7F2] border border-[#DDD4C1] flex items-center justify-center text-[#856122] mb-4">
-                <Calendar className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-base text-[#111111] uppercase tracking-wide">
-                Book Appointment
-              </h3>
+            <div className="p-6 bg-white border border-[#E5DFD1] space-y-2">
+              <span className="text-[10px] uppercase font-mono tracking-widest text-[#856122] block">02 / BALANCE</span>
+              <h3 className="font-serif text-base text-[#111111]">Silhouette & Structure</h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Request time to discuss your bridal gown needs.
+                Balanced corsetry, boning, and contours tailored for both poised elegance and all-day comfort.
               </p>
             </div>
-            <div className="pt-6">
-              <button
-                onClick={onOpenAppointment}
-                className="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2.5 bg-[#111111] hover:bg-[#C59B3F] text-white text-[11px] font-semibold tracking-wider uppercase transition-colors cursor-pointer"
-              >
-                <span>Request Time</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
 
-          {/* Pathway 5: CONTACT BEAJAY */}
-          <div className="bg-white border border-[#E5DFD1] p-6 flex flex-col justify-between group hover:border-[#856122] transition-colors shadow-sm">
-            <div className="space-y-3">
-              <div className="w-10 h-10 bg-[#FAF7F2] border border-[#DDD4C1] flex items-center justify-center text-[#856122] mb-4">
-                <MessageSquare className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-base text-[#111111] uppercase tracking-wide">
-                Contact BEAJAY
-              </h3>
+            <div className="p-6 bg-white border border-[#E5DFD1] space-y-2">
+              <span className="text-[10px] uppercase font-mono tracking-widest text-[#856122] block">03 / ARTISTRY</span>
+              <h3 className="font-serif text-base text-[#111111]">Refined Hand Finishing</h3>
               <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                Send an enquiry about any gown or bridal question.
+                Carefully placed beading, clean seam work, and delicate details that complete the gown.
               </p>
-            </div>
-            <div className="pt-6">
-              <button
-                onClick={onNavigateContact}
-                className="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2.5 bg-[#F8F4EC] hover:bg-[#111111] text-[#141312] hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-colors cursor-pointer border border-[#DDD4C1]"
-              >
-                <span>Send Note</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* 5. NIGERIAN ROOTS & GLOBAL REACH */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="bg-[#F6F1E7] border border-[#DDD4C1] p-8 sm:p-12 lg:p-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      {/* 7. THE BEAJAY EXPERIENCE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5]">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <div className="text-center space-y-3">
+            <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+              THE BRIDAL JOURNEY
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#111111] font-normal leading-tight">
+              The BEAJAY Experience
+            </h2>
+            <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto" />
+            <p className="text-base sm:text-lg font-serif italic text-neutral-800 max-w-xl mx-auto">
+              “Our brides are not just clients to us.”
+            </p>
+          </div>
+
+          <div className="space-y-6 text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+            <p>
+              From the first consultation to final delivery, BEAJAY aims to build a warm relationship where brides can relax, express themselves freely, and trust our team with their vision.
+            </p>
+            <p>
+              Beauty describes the goal as a stress-free experience where the process feels just as special as the final gown itself. When a bride works with BEAJAY, our desire is for her to feel four things at every step:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+            <div className="p-6 bg-white border border-[#E5DFD1] text-center space-y-2">
+              <span className="font-serif text-xl sm:text-2xl text-[#856122] block font-light">Welcomed</span>
+              <p className="text-xs text-neutral-600 font-light">
+                An atmosphere of warmth, respect, and attentive hospitality.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white border border-[#E5DFD1] text-center space-y-2">
+              <span className="font-serif text-xl sm:text-2xl text-[#856122] block font-light">Heard</span>
+              <p className="text-xs text-neutral-600 font-light">
+                Your ideas, preferences, and worries receive honest, focused guidance.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white border border-[#E5DFD1] text-center space-y-2">
+              <span className="font-serif text-xl sm:text-2xl text-[#856122] block font-light">Beautiful</span>
+              <p className="text-xs text-neutral-600 font-light">
+                Seeing your silhouette elevated with proportion, grace, and radiance.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white border border-[#E5DFD1] text-center space-y-2">
+              <span className="font-serif text-xl sm:text-2xl text-[#856122] block font-light">Confident</span>
+              <p className="text-xs text-neutral-600 font-light">
+                Stepping toward the aisle knowing your dress fits comfortably and securely.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. THE PEOPLE BEHIND BEAJAY (OFFICIAL TEAM MEDIA) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5]">
+        <div className="space-y-12">
+          
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+              THE BEAJAY TEAM
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#111111] font-normal leading-tight">
+              The People Behind BEAJAY
+            </h2>
+            <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto" />
+            <p className="text-sm text-neutral-700 font-light leading-relaxed">
+              The growth of BEAJAY COUTURE BRIDAL is powered by the dedicated hands and hearts working behind the scenes to bring each bridal experience together.
+            </p>
+          </div>
+
+          {/* Collective 3-image editorial presentation of real team photography */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
             
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.24em] uppercase text-[#856122]">
-                <MapPin className="w-4 h-4 text-[#C59B3F]" />
-                <span>BASED IN ENUGU, NIGERIA</span>
-              </div>
-
-              <h2 className="font-serif text-2xl sm:text-4xl text-[#111111] font-normal leading-tight">
-                Crafted in Nigeria.<br />
-                <span className="italic text-[#856122]">Made for Brides Everywhere.</span>
-              </h2>
-
-              <p className="text-xs sm:text-sm text-neutral-700 font-light leading-relaxed">
-                BEAJAY COUTURE BRIDAL is proudly based in Enugu, Nigeria, designing for brides locally and beyond. Whether you are planning a traditional celebration or a cathedral wedding, our gowns are crafted to make your day unforgettable. Brides outside Enugu can easily get in touch and submit enquiries through our website.
-              </p>
-
-              <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                <a
-                  href={buildWhatsAppUrl({ type: 'general' })}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3 bg-[#111111] hover:bg-[#1C2820] text-white text-xs font-semibold tracking-widest uppercase transition-colors border border-[#25D366]/40"
-                >
-                  <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-                  <span>WHATSAPP ATELIER</span>
-                </a>
-
-                <a
-                  href={BRAND_CONTACT.socials.instagram.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit BEAJAY COUTURE BRIDAL on Instagram"
-                  className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3 bg-white hover:bg-[#F2ECE1] text-[#111111] border border-[#DDD4C1] text-xs font-semibold tracking-widest uppercase transition-colors"
-                >
-                  <Instagram className="w-4 h-4 text-[#C59B3F]" />
-                  <span>{BRAND_CONTACT.socials.instagram.handle}</span>
-                </a>
-
-                {BRAND_CONTACT.socials.facebook.url && (
-                  <a
-                    href={BRAND_CONTACT.socials.facebook.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Visit BEAJAY COUTURE BRIDAL on Facebook"
-                    className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3 bg-white hover:bg-[#F2ECE1] text-[#111111] border border-[#DDD4C1] text-xs font-semibold tracking-widest uppercase transition-colors"
-                  >
-                    <span>{BRAND_CONTACT.socials.facebook.handle}</span>
-                  </a>
-                )}
-
-                <button
-                  onClick={onNavigateContact}
-                  className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3 border border-[#856122] hover:bg-white text-[#141312] text-xs font-semibold tracking-widest uppercase transition-colors cursor-pointer"
-                >
-                  <span>CONTACT BEAJAY</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="relative aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-sm">
+            {/* Team Image 1 (Landscape, 1364x908) */}
+            <div className="md:col-span-5 flex flex-col">
+              <div className="relative aspect-[3/2] overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-sm flex-1">
                 <img
-                  src={globalImg}
-                  alt={ABOUT_MEDIA_ASSETS.global.alt}
+                  src={teamImages[0].src}
+                  alt={teamImages[0].alt}
                   className="w-full h-full object-cover object-center"
                   loading="lazy"
+                  decoding="async"
+                  width={1364}
+                  height={908}
                 />
               </div>
+              <p className="mt-2 text-[11px] text-neutral-500 font-light tracking-wide text-center">
+                Dedicated collaboration across cutting, styling, and fitting
+              </p>
+            </div>
+
+            {/* Team Image 2 (Portrait, 969x1280) */}
+            <div className="md:col-span-3 flex flex-col">
+              <div className="relative aspect-[3/4] overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-sm flex-1">
+                <img
+                  src={teamImages[1].src}
+                  alt={teamImages[1].alt}
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                  width={969}
+                  height={1280}
+                />
+              </div>
+              <p className="mt-2 text-[11px] text-neutral-500 font-light tracking-wide text-center">
+                Detailed gown finishing and presentation
+              </p>
+            </div>
+
+            {/* Team Image 3 (Landscape, 1365x910) */}
+            <div className="md:col-span-4 flex flex-col">
+              <div className="relative aspect-[3/2] overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-sm flex-1">
+                <img
+                  src={teamImages[2].src}
+                  alt={teamImages[2].alt}
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                  width={1365}
+                  height={910}
+                />
+              </div>
+              <p className="mt-2 text-[11px] text-neutral-500 font-light tracking-wide text-center">
+                Crafting memories together in Enugu
+              </p>
             </div>
 
           </div>
+
+          <div className="max-w-2xl mx-auto text-center pt-2">
+            <p className="text-xs text-neutral-600 font-light leading-relaxed italic">
+              From pattern adjustments to hand-stitched beadwork and final pressings, our team works united to ensure every gown leaves our studio ready for the aisle.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 9. FROM ENUGU TO BRIDES EVERYWHERE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5]">
+        <div className="bg-[#F8F5EE] border border-[#DDD4C1] p-8 sm:p-12 lg:p-16">
+          <div className="max-w-4xl mx-auto space-y-6">
+            
+            <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.24em] uppercase text-[#856122]">
+              <MapPin className="w-4 h-4 text-[#C59B3F]" />
+              <span>FROM ENUGU TO BRIDES EVERYWHERE</span>
+            </div>
+
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#111111] font-normal leading-tight">
+              Crafted in Nigeria.<br />
+              <span className="italic text-[#856122]">Made for Brides Everywhere.</span>
+            </h2>
+
+            <p className="text-sm sm:text-base text-neutral-800 font-light leading-relaxed">
+              What began from a parlour in Enugu has grown beyond the city where BEAJAY's bridal journey began.
+            </p>
+
+            <blockquote className="p-5 bg-white border-l-2 border-[#C59B3F] font-serif text-base sm:text-lg italic text-[#111111]">
+              “Beautiful bridal fashion can be created from Enugu and experienced anywhere in the world.”
+            </blockquote>
+
+            <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+              Today, BEAJAY works with brides within and outside Nigeria, including through remote consultations, while continuing to build relationships with bridal businesses across the country.
+            </p>
+
+            <div className="pt-4 flex flex-wrap items-center gap-4">
+              <button
+                onClick={onOpenAppointment}
+                className="min-h-[44px] inline-flex items-center justify-center px-7 py-3 bg-[#111111] hover:bg-[#2A2824] text-white text-xs font-semibold tracking-[0.2em] uppercase transition-colors cursor-pointer shadow-sm"
+              >
+                <span>BOOK AN APPOINTMENT</span>
+              </button>
+
+              <a
+                href={buildWhatsAppUrl({ type: 'general' })}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3 border border-[#856122] hover:bg-white text-[#141312] text-xs font-semibold tracking-[0.18em] uppercase transition-colors"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                <span>CHAT WITH US ON WHATSAPP</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 10. WHERE WE ARE GOING */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <div className="lg:col-span-7 space-y-6">
+            <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+              OUR VISION & LEGACY
+            </span>
+
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#111111] font-normal leading-tight">
+              Where We Are Going
+            </h2>
+
+            <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+              BEAJAY’s vision is to continue building a global bridal fashion brand known for distinctive design, uncompromising craftsmanship, and a memorable bridal experience.
+            </p>
+
+            <p className="text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+              Beauty wants to transfer her knowledge to the next generation of bridal professionals and create opportunities for others who are ready to build meaningful careers in the bridal industry.
+            </p>
+
+            <div className="p-6 bg-white border border-[#E5DFD1] space-y-2">
+              <p className="font-serif text-lg sm:text-xl text-[#111111] font-normal italic">
+                “The dream is bigger than gowns.”
+              </p>
+              <p className="font-serif text-lg sm:text-xl text-[#856122] font-normal italic">
+                “It is about building a legacy.”
+              </p>
+              <p className="text-xs uppercase tracking-[0.24em] text-neutral-500 font-sans pt-1">
+                And we are only getting started.
+              </p>
+            </div>
+          </div>
+
+          {/* Founder Photo 3 (beauty-okiemute-03.jpg) */}
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[3/4] max-w-md mx-auto overflow-hidden bg-[#ECE6D9] border border-[#DDD4C1] shadow-xl">
+              <img
+                src={founderVision}
+                alt={ABOUT_MEDIA_ASSETS.founderVision.alt}
+                className="w-full h-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+                width={2800}
+                height={4200}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <span className="font-serif text-sm tracking-wide block">
+                  Beauty Okiemute
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.22em] text-[#E6C875] font-medium block mt-0.5">
+                  BEAJAY COUTURE BRIDAL
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 11. CLOSING MESSAGE TO THE BRIDE & ACTIONS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
+        <div className="max-w-3xl mx-auto space-y-8">
+          
+          <div className="space-y-3">
+            <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase block">
+              BEGIN YOUR STORY
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl text-[#111111] font-normal leading-tight">
+              Your Vision Matters to Us.
+            </h2>
+            <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto mt-2" />
+          </div>
+
+          <div className="space-y-4 text-sm sm:text-base text-neutral-700 font-light leading-relaxed">
+            <p>
+              Whether you already know exactly what you want or are still imagining your wedding dress, BEAJAY is here to guide you, refine the idea, and help bring that vision to life.
+            </p>
+            <p className="font-serif text-lg sm:text-xl text-[#111111] italic font-normal">
+              Welcome to BEAJAY. <br className="hidden sm:inline" />
+              Welcome to the experience of seeing your dream come to life.
+            </p>
+          </div>
+
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+            <button
+              onClick={onOpenAppointment}
+              className="min-h-[44px] inline-flex items-center justify-center px-8 py-3.5 bg-[#111111] hover:bg-[#2A2824] text-white text-xs font-semibold tracking-[0.22em] uppercase transition-colors cursor-pointer shadow-md"
+            >
+              <span>BOOK AN APPOINTMENT</span>
+            </button>
+            
+            <button
+              onClick={onNavigateCollections}
+              className="min-h-[44px] inline-flex items-center justify-center px-8 py-3.5 border border-[#856122] hover:bg-[#F2EDE2] text-[#141312] text-xs font-semibold tracking-[0.22em] uppercase transition-colors cursor-pointer"
+            >
+              <span>EXPLORE COLLECTIONS</span>
+            </button>
+
+            <button
+              onClick={onNavigateRentals}
+              className="min-h-[44px] inline-flex items-center justify-center px-8 py-3.5 bg-white border border-[#DDD4C1] hover:bg-[#F8F5EE] text-[#141312] text-xs font-semibold tracking-[0.22em] uppercase transition-colors cursor-pointer"
+            >
+              <span>DISCOVER RENTALS</span>
+            </button>
+          </div>
+
+          {/* Quick links */}
+          <div className="pt-8 border-t border-[#EAE3D5] flex flex-wrap items-center justify-center gap-6 text-[11px] uppercase tracking-widest text-neutral-500 font-medium">
+            <button onClick={onNavigateGallery} className="hover:text-[#856122] transition-colors cursor-pointer">
+              Bridal Gallery
+            </button>
+            <span>•</span>
+            <button onClick={onNavigateContact} className="hover:text-[#856122] transition-colors cursor-pointer">
+              Contact Us
+            </button>
+            <span>•</span>
+            <a 
+              href={buildWhatsAppUrl({ type: 'general' })}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-[#25D366] transition-colors inline-flex items-center gap-1"
+            >
+              <WhatsAppIcon className="w-3.5 h-3.5" />
+              <span>WhatsApp Us</span>
+            </a>
+          </div>
+
         </div>
       </section>
 

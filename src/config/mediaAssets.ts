@@ -90,7 +90,15 @@ export const VERIFIED_OFFICIAL_MEDIA_PATHS: ReadonlySet<string> = new Set([
   '/media/collections/accessories/veil 006.jpg',
   '/media/collections/accessories/veil 008.jpg',
   '/media/collections/accessories/veil 009.jpg',
-  '/media/collections/accessories/veil 010.jpg'
+  '/media/collections/accessories/veil 010.jpg',
+  // Founder & Creative Director Photography (3 verified official images)
+  '/media/about/founder/beauty-okiemute-01.jpg',
+  '/media/about/founder/beauty-okiemute-02.jpg',
+  '/media/about/founder/beauty-okiemute-03.jpg',
+  // Official Team Photography (3 verified official images)
+  '/media/about/team/beajay-team-01.jpeg',
+  '/media/about/team/beajay-team-02.jpeg',
+  '/media/about/team/beajay-team-03.jpeg'
 ]);
 
 /**
@@ -850,14 +858,16 @@ export const EDITORIAL_GALLERY_MEDIA_ASSETS = [
 // =========================================================================
 export const EDITORIAL_MEDIA_ASSETS = {
   aboutModal: {
-    current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop',
-    officialPath: '/media/gallery/about-studio.jpg',
-    alt: 'BEAJAY Couture Bridal fitting studio in Enugu'
+    current: '/media/about/founder/beauty-okiemute-01.jpg',
+    officialPath: '/media/about/founder/beauty-okiemute-01.jpg',
+    hasOfficial: true,
+    alt: 'Beauty Okiemute, Founder & Creative Director of BEAJAY COUTURE BRIDAL'
   },
   appointmentCta: {
-    current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop',
-    officialPath: '/media/gallery/appointment-cta-bg.jpg',
-    alt: 'Bridal consultation backdrop'
+    current: '/media/collections/ball-gown/ball-gown 016.jpg',
+    officialPath: '/media/collections/ball-gown/ball-gown 016.jpg',
+    hasOfficial: true,
+    alt: 'BEAJAY COUTURE BRIDAL atelier bridal gown creation'
   },
   perfectDress: {
     collection: {
@@ -882,28 +892,73 @@ export const EDITORIAL_MEDIA_ASSETS = {
 } as const;
 
 // =========================================================================
-// 6. ABOUT PAGE MEDIA ASSETS
+// 6. ABOUT PAGE MEDIA ASSETS — OFFICIAL FOUNDER & TEAM PHOTOGRAPHY
 // =========================================================================
 export const ABOUT_MEDIA_ASSETS = {
+  // Verified Official Founder Photography
+  founderPrimary: {
+    current: '/media/about/founder/beauty-okiemute-01.jpg',
+    officialPath: '/media/about/founder/beauty-okiemute-01.jpg',
+    hasOfficial: true,
+    alt: 'Beauty Okiemute, Founder & Creative Director of BEAJAY COUTURE BRIDAL'
+  },
+  founderJourney: {
+    current: '/media/about/founder/beauty-okiemute-02.jpg',
+    officialPath: '/media/about/founder/beauty-okiemute-02.jpg',
+    hasOfficial: true,
+    alt: 'Beauty Okiemute, Founder & Creative Director in atelier design reflection'
+  },
+  founderVision: {
+    current: '/media/about/founder/beauty-okiemute-03.jpg',
+    officialPath: '/media/about/founder/beauty-okiemute-03.jpg',
+    hasOfficial: true,
+    alt: 'Beauty Okiemute presenting BEAJAY bridal creation'
+  },
+  // Verified Official Team Photography (Presented collectively)
+  team: [
+    {
+      current: '/media/about/team/beajay-team-01.jpeg',
+      officialPath: '/media/about/team/beajay-team-01.jpeg',
+      hasOfficial: true,
+      alt: 'The artisans and bridal craft team at BEAJAY COUTURE BRIDAL'
+    },
+    {
+      current: '/media/about/team/beajay-team-02.jpeg',
+      officialPath: '/media/about/team/beajay-team-02.jpeg',
+      hasOfficial: true,
+      alt: 'BEAJAY bridal team member preparing gown detailing'
+    },
+    {
+      current: '/media/about/team/beajay-team-03.jpeg',
+      officialPath: '/media/about/team/beajay-team-03.jpeg',
+      hasOfficial: true,
+      alt: 'The dedicated team behind BEAJAY COUTURE BRIDAL'
+    }
+  ],
+  // Retained references for existing component imports
   hero: {
-    current: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1600&auto=format&fit=crop',
-    officialPath: '/media/about/about-hero.jpg',
-    alt: 'Bridal gown silhouette and veil arrangement'
+    current: '/media/about/founder/beauty-okiemute-01.jpg',
+    officialPath: '/media/about/founder/beauty-okiemute-01.jpg',
+    hasOfficial: true,
+    alt: 'Beauty Okiemute, Founder & Creative Director of BEAJAY COUTURE BRIDAL'
   },
   story: {
-    current: 'https://images.unsplash.com/photo-1546804784-896d0dca3805?q=80&w=1200&auto=format&fit=crop',
-    officialPath: '/media/about/about-story.jpg',
-    alt: 'Bridal gown back detailing and delicate fabric work'
+    current: '/media/about/founder/beauty-okiemute-02.jpg',
+    officialPath: '/media/about/founder/beauty-okiemute-02.jpg',
+    hasOfficial: true,
+    alt: 'Beauty Okiemute, Founder & Creative Director in atelier design reflection'
   },
   craft: {
-    current: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-    officialPath: '/media/about/about-craft.jpg',
-    alt: 'Fine bridal lace and hand-finished beadwork'
+    current: '/media/about/team/beajay-team-01.jpeg',
+    officialPath: '/media/about/team/beajay-team-01.jpeg',
+    hasOfficial: true,
+    alt: 'The artisans and craft team at BEAJAY COUTURE BRIDAL'
   },
   global: {
-    current: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=1200&auto=format&fit=crop',
-    officialPath: '/media/about/about-global.jpg',
-    alt: 'Curated bridal fabrics, silk mikado, and lace rolls'
+    current: '/media/about/founder/beauty-okiemute-03.jpg',
+    officialPath: '/media/about/founder/beauty-okiemute-03.jpg',
+    hasOfficial: true,
+    alt: 'Beauty Okiemute with BEAJAY bridal gown'
   }
 } as const;
 
