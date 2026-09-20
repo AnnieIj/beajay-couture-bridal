@@ -1,17 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   X, 
-  Calendar, 
-  Clock, 
   Sparkles, 
   Check, 
   AlertCircle, 
   Info, 
   Mail, 
-  Layers
+  Layers,
+  ChevronDown,
+  ChevronUp,
+  Clock,
+  Globe,
+  MapPin,
+  ArrowRight,
+  ArrowLeft,
+  CheckCircle2
 } from 'lucide-react';
 import { BookingFormData, AppointmentServiceType } from '../types';
-import { buildWhatsAppUrl } from '../config/brandConfig';
+import { BRIDAL_CONSULTATION_POLICY, buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
 
 interface AppointmentModalProps {
@@ -27,6 +33,7 @@ interface FormErrors {
   phone?: string;
   email?: string;
   preferredDate?: string;
+  acknowledgedTerms?: string;
 }
 
 export const AppointmentModal: React.FC<AppointmentModalProps> = ({
@@ -45,23 +52,27 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     email: '',
     weddingDate: '',
     serviceType: defaultService,
+    consultationFormat: 'Physical',
     preferredDate: '',
     preferredTime: 'Morning (10:00 AM – 12:00 PM)',
     notes: '',
     silhouetteInterest: [],
-    interestedGown: preselectedGown || undefined
+    interestedGown: preselectedGown || undefined,
+    acknowledgedTerms: false
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showTemporaryState, setShowTemporaryState] = useState(false);
+  const [showPaymentStep, setShowPaymentStep] = useState(false);
+  const [showPolicyAccordion, setShowPolicyAccordion] = useState(false);
 
   // Synchronize state when modal opens or props change
   useEffect(() => {
     if (isOpen) {
       previouslyFocusedElementRef.current = document.activeElement as HTMLElement;
-      setShowTemporaryState(false);
+      setShowPaymentStep(false);
+      setShowPolicyAccordion(false);
       setIsSubmitting(false);
       setErrors({});
       setTouched({});
@@ -71,11 +82,13 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
         email: '',
         weddingDate: '',
         serviceType: defaultService || 'bridal-consultation',
+        consultationFormat: 'Physical',
         preferredDate: '',
         preferredTime: 'Morning (10:00 AM – 12:00 PM)',
         notes: '',
         silhouetteInterest: [],
-        interestedGown: preselectedGown || undefined
+        interestedGown: preselectedGown || undefined,
+        acknowledgedTerms: false
       });
 
       // Lock body scroll
@@ -122,16 +135,17 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   ];
 
   // Authentic BEAJAY services
-  const appointmentServices: { id: AppointmentServiceType; label: string; description: string }[] = [
+  const appointmentServices: { id: AppointmentServiceType; label: string; badge?: string; description: string }[] = [
     { 
       id: 'bridal-consultation', 
       label: 'Bridal Consultation', 
-      description: 'Private styling consultation & try-on guidance.' 
+      badge: '₦15,000 • Non-refundable',
+      description: 'Private styling assessment, body shape & gown recommendation, budget guidance.' 
     },
     { 
       id: 'gown-viewing', 
       label: 'Gown Viewing', 
-      description: 'In-person viewing of collection pieces.' 
+      description: 'In-person viewing of collection pieces at Enugu Studio.' 
     },
     { 
       id: 'rental-fitting', 
@@ -154,24 +168,29 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     'Flexible / Any Available Time'
   ];
 
-  const validateField = (name: string, value: string): string | undefined => {
+  const validateField = (name: string, value: any): string | undefined => {
     switch (name) {
       case 'fullName':
-        if (!value.trim()) return 'Full name is required';
+        if (!value || !value.trim()) return 'Full name is required';
         if (value.trim().length < 2) return 'Please enter at least 2 characters';
         return undefined;
       case 'phone':
-        if (!value.trim()) return 'Phone / WhatsApp number is required';
+        if (!value || !value.trim()) return 'Phone / WhatsApp number is required';
         if (value.trim().length < 7) return 'Please enter a valid phone number';
         return undefined;
       case 'email':
-        if (!value.trim()) return 'Email address is required';
+        if (!value || !value.trim()) return 'Email address is required';
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
           return 'Please enter a valid email address';
         }
         return undefined;
       case 'preferredDate':
         if (!value) return 'Preferred date is required';
+        return undefined;
+      case 'acknowledgedTerms':
+        if (formData.serviceType === 'bridal-consultation' && !value) {
+          return 'Please acknowledge the consultation fee policy to proceed';
+        }
         return undefined;
       default:
         return undefined;
@@ -180,7 +199,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
   const handleBlur = (field: string) => {
     setTouched((prev) => ({ ...prev, [field]: true }));
-    const error = validateField(field, (formData as any)[field] || '');
+    const error = validateField(field, (formData as any)[field]);
     setErrors((prev) => ({ ...prev, [field]: error }));
   };
 
@@ -222,30 +241,38 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     const dateErr = validateField('preferredDate', formData.preferredDate);
     if (dateErr) newErrors.preferredDate = dateErr;
 
+    if (formData.serviceType === 'bridal-consultation') {
+      const termsErr = validateField('acknowledgedTerms', formData.acknowledgedTerms);
+      if (termsErr) newErrors.acknowledgedTerms = termsErr;
+    }
+
     setErrors(newErrors);
     setTouched({
       fullName: true,
       phone: true,
       email: true,
-      preferredDate: true
+      preferredDate: true,
+      acknowledgedTerms: true
     });
 
     if (Object.keys(newErrors).length > 0) {
-      // Scroll modal to top to view errors
       modalRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
-    // Frontend-only submission handling: simulate request processing then show transparent status
+    // Advance to Step 2: Payment Required before scheduling
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      setShowTemporaryState(true);
-    }, 450);
+      setShowPaymentStep(true);
+      modalRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 350);
   };
 
   // Today's date in YYYY-MM-DD for min date constraint
   const todayStr = new Date().toISOString().split('T')[0];
+
+  const isConsultation = formData.serviceType === 'bridal-consultation';
 
   return (
     <div 
@@ -262,11 +289,11 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
         tabIndex={-1}
         className="relative w-full max-w-2xl bg-[#FCFAF7] border border-[#DCD5C5] text-[#141312] my-6 sm:my-8 shadow-2xl overflow-hidden focus:outline-none"
       >
-        {/* Top Gold Border Accent */}
+        {/* Top Gold Accent Line */}
         <div className="h-1 w-full bg-gradient-to-r from-transparent via-[#C59B3F] to-transparent" />
 
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 sm:px-8 pt-7 pb-5 border-b border-[#EAE3D5]">
+        <div className="flex items-center justify-between px-6 sm:px-8 pt-6 pb-5 border-b border-[#EAE3D5]">
           <div>
             <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] text-[#C59B3F] uppercase mb-1">
               <Sparkles className="w-3.5 h-3.5 text-[#C59B3F]" aria-hidden="true" />
@@ -276,7 +303,10 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               id="appointment-modal-title"
               className="font-serif text-2xl sm:text-3xl font-light text-[#111111]"
             >
-              Request an Appointment
+              {showPaymentStep 
+                ? (isConsultation ? 'Consultation Payment' : 'Appointment Request')
+                : (isConsultation ? 'Bridal Consultation' : 'Request an Appointment')
+              }
             </h2>
           </div>
 
@@ -291,75 +321,227 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
           </button>
         </div>
 
+        {/* Journey Progress Bar */}
+        <div className="bg-[#F5EFE4] px-6 sm:px-8 py-2.5 border-b border-[#E7DECD] text-[11px] font-medium text-neutral-600 flex items-center justify-between gap-2 overflow-x-auto">
+          <div className="flex items-center gap-2 shrink-0">
+            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
+              showPaymentStep 
+                ? 'bg-[#2E7D32] text-white' 
+                : 'bg-[#C59B3F] text-white'
+            }`}>
+              {showPaymentStep ? '✓' : '1'}
+            </span>
+            <span className={!showPaymentStep ? 'text-[#111111] font-semibold' : 'text-neutral-500'}>
+              1. Consultation Details
+            </span>
+          </div>
+          <span className="text-neutral-400">→</span>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
+              showPaymentStep 
+                ? 'bg-[#C59B3F] text-white font-bold' 
+                : 'bg-neutral-300 text-neutral-600'
+            }`}>
+              2
+            </span>
+            <span className={showPaymentStep ? 'text-[#111111] font-semibold' : 'text-neutral-500'}>
+              2. ₦15,000 Fee & Payment
+            </span>
+          </div>
+          <span className="text-neutral-400">→</span>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="w-5 h-5 rounded-full bg-neutral-300 text-neutral-600 flex items-center justify-center text-[10px]">
+              3
+            </span>
+            <span className="text-neutral-500">
+              3. Schedule Confirmed
+            </span>
+          </div>
+        </div>
+
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 max-h-[78vh] overflow-y-auto">
-          {showTemporaryState ? (
-            /* Transparent Temporary State (Frontend-Only Checkpoint) */
-            <div className="py-6 sm:py-8 text-center space-y-6">
-              <div className="w-16 h-16 mx-auto bg-[#F5EFE0] border border-[#C59B3F]/60 flex items-center justify-center text-[#C59B3F]">
-                <Info className="w-8 h-8" aria-hidden="true" />
+        <div className="p-6 sm:p-8 max-h-[76vh] overflow-y-auto">
+          {showPaymentStep ? (
+            /* STEP 2: PAYMENT REQUIRED BEFORE SCHEDULING (HONEST FRONTEND-READY FLOW) */
+            <div className="space-y-6">
+              
+              {/* Step Status Badge */}
+              <div className="p-4 bg-[#FBF6EC] border border-[#C59B3F]/50 flex items-start gap-3">
+                <Info className="w-5 h-5 text-[#C59B3F] shrink-0 mt-0.5" aria-hidden="true" />
+                <div className="space-y-1">
+                  <span className="text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#856122] block">
+                    Payment Required Prior to Scheduling
+                  </span>
+                  <p className="text-xs text-neutral-800 leading-relaxed font-normal">
+                    {isConsultation ? (
+                      <>
+                        The bridal consultation fee is <strong className="font-semibold text-black">₦15,000 (Non-Refundable)</strong>.
+                        Consultation payment must be completed and verified before your appointment slot is confirmed on the studio calendar.
+                      </>
+                    ) : (
+                      <>
+                        Please note: A bridal consultation is required before gown booking or customization.
+                      </>
+                    )}
+                  </p>
+                </div>
               </div>
 
-              <div className="space-y-3 max-w-lg mx-auto">
-                <span className="text-[11px] font-semibold tracking-[0.22em] text-[#C59B3F] uppercase block">
-                  DIGITAL SCHEDULING NOTICE
-                </span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-light text-[#111111]">
-                  Online appointment requests will be available soon.
-                </h3>
-                <p className="text-sm text-neutral-700 font-light leading-relaxed">
-                  Thank you for preparing your consultation request for <strong className="font-medium text-[#111111]">BEAJAY COUTURE BRIDAL</strong> in Enugu, Nigeria. 
-                  Our digital appointment scheduling system is currently undergoing scheduled backend integration.
+              {/* Submitted Request Summary */}
+              <div className="bg-white border border-[#E8E2D5] p-5 space-y-4">
+                <div className="flex items-center justify-between border-b border-[#F0EAE0] pb-3">
+                  <span className="text-[11px] font-semibold tracking-wider uppercase text-neutral-500">
+                    Appointment Summary
+                  </span>
+                  <span className="text-xs font-serif text-[#C59B3F] font-medium">
+                    BEAJAY COUTURE BRIDAL
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div>
+                    <span className="text-neutral-500 block text-[10.5px] uppercase tracking-wider">Client Name</span>
+                    <span className="font-medium text-[#111111]">{formData.fullName}</span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-500 block text-[10.5px] uppercase tracking-wider">Phone / WhatsApp</span>
+                    <span className="font-medium text-[#111111]">{formData.phone}</span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-500 block text-[10.5px] uppercase tracking-wider">Email</span>
+                    <span className="font-medium text-[#111111]">{formData.email}</span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-500 block text-[10.5px] uppercase tracking-wider">Service</span>
+                    <span className="font-medium text-[#111111]">
+                      {appointmentServices.find(s => s.id === formData.serviceType)?.label || formData.serviceType}
+                    </span>
+                  </div>
+                  {isConsultation && (
+                    <div>
+                      <span className="text-neutral-500 block text-[10.5px] uppercase tracking-wider">Consultation Format</span>
+                      <span className="font-medium text-[#111111]">
+                        {formData.consultationFormat === 'Virtual' ? 'Virtual (Online Styling)' : 'Physical (Enugu Studio Visit)'}
+                      </span>
+                    </div>
+                  )}
+                  <div>
+                    <span className="text-neutral-500 block text-[10.5px] uppercase tracking-wider">Requested Date & Time</span>
+                    <span className="font-medium text-[#111111]">
+                      {formData.preferredDate} • {formData.preferredTime}
+                    </span>
+                  </div>
+                  {formData.interestedGown && (
+                    <div className="sm:col-span-2">
+                      <span className="text-neutral-500 block text-[10.5px] uppercase tracking-wider">Interested Gown</span>
+                      <span className="font-medium text-[#111111]">{formData.interestedGown}</span>
+                    </div>
+                  )}
+                </div>
+
+                {isConsultation && (
+                  <div className="mt-3 pt-3 border-t border-[#F0EAE0] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 bg-[#FAF7F2] p-3 border border-[#EFE8DA]">
+                    <div>
+                      <span className="text-[10px] uppercase font-semibold tracking-wider text-neutral-500 block">
+                        Consultation Fee
+                      </span>
+                      <div className="flex items-baseline gap-2">
+                        <span className="font-serif text-xl font-normal text-[#111111]">
+                          ₦15,000
+                        </span>
+                        <span className="text-[10.5px] text-neutral-600">
+                          (Non-Refundable • Fixed)
+                        </span>
+                      </div>
+                      <span className="text-[10.5px] text-[#856122] font-medium block">
+                        $20 USDC consultation fee available for international clients
+                      </span>
+                    </div>
+                    <div className="text-left sm:text-right text-[11px] text-[#2E7D32] bg-white px-2.5 py-1 border border-[#D5E5D5]">
+                      <span className="font-medium">₦10,000 credited</span> toward total upon gown booking
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Honest Notice as required by Owner */}
+              <div className="p-4 bg-[#F5F2EB] border border-[#E0D7C6] space-y-2 text-xs leading-relaxed text-neutral-700">
+                <div className="flex items-center gap-2 font-semibold text-[#111111] uppercase tracking-wider text-[11px]">
+                  <Sparkles className="w-3.5 h-3.5 text-[#C59B3F]" />
+                  <span>Next Step: Complete Payment & Confirm Booking</span>
+                </div>
+                <p>
+                  <strong className="text-[#111111]">Online consultation payment is being prepared.</strong> You can contact BEAJAY to continue your consultation booking.
                 </p>
-                <p className="text-xs text-neutral-500 font-light leading-relaxed">
-                  In the meantime, our team welcomes your consultation or fitting enquiry directly through our Contact studio form.
+                <p className="text-[11.5px] text-neutral-600 font-light">
+                  Our studio team in Enugu, Nigeria will receive your details, verify your ₦15,000 fee ($20 USDC for international clients), and confirm your reserved consultation date and time.
                 </p>
               </div>
 
-              {/* Direct Alternative Actions */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+              {/* Direct Actions */}
+              <div className="space-y-3 pt-2">
                 <a
-                  href={buildWhatsAppUrl({ type: 'appointment' })}
+                  id="appointment-whatsapp-pay-btn"
+                  href={buildWhatsAppUrl({ 
+                    type: 'appointment', 
+                    isConsultation: true, 
+                    clientName: formData.fullName, 
+                    preferredDate: formData.preferredDate,
+                    format: formData.consultationFormat,
+                    interestedGown: formData.interestedGown
+                  })}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-[#121A15] hover:bg-[#1A261F] text-white border border-[#25D366]/50 hover:border-[#25D366] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer min-h-[44px] w-full sm:w-auto"
+                  className="w-full inline-flex items-center justify-center gap-3 bg-[#121A15] hover:bg-[#1A261F] text-white border border-[#25D366]/50 hover:border-[#25D366] py-4 px-6 text-xs font-semibold tracking-[0.18em] uppercase transition-colors shadow-lg cursor-pointer min-h-[48px]"
                 >
                   <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-                  <span>WhatsApp Us</span>
+                  <span>CONTINUE VIA WHATSAPP (+234 911 702 8264)</span>
                 </a>
 
-                {onOpenContact && (
-                  <button
-                    id="appointment-temp-contact-btn"
-                    type="button"
-                    onClick={() => {
-                      onClose();
-                      onOpenContact();
-                    }}
-                    className="inline-flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white px-7 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer min-h-[44px] w-full sm:w-auto shadow-sm"
-                  >
-                    <Mail className="w-4 h-4" aria-hidden="true" />
-                    <span>Contact BEAJAY</span>
-                  </button>
-                )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {onOpenContact && (
+                    <button
+                      id="appointment-contact-btn"
+                      type="button"
+                      onClick={() => {
+                        onClose();
+                        onOpenContact();
+                      }}
+                      className="inline-flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3 px-4 text-xs font-semibold tracking-[0.14em] uppercase transition-colors cursor-pointer min-h-[44px]"
+                    >
+                      <Mail className="w-4 h-4" />
+                      <span>Contact BEAJAY Studio</span>
+                    </button>
+                  )}
 
-                <button
-                  id="appointment-temp-close-btn"
-                  type="button"
-                  onClick={onClose}
-                  className="inline-flex items-center justify-center px-6 py-3.5 text-xs font-semibold tracking-[0.16em] text-neutral-600 hover:text-black border border-[#D5CDBF] hover:border-neutral-400 uppercase transition-colors cursor-pointer min-h-[44px] w-full sm:w-auto"
-                >
-                  <span>Close Window</span>
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowPaymentStep(false)}
+                    className="inline-flex items-center justify-center gap-2 bg-white text-neutral-700 hover:text-black border border-[#D5CDBF] hover:border-neutral-400 py-3 px-4 text-xs font-medium tracking-wider uppercase transition-colors cursor-pointer min-h-[44px]"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    <span>Modify Request Details</span>
+                  </button>
+                </div>
+
+                <div className="text-center pt-2">
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="text-xs text-neutral-500 hover:text-black underline underline-offset-4 cursor-pointer"
+                  >
+                    Close Window
+                  </button>
+                </div>
               </div>
 
-              <p className="text-[11px] text-neutral-400 font-light pt-2">
-                All appointments in Enugu, Nigeria are private and personalized.
-              </p>
+              <div className="text-[10.5px] text-center text-neutral-400 font-light pt-1">
+                Studio visits are held in Enugu, Nigeria. Virtual styling consultations are conducted via video appointment.
+              </div>
             </div>
           ) : (
-            /* Appointment Request Form */
-            <form onSubmit={handleSubmit} noValidate className="space-y-7">
+            /* STEP 1: CONSULTATION DETAILS & REQUEST FORM */
+            <form onSubmit={handleSubmit} noValidate className="space-y-6">
               
               {/* Context: Interested Gown (Preserved when opened from gown card or detail) */}
               {formData.interestedGown && (
@@ -414,7 +596,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                         role="radio"
                         aria-checked={isSelected}
                         onClick={() => handleChange('serviceType', service.id)}
-                        className={`p-3.5 text-left border transition-all cursor-pointer min-h-[64px] flex flex-col justify-between ${
+                        className={`p-3.5 text-left border transition-all cursor-pointer min-h-[72px] flex flex-col justify-between ${
                           isSelected
                             ? 'border-[#C59B3F] bg-[#FAF6EE] text-[#111111] shadow-xs ring-1 ring-[#C59B3F]'
                             : 'border-[#E2DBD0] bg-white text-neutral-600 hover:border-neutral-400'
@@ -428,7 +610,12 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                             <Check className="w-3.5 h-3.5 text-[#C59B3F]" aria-hidden="true" />
                           )}
                         </div>
-                        <span className="text-[11px] text-neutral-500 font-light mt-1 line-clamp-1">
+                        {service.badge && (
+                          <span className="text-[10px] uppercase tracking-wider font-semibold text-[#856122] mt-0.5">
+                            {service.badge}
+                          </span>
+                        )}
+                        <span className="text-[11px] text-neutral-500 font-light mt-1 line-clamp-2">
                           {service.description}
                         </span>
                       </button>
@@ -437,7 +624,144 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 </div>
               </div>
 
-              {/* Personal Details */}
+              {/* Dedicated Bridal Consultation Policy Card */}
+              {isConsultation ? (
+                <div className="bg-[#FAF7F0] border border-[#E5DEC9] p-4 sm:p-5 space-y-4">
+                  {/* Fee & Duration Summary Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E8DFCE] pb-3.5">
+                    <div>
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C59B3F] block">
+                        CONFIRMED POLICY
+                      </span>
+                      <div className="flex items-baseline gap-2 mt-0.5">
+                        <span className="font-serif text-2xl sm:text-3xl font-light text-[#111111]">
+                          ₦15,000
+                        </span>
+                        <span className="text-xs font-semibold text-[#A63A2B] uppercase tracking-wider">
+                          Non-Refundable
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3 text-[11px] text-neutral-600 mt-1 font-light">
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3.5 h-3.5 text-[#C59B3F]" />
+                          <span>45 minutes – 1 hour</span>
+                        </span>
+                        <span>•</span>
+                        <span>Virtual or Physical</span>
+                      </div>
+                    </div>
+
+                    <div className="sm:text-right">
+                      <span className="inline-block bg-white text-[#856122] text-[10.5px] font-medium px-2.5 py-1 border border-[#E0D5BE]">
+                        USDC payment option available for international clients: <strong>$20 USDC</strong>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Consultation Format Selector (Virtual vs Physical) */}
+                  <div>
+                    <label className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-700 mb-2">
+                      Consultation Format <span className="text-[#C59B3F]">*</span>
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      <button
+                        type="button"
+                        onClick={() => handleChange('consultationFormat', 'Physical')}
+                        className={`p-2.5 text-left border text-xs flex items-center gap-2.5 cursor-pointer transition-colors ${
+                          formData.consultationFormat === 'Physical'
+                            ? 'bg-white border-[#C59B3F] ring-1 ring-[#C59B3F] font-medium text-[#111111]'
+                            : 'bg-white/60 border-[#D5CDBF] text-neutral-600 hover:border-neutral-400'
+                        }`}
+                      >
+                        <MapPin className="w-3.5 h-3.5 text-[#C59B3F] shrink-0" />
+                        <div>
+                          <span className="block font-medium">Physical Studio Visit</span>
+                          <span className="text-[10px] text-neutral-500 font-light">In Enugu, Nigeria</span>
+                        </div>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => handleChange('consultationFormat', 'Virtual')}
+                        className={`p-2.5 text-left border text-xs flex items-center gap-2.5 cursor-pointer transition-colors ${
+                          formData.consultationFormat === 'Virtual'
+                            ? 'bg-white border-[#C59B3F] ring-1 ring-[#C59B3F] font-medium text-[#111111]'
+                            : 'bg-white/60 border-[#D5CDBF] text-neutral-600 hover:border-neutral-400'
+                        }`}
+                      >
+                        <Globe className="w-3.5 h-3.5 text-[#C59B3F] shrink-0" />
+                        <div>
+                          <span className="block font-medium">Virtual Styling Session</span>
+                          <span className="text-[10px] text-neutral-500 font-light">Worldwide via Video Call</span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Benefit Callout: ₦10,000 Deductible */}
+                  <div className="bg-white p-3 border border-[#E0D7C2] text-xs flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#2E7D32] shrink-0 mt-0.5" />
+                    <p className="text-neutral-700 leading-relaxed font-light">
+                      <strong className="font-semibold text-neutral-900">Gown Booking Benefit:</strong> If you proceed to book a gown or bridal package, <strong className="font-semibold text-[#2E7D32]">₦10,000 from the consultation fee is deducted</strong> from your total payment.
+                    </p>
+                  </div>
+
+                  {/* What the Consultation Covers */}
+                  <div className="space-y-1.5">
+                    <span className="text-[10.5px] uppercase font-semibold tracking-wider text-neutral-600 block">
+                      The Bridal Consultation Covers:
+                    </span>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-neutral-700 font-light">
+                      {BRIDAL_CONSULTATION_POLICY.coverage.map((item, i) => (
+                        <li key={i} className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F] shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Expandable Terms Area */}
+                  <div className="border-t border-[#E8DFCE] pt-2.5">
+                    <button
+                      type="button"
+                      onClick={() => setShowPolicyAccordion(!showPolicyAccordion)}
+                      className="w-full flex items-center justify-between text-[11px] font-medium text-[#856122] hover:text-[#5E4416] py-1 cursor-pointer"
+                    >
+                      <span className="uppercase tracking-wider">
+                        {showPolicyAccordion ? 'Hide Consultation Policy Terms' : 'View Full Consultation Policy Terms'}
+                      </span>
+                      {showPolicyAccordion ? (
+                        <ChevronUp className="w-3.5 h-3.5" />
+                      ) : (
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      )}
+                    </button>
+
+                    {showPolicyAccordion && (
+                      <div className="mt-2.5 pt-2.5 border-t border-[#EDE5D5] space-y-2 text-[11px] text-neutral-600 font-light leading-relaxed">
+                        <ul className="space-y-1.5 list-disc list-inside">
+                          {BRIDAL_CONSULTATION_POLICY.terms.map((term, i) => (
+                            <li key={i} className="text-neutral-700">
+                              {term}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                /* Note for Other Services: Consultation required before gown booking */
+                <div className="p-3.5 bg-[#FAF7F0] border border-[#E5DFD1] text-[11.5px] text-neutral-700 font-light leading-relaxed flex items-start gap-2.5">
+                  <Info className="w-4 h-4 text-[#C59B3F] shrink-0 mt-0.5" aria-hidden="true" />
+                  <span>
+                    <strong className="font-medium text-neutral-900">Bridal Policy:</strong> A bridal consultation (₦15,000 fixed fee, non-refundable) is required before gown booking or customization. ₦10,000 from the fee is deducted upon gown booking.
+                  </span>
+                </div>
+              )}
+
+              {/* Client Information Fields */}
               <div className="space-y-4">
                 <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-400 block pb-1 border-b border-[#EAE3D5]">
                   Bride / Client Information
@@ -565,7 +889,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               {/* Schedule Preference (Neutral Preference, No Fake Availability) */}
               <div className="space-y-4">
                 <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-400 block pb-1 border-b border-[#EAE3D5]">
-                  Requested Schedule
+                  Requested Schedule Preference
                 </span>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -602,17 +926,17 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       </p>
                     )}
                     <span className="text-[10.5px] text-neutral-500 font-light block mt-1">
-                      Requested preference, subject to confirmation
+                      Date preference is confirmed after consultation fee verification
                     </span>
                   </div>
 
-                  {/* Preferred Time (Requested Preference Only) */}
+                  {/* Preferred Time Slot */}
                   <div>
                     <label 
                       htmlFor="appointment-preferredTime"
                       className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-700 mb-1"
                     >
-                      Preferred Time <span className="text-neutral-400 font-normal lowercase">(requested)</span>
+                      Preferred Time Slot <span className="text-neutral-400 font-normal lowercase">(requested)</span>
                     </label>
                     <select
                       id="appointment-preferredTime"
@@ -627,7 +951,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       ))}
                     </select>
                     <span className="text-[10.5px] text-neutral-500 font-light block mt-1">
-                      Subject to studio schedule confirmation
+                      Subject to studio calendar availability
                     </span>
                   </div>
                 </div>
@@ -640,7 +964,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                     Silhouette Interest <span className="text-neutral-400 font-normal lowercase">(optional)</span>
                   </label>
                   <span className="text-[10.5px] text-neutral-500 font-light">
-                    Select any you wish to try
+                    Select any you wish to explore
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-1">
@@ -662,9 +986,6 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                     );
                   })}
                 </div>
-                <p className="text-[10.5px] text-neutral-500 font-light mt-1.5">
-                  Helps your stylist prepare selections; specific gown availability is confirmed during your visit.
-                </p>
               </div>
 
               {/* Notes or Vision */}
@@ -679,7 +1000,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   id="appointment-notes"
                   rows={3}
                   maxLength={500}
-                  placeholder="Share any specific styling preferences, veil interests, ceremony details, or questions for your visit..."
+                  placeholder="Share any specific styling preferences, veil interests, ceremony details, or questions for your consultation..."
                   value={formData.notes}
                   onChange={(e) => handleChange('notes', e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-white border border-[#D5CDBF] text-xs focus:outline-none focus:border-[#C59B3F] transition-colors resize-none"
@@ -690,17 +1011,31 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 </div>
               </div>
 
-              {/* Clear Request Nature Notice */}
-              <div className="p-3.5 bg-[#FAF7F0] border border-[#E5DFD1] text-[11.5px] text-neutral-600 font-light leading-relaxed flex items-start gap-2.5">
-                <Info className="w-4 h-4 text-[#C59B3F] shrink-0 mt-0.5" aria-hidden="true" />
-                <span>
-                  <strong className="font-medium text-neutral-800">Please Note:</strong> This form submits an appointment request. 
-                  All dates and times are requested preferences. Our team will contact you to confirm studio schedule availability.
-                </span>
-              </div>
+              {/* Policy Checkbox Acknowledgment (For Bridal Consultation) */}
+              {isConsultation && (
+                <div className="pt-1">
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={formData.acknowledgedTerms || false}
+                      onChange={(e) => handleChange('acknowledgedTerms', e.target.checked)}
+                      className="mt-1 w-4 h-4 text-[#C59B3F] border-[#D5CDBF] rounded-xs focus:ring-[#C59B3F] cursor-pointer"
+                    />
+                    <span className="text-xs text-neutral-700 font-light leading-relaxed">
+                      I understand that the <strong className="font-semibold text-neutral-900">₦15,000 consultation fee</strong> ($20 USDC for international clients) is <strong className="font-semibold text-neutral-900">non-refundable</strong> and must be completed before the appointment is scheduled. ₦10,000 will be credited toward my total payment upon gown booking.
+                    </span>
+                  </label>
+                  {touched.acknowledgedTerms && errors.acknowledgedTerms && (
+                    <p className="text-[11px] text-red-600 mt-1.5 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3 shrink-0" aria-hidden="true" />
+                      <span>{errors.acknowledgedTerms}</span>
+                    </p>
+                  )}
+                </div>
+              )}
 
               {/* Submit CTA */}
-              <div className="pt-2 space-y-2.5">
+              <div className="pt-3 space-y-3">
                 <button
                   id="appointment-submit-request-btn"
                   type="submit"
@@ -711,24 +1046,33 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                     <span>Preparing Request...</span>
                   ) : (
                     <>
-                      <Sparkles className="w-4 h-4" aria-hidden="true" />
-                      <span>SUBMIT APPOINTMENT REQUEST</span>
+                      <span>
+                        {isConsultation 
+                          ? 'CONTINUE TO CONSULTATION PAYMENT (₦15,000)' 
+                          : 'SUBMIT APPOINTMENT REQUEST'
+                        }
+                      </span>
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </>
                   )}
                 </button>
 
                 <a
-                  href={buildWhatsAppUrl({ type: 'appointment' })}
+                  href={buildWhatsAppUrl({ 
+                    type: 'appointment',
+                    isConsultation: isConsultation,
+                    interestedGown: formData.interestedGown
+                  })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#0E1611] hover:bg-[#15231A] text-white border border-[#25D366]/40 hover:border-[#25D366] py-3.5 px-6 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer min-h-[44px]"
                 >
                   <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-                  <span>OR ENQUIRE VIA WHATSAPP</span>
+                  <span>OR ENQUIRE DIRECTLY VIA WHATSAPP</span>
                 </a>
 
                 <p className="text-[11px] text-center text-neutral-500 font-light pt-1">
-                  No payment required today. Private appointments in Enugu, Nigeria.
+                  Payment is required before consultation date is scheduled • Private studio in Enugu, Nigeria & virtual worldwide.
                 </p>
               </div>
 

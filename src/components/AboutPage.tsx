@@ -132,7 +132,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               THE CREATIVE FORCE
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#111111] font-normal tracking-tight">
-              Meet Beauty Okiemute
+              Meet Okiemute Beauty
             </h2>
             <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto mt-2" />
             <p className="text-xs uppercase tracking-[0.22em] text-[#856122] font-medium pt-1">
@@ -585,7 +585,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-4 right-4 text-white">
                 <span className="font-serif text-sm tracking-wide block">
-                  Beauty Okiemute
+                  Okiemute Beauty
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.22em] text-[#E6C875] font-medium block mt-0.5">
                   BEAJAY COUTURE BRIDAL

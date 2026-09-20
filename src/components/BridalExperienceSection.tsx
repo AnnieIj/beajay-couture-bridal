@@ -23,7 +23,7 @@ export const BridalExperienceSection: React.FC<BridalExperienceSectionProps> = (
     {
       number: '03',
       title: 'Fitting / Consultation',
-      description: 'Arrange the appropriate fitting or bridal consultation with BEAJAY.',
+      description: 'Arrange the appropriate fitting or bridal consultation with BEAJAY (₦15,000 fee, credited upon gown booking).',
       icon: Scissors
     },
     {

@@ -16,6 +16,7 @@ export interface GownItem {
   secondaryImage?: string; // Verified second photograph of the same gown for hover swap
   gallery?: string[]; // Supporting gallery for compatibility
   sizes?: string[];
+  sizeRange?: string; // Optional architectural support for future owner-supplied size ranges
   fabric?: string;
   details?: string;
   embellishments?: string; // Compatibility
@@ -165,11 +166,13 @@ export interface BookingFormData {
   email: string;
   weddingDate: string;
   serviceType: AppointmentServiceType;
+  consultationFormat?: 'Virtual' | 'Physical';
   preferredDate: string;
   preferredTime: string;
   notes: string;
   silhouetteInterest: string[];
   interestedGown?: string;
+  acknowledgedTerms?: boolean;
 }
 
 export type RenterType = 'individual' | 'vendor';

@@ -37,7 +37,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
             </h2>
 
             <p className="text-sm sm:text-base text-neutral-300 font-light max-w-xl leading-relaxed">
-              Book an appointment with BEAJAY COUTURE BRIDAL for bridal consultations, gown viewings, or rental fittings. We look forward to assisting you.
+              Book a bridal consultation with BEAJAY COUTURE BRIDAL (₦15,000 fixed fee, with ₦10,000 credited toward gown booking), gown viewings, or rental fittings. Virtual & physical sessions available.
             </p>
 
             <div className="pt-2">
@@ -63,8 +63,8 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
               <span className="text-xs font-medium tracking-wider uppercase text-neutral-200">
                 Bridal Consultation
               </span>
-              <span className="text-[11px] text-neutral-400 font-light">
-                Fittings & Viewings
+              <span className="text-[11px] text-[#E6C875] font-light">
+                ₦15,000 • Virtual & Physical
               </span>
             </div>
 

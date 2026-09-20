@@ -864,7 +864,7 @@ export const EDITORIAL_MEDIA_ASSETS = {
     current: '/media/about/founder/beauty-okiemute-01.jpg',
     officialPath: '/media/about/founder/beauty-okiemute-01.jpg',
     hasOfficial: true,
-    alt: 'Beauty Okiemute, Founder & Creative Director of BEAJAY COUTURE BRIDAL'
+    alt: 'Okiemute Beauty, Founder & Creative Director of BEAJAY COUTURE BRIDAL'
   },
   appointmentCta: {
     current: '/media/collections/ball-gown/ball-gown 016.jpg',
@@ -903,19 +903,19 @@ export const ABOUT_MEDIA_ASSETS = {
     current: '/media/about/founder/beauty-okiemute-01.jpg',
     officialPath: '/media/about/founder/beauty-okiemute-01.jpg',
     hasOfficial: true,
-    alt: 'Beauty Okiemute, Founder & Creative Director of BEAJAY COUTURE BRIDAL'
+    alt: 'Okiemute Beauty, Founder & Creative Director of BEAJAY COUTURE BRIDAL'
   },
   founderJourney: {
     current: '/media/about/founder/beauty-okiemute-02.jpg',
     officialPath: '/media/about/founder/beauty-okiemute-02.jpg',
     hasOfficial: true,
-    alt: 'Beauty Okiemute, Founder & Creative Director in design reflection'
+    alt: 'Okiemute Beauty, Founder & Creative Director in design reflection'
   },
   founderVision: {
     current: '/media/about/founder/beauty-okiemute-03.jpg',
     officialPath: '/media/about/founder/beauty-okiemute-03.jpg',
     hasOfficial: true,
-    alt: 'Beauty Okiemute presenting BEAJAY bridal creation'
+    alt: 'Okiemute Beauty presenting BEAJAY bridal creation'
   },
   // Verified Official Team Photography (Presented collectively)
   team: [
@@ -943,13 +943,13 @@ export const ABOUT_MEDIA_ASSETS = {
     current: '/media/about/founder/beauty-okiemute-01.jpg',
     officialPath: '/media/about/founder/beauty-okiemute-01.jpg',
     hasOfficial: true,
-    alt: 'Beauty Okiemute, Founder & Creative Director of BEAJAY COUTURE BRIDAL'
+    alt: 'Okiemute Beauty, Founder & Creative Director of BEAJAY COUTURE BRIDAL'
   },
   story: {
     current: '/media/about/founder/beauty-okiemute-02.jpg',
     officialPath: '/media/about/founder/beauty-okiemute-02.jpg',
     hasOfficial: true,
-    alt: 'Beauty Okiemute, Founder & Creative Director in design reflection'
+    alt: 'Okiemute Beauty, Founder & Creative Director in design reflection'
   },
   craft: {
     current: '/media/about/team/beajay-team-01.jpeg',
@@ -961,7 +961,7 @@ export const ABOUT_MEDIA_ASSETS = {
     current: '/media/about/founder/beauty-okiemute-03.jpg',
     officialPath: '/media/about/founder/beauty-okiemute-03.jpg',
     hasOfficial: true,
-    alt: 'Beauty Okiemute with BEAJAY bridal gown'
+    alt: 'Okiemute Beauty with BEAJAY bridal gown'
   }
 } as const;
 
