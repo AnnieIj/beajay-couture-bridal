@@ -1,10 +1,11 @@
 import React from 'react';
 import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
+import { ThemeToggle } from './ThemeToggle';
 
 interface FloatingWhatsAppProps {
   /**
    * When true (e.g. any modal, lightbox, or sheet overlay is open),
-   * the floating button is hidden to ensure zero UI collision with form
+   * the floating controls are hidden to ensure zero UI collision with form
    * buttons, lightbox controls, or booking modals.
    */
   isHidden?: boolean;
@@ -31,13 +32,16 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ isHidden = f
 
   return (
     <aside
-      id="floating-whatsapp-container"
-      aria-label="Direct bridal WhatsApp contact"
-      className="fixed z-30 right-4 sm:right-6 lg:right-8 transition-all duration-300"
+      id="floating-actions-container"
+      aria-label="Floating theme toggle and bridal WhatsApp contact"
+      className="fixed z-30 right-4 sm:right-6 lg:right-8 flex flex-col items-end gap-2.5 transition-all duration-300"
       style={{
         bottom: 'calc(env(safe-area-inset-bottom, 0px) + 5.25rem)'
       }}
     >
+      {/* Light / Dark Mode Toggle placed directly above the WhatsApp button */}
+      <ThemeToggle />
+
       <a
         id="floating-whatsapp-btn"
         href={destinationUrl}

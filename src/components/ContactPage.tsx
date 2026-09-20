@@ -4,6 +4,7 @@ import {
   CheckCircle2, 
   MapPin, 
   Instagram, 
+  Facebook,
   Calendar, 
   Layers, 
   Compass, 
@@ -15,6 +16,7 @@ import {
 import { ContactEnquiryType, GeneralContactFormData } from '../types';
 import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
+import { TikTokIcon } from './SocialIcons';
 
 interface ContactPageProps {
   preselectedGown?: string | null;
@@ -591,81 +593,72 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               </p>
 
               <div className="space-y-3 pt-2 text-xs">
-                {/* Instagram (Verified URL) */}
-                <div className="flex items-center justify-between py-2 border-b border-[#EAE3D5]">
-                  <div className="flex items-center gap-2.5">
-                    <Instagram className="w-4 h-4 text-[#C59B3F]" />
-                    <span className="font-medium text-neutral-900">Instagram</span>
-                  </div>
+                {/* Instagram */}
+                <div className="flex items-center justify-between py-2.5 border-b border-[#EAE3D5]">
                   <a
                     href={BRAND_CONTACT.socials.instagram.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#856122] hover:text-[#111111] font-medium transition-colors cursor-pointer"
+                    aria-label="BEAJAY on Instagram"
+                    className="flex items-center gap-2.5 text-neutral-900 hover:text-[#856122] transition-colors group cursor-pointer"
                   >
-                    {BRAND_CONTACT.socials.instagram.handle}
+                    <Instagram className="w-4 h-4 text-[#C59B3F] group-hover:scale-110 transition-transform shrink-0" aria-hidden="true" />
+                    <span className="font-medium text-neutral-900 group-hover:text-[#856122]">{BRAND_CONTACT.socials.instagram.handle}</span>
                   </a>
+                  <span className="text-[10.5px] uppercase tracking-wider text-neutral-400">Instagram</span>
                 </div>
 
-                {/* Facebook (Confirmed name - no fabricated URL) */}
-                <div className="flex items-center justify-between py-2 border-b border-[#EAE3D5]">
-                  <span className="font-medium text-neutral-900">Facebook</span>
-                  {BRAND_CONTACT.socials.facebook.url ? (
-                    <a
-                      href={BRAND_CONTACT.socials.facebook.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Visit BEAJAY COUTURE BRIDAL on Facebook"
-                      className="text-[#856122] hover:text-[#111111] font-medium transition-colors cursor-pointer"
-                    >
-                      {BRAND_CONTACT.socials.facebook.handle}
-                    </a>
-                  ) : (
-                    <span className="text-neutral-700 font-medium">
-                      {BRAND_CONTACT.socials.facebook.handle}
-                    </span>
-                  )}
-                </div>
-
-                {/* TikTok (Confirmed handle - no fabricated URL) */}
-                <div className="flex items-center justify-between py-2 border-b border-[#EAE3D5]">
-                  <span className="font-medium text-neutral-900">TikTok</span>
+                {/* TikTok */}
+                <div className="flex items-center justify-between py-2.5 border-b border-[#EAE3D5]">
                   {BRAND_CONTACT.socials.tiktok.url ? (
                     <a
                       href={BRAND_CONTACT.socials.tiktok.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#856122] hover:text-[#111111] font-medium transition-colors cursor-pointer"
+                      aria-label="BEAJAY on TikTok"
+                      className="flex items-center gap-2.5 text-neutral-900 hover:text-[#856122] transition-colors group cursor-pointer"
                     >
-                      {BRAND_CONTACT.socials.tiktok.handle}
+                      <TikTokIcon className="w-4 h-4 text-[#C59B3F] group-hover:scale-110 transition-transform shrink-0" />
+                      <span className="font-medium text-neutral-900 group-hover:text-[#856122]">{BRAND_CONTACT.socials.tiktok.handle}</span>
                     </a>
                   ) : (
-                    <span className="text-neutral-700 font-medium">
-                      {BRAND_CONTACT.socials.tiktok.handle}
-                    </span>
+                    <div className="flex items-center gap-2.5 text-neutral-700">
+                      <TikTokIcon className="w-4 h-4 text-[#C59B3F] shrink-0" />
+                      <span className="font-medium">{BRAND_CONTACT.socials.tiktok.handle}</span>
+                    </div>
                   )}
+                  <span className="text-[10.5px] uppercase tracking-wider text-neutral-400">TikTok</span>
                 </div>
 
-                {/* Global (Confirmed as Global - NO platform invented) */}
-                <div className="flex items-center justify-between py-2">
-                  <div className="flex items-center gap-2">
-                    <Globe className="w-3.5 h-3.5 text-[#C59B3F]" />
-                    <span className="font-medium text-neutral-900">Global</span>
-                  </div>
-                  {BRAND_CONTACT.socials.global.url ? (
+                {/* Facebook */}
+                <div className="flex items-center justify-between py-2.5 border-b border-[#EAE3D5]">
+                  {BRAND_CONTACT.socials.facebook.url ? (
                     <a
-                      href={BRAND_CONTACT.socials.global.url}
+                      href={BRAND_CONTACT.socials.facebook.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#856122] hover:text-[#111111] font-medium transition-colors cursor-pointer font-mono text-[11px]"
+                      aria-label="BEAJAY on Facebook"
+                      className="flex items-center gap-2.5 text-neutral-900 hover:text-[#856122] transition-colors group cursor-pointer"
                     >
-                      {BRAND_CONTACT.socials.global.handle}
+                      <Facebook className="w-4 h-4 text-[#C59B3F] group-hover:scale-110 transition-transform shrink-0" aria-hidden="true" />
+                      <span className="font-medium text-neutral-900 group-hover:text-[#856122]">{BRAND_CONTACT.socials.facebook.handle}</span>
                     </a>
                   ) : (
-                    <span className="text-neutral-700 font-medium font-mono text-[11px]">
-                      {BRAND_CONTACT.socials.global.handle}
-                    </span>
+                    <div className="flex items-center gap-2.5 text-neutral-700">
+                      <Facebook className="w-4 h-4 text-[#C59B3F] shrink-0" aria-hidden="true" />
+                      <span className="font-medium">{BRAND_CONTACT.socials.facebook.handle}</span>
+                    </div>
                   )}
+                  <span className="text-[10.5px] uppercase tracking-wider text-neutral-400">Facebook</span>
+                </div>
+
+                {/* Global */}
+                <div className="flex items-center justify-between py-2.5">
+                  <div className="flex items-center gap-2.5">
+                    <Globe className="w-4 h-4 text-[#C59B3F] shrink-0" />
+                    <span className="font-medium text-neutral-900 font-mono text-[11px]">{BRAND_CONTACT.socials.global.handle}</span>
+                  </div>
+                  <span className="text-[10.5px] uppercase tracking-wider text-neutral-400">Global</span>
                 </div>
               </div>
             </div>

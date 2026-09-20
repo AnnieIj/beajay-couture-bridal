@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { X, MapPin, Instagram, Send, CheckCircle2 } from 'lucide-react';
+import { X, MapPin, Instagram, Facebook, Send, CheckCircle2 } from 'lucide-react';
 import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
+import { TikTokIcon } from './SocialIcons';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -101,32 +102,51 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </div>
               </div>
 
-              <div className="space-y-2 border-t border-[#F2ECE0] pt-4">
-                <div className="flex items-center gap-2 text-neutral-900 font-semibold tracking-wider uppercase text-[11px]">
-                  <Instagram className="w-4 h-4 text-[#C59B3F]" />
-                  <span>Official Social Channel</span>
+              <div className="space-y-2.5 border-t border-[#F2ECE0] pt-4">
+                <div className="text-neutral-900 font-semibold tracking-wider uppercase text-[11px]">
+                  <span>Official Social Channels</span>
                 </div>
-                <div className="pl-6 space-y-1 text-neutral-600 font-light">
-                  <a 
-                    href={BRAND_CONTACT.socials.instagram.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Visit BEAJAY COUTURE BRIDAL on Instagram"
-                    className="text-[#856122] font-medium hover:underline flex items-center gap-1.5"
-                  >
-                    <span>Instagram: {BRAND_CONTACT.socials.instagram.handle}</span>
-                  </a>
-                  {BRAND_CONTACT.socials.facebook.url && (
+                <div className="space-y-2 text-neutral-600 font-light text-xs">
+                  <div>
                     <a 
-                      href={BRAND_CONTACT.socials.facebook.url}
+                      href={BRAND_CONTACT.socials.instagram.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="Visit BEAJAY COUTURE BRIDAL on Facebook"
-                      className="text-[#856122] font-medium hover:underline flex items-center gap-1.5 pt-0.5"
+                      aria-label="BEAJAY on Instagram"
+                      className="text-neutral-900 hover:text-[#856122] transition-colors inline-flex items-center gap-2 group"
                     >
-                      <span>Facebook: {BRAND_CONTACT.socials.facebook.handle}</span>
+                      <Instagram className="w-4 h-4 text-[#C59B3F] group-hover:scale-110 transition-transform shrink-0" aria-hidden="true" />
+                      <span className="font-medium">{BRAND_CONTACT.socials.instagram.handle}</span>
                     </a>
-                  )}
+                  </div>
+                  <div>
+                    {BRAND_CONTACT.socials.tiktok.url && (
+                      <a 
+                        href={BRAND_CONTACT.socials.tiktok.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="BEAJAY on TikTok"
+                        className="text-neutral-900 hover:text-[#856122] transition-colors inline-flex items-center gap-2 group"
+                      >
+                        <TikTokIcon className="w-4 h-4 text-[#C59B3F] group-hover:scale-110 transition-transform shrink-0" />
+                        <span className="font-medium">{BRAND_CONTACT.socials.tiktok.handle}</span>
+                      </a>
+                    )}
+                  </div>
+                  <div>
+                    {BRAND_CONTACT.socials.facebook.url && (
+                      <a 
+                        href={BRAND_CONTACT.socials.facebook.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="BEAJAY on Facebook"
+                        className="text-neutral-900 hover:text-[#856122] transition-colors inline-flex items-center gap-2 group"
+                      >
+                        <Facebook className="w-4 h-4 text-[#C59B3F] group-hover:scale-110 transition-transform shrink-0" aria-hidden="true" />
+                        <span className="font-medium">{BRAND_CONTACT.socials.facebook.handle}</span>
+                      </a>
+                    )}
+                  </div>
                   <p className="text-[11px] text-neutral-400 pt-0.5">Follow for our latest gown releases & runway reels.</p>
                 </div>
               </div>

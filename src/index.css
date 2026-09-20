@@ -23,12 +23,160 @@
     background-color: var(--color-ivory);
     color: #1A1A1A;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   h1, h2, h3, h4, .font-editorial {
     font-family: var(--font-serif);
     letter-spacing: -0.01em;
   }
+}
+
+/* ==========================================================================
+   LUXURY DARK MODE SYSTEM (EDITORIAL COUTURE AESTHETIC)
+   - Deep warm ebony / near-black canvas (#0C0C0B)
+   - Warm ivory text (#F8F5EE) & warm neutral body tones (#D3CDC2)
+   - Whisper-thin warm neutral borders (rgba(255, 255, 255, 0.09))
+   - Authentic gold accents preserved (#C59B3F)
+   - Zero image distortion: Photography colors and white balance are 100% untouched
+   ========================================================================== */
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0C0C0B !important;
+  color: #EDE8DE !important;
+}
+
+/* Surfaces */
+html.dark .bg-\[\#FCFAF7\],
+html.dark .bg-ivory,
+html.dark [class*="bg-[#FCFAF7]"] {
+  background-color: #0C0C0B !important;
+}
+
+html.dark .bg-\[\#F8F5EE\],
+html.dark .bg-\[\#F5F1E8\],
+html.dark .bg-\[\#FAF7F2\],
+html.dark .bg-\[\#ECE6D9\],
+html.dark .bg-\[\#F9F6F0\],
+html.dark .bg-\[\#F6F2EA\],
+html.dark .bg-\[\#F2EDE2\],
+html.dark .bg-\[\#EDE7DA\],
+html.dark .bg-\[\#F5F2EB\],
+html.dark .bg-\[\#FAF7F0\],
+html.dark .bg-\[\#FAF6EE\],
+html.dark .bg-\[\#F8F5EF\] {
+  background-color: #151413 !important;
+}
+
+html.dark .bg-white {
+  background-color: #161514 !important;
+}
+
+html.dark .bg-neutral-50,
+html.dark .bg-neutral-100 {
+  background-color: #1A1917 !important;
+}
+
+/* Text hierarchy */
+html.dark .text-\[\#111111\],
+html.dark .text-\[\#141312\],
+html.dark .text-neutral-900 {
+  color: #F8F5EE !important;
+}
+
+html.dark .text-neutral-800 {
+  color: #E6E1D7 !important;
+}
+
+html.dark .text-neutral-700 {
+  color: #D3CDC2 !important;
+}
+
+html.dark .text-neutral-600 {
+  color: #B5AFA4 !important;
+}
+
+/* Refined champagne gold text in dark mode for optimal legibility */
+html.dark .text-\[\#856122\],
+html.dark .text-\[\#AA802E\] {
+  color: #E6C875 !important;
+}
+
+/* Luxury Dividers & Borders */
+html.dark .border-\[\#EAE3D5\],
+html.dark .border-\[\#DDD4C1\],
+html.dark .border-\[\#E5DFD1\],
+html.dark .border-\[\#E8E2D4\],
+html.dark .border-\[\#E2DCCE\],
+html.dark .border-\[\#F2ECE0\],
+html.dark .border-\[\#EDE7DA\],
+html.dark .border-\[\#DCD5C5\],
+html.dark .border-\[\#D9CEBA\],
+html.dark .border-neutral-200,
+html.dark .border-neutral-300 {
+  border-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+/* Dialog & Modal Containers */
+html.dark [role="dialog"] > div {
+  background-color: #141312 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html.dark [role="dialog"] button[aria-label="Close"],
+html.dark button[aria-label="Close"] {
+  background-color: #201E1C !important;
+  color: #F8F5EE !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Primary dark action buttons on deep backgrounds */
+html.dark button.bg-\[\#111111\],
+html.dark a.bg-\[\#111111\],
+html.dark button.bg-\[\#141312\],
+html.dark a.bg-\[\#141312\] {
+  background-color: #242220 !important;
+  color: #F8F5EE !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+
+html.dark button.bg-\[\#111111\]:hover,
+html.dark a.bg-\[\#111111\]:hover,
+html.dark button.bg-\[\#141312\]:hover,
+html.dark a.bg-\[\#141312\]:hover {
+  background-color: #C59B3F !important;
+  color: #0C0C0B !important;
+  border-color: #C59B3F !important;
+}
+
+/* Preserve gold buttons without altering their signature background */
+html.dark .bg-\[\#C59B3F\],
+html.dark .bg-gold-500 {
+  background-color: #C59B3F !important;
+  color: #FFFFFF !important;
+}
+
+/* Form Controls & Inputs */
+html.dark input:not([type="checkbox"]):not([type="radio"]),
+html.dark select,
+html.dark textarea {
+  background-color: #191817 !important;
+  color: #F8F5EE !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #8C867C !important;
+}
+
+/* Strict Photography Preservation: Never dim, recolor, or filter real photographs */
+img {
+  filter: none !important;
 }
 
 /* Custom subtle scrollbar */

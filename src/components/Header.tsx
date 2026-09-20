@@ -10,6 +10,7 @@ import { ActiveModal } from '../types';
 import { BRAND_CONTACT, buildWhatsAppUrl } from '../config/brandConfig';
 import { WhatsAppIcon } from './FloatingWhatsApp';
 import { BrandIdentity } from './BrandIdentity';
+import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
   onOpenModal: (modal: ActiveModal, payload?: any) => void;
@@ -197,7 +198,7 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           {/* Right Action Group */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3">
             
             {/* Quick Search */}
             <button
@@ -207,6 +208,9 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <Search className="w-5 h-5" />
             </button>
+
+            {/* Desktop Theme Toggle */}
+            <ThemeToggle className="hidden md:flex" />
 
             {/* Prominent Gold Book Appointment Button */}
             <button
@@ -303,6 +307,12 @@ export const Header: React.FC<HeaderProps> = ({
               <span>Contact</span>
               <span className="text-[10px] text-[#C59B3F] tracking-widest">07</span>
             </button>
+
+            {/* Appearance Toggle */}
+            <div className="flex items-center justify-between py-2 border-t border-[#EAE4D9]/60 pt-3">
+              <span className="text-[11px] uppercase tracking-[0.16em] text-neutral-600 font-medium">Theme</span>
+              <ThemeToggle />
+            </div>
           </div>
 
           <div className="pt-2 space-y-2.5">

@@ -34,7 +34,7 @@ export const BRAND_CONTACT = {
   },
   socials: {
     instagram: {
-      handle: '@Beajaycouture_bridal',
+      handle: '@beajaycouture_bridal',
       url: 'https://instagram.com/beajaycouture_bridal',
       label: 'Instagram',
       isClickable: true
@@ -46,12 +46,10 @@ export const BRAND_CONTACT = {
       isClickable: true
     },
     tiktok: {
-      handle: '@Beajaycouture_bridal',
-      // Profile URL has not yet been supplied by the owner.
-      // Once provided, replace null with the exact URL to activate the link.
-      url: null as string | null,
+      handle: '@beajaycouture_bridal',
+      url: 'https://www.tiktok.com/@beajaycouture_bridal',
       label: 'TikTok',
-      isClickable: false
+      isClickable: true
     },
     global: {
       handle: '@beajayglobal',
