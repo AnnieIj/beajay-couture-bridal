@@ -152,7 +152,8 @@ export type ActiveModal =
   | 'search' 
   | 'gown-detail'
   | 'testimonial'
-  | 'share-experience';
+  | 'share-experience'
+  | 'academy';
 
 export type AppointmentServiceType = 
   | 'bridal-consultation'
@@ -217,4 +218,22 @@ export interface GeneralContactFormData {
   city: string;
   enquiryType: ContactEnquiryType;
   message: string;
+}
+
+// =========================================================================
+// ACADEMY DATA CONTRACT (FUTURE COURSE ARCHITECTURE)
+// =========================================================================
+
+export interface AcademyCourseItem {
+  id: string;
+  slug: string;
+  title: string;
+  summary?: string;
+  description?: string;
+  level?: 'Foundational' | 'Intermediate' | 'Masterclass' | 'Advanced';
+  duration?: string;
+  format?: string;
+  syllabus?: string[];
+  status: 'announced' | 'coming-soon' | 'active' | 'archived';
+  enrolmentOpen: boolean;
 }

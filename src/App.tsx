@@ -17,6 +17,7 @@ import { RentalsPage } from './components/RentalsPage';
 import { GalleryPage } from './components/GalleryPage';
 import { AboutPage } from './components/AboutPage';
 import { ContactPage } from './components/ContactPage';
+import { AcademyPage } from './components/AcademyPage';
 
 import { AppointmentModal } from './components/AppointmentModal';
 import { RentalsModal } from './components/RentalsModal';
@@ -89,6 +90,7 @@ export default function App() {
   const isGalleryPage = currentPath === '/gallery' || currentPath === '/gallery/';
   const isAboutPage = currentPath === '/about' || currentPath === '/about/';
   const isContactPage = currentPath === '/contact' || currentPath === '/contact/';
+  const isAcademyPage = currentPath === '/academy' || currentPath === '/academy/';
   const gownSlugMatch = currentPath.startsWith('/collections/') 
     ? currentPath.replace('/collections/', '').replace(/\/$/, '')
     : null;
@@ -111,10 +113,12 @@ export default function App() {
       document.title = "About BEAJAY COUTURE BRIDAL • Crafted in Nigeria";
     } else if (isContactPage) {
       document.title = "Contact BEAJAY | BEAJAY COUTURE BRIDAL • Begin the Conversation";
+    } else if (isAcademyPage) {
+      document.title = "BEAJAY Academy | Fashion Education & Craftsmanship • Coming Soon";
     } else {
       document.title = "BEAJAY COUTURE BRIDAL | Luxury Bridal Couture & Gown Rentals, Enugu";
     }
-  }, [matchedGown, isRentalsPage, isCollectionsPage, isGalleryPage, isAboutPage, isContactPage]);
+  }, [matchedGown, isRentalsPage, isCollectionsPage, isGalleryPage, isAboutPage, isContactPage, isAcademyPage]);
 
   // Navigation Helpers
   const navigateTo = (path: string) => {
@@ -156,6 +160,11 @@ export default function App() {
     navigateTo('/contact');
   };
 
+  const navigateToAcademy = () => {
+    closeModal();
+    navigateTo('/academy');
+  };
+
   const navigateToGownDetail = (gown: GownItem) => {
     closeModal();
     setSelectedGown(null);
@@ -173,6 +182,10 @@ export default function App() {
     }
     if (modal === 'contact') {
       navigateToContact(payload?.preselectedGown);
+      return;
+    }
+    if (modal === 'academy') {
+      navigateToAcademy();
       return;
     }
     setModalPayload(payload || null);
@@ -210,6 +223,8 @@ export default function App() {
     ? 'about'
     : isContactPage
     ? 'contact'
+    : isAcademyPage
+    ? 'academy'
     : 'home';
 
   return (
@@ -228,6 +243,7 @@ export default function App() {
         onNavigateGallery={navigateToGallery}
         onNavigateAbout={navigateToAbout}
         onNavigateContact={navigateToContact}
+        onNavigateAcademy={navigateToAcademy}
       />
 
       {/* Content Rendering based on route */}
@@ -261,6 +277,13 @@ export default function App() {
             onNavigateRentals={navigateToRentals}
             onNavigateGallery={navigateToGallery}
             onOpenAppointment={() => openModal('appointment')}
+          />
+        ) : isAcademyPage ? (
+          /* Dedicated BEAJAY Academy Experience (/academy) */
+          <AcademyPage
+            onNavigateHome={() => navigateTo('/')}
+            onNavigateCollections={() => navigateToCollections('all')}
+            onNavigateContact={() => navigateToContact()}
           />
         ) : isCollectionsPage ? (
           /* Dedicated Collections Showcase Lookbook (/collections) */
@@ -355,6 +378,7 @@ export default function App() {
         onNavigateGallery={navigateToGallery}
         onNavigateAbout={navigateToAbout}
         onNavigateContact={navigateToContact}
+        onNavigateAcademy={navigateToAcademy}
       />
 
       {/* =======================================================

@@ -21,6 +21,7 @@ interface HeaderProps {
   onNavigateGallery?: () => void;
   onNavigateAbout?: () => void;
   onNavigateContact?: () => void;
+  onNavigateAcademy?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -31,7 +32,8 @@ export const Header: React.FC<HeaderProps> = ({
   onNavigateRentals,
   onNavigateGallery,
   onNavigateAbout,
-  onNavigateContact
+  onNavigateContact,
+  onNavigateAcademy
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -79,6 +81,12 @@ export const Header: React.FC<HeaderProps> = ({
 
     if (modalType === 'contact' && onNavigateContact) {
       onNavigateContact();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (modalType === 'academy' && onNavigateAcademy) {
+      onNavigateAcademy();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -176,6 +184,17 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               About
+            </button>
+
+            {/* Academy (Phase 1) */}
+            <button 
+              onClick={() => handleNavClick('academy-page', 'academy')}
+              className={`py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer inline-flex items-center gap-1.5 ${
+                activeView === 'academy' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
+              }`}
+            >
+              <span>Academy</span>
+              <span className="text-[8.5px] px-1 py-0.5 bg-[#C59B3F]/15 dark:bg-[#E6C875]/15 text-[#856122] dark:text-[#E6C875] tracking-wider rounded-xs font-semibold">SOON</span>
             </button>
 
             {/* Book Appointment */}
@@ -288,6 +307,19 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
 
             <button 
+              onClick={() => handleNavClick('academy-page', 'academy')}
+              className={`text-left py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] flex items-center justify-between cursor-pointer ${
+                activeView === 'academy' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span>Academy</span>
+                <span className="text-[8.5px] px-1.5 py-0.5 bg-[#C59B3F]/15 dark:bg-[#E6C875]/15 text-[#856122] dark:text-[#E6C875] tracking-wider rounded-xs font-semibold">SOON</span>
+              </div>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">06</span>
+            </button>
+
+            <button 
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenModal('appointment');
@@ -295,7 +327,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="text-left py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] flex items-center justify-between cursor-pointer"
             >
               <span>Book Appointment</span>
-              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">06</span>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">07</span>
             </button>
 
             <button 
@@ -305,7 +337,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <span>Contact</span>
-              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">07</span>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">08</span>
             </button>
 
             {/* Appearance Toggle */}

@@ -132,7 +132,8 @@ export type WhatsAppEnquiryContext =
       currency?: 'NGN' | 'USDC';
       interestedGown?: string;
     }
-  | { type: 'gown'; gownName: string; gownCode?: string };
+  | { type: 'gown'; gownName: string; gownCode?: string }
+  | { type: 'academy' };
 
 /**
  * Builds standard compliant WhatsApp click-to-chat URL with owner-approved messaging.
@@ -141,7 +142,9 @@ export function buildWhatsAppUrl(context?: WhatsAppEnquiryContext): string {
   let message = 'Hello BEAJAY COUTURE BRIDAL, I would like to make an enquiry.';
   
   if (context) {
-    if (context.type === 'general' && context.notes) {
+    if (context.type === 'academy') {
+      message = 'Hello BEAJAY COUTURE BRIDAL, I would like to know more about BEAJAY Academy and future training opportunities.';
+    } else if (context.type === 'general' && context.notes) {
       message = `Hello BEAJAY COUTURE BRIDAL, I would like to make an enquiry:\n\n${context.notes}`;
     } else if (context.type === 'rental') {
       if (context.gownName) {

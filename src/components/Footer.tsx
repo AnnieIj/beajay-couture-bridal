@@ -21,6 +21,7 @@ interface FooterProps {
   onNavigateGallery?: () => void;
   onNavigateAbout?: () => void;
   onNavigateContact?: () => void;
+  onNavigateAcademy?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ 
@@ -30,7 +31,8 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateRentals,
   onNavigateGallery,
   onNavigateAbout,
-  onNavigateContact
+  onNavigateContact,
+  onNavigateAcademy
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -150,6 +152,21 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center"
                 >
                   Contact
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    if (onNavigateAcademy) {
+                      onNavigateAcademy();
+                    } else {
+                      window.location.pathname = '/academy';
+                    }
+                  }}
+                  className="hover:text-[#E6C875] transition-colors cursor-pointer text-left min-h-[32px] inline-flex items-center gap-1.5"
+                >
+                  <span>Academy</span>
+                  <span className="text-[8px] px-1 py-0.5 bg-[#E6C875]/15 text-[#E6C875] tracking-wider rounded-xs font-semibold">SOON</span>
                 </button>
               </li>
               <li>
