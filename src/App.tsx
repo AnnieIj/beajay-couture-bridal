@@ -18,6 +18,7 @@ import { GalleryPage } from './components/GalleryPage';
 import { AboutPage } from './components/AboutPage';
 import { ContactPage } from './components/ContactPage';
 import { AcademyPage } from './components/AcademyPage';
+import { NotFoundPage } from './components/NotFoundPage';
 
 import { AppointmentModal } from './components/AppointmentModal';
 import { RentalsModal } from './components/RentalsModal';
@@ -85,6 +86,7 @@ export default function App() {
   }, [activeModal, selectedGalleryItem, selectedGown]);
 
   // Route Resolution
+  const isHomePage = currentPath === '/' || currentPath === '';
   const isCollectionsPage = currentPath === '/collections' || currentPath === '/collections/';
   const isRentalsPage = currentPath === '/rentals' || currentPath === '/rentals/';
   const isGalleryPage = currentPath === '/gallery' || currentPath === '/gallery/';
@@ -98,6 +100,15 @@ export default function App() {
   const matchedGown = gownSlugMatch 
     ? GOWNS_CATALOG.find(g => g.slug === gownSlugMatch || g.id === gownSlugMatch)
     : null;
+
+  const isNotFoundPage = !isHomePage &&
+    !isCollectionsPage &&
+    !isRentalsPage &&
+    !isGalleryPage &&
+    !isAboutPage &&
+    !isContactPage &&
+    !isAcademyPage &&
+    !matchedGown;
 
   // Title update reflecting active page
   useEffect(() => {
@@ -115,10 +126,12 @@ export default function App() {
       document.title = "Contact BEAJAY | BEAJAY COUTURE BRIDAL • Begin the Conversation";
     } else if (isAcademyPage) {
       document.title = "BEAJAY Academy | Fashion Education & Craftsmanship • Coming Soon";
+    } else if (isNotFoundPage) {
+      document.title = "Page Not Found | BEAJAY COUTURE BRIDAL";
     } else {
       document.title = "BEAJAY COUTURE BRIDAL | Luxury Bridal Couture & Gown Rentals, Enugu";
     }
-  }, [matchedGown, isRentalsPage, isCollectionsPage, isGalleryPage, isAboutPage, isContactPage, isAcademyPage]);
+  }, [matchedGown, isRentalsPage, isCollectionsPage, isGalleryPage, isAboutPage, isContactPage, isAcademyPage, isNotFoundPage]);
 
   // Navigation Helpers
   const navigateTo = (path: string) => {
@@ -225,6 +238,8 @@ export default function App() {
     ? 'contact'
     : isAcademyPage
     ? 'academy'
+    : isNotFoundPage
+    ? '404'
     : 'home';
 
   return (
@@ -308,6 +323,12 @@ export default function App() {
             }}
             onNavigateCollections={() => navigateToCollections('all')}
             onBookAppointment={() => handleBookFittingFromGown(undefined, 'bridal-consultation')}
+          />
+        ) : isNotFoundPage ? (
+          /* Dedicated Branded 404 / Not Found Experience */
+          <NotFoundPage
+            onNavigateHome={() => navigateTo('/')}
+            onNavigateCollections={() => navigateToCollections('all')}
           />
         ) : (
           /* Homepage */
