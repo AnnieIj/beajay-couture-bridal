@@ -231,7 +231,7 @@ Future infrastructure under evaluation includes:
 
 ## Credits
 
-Designed & Developed by [Ijeoma](https://github.com/AnnieIj)
+Designed & Developed by [Ijeoma Annie](https://github.com/AnnieIj)
 
 ---
 
