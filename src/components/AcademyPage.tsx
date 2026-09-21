@@ -84,14 +84,14 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({
               BEAJAY Academy is being developed as a dedicated learning space for aspiring bridal-fashion creatives. Extending the brand’s creative journey into education, the Academy will provide structured online learning experiences rooted in the art, precision, and discipline of bridal couture.
             </p>
 
-            {/* Atelier Status Banner */}
+            {/* Status Banner */}
             <div className="p-5 sm:p-6 bg-[#F8F4EC] dark:bg-[#181715] border-l-2 border-[#C59B3F] max-w-2xl space-y-2">
               <div className="flex items-center gap-2 text-[#856122] dark:text-[#E6C875] text-xs font-semibold uppercase tracking-wider">
                 <Scissors className="w-4 h-4" aria-hidden="true" />
                 <span>Educational Arm of BEAJAY COUTURE BRIDAL</span>
               </div>
               <p className="text-xs sm:text-sm text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed">
-                BEAJAY trains students and intends to offer online bridal-fashion classes through the official website. Course information, curriculum structures, and enrollment timelines will be announced once confirmed by the atelier.
+                BEAJAY trains students and intends to offer online bridal-fashion classes through the official website. Course information, curriculum, schedules and enrollment details will be introduced once confirmed.
               </p>
             </div>
 
@@ -112,7 +112,7 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({
                   onClick={onNavigateContact}
                   className="min-h-[44px] inline-flex items-center justify-center px-6 py-3 border border-[#856122] dark:border-[#E6C875] hover:bg-[#F2EDE2] dark:hover:bg-[#22201E] text-[#141312] dark:text-[#F8F5EE] text-xs font-semibold tracking-[0.2em] uppercase transition-colors cursor-pointer"
                 >
-                  <span>CONTACT THE ATELIER</span>
+                  <span>CONTACT BEAJAY</span>
                 </button>
               )}
             </div>
@@ -201,16 +201,16 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           
-          {/* Card 1: Atelier Heritage */}
+          {/* Card 1: Couture Heritage */}
           <div className="p-6 sm:p-8 bg-[#FAF7F2] dark:bg-[#161514] border border-[#EAE3D5] dark:border-[#262420] space-y-4">
             <div className="w-10 h-10 bg-[#F2EDE2] dark:bg-[#22201E] border border-[#DDD4C1] dark:border-white/10 flex items-center justify-center text-[#856122] dark:text-[#E6C875]">
               <BookOpen className="w-5 h-5" aria-hidden="true" />
             </div>
             <h3 className="font-serif text-lg text-[#111111] dark:text-[#F8F5EE] font-normal">
-              Atelier Heritage
+              Couture Heritage
             </h3>
             <p className="text-xs sm:text-sm text-neutral-600 dark:text-[#A39D93] font-light leading-relaxed">
-              Rooted in the hands-on design principles practiced daily in our Enugu studio, bridging bridal couture traditions with creative expression.
+              Rooted in the hands-on bridal design principles practiced daily in our Enugu studio, connecting bridal couture tradition with creative expression.
             </p>
           </div>
 
@@ -292,18 +292,19 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-b border-[#EAE3D5] dark:border-white/10"
       >
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-12">
-          <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-[10.5px] font-semibold tracking-[0.24em] text-[#856122] dark:text-[#E6C875] uppercase">
-            <span>CURRICULUM IN PREPARATION</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FDF7E7] dark:bg-[#262013] border border-[#E6C875]/60 text-[#856122] dark:text-[#E6C875] text-[10px] font-semibold tracking-[0.2em] uppercase">
+            <Clock className="w-3 h-3 text-[#C59B3F]" aria-hidden="true" />
+            <span>COMING SOON</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-5xl text-[#111111] dark:text-[#F8F5EE] font-normal tracking-tight">
             COURSES
           </h2>
           <div className="w-12 h-px bg-[#C59B3F] mx-auto my-2" />
           <p className="text-base sm:text-lg text-[#111111] dark:text-[#F8F5EE] font-light">
-            BEAJAY Academy courses are currently being prepared.
+            BEAJAY Academy learning experiences are currently being prepared.
           </p>
           <p className="text-xs sm:text-sm text-neutral-600 dark:text-[#A39D93] font-light max-w-xl mx-auto leading-relaxed">
-            Course information, curriculum, schedules and enrollment details will be announced when confirmed.
+            Course information, curriculum, schedules and enrollment details will be introduced once confirmed.
           </p>
         </div>
 
@@ -315,49 +316,52 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({
             </div>
 
             <div className="space-y-2 max-w-lg mx-auto">
+              <span className="inline-block px-3 py-1 bg-[#F2EDE2] dark:bg-[#22201E] border border-[#DDD4C1] dark:border-white/10 text-[10px] font-semibold tracking-[0.2em] text-[#856122] dark:text-[#E6C875] uppercase">
+                COMING SOON
+              </span>
               <h3 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-[#F8F5EE] font-normal">
-                Curriculum Under Development
+                Learning Experiences in Preparation
               </h3>
               <p className="text-xs sm:text-sm text-neutral-600 dark:text-[#A39D93] font-light leading-relaxed">
-                To maintain complete accuracy, unconfirmed titles, class schedules, pricing, and syllabi will not be published until supplied directly by the atelier.
+                BEAJAY Academy learning experiences are currently being prepared. Course information, curriculum, schedules and enrollment details will be introduced once confirmed.
               </p>
             </div>
 
-            {/* Architecture Preview Wireframes */}
+            {/* Neutral Editorial Placeholders (No fabricated course names, modules, durations, levels, or subjects) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 text-left">
               <div className="p-5 border border-dashed border-[#DDD4C1] dark:border-[#333] bg-[#FCFAF7] dark:bg-[#121110] space-y-2">
                 <span className="text-[10px] tracking-widest text-[#856122] dark:text-[#E6C875] font-semibold uppercase block">
-                  MODULE BLUEPRINT
+                  COURSE INFORMATION
                 </span>
                 <div className="font-serif text-sm text-[#111111] dark:text-[#F8F5EE]">
-                  Course Syllabi
+                  Learning Experiences
                 </div>
                 <p className="text-[11px] text-neutral-500 dark:text-[#888] font-light leading-relaxed">
-                  Comprehensive topic outlines confirmed prior to release.
+                  Course details and objectives will be introduced once confirmed.
                 </p>
               </div>
 
               <div className="p-5 border border-dashed border-[#DDD4C1] dark:border-[#333] bg-[#FCFAF7] dark:bg-[#121110] space-y-2">
                 <span className="text-[10px] tracking-widest text-[#856122] dark:text-[#E6C875] font-semibold uppercase block">
-                  LEARNING SCHEDULES
+                  SCHEDULES & TIMELINES
                 </span>
                 <div className="font-serif text-sm text-[#111111] dark:text-[#F8F5EE]">
-                  Timetables & Sessions
+                  Class Schedules
                 </div>
                 <p className="text-[11px] text-neutral-500 dark:text-[#888] font-light leading-relaxed">
-                  Detailed lesson schedules announced with enrollment.
+                  Timetables and delivery formats will be announced upon launch.
                 </p>
               </div>
 
               <div className="p-5 border border-dashed border-[#DDD4C1] dark:border-[#333] bg-[#FCFAF7] dark:bg-[#121110] space-y-2">
                 <span className="text-[10px] tracking-widest text-[#856122] dark:text-[#E6C875] font-semibold uppercase block">
-                  ADMISSION NOTICE
+                  ENROLLMENT DETAILS
                 </span>
                 <div className="font-serif text-sm text-[#111111] dark:text-[#F8F5EE]">
-                  Enrollment Terms
+                  Registration & Access
                 </div>
                 <p className="text-[11px] text-neutral-500 dark:text-[#888] font-light leading-relaxed">
-                  Transparent fee structures and registration steps.
+                  Registration guidelines and enrollment details will be announced when confirmed.
                 </p>
               </div>
             </div>
@@ -455,7 +459,7 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({
           </h2>
 
           <p className="text-xs sm:text-sm text-neutral-300 font-light max-w-xl mx-auto leading-relaxed">
-            Interested in future training opportunities or upcoming announcements from BEAJAY Academy? Speak directly with our atelier team in Enugu.
+            Interested in future training opportunities or upcoming announcements from BEAJAY Academy? Speak directly with the BEAJAY team in Enugu.
           </p>
 
           <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
@@ -474,7 +478,7 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({
                 onClick={onNavigateContact}
                 className="min-h-[44px] inline-flex items-center justify-center px-7 py-3.5 border border-white/30 hover:border-white text-white text-xs font-semibold tracking-[0.2em] uppercase transition-colors cursor-pointer"
               >
-                <span>CONTACT THE ATELIER</span>
+                <span>CONTACT BEAJAY</span>
               </button>
             )}
 
@@ -491,7 +495,7 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({
           <div className="pt-4 border-t border-white/10 max-w-md mx-auto">
             <p className="text-[11px] text-neutral-400 font-light flex items-center justify-center gap-1.5">
               <HelpCircle className="w-3.5 h-3.5 text-[#C59B3F] shrink-0" aria-hidden="true" />
-              <span>Official WhatsApp: +234 911 702 8264 • Direct Atelier Communication</span>
+              <span>BEAJAY WhatsApp: +234 911 702 8264 • Academy Enquiry</span>
             </p>
           </div>
 

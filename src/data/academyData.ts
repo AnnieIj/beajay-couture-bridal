@@ -4,7 +4,7 @@ import { AcademyCourseItem } from '../types';
  * BEAJAY ACADEMY COURSE CATALOG (PHASE 1 - FOUNDATION)
  * 
  * IMPORTANT: Course information, pricing, curriculum, schedules, instructors,
- * certification rules and payment infrastructure have NOT yet been supplied by the atelier.
+ * certification rules and payment infrastructure have NOT yet been supplied.
  * 
  * In accordance with Phase 1 directives:
  * - No unconfirmed course titles, pricing, duration, syllabus, or instructor bios are invented.
@@ -40,7 +40,7 @@ export const ACADEMY_JOURNEY_STEPS: AcademyJourneyStep[] = [
   {
     step: '04',
     title: 'Grow',
-    description: 'Continue developing practical bridal-fashion knowledge, creative techniques, and atelier craftsmanship.'
+    description: 'Continue developing practical bridal-fashion knowledge, creative techniques, and craftsmanship.'
   }
 ];
 
@@ -67,10 +67,10 @@ export const FUTURE_STUDENT_PILLARS: FutureExperiencePillar[] = [
   },
   {
     title: 'Learning Content Access',
-    description: 'Stream structured video lessons, technical breakdowns, and instructional atelier resources.'
+    description: 'Stream structured video lessons, technical breakdowns, and instructional learning resources.'
   },
   {
     title: 'Student Learning Dashboard',
-    description: 'A personal study space to review active courses, download study notes, and receive atelier updates.'
+    description: 'A personal study space to review active courses, download study notes, and receive learning updates.'
   }
 ];
