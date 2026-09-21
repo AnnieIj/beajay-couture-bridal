@@ -12,7 +12,7 @@ The website is crafted as a luxury digital bridal experience rather than a conve
 
 Key experiences include:
 - **Bridal Collections**: Silhouette-driven exploration of signature bridal couture.
-- **Gown Discovery**: Detailed gown viewings highlighting corsetry, fabrics, trains, and styling options.
+- **Gown Discovery**: Detailed gown views presenting official imagery, collection information, gown details, and enquiry actions.
 - **Rental Availability Enquiries**: Tailored enquiry pathways for brides and bridal vendors.
 - **Bridal Consultation Booking**: A structured preference and policy workflow for studio visits and online styling.
 - **Bridal Gallery & Stories**: Curated editorial imagery and real bride spotlights.
@@ -39,9 +39,9 @@ Key experiences include:
 
 ### Collections
 - **Active Silhouette Browsing**: Curated exploration across active categories:
-  - **Ball Gown**: Classic silhouettes featuring dramatic full skirts and structured bodices.
-  - **Mermaid Gowns**: Form-fitting designs celebrating feminine curves with tapered lace flares.
-  - **Veils & Accessories**: Cathedral veils, bridal tiaras, and handcrafted finishing accents.
+  - **Ball Gown**: Classic full-skirted bridal silhouettes.
+  - **Mermaid Gowns**: Form-fitting bridal gowns with contoured flares.
+  - **Veils & Accessories**: Bridal veils and finishing accessories.
 - **Collection Filtering**: Instant category-based switching and silhouette filtering.
 - **Gown Detail Experience**: Dedicated detail views presenting silhouette notes, train lengths, neckline profiles, and styling recommendations.
 - **Responsive Official Imagery**: High-resolution photography with aspect ratio preservation.
@@ -60,7 +60,7 @@ Key experiences include:
 ### Bridal Consultation
 - **Consultation Formats**:
   - **Physical Consultation (Enugu)**: In-person bridal consultation arranged in Enugu, Nigeria.
-  - **Virtual Consultation**: Remote styling and guidance session conducted via video appointment for brides worldwide.
+  - **Virtual Consultation**: Remote bridal consultation arranged with the BEAJAY team.
 - **Preference Collection**: Capture of client details, wedding dates, silhouette interests, preferred dates, and time slots.
 - **Consultation Policy Presentation**: Transparent presentation of the ₦15,000 fixed consultation fee ($20 USDC for international brides, non-refundable), with ₦10,000 deducted from the total payment upon proceeding with a gown booking.
 - **WhatsApp Continuation**: Pre-formatted enquiry routing carrying all submitted preferences to the BEAJAY team to arrange payment and finalize calendar booking.
@@ -77,7 +77,7 @@ Key experiences include:
 ### About
 - **Founder Story**: The background, design philosophy, and artistic journey of Founder & Creative Director Okiemute Beauty.
 - **Brand Journey**: Milestones tracing the evolution of BEAJAY COUTURE BRIDAL.
-- **Craft & Team Presentation**: The dedication to hand-crafted corsetry, precision tailoring, and artisanal detailing.
+- **Team Presentation**: Official imagery introducing the people behind BEAJAY COUTURE BRIDAL.
 - **Enugu Roots & Global Vision**: Celebration of Nigerian couture craftsmanship created for brides worldwide.
 
 ### Theme & Accessibility
@@ -97,7 +97,7 @@ The application uses official BEAJAY photographic and video assets, supported by
 - **Generated WebP Derivatives**: High-efficiency WebP files generated alongside source images for optimal compression.
 - **Responsive `srcSet` & `sizes`**: Browser-directed asset selection matching exact rendering dimensions.
 - **Lazy Loading**: Deferred loading for off-screen media to minimize initial network payload.
-- **Optimized Media Manifest**: Centralized asset registry (`src/config/mediaAssets.ts`) managing verified local media paths and metadata.
+- **Optimized Media Manifest**: Precomputed asset manifest (`src/config/optimizedMediaManifest.json`) paired with runtime helper (`src/utils/optimizedMedia.ts`) managing responsive WebP derivatives, intrinsic dimensions, and srcset strings.
 - **Image Fallbacks**: Graceful fallback handling ensuring visual continuity during asset loading.
 - **Controlled Priority Loading**: Critical above-the-fold media (hero imagery, brand marks) prioritized for fast initial paint.
 - **Gallery Progression & Lightbox Preloading**: Pre-fetching of adjacent images during lightbox navigation for seamless transitions.
@@ -136,7 +136,7 @@ beajay-couture-bridal/
 │   └── optimize-media.cjs  # Media optimization and derivative generation script
 ├── src/
 │   ├── components/         # Modular UI components (Navigation, Modals, Sections)
-│   ├── config/             # Brand details, contact links, and media registry
+│   ├── config/             # Brand details, contact links, media registry & optimized manifest
 │   ├── context/            # React context providers (ThemeContext)
 │   ├── data/               # Structured bridal data (Collections, Gowns, Gallery)
 │   ├── utils/              # Media resolution and responsive helpers
@@ -155,7 +155,7 @@ beajay-couture-bridal/
 ## Getting Started
 
 ### Prerequisites
-- **Node.js** (v18.0 or higher recommended)
+- A current Node.js LTS release
 - **npm** (or yarn / pnpm / bun)
 
 ### Local Development Setup
@@ -189,7 +189,7 @@ To preview the production build locally:
 npm run preview
 ```
 
-To run type checking and linting:
+To run TypeScript type checking:
 ```bash
 npm run lint
 ```
