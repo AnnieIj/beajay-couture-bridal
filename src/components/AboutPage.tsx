@@ -140,7 +140,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </p>
           </div>
 
-          <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+          <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
             <p>
               Beauty’s journey into fashion began with a genuine passion for creativity and a love for seeing people look and feel beautiful. She started sewing while she was still in school, and what began as a personal skill gradually became a business.
             </p>
@@ -192,19 +192,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               </h2>
             </div>
 
-            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               In 2022, after spending about three years intentionally learning bridal design through online courses and investing deeply in her craft, Beauty made a defining decision: 2023 would be the year she went fully into bridal.
             </p>
 
-            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               It was not an easy decision. She stopped taking ready-to-wear jobs, gave out the remaining fabrics from that chapter of the business, and began building BEAJAY COUTURE BRIDAL from her parlour.
             </p>
 
-            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               There was no established bridal clientele and no guarantee of how the decision would turn out. What she had was the conviction that she wanted something different and the belief that there was more ahead.
             </p>
 
-            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               Social media became an important tool in the early growth of the business. Beauty created the bridal platform, shared the work, invested in advertising, collaborated with vendors and creatives, and began building the brand one bride at a time.
             </p>
 
@@ -230,7 +230,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto mt-2" />
           </div>
 
-          <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+          <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
             <p>
               As BEAJAY grew, bridal businesses began noticing the work and coming to the brand for gowns. What began from home gradually developed into a trusted production relationship with bridal vendors and bridal houses purchasing BEAJAY gowns to serve their own clients.
             </p>
@@ -258,7 +258,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-xs sm:text-sm text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               BEAJAY COUTURE BRIDAL was presented at the Pampered Brides Experience in Lagos. Beauty describes this runway as the brand’s first bridal presentation outside Enugu, an affirming moment and an enduring reminder that a small, faithful beginning could grow into something recognized nationwide.
             </p>
           </div>
@@ -294,7 +294,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto" />
           </div>
 
-          <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+          <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
             <p>
               BEAJAY works with a bride’s vision, including when that vision is not yet completely clear, and helps develop it into a finished bridal look. Every consultation begins with listening: understanding how the bride wishes to feel, the scale of her celebration, and the silhouette that honors her body.
             </p>
@@ -352,7 +352,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </p>
           </div>
 
-          <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+          <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
             <p>
               From the first consultation to final delivery, BEAJAY aims to build a warm relationship where brides can relax, express themselves freely, and trust our team with their vision.
             </p>
@@ -405,7 +405,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               The People Behind BEAJAY
             </h2>
             <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto" />
-            <p className="text-sm text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-sm text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               The growth of BEAJAY COUTURE BRIDAL is powered by the dedicated hands and hearts working behind the scenes to bring each bridal experience together.
             </p>
           </div>
@@ -499,7 +499,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <span className="italic text-[#856122] dark:text-[#E6C875]">Made for Brides Everywhere.</span>
             </h2>
 
-            <p className="text-sm sm:text-base text-neutral-800 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-sm sm:text-base text-neutral-800 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               What began from a parlour in Enugu has grown beyond the city where BEAJAY's bridal journey began.
             </p>
 
@@ -507,7 +507,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               “Beautiful bridal fashion can be created from Enugu and experienced anywhere in the world.”
             </blockquote>
 
-            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               Today, BEAJAY works with brides within and outside Nigeria, including through remote consultations, while continuing to build relationships with bridal businesses across the country.
             </p>
 
@@ -547,11 +547,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               Where We Are Going
             </h2>
 
-            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               BEAJAY’s vision is to continue building a global bridal fashion brand known for distinctive design, uncompromising craftsmanship, and a memorable bridal experience.
             </p>
 
-            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-left sm:text-justify">
+            <p className="text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               Beauty wants to transfer her knowledge to the next generation of bridal professionals and create opportunities for others who are ready to build meaningful careers in the bridal industry.
             </p>
 
@@ -612,7 +612,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           </div>
 
           <div className="space-y-4 text-sm sm:text-base text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed">
-            <p className="text-left sm:text-justify">
+            <p className="text-justify [text-justify:inter-word] hyphens-auto break-words story-text-justified">
               Whether you already know exactly what you want or are still imagining your wedding dress, BEAJAY is here to guide you, refine the idea, and help bring that vision to life.
             </p>
             <p className="font-serif text-lg sm:text-xl text-[#111111] dark:text-[#F8F5EE] italic font-normal">

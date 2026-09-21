@@ -35,6 +35,21 @@
 }
 
 /* ==========================================================================
+   EDITORIAL STORYTELLING JUSTIFICATION (MOBILE 320PX+ & DESKTOP)
+   Ensures clean justified margins across all breakpoints while preventing
+   extreme gaps with inter-word distribution and automatic hyphenation.
+   ========================================================================== */
+.story-text-justified {
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ==========================================================================
    LUXURY DARK MODE SYSTEM (EDITORIAL COUTURE AESTHETIC)
    - Deep warm ebony / near-black canvas (#0C0C0B)
    - Warm ivory text (#F8F5EE) & warm neutral body tones (#D3CDC2)
