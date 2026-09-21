@@ -53,6 +53,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     weddingDate: '',
     serviceType: defaultService,
     consultationFormat: 'Physical',
+    preferredCurrency: 'NGN',
     preferredDate: '',
     preferredTime: 'Morning (10:00 AM – 12:00 PM)',
     notes: '',
@@ -83,6 +84,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
         weddingDate: '',
         serviceType: defaultService || 'bridal-consultation',
         consultationFormat: 'Physical',
+        preferredCurrency: 'NGN',
         preferredDate: '',
         preferredTime: 'Morning (10:00 AM – 12:00 PM)',
         notes: '',
@@ -145,7 +147,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     { 
       id: 'gown-viewing', 
       label: 'Gown Viewing', 
-      description: 'In-person viewing of collection pieces at Enugu Studio.' 
+      description: 'In-person viewing of collection pieces in Enugu.' 
     },
     { 
       id: 'rental-fitting', 
@@ -304,7 +306,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               className="font-serif text-2xl sm:text-3xl font-light text-[#111111] dark:text-white"
             >
               {showPaymentStep 
-                ? (isConsultation ? 'Consultation Payment' : 'Appointment Request')
+                ? (isConsultation ? 'Consultation Payment & Arrangement' : 'Appointment Request')
                 : (isConsultation ? 'Bridal Consultation' : 'Request an Appointment')
               }
             </h2>
@@ -345,7 +347,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               2
             </span>
             <span className={showPaymentStep ? 'text-[#111111] dark:text-white font-semibold' : 'text-neutral-500 dark:text-neutral-400'}>
-              2. ₦15,000 Fee & Payment
+              2. Consultation Fee & Arrangement
             </span>
           </div>
           <span className="text-neutral-400">→</span>
@@ -354,7 +356,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               3
             </span>
             <span className="text-neutral-500 dark:text-neutral-400">
-              3. Schedule Confirmed
+              3. Schedule Arranged with BEAJAY
             </span>
           </div>
         </div>
@@ -375,8 +377,8 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   <p className="text-xs text-neutral-800 dark:text-neutral-300 leading-relaxed font-normal">
                     {isConsultation ? (
                       <>
-                        The bridal consultation fee is <strong className="font-semibold text-black dark:text-white">₦15,000 (Non-Refundable)</strong>.
-                        Consultation payment must be completed and verified before your appointment slot is confirmed on the studio calendar.
+                        The bridal consultation fee is <strong className="font-semibold text-black dark:text-white">₦15,000 (Non-refundable consultation fee)</strong> or <strong className="font-semibold text-black dark:text-white">$20 USDC</strong> for international clients.
+                        Consultation payment must be completed and verified before your preferred consultation schedule is confirmed with BEAJAY.
                       </>
                     ) : (
                       <>
@@ -391,7 +393,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               <div className="bg-white dark:bg-[#181715] border border-[#E8E2D5] dark:border-[#2A2825] p-5 space-y-4">
                 <div className="flex items-center justify-between border-b border-[#F0EAE0] dark:border-[#262420] pb-3">
                   <span className="text-[11px] font-semibold tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
-                    Appointment Summary
+                    Request Summary
                   </span>
                   <span className="text-xs font-serif text-[#C59B3F] font-medium">
                     BEAJAY COUTURE BRIDAL
@@ -421,12 +423,12 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                     <div>
                       <span className="text-neutral-500 dark:text-neutral-400 block text-[10.5px] uppercase tracking-wider">Consultation Format</span>
                       <span className="font-medium text-[#111111] dark:text-white">
-                        {formData.consultationFormat === 'Virtual' ? 'Virtual (Online Styling)' : 'Physical (Enugu Studio Visit)'}
+                        {formData.consultationFormat === 'Virtual' ? 'Virtual Consultation' : 'Physical Consultation (Enugu)'}
                       </span>
                     </div>
                   )}
                   <div>
-                    <span className="text-neutral-500 dark:text-neutral-400 block text-[10.5px] uppercase tracking-wider">Requested Date & Time</span>
+                    <span className="text-neutral-500 dark:text-neutral-400 block text-[10.5px] uppercase tracking-wider">Preferred Consultation Date & Time</span>
                     <span className="font-medium text-[#111111] dark:text-white">
                       {formData.preferredDate} • {formData.preferredTime}
                     </span>
@@ -440,25 +442,47 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 </div>
 
                 {isConsultation && (
-                  <div className="mt-3 pt-3 border-t border-[#F0EAE0] dark:border-[#262420] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 bg-[#FAF7F2] dark:bg-[#201E1B] p-3 border border-[#EFE8DA] dark:border-[#2A2825]">
+                  <div className="mt-3 pt-3 border-t border-[#F0EAE0] dark:border-[#262420] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-[#FAF7F2] dark:bg-[#201E1B] p-3.5 border border-[#EFE8DA] dark:border-[#2A2825]">
                     <div>
                       <span className="text-[10px] uppercase font-semibold tracking-wider text-neutral-500 dark:text-neutral-400 block">
                         Consultation Fee
                       </span>
-                      <div className="flex items-baseline gap-2">
-                        <span className="font-serif text-xl font-normal text-[#111111] dark:text-white">
-                          ₦15,000
+                      <div className="flex items-baseline gap-2 mt-0.5">
+                        <span className="font-serif text-2xl font-normal text-[#111111] dark:text-white">
+                          {formData.preferredCurrency === 'USDC' ? '$20 USDC' : '₦15,000'}
                         </span>
-                        <span className="text-[10.5px] text-neutral-600 dark:text-neutral-400">
-                          (Non-Refundable • Fixed)
+                        <span className="text-xs font-semibold text-[#A63A2B] dark:text-[#E57373] uppercase tracking-wider">
+                          Non-refundable consultation fee
                         </span>
                       </div>
-                      <span className="text-[10.5px] text-[#856122] dark:text-[#E6C875] font-medium block">
-                        $20 USDC consultation fee available for international clients
-                      </span>
+                      <div className="mt-1 flex items-center gap-2 text-xs">
+                        <span className="text-neutral-500 dark:text-neutral-400 text-[11px]">Currency Option:</span>
+                        <button
+                          type="button"
+                          onClick={() => handleChange('preferredCurrency', 'NGN')}
+                          className={`px-2 py-0.5 text-[11px] border cursor-pointer font-medium transition-colors ${
+                            (formData.preferredCurrency || 'NGN') === 'NGN'
+                              ? 'bg-[#C59B3F] text-white border-[#C59B3F]'
+                              : 'bg-white dark:bg-[#181716] text-neutral-600 dark:text-neutral-300 border-[#D5CDBF] dark:border-[#33302B]'
+                          }`}
+                        >
+                          ₦15,000 (NGN)
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleChange('preferredCurrency', 'USDC')}
+                          className={`px-2 py-0.5 text-[11px] border cursor-pointer font-medium transition-colors ${
+                            formData.preferredCurrency === 'USDC'
+                              ? 'bg-[#C59B3F] text-white border-[#C59B3F]'
+                              : 'bg-white dark:bg-[#181716] text-neutral-600 dark:text-neutral-300 border-[#D5CDBF] dark:border-[#33302B]'
+                          }`}
+                        >
+                          $20 USDC (International)
+                        </button>
+                      </div>
                     </div>
-                    <div className="text-left sm:text-right text-[11px] text-[#2E7D32] bg-white dark:bg-[#151413] px-2.5 py-1 border border-[#D5E5D5] dark:border-[#1E3B20]">
-                      <span className="font-medium">₦10,000 credited</span> toward total upon gown booking
+                    <div className="text-left sm:text-right text-[11px] text-[#2E7D32] bg-white dark:bg-[#151413] px-3 py-1.5 border border-[#D5E5D5] dark:border-[#1E3B20]">
+                      <span className="font-semibold">₦10,000 deducted</span> from total upon gown booking
                     </div>
                   </div>
                 )}
@@ -468,13 +492,13 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               <div className="p-4 bg-[#F5F2EB] dark:bg-[#1E1D1A] border border-[#E0D7C6] dark:border-[#2E2B27] space-y-2 text-xs leading-relaxed text-neutral-700 dark:text-neutral-300">
                 <div className="flex items-center gap-2 font-semibold text-[#111111] dark:text-white uppercase tracking-wider text-[11px]">
                   <Sparkles className="w-3.5 h-3.5 text-[#C59B3F]" />
-                  <span>Next Step: Complete Payment & Confirm Booking</span>
+                  <span>Next Step: Arrange Payment & Consultation Schedule</span>
                 </div>
                 <p>
                   <strong className="text-[#111111] dark:text-white">Online consultation payment is being prepared.</strong> You can contact BEAJAY to continue your consultation booking.
                 </p>
                 <p className="text-[11.5px] text-neutral-600 dark:text-neutral-400 font-light">
-                  Our studio team in Enugu, Nigeria will receive your details, verify your ₦15,000 fee ($20 USDC for international clients), and confirm your reserved consultation date and time.
+                  Our team in Enugu, Nigeria will receive your details, verify your {formData.preferredCurrency === 'USDC' ? '$20 USDC consultation fee' : '₦15,000 consultation fee ($20 USDC for international clients)'}, and finalize your preferred consultation schedule.
                 </p>
               </div>
 
@@ -487,7 +511,9 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                     isConsultation: true, 
                     clientName: formData.fullName, 
                     preferredDate: formData.preferredDate,
-                    format: formData.consultationFormat,
+                    preferredTime: formData.preferredTime,
+                    format: formData.consultationFormat === 'Virtual' ? 'Virtual Consultation' : 'Physical Consultation (Enugu)',
+                    currency: formData.preferredCurrency || 'NGN',
                     interestedGown: formData.interestedGown
                   })}
                   target="_blank"
@@ -510,7 +536,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       className="inline-flex items-center justify-center gap-2 bg-[#C59B3F] hover:bg-[#B3892F] text-white py-3 px-4 text-xs font-semibold tracking-[0.14em] uppercase transition-colors cursor-pointer min-h-[44px]"
                     >
                       <Mail className="w-4 h-4" />
-                      <span>Contact BEAJAY Studio</span>
+                      <span>Contact BEAJAY</span>
                     </button>
                   )}
 
@@ -536,7 +562,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               </div>
 
               <div className="text-[10.5px] text-center text-neutral-400 font-light pt-1">
-                Studio visits are held in Enugu, Nigeria. Virtual styling consultations are conducted via video appointment.
+                Physical consultations are held in Enugu, Nigeria. Virtual consultations are conducted via video call.
               </div>
             </div>
           ) : (
@@ -627,40 +653,90 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               {/* Dedicated Bridal Consultation Policy Card */}
               {isConsultation ? (
                 <div className="bg-[#FAF7F0] dark:bg-[#1A1816] border border-[#E5DEC9] dark:border-[#2A2825] p-4 sm:p-5 space-y-4">
-                  {/* Fee & Duration Summary Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E8DFCE] dark:border-[#2A2825] pb-3.5">
-                    <div>
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C59B3F] block">
-                        CONFIRMED POLICY
-                      </span>
-                      <div className="flex items-baseline gap-2 mt-0.5">
-                        <span className="font-serif text-2xl sm:text-3xl font-light text-[#111111] dark:text-white">
-                          ₦15,000
+                  {/* 1. Consultation Fee */}
+                  <div className="border-b border-[#E8DFCE] dark:border-[#2A2825] pb-3.5 space-y-2.5">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div>
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C59B3F] block">
+                          CONSULTATION FEE
                         </span>
-                        <span className="text-xs font-semibold text-[#A63A2B] dark:text-[#E57373] uppercase tracking-wider">
-                          Non-Refundable
-                        </span>
+                        <div className="flex items-baseline gap-2 mt-0.5">
+                          <span className="font-serif text-2xl sm:text-3xl font-light text-[#111111] dark:text-white">
+                            {formData.preferredCurrency === 'USDC' ? '$20 USDC' : '₦15,000'}
+                          </span>
+                          <span className="text-xs font-semibold text-[#A63A2B] dark:text-[#E57373] uppercase tracking-wider">
+                            Non-refundable consultation fee
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-3 text-[11px] text-neutral-600 dark:text-neutral-400 mt-1 font-light">
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5 text-[#C59B3F]" />
+                            <span>45 minutes – 1 hour</span>
+                          </span>
+                          <span>•</span>
+                          <span>Physical Consultation (Enugu) or Virtual</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-3 text-[11px] text-neutral-600 dark:text-neutral-400 mt-1 font-light">
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5 text-[#C59B3F]" />
-                          <span>45 minutes – 1 hour</span>
+
+                      {/* Currency Option Toggle */}
+                      <div className="sm:text-right space-y-1">
+                        <span className="text-[10px] uppercase tracking-wider font-semibold text-neutral-500 dark:text-neutral-400 block">
+                          Payment Option
                         </span>
-                        <span>•</span>
-                        <span>Virtual or Physical</span>
+                        <div className="inline-flex border border-[#E0D5BE] dark:border-[#33302B] bg-white dark:bg-[#22201D] p-0.5">
+                          <button
+                            type="button"
+                            onClick={() => handleChange('preferredCurrency', 'NGN')}
+                            className={`px-2.5 py-1 text-xs cursor-pointer transition-colors ${
+                              (formData.preferredCurrency || 'NGN') === 'NGN'
+                                ? 'bg-[#C59B3F] text-white font-medium shadow-xs'
+                                : 'text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white'
+                            }`}
+                          >
+                            ₦15,000 (Nigeria)
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleChange('preferredCurrency', 'USDC')}
+                            className={`px-2.5 py-1 text-xs cursor-pointer transition-colors ${
+                              formData.preferredCurrency === 'USDC'
+                                ? 'bg-[#C59B3F] text-white font-medium shadow-xs'
+                                : 'text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white'
+                            }`}
+                          >
+                            $20 USDC (International)
+                          </button>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="sm:text-right">
-                      <span className="inline-block bg-white dark:bg-[#22201D] text-[#856122] dark:text-[#E6C875] text-[10.5px] font-medium px-2.5 py-1 border border-[#E0D5BE] dark:border-[#33302B]">
-                        USDC payment option available for international clients: <strong>$20 USDC</strong>
-                      </span>
+                    {/* Benefit Callout: ₦10,000 Deductible */}
+                    <div className="bg-white dark:bg-[#181716] p-3 border border-[#E0D7C2] dark:border-[#2A2825] text-xs flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#2E7D32] shrink-0 mt-0.5" />
+                      <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
+                        <strong className="font-semibold text-neutral-900 dark:text-white">Gown Booking Benefit:</strong> If you proceed with a gown or bridal package, <strong className="font-semibold text-[#2E7D32]">₦10,000 from the consultation fee is deducted</strong> from your total payment.
+                      </p>
                     </div>
                   </div>
 
-                  {/* Consultation Format Selector (Virtual vs Physical) */}
-                  <div>
-                    <label className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-700 dark:text-neutral-300 mb-2">
+                  {/* 2. What's Included */}
+                  <div className="space-y-1.5 border-b border-[#E8DFCE] dark:border-[#2A2825] pb-3.5">
+                    <span className="text-[10.5px] uppercase font-semibold tracking-wider text-neutral-700 dark:text-neutral-300 block">
+                      What's Included:
+                    </span>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-neutral-700 dark:text-neutral-300 font-light">
+                      {BRIDAL_CONSULTATION_POLICY.coverage.map((item, i) => (
+                        <li key={i} className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F] shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* 3. Consultation Format */}
+                  <div className="space-y-1.5 border-b border-[#E8DFCE] dark:border-[#2A2825] pb-3.5">
+                    <label className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-700 dark:text-neutral-300">
                       Consultation Format <span className="text-[#C59B3F]">*</span>
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -675,8 +751,8 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       >
                         <MapPin className="w-3.5 h-3.5 text-[#C59B3F] shrink-0" />
                         <div>
-                          <span className="block font-medium">Physical Studio Visit</span>
-                          <span className="text-[10px] text-neutral-500 dark:text-neutral-400 font-light">In Enugu, Nigeria</span>
+                          <span className="block font-medium">Physical Consultation (Enugu)</span>
+                          <span className="text-[10.5px] text-neutral-500 dark:text-neutral-400 font-light">Arranged in Enugu, Nigeria</span>
                         </div>
                       </button>
 
@@ -691,45 +767,22 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       >
                         <Globe className="w-3.5 h-3.5 text-[#C59B3F] shrink-0" />
                         <div>
-                          <span className="block font-medium">Virtual Styling Session</span>
-                          <span className="text-[10px] text-neutral-500 dark:text-neutral-400 font-light">Worldwide via Video Call</span>
+                          <span className="block font-medium">Virtual Consultation</span>
+                          <span className="text-[10.5px] text-neutral-500 dark:text-neutral-400 font-light">Video consultation worldwide</span>
                         </div>
                       </button>
                     </div>
                   </div>
 
-                  {/* Benefit Callout: ₦10,000 Deductible */}
-                  <div className="bg-white dark:bg-[#181716] p-3 border border-[#E0D7C2] dark:border-[#2A2825] text-xs flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#2E7D32] shrink-0 mt-0.5" />
-                    <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
-                      <strong className="font-semibold text-neutral-900 dark:text-white">Gown Booking Benefit:</strong> If you proceed to book a gown or bridal package, <strong className="font-semibold text-[#2E7D32]">₦10,000 from the consultation fee is deducted</strong> from your total payment.
-                    </p>
-                  </div>
-
-                  {/* What the Consultation Covers */}
-                  <div className="space-y-1.5">
-                    <span className="text-[10.5px] uppercase font-semibold tracking-wider text-neutral-600 dark:text-neutral-400 block">
-                      The Bridal Consultation Covers:
-                    </span>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-neutral-700 dark:text-neutral-300 font-light">
-                      {BRIDAL_CONSULTATION_POLICY.coverage.map((item, i) => (
-                        <li key={i} className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F] shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Expandable Terms Area */}
-                  <div className="border-t border-[#E8DFCE] dark:border-[#2A2825] pt-2.5">
+                  {/* 4. Important Policy */}
+                  <div>
                     <button
                       type="button"
                       onClick={() => setShowPolicyAccordion(!showPolicyAccordion)}
                       className="w-full flex items-center justify-between text-[11px] font-medium text-[#856122] dark:text-[#E6C875] hover:text-[#5E4416] dark:hover:text-[#F3D78A] py-1 cursor-pointer"
                     >
-                      <span className="uppercase tracking-wider">
-                        {showPolicyAccordion ? 'Hide Consultation Policy Terms' : 'View Full Consultation Policy Terms'}
+                      <span className="uppercase tracking-wider font-semibold">
+                        {showPolicyAccordion ? 'Hide Important Policy Terms' : 'Important Policy & Terms (Click to View)'}
                       </span>
                       {showPolicyAccordion ? (
                         <ChevronUp className="w-3.5 h-3.5" />
@@ -889,7 +942,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               {/* Schedule Preference (Neutral Preference, No Fake Availability) */}
               <div className="space-y-4">
                 <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-400 block pb-1 border-b border-[#EAE3D5] dark:border-[#2A2825]">
-                  Requested Schedule Preference
+                  Preferred Schedule Preference
                 </span>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -899,7 +952,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       htmlFor="appointment-preferredDate"
                       className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-700 dark:text-neutral-300 mb-1"
                     >
-                      Preferred Date <span className="text-[#C59B3F]">*</span>
+                      Preferred Consultation Date <span className="text-[#C59B3F]">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -926,7 +979,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       </p>
                     )}
                     <span className="text-[10.5px] text-neutral-500 dark:text-neutral-400 font-light block mt-1">
-                      Date preference is confirmed after consultation fee verification
+                      Date and time preferences are confirmed after consultation fee arrangement with BEAJAY
                     </span>
                   </div>
 
@@ -936,7 +989,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       htmlFor="appointment-preferredTime"
                       className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-700 dark:text-neutral-300 mb-1"
                     >
-                      Preferred Time Slot <span className="text-neutral-400 dark:text-neutral-400 font-normal lowercase">(requested)</span>
+                      Preferred Consultation Time <span className="text-neutral-400 dark:text-neutral-400 font-normal lowercase">(preference)</span>
                     </label>
                     <select
                       id="appointment-preferredTime"
@@ -951,7 +1004,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       ))}
                     </select>
                     <span className="text-[10.5px] text-neutral-500 dark:text-neutral-400 font-light block mt-1">
-                      Subject to studio calendar availability
+                      Subject to consultation calendar availability
                     </span>
                   </div>
                 </div>
@@ -977,7 +1030,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                         onClick={() => toggleSilhouette(sil)}
                         className={`text-xs px-3.5 py-2 border transition-colors cursor-pointer min-h-[38px] ${
                           isSelected
-                            ? 'bg-[#C59B3F] text-white border-[#C59B3F] font-medium'
+                             ? 'bg-[#C59B3F] text-white border-[#C59B3F] font-medium'
                             : 'bg-white dark:bg-[#1C1B19] text-neutral-700 dark:text-neutral-300 border-[#DDD5C5] dark:border-[#33302B] hover:border-neutral-400 dark:hover:border-neutral-600'
                         }`}
                       >
@@ -1006,7 +1059,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   className="w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border border-[#D5CDBF] dark:border-[#33302B] text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F] transition-colors resize-none"
                 />
                 <div className="flex justify-between items-center text-[10.5px] text-neutral-400 dark:text-neutral-400 mt-1 font-light">
-                  <span>Enugu studio address provided upon appointment confirmation</span>
+                  <span>Enugu location details provided upon consultation arrangement</span>
                   <span>{formData.notes.length}/500</span>
                 </div>
               </div>
@@ -1022,7 +1075,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       className="mt-1 w-4 h-4 text-[#C59B3F] border-[#D5CDBF] dark:border-[#33302B] rounded-xs focus:ring-[#C59B3F] cursor-pointer"
                     />
                     <span className="text-xs text-neutral-700 dark:text-neutral-300 font-light leading-relaxed">
-                      I understand that the <strong className="font-semibold text-neutral-900 dark:text-white">₦15,000 consultation fee</strong> ($20 USDC for international clients) is <strong className="font-semibold text-neutral-900 dark:text-white">non-refundable</strong> and must be completed before the appointment is scheduled. ₦10,000 will be credited toward my total payment upon gown booking.
+                      I understand that the <strong className="font-semibold text-neutral-900 dark:text-white">{formData.preferredCurrency === 'USDC' ? '$20 USDC consultation fee' : '₦15,000 consultation fee'}</strong>{formData.preferredCurrency !== 'USDC' ? ' ($20 USDC for international clients)' : ''} is <strong className="font-semibold text-neutral-900 dark:text-white">non-refundable</strong> and must be completed before the consultation schedule is confirmed. If I proceed with a gown or bridal package, ₦10,000 from the fee is deducted from the total payment.
                     </span>
                   </label>
                   {touched.acknowledgedTerms && errors.acknowledgedTerms && (
@@ -1048,7 +1101,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                     <>
                       <span>
                         {isConsultation 
-                          ? 'CONTINUE TO CONSULTATION PAYMENT (₦15,000)' 
+                          ? `CONTINUE TO CONSULTATION PAYMENT (${formData.preferredCurrency === 'USDC' ? '$20 USDC' : '₦15,000'})` 
                           : 'SUBMIT APPOINTMENT REQUEST'
                         }
                       </span>
@@ -1061,6 +1114,11 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   href={buildWhatsAppUrl({ 
                     type: 'appointment',
                     isConsultation: isConsultation,
+                    clientName: formData.fullName,
+                    preferredDate: formData.preferredDate,
+                    preferredTime: formData.preferredTime,
+                    format: formData.consultationFormat === 'Virtual' ? 'Virtual Consultation' : 'Physical Consultation (Enugu)',
+                    currency: formData.preferredCurrency || 'NGN',
                     interestedGown: formData.interestedGown
                   })}
                   target="_blank"
@@ -1072,7 +1130,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 </a>
 
                 <p className="text-[11px] text-center text-neutral-500 dark:text-neutral-400 font-light pt-1">
-                  Payment is required before consultation date is scheduled • Private studio in Enugu, Nigeria & virtual worldwide.
+                  Payment is required before consultation date is scheduled • Physical Consultation (Enugu) & Virtual Consultation worldwide.
                 </p>
               </div>
 

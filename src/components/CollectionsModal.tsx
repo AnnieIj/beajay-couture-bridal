@@ -168,7 +168,7 @@ export const CollectionsModal: React.FC<CollectionsModalProps> = ({
             }}
             className="text-xs font-semibold text-[#856122] dark:text-[#E6C875] hover:underline flex items-center gap-1.5 uppercase tracking-wider cursor-pointer"
           >
-            <span>Book In-Studio Fitting Consultation</span>
+            <span>Book Bridal Consultation</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>

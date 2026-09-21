@@ -37,7 +37,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
             </h2>
 
             <p className="text-sm sm:text-base text-neutral-300 font-light max-w-xl leading-relaxed">
-              Book a bridal consultation with BEAJAY COUTURE BRIDAL (₦15,000 fixed fee, with ₦10,000 credited toward gown booking), gown viewings, or rental fittings. Virtual & physical sessions available.
+              Book a bridal consultation with BEAJAY COUTURE BRIDAL (₦15,000 fixed fee, with ₦10,000 credited toward gown booking), gown viewings, or rental fittings. Physical Consultation (Enugu) & Virtual Consultation available.
             </p>
 
             <div className="pt-2">
@@ -64,7 +64,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
                 Bridal Consultation
               </span>
               <span className="text-[11px] text-[#E6C875] font-light">
-                ₦15,000 • Virtual & Physical
+                ₦15,000 • Enugu & Virtual
               </span>
             </div>
 
@@ -87,7 +87,7 @@ export const AppointmentCtaSection: React.FC<AppointmentCtaSectionProps> = ({ on
                 <MapPin className="w-5 h-5" />
               </div>
               <span className="text-xs font-medium tracking-wider uppercase text-neutral-200">
-                Studio Location
+                Enugu Location
               </span>
               <span className="text-[11px] text-neutral-400 font-light">
                 Enugu, Nigeria

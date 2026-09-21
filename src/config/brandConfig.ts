@@ -94,7 +94,7 @@ export const BRIDAL_CONSULTATION_POLICY: ConsultationPolicyConfig = {
   deductibleAmountNGN: 10000,
   deductibleAmountFormatted: '₦10,000',
   duration: '45 minutes – 1 hour',
-  formats: ['Virtual', 'Physical'],
+  formats: ['Physical Consultation (Enugu)', 'Virtual Consultation'],
   coverage: [
     'Bridal style assessment',
     'Body shape & gown recommendation',
@@ -106,15 +106,15 @@ export const BRIDAL_CONSULTATION_POLICY: ConsultationPolicyConfig = {
     'Consultation fee is non-refundable.',
     'Rescheduling must be requested 24–48 hours before the appointment.',
     'No-shows require a new booking fee.',
-    'Consultation is required before gown booking or customization.',
-    'If the client proceeds to book a gown or bridal package, ₦10,000 from the consultation fee is deducted from the total payment.'
+    'Consultation is required before proceeding with gown booking/customization.',
+    'If the client proceeds with a gown or bridal package, ₦10,000 from the consultation fee is deducted from the total payment.'
   ],
   journeySteps: [
-    { step: 1, title: 'Consultation Details', summary: 'Select appointment type and enter bridal details' },
-    { step: 2, title: '₦15,000 Consultation Fee', summary: 'Fixed non-refundable consultation fee ($20 USDC for international brides)' },
-    { step: 3, title: 'Payment Required', summary: 'Payment must be completed before consultation date is scheduled' },
-    { step: 4, title: 'Payment Confirmation', summary: 'Verification with BEAJAY team via WhatsApp or Studio' },
-    { step: 5, title: 'Consultation Scheduling', summary: 'Date & time confirmed; ₦10,000 credited upon gown booking' }
+    { step: 1, title: 'Consultation Details', summary: 'Select appointment type and enter bridal preferences' },
+    { step: 2, title: '₦15,000 Consultation Fee', summary: 'Non-refundable consultation fee ($20 USDC for international clients)' },
+    { step: 3, title: 'Payment Required', summary: 'Consultation payment required prior to final scheduling' },
+    { step: 4, title: 'Schedule Arrangement', summary: 'Preferred date & time confirmed after payment arrangement with BEAJAY' },
+    { step: 5, title: 'Gown Deduction Benefit', summary: '₦10,000 deducted upon proceeding with gown or bridal package' }
   ]
 } as const;
 
@@ -127,7 +127,9 @@ export type WhatsAppEnquiryContext =
       clientName?: string; 
       isConsultation?: boolean; 
       preferredDate?: string; 
+      preferredTime?: string;
       format?: string;
+      currency?: 'NGN' | 'USDC';
       interestedGown?: string;
     }
   | { type: 'gown'; gownName: string; gownCode?: string };
@@ -150,9 +152,19 @@ export function buildWhatsAppUrl(context?: WhatsAppEnquiryContext): string {
       }
     } else if (context.type === 'appointment') {
       if (context.isConsultation) {
-        const clientPart = context.clientName ? ` for ${context.clientName}` : '';
-        const gownPart = context.interestedGown ? ` (Interested in: ${context.interestedGown})` : '';
-        message = `Hello BEAJAY COUTURE BRIDAL, I would like to arrange my Bridal Consultation${clientPart}${gownPart}. I am aware of the ₦15,000 consultation fee ($20 USDC for international clients) and would like to complete my payment and confirm scheduling.`;
+        const clientLine = context.clientName ? `\n• Client: ${context.clientName}` : '';
+        const formatLabel = context.format === 'Virtual'
+          ? 'Virtual Consultation'
+          : (context.format === 'Physical' ? 'Physical Consultation (Enugu)' : (context.format || ''));
+        const formatLine = formatLabel ? `\n• Format: ${formatLabel}` : '';
+        const dateLine = context.preferredDate ? `\n• Preferred Date: ${context.preferredDate}` : '';
+        const timeLine = context.preferredTime ? `\n• Preferred Time: ${context.preferredTime}` : '';
+        const gownLine = context.interestedGown ? `\n• Interested Gown: ${context.interestedGown}` : '';
+        const feeLine = context.currency === 'USDC'
+          ? '\n• Fee Acknowledgement: $20 USDC consultation option'
+          : '\n• Fee Acknowledgement: ₦15,000 consultation fee (Non-refundable)';
+
+        message = `Hello BEAJAY COUTURE BRIDAL, I would like to continue my Bridal Consultation booking.${clientLine}${formatLine}${dateLine}${timeLine}${gownLine}${feeLine}\n\nPlease share payment details to arrange and confirm my consultation schedule.`;
       } else if (context.serviceName) {
         message = `Hello BEAJAY COUTURE BRIDAL, I would like to enquire about booking a ${context.serviceName}.`;
       } else {

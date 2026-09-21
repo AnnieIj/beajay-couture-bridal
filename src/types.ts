@@ -167,6 +167,7 @@ export interface BookingFormData {
   weddingDate: string;
   serviceType: AppointmentServiceType;
   consultationFormat?: 'Virtual' | 'Physical';
+  preferredCurrency?: 'NGN' | 'USDC';
   preferredDate: string;
   preferredTime: string;
   notes: string;
