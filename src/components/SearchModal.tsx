@@ -34,7 +34,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const quickTags = ['Ball Gown', 'Mermaid Gowns', 'Veils & Accessories', 'Rental', 'Cathedral Veil'];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-16 sm:pt-24 bg-black/85 backdrop-blur-sm animate-in fade-in duration-150">
+    <div 
+      className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-16 sm:pt-24 bg-black/85 backdrop-blur-sm animate-in fade-in duration-150"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search bridal collection"
+    >
       <div 
         className="relative w-full max-w-2xl bg-[#FCFAF7] dark:bg-[#141312] border border-[#DCD5C5] dark:border-white/10 shadow-2xl overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}

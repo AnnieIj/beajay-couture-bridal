@@ -265,20 +265,20 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                 <div className="space-y-2">
                   <span className="text-[10px] tracking-[0.28em] font-semibold text-[#C59B3F] uppercase block">
-                    CONFIRMATION
+                    REQUEST DETAILS
                   </span>
                   <h2 className="font-serif text-2xl sm:text-3xl text-[#111111] dark:text-[#F8F5EE]">
-                    ENQUIRY SUBMITTED
+                    ENQUIRY PREPARED
                   </h2>
                   <p className="text-xs sm:text-sm text-neutral-700 dark:text-[#D4CEC3] font-light leading-relaxed">
-                    Thank you for getting in touch with BEAJAY COUTURE BRIDAL.
+                    Your enquiry details have been prepared. Online messaging submission will be available soon. You can reach BEAJAY directly via WhatsApp or email.
                   </p>
                 </div>
 
                 {/* Submission Overview */}
                 <div className="p-6 bg-[#FAF7F2] dark:bg-[#1C1B19] border border-[#EAE3D5] dark:border-white/10 space-y-3 text-xs">
                   <div className="font-serif text-sm text-[#111111] dark:text-[#F8F5EE] border-b border-[#E0D7C5] dark:border-white/10 pb-2">
-                    Submission Details
+                    Enquiry Details
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-neutral-700 dark:text-[#D4CEC3]">
                     <div>
@@ -311,11 +311,23 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 </div>
 
                 <div className="pt-4 flex flex-wrap items-center gap-4">
+                  <a
+                    href={buildWhatsAppUrl({
+                      type: 'general',
+                      notes: `Enquiry from ${submittedData.fullName} (${submittedData.enquiryType}): ${submittedData.message}`
+                    })}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="min-h-[44px] px-6 py-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-semibold tracking-wider uppercase transition-colors inline-flex items-center gap-2 cursor-pointer shadow-sm"
+                  >
+                    <WhatsAppIcon className="w-4 h-4" />
+                    <span>Send via WhatsApp</span>
+                  </a>
                   <button
                     onClick={handleReset}
                     className="min-h-[44px] px-6 py-3 border border-[#856122] dark:border-[#C59B3F] text-[#141312] dark:text-[#F8F5EE] hover:bg-[#F8F4EC] dark:hover:bg-[#22201E] text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
                   >
-                    Submit Another Enquiry
+                    Prepare Another Enquiry
                   </button>
                   <button
                     onClick={onNavigateCollections}

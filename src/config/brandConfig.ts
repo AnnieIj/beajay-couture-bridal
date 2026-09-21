@@ -119,7 +119,7 @@ export const BRIDAL_CONSULTATION_POLICY: ConsultationPolicyConfig = {
 } as const;
 
 export type WhatsAppEnquiryContext = 
-  | { type: 'general' }
+  | { type: 'general'; notes?: string }
   | { type: 'rental'; gownName?: string; gownCode?: string }
   | { 
       type: 'appointment'; 
@@ -141,7 +141,9 @@ export function buildWhatsAppUrl(context?: WhatsAppEnquiryContext): string {
   let message = 'Hello BEAJAY COUTURE BRIDAL, I would like to make an enquiry.';
   
   if (context) {
-    if (context.type === 'rental') {
+    if (context.type === 'general' && context.notes) {
+      message = `Hello BEAJAY COUTURE BRIDAL, I would like to make an enquiry:\n\n${context.notes}`;
+    } else if (context.type === 'rental') {
       if (context.gownName) {
         const identifier = context.gownCode 
           ? `${context.gownName} (${context.gownCode})` 

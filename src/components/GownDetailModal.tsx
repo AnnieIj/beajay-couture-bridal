@@ -23,7 +23,12 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
   if (!gown) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="gown-modal-title"
+    >
       <div 
         className="relative w-full max-w-4xl bg-[#FCFAF7] dark:bg-[#151413] border border-[#DCD5C5] dark:border-[#2C2925] shadow-2xl max-h-[92vh] overflow-y-auto flex flex-col md:flex-row"
         onClick={(e) => e.stopPropagation()}
@@ -72,7 +77,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
               <span className="text-[10px] tracking-[0.24em] font-semibold text-[#C59B3F] uppercase">
                 BEAJAY COUTURE ARCHIVE
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111] dark:text-white">
+              <h2 id="gown-modal-title" className="font-serif text-2xl sm:text-3xl font-normal text-[#111111] dark:text-white">
                 {gown.name}
               </h2>
             </div>
