@@ -936,6 +936,18 @@ export const ABOUT_MEDIA_ASSETS = {
       officialPath: '/media/about/team/beajay-team-03.jpeg',
       hasOfficial: true,
       alt: 'The dedicated team behind BEAJAY COUTURE BRIDAL'
+    },
+    {
+      current: '/media/about/founder/beauty-okiemute-04.jpeg',
+      officialPath: '/media/about/founder/beauty-okiemute-04.jpeg',
+      hasOfficial: true,
+      alt: 'BEAJAY bridal studio team member'
+    },
+    {
+      current: '/media/about/founder/beauty-okiemute-05.jpeg',
+      officialPath: '/media/about/founder/beauty-okiemute-05.jpeg',
+      hasOfficial: true,
+      alt: 'BEAJAY bridal studio team member'
     }
   ],
   // Retained references for existing component imports

@@ -3306,5 +3306,57 @@
     },
     "srcSet": "/media/optimized/gallery/9-480w.webp 480w, /media/optimized/gallery/9-800w.webp 800w, /media/optimized/gallery/9-1200w.webp 1200w, /media/optimized/gallery/9-1600w.webp 1600w",
     "defaultSrc": "/media/optimized/gallery/9-1200w.webp"
+  },
+  "/media/about/founder/beauty-okiemute-04.jpeg": {
+    "origPath": "/media/about/founder/beauty-okiemute-04.jpeg",
+    "width": 1440,
+    "height": 1910,
+    "aspectRatio": 0.7539,
+    "sizes": {
+      "480": "/media/optimized/about/founder/beauty-okiemute-04-480w.webp",
+      "800": "/media/optimized/about/founder/beauty-okiemute-04-800w.webp",
+      "1200": "/media/optimized/about/founder/beauty-okiemute-04-1200w.webp"
+    },
+    "srcSet": "/media/optimized/about/founder/beauty-okiemute-04-480w.webp 480w, /media/optimized/about/founder/beauty-okiemute-04-800w.webp 800w, /media/optimized/about/founder/beauty-okiemute-04-1200w.webp 1200w",
+    "defaultSrc": "/media/optimized/about/founder/beauty-okiemute-04-1200w.webp"
+  },
+  "about/founder/beauty-okiemute-04.jpeg": {
+    "origPath": "/media/about/founder/beauty-okiemute-04.jpeg",
+    "width": 1440,
+    "height": 1910,
+    "aspectRatio": 0.7539,
+    "sizes": {
+      "480": "/media/optimized/about/founder/beauty-okiemute-04-480w.webp",
+      "800": "/media/optimized/about/founder/beauty-okiemute-04-800w.webp",
+      "1200": "/media/optimized/about/founder/beauty-okiemute-04-1200w.webp"
+    },
+    "srcSet": "/media/optimized/about/founder/beauty-okiemute-04-480w.webp 480w, /media/optimized/about/founder/beauty-okiemute-04-800w.webp 800w, /media/optimized/about/founder/beauty-okiemute-04-1200w.webp 1200w",
+    "defaultSrc": "/media/optimized/about/founder/beauty-okiemute-04-1200w.webp"
+  },
+  "/media/about/founder/beauty-okiemute-05.jpeg": {
+    "origPath": "/media/about/founder/beauty-okiemute-05.jpeg",
+    "width": 1440,
+    "height": 1907,
+    "aspectRatio": 0.7551,
+    "sizes": {
+      "480": "/media/optimized/about/founder/beauty-okiemute-05-480w.webp",
+      "800": "/media/optimized/about/founder/beauty-okiemute-05-800w.webp",
+      "1200": "/media/optimized/about/founder/beauty-okiemute-05-1200w.webp"
+    },
+    "srcSet": "/media/optimized/about/founder/beauty-okiemute-05-480w.webp 480w, /media/optimized/about/founder/beauty-okiemute-05-800w.webp 800w, /media/optimized/about/founder/beauty-okiemute-05-1200w.webp 1200w",
+    "defaultSrc": "/media/optimized/about/founder/beauty-okiemute-05-1200w.webp"
+  },
+  "about/founder/beauty-okiemute-05.jpeg": {
+    "origPath": "/media/about/founder/beauty-okiemute-05.jpeg",
+    "width": 1440,
+    "height": 1907,
+    "aspectRatio": 0.7551,
+    "sizes": {
+      "480": "/media/optimized/about/founder/beauty-okiemute-05-480w.webp",
+      "800": "/media/optimized/about/founder/beauty-okiemute-05-800w.webp",
+      "1200": "/media/optimized/about/founder/beauty-okiemute-05-1200w.webp"
+    },
+    "srcSet": "/media/optimized/about/founder/beauty-okiemute-05-480w.webp 480w, /media/optimized/about/founder/beauty-okiemute-05-800w.webp 800w, /media/optimized/about/founder/beauty-okiemute-05-1200w.webp 1200w",
+    "defaultSrc": "/media/optimized/about/founder/beauty-okiemute-05-1200w.webp"
   }
 }

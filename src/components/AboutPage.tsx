@@ -124,7 +124,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </div>
       </section>
 
-      {/* 2. MEET BEAUTY OKIEMUTE */}
+      {/* 2. MEET OKIEMUTE BEAUTY */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b border-[#EAE3D5] dark:border-white/10">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="text-center space-y-2">
@@ -174,7 +174,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-4 right-4 text-white text-[11px] tracking-wider uppercase font-serif">
-                BEAUTY OKIEMUTE • DESIGN REFLECTION
+                OKIEMUTE BEAUTY • DESIGN REFLECTION
               </div>
             </div>
             <p className="mt-3 text-[11px] text-neutral-500 dark:text-[#A39D93] tracking-wider uppercase font-light text-center">
@@ -410,69 +410,119 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </p>
           </div>
 
-          {/* Collective 3-image editorial presentation of real team photography */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-            
-            {/* Team Image 1 (Landscape, 1364x908) */}
-            <div className="md:col-span-5 flex flex-col">
-              <div className="relative aspect-[3/2] overflow-hidden bg-[#ECE6D9] dark:bg-[#1C1B19] border border-[#DDD4C1] dark:border-white/10 shadow-sm flex-1">
-                <img
-                  src={teamImages[0].opt.src}
-                  srcSet={teamImages[0].opt.srcSet}
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  alt={teamImages[0].alt}
-                  className="w-full h-full object-cover object-center"
-                  loading="lazy"
-                  decoding="async"
-                  width={1364}
-                  height={908}
-                />
+          {/* Collective 5-image editorial presentation of real team photography */}
+          <div className="space-y-6">
+            {/* Upper row: 3 images */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+              
+              {/* Team Image 1 (Landscape, 1364x908) */}
+              <div className="md:col-span-5 flex flex-col">
+                <div className="relative aspect-[3/2] overflow-hidden bg-[#ECE6D9] dark:bg-[#1C1B19] border border-[#DDD4C1] dark:border-white/10 shadow-sm flex-1">
+                  <img
+                    src={teamImages[0].opt.src}
+                    srcSet={teamImages[0].opt.srcSet}
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    alt={teamImages[0].alt}
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                    width={1364}
+                    height={908}
+                  />
+                </div>
+                <p className="mt-2 text-[11px] text-neutral-500 dark:text-[#A39D93] font-light tracking-wide text-center">
+                  Dedicated collaboration across cutting, styling, and fitting
+                </p>
               </div>
-              <p className="mt-2 text-[11px] text-neutral-500 dark:text-[#A39D93] font-light tracking-wide text-center">
-                Dedicated collaboration across cutting, styling, and fitting
-              </p>
+
+              {/* Team Image 2 (Portrait, 969x1280) */}
+              <div className="md:col-span-3 flex flex-col">
+                <div className="relative aspect-[3/4] overflow-hidden bg-[#ECE6D9] dark:bg-[#1C1B19] border border-[#DDD4C1] dark:border-white/10 shadow-sm flex-1">
+                  <img
+                    src={teamImages[1].opt.src}
+                    srcSet={teamImages[1].opt.srcSet}
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    alt={teamImages[1].alt}
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                    width={969}
+                    height={1280}
+                  />
+                </div>
+                <p className="mt-2 text-[11px] text-neutral-500 dark:text-[#A39D93] font-light tracking-wide text-center">
+                  Detailed gown finishing and presentation
+                </p>
+              </div>
+
+              {/* Team Image 3 (Landscape, 1365x910) */}
+              <div className="md:col-span-4 flex flex-col">
+                <div className="relative aspect-[3/2] overflow-hidden bg-[#ECE6D9] dark:bg-[#1C1B19] border border-[#DDD4C1] dark:border-white/10 shadow-sm flex-1">
+                  <img
+                    src={teamImages[2].opt.src}
+                    srcSet={teamImages[2].opt.srcSet}
+                    sizes="(max-width: 768px) 100vw, 35vw"
+                    alt={teamImages[2].alt}
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                    width={1365}
+                    height={910}
+                  />
+                </div>
+                <p className="mt-2 text-[11px] text-neutral-500 dark:text-[#A39D93] font-light tracking-wide text-center">
+                  Crafting memories together in Enugu
+                </p>
+              </div>
+
             </div>
 
-            {/* Team Image 2 (Portrait, 969x1280) */}
-            <div className="md:col-span-3 flex flex-col">
-              <div className="relative aspect-[3/4] overflow-hidden bg-[#ECE6D9] dark:bg-[#1C1B19] border border-[#DDD4C1] dark:border-white/10 shadow-sm flex-1">
-                <img
-                  src={teamImages[1].opt.src}
-                  srcSet={teamImages[1].opt.srcSet}
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                  alt={teamImages[1].alt}
-                  className="w-full h-full object-cover object-center"
-                  loading="lazy"
-                  decoding="async"
-                  width={969}
-                  height={1280}
-                />
-              </div>
-              <p className="mt-2 text-[11px] text-neutral-500 dark:text-[#A39D93] font-light tracking-wide text-center">
-                Detailed gown finishing and presentation
-              </p>
-            </div>
+            {/* Lower row: 2 portrait images (Official Team additions: beauty-okiemute-04 & 05) */}
+            {teamImages.length > 3 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto items-stretch">
+                
+                {/* Team Image 4 (Portrait, 1440x1910) */}
+                <div className="flex flex-col">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-[#ECE6D9] dark:bg-[#1C1B19] border border-[#DDD4C1] dark:border-white/10 shadow-sm flex-1">
+                    <img
+                      src={teamImages[3].opt.src}
+                      srcSet={teamImages[3].opt.srcSet}
+                      sizes="(max-width: 640px) 100vw, 350px"
+                      alt={teamImages[3].alt}
+                      className="w-full h-full object-cover object-center"
+                      loading="lazy"
+                      decoding="async"
+                      width={1440}
+                      height={1910}
+                    />
+                  </div>
+                  <p className="mt-2 text-[11px] text-neutral-500 dark:text-[#A39D93] font-light tracking-wide text-center">
+                    Bridal studio craft and client care
+                  </p>
+                </div>
 
-            {/* Team Image 3 (Landscape, 1365x910) */}
-            <div className="md:col-span-4 flex flex-col">
-              <div className="relative aspect-[3/2] overflow-hidden bg-[#ECE6D9] dark:bg-[#1C1B19] border border-[#DDD4C1] dark:border-white/10 shadow-sm flex-1">
-                <img
-                  src={teamImages[2].opt.src}
-                  srcSet={teamImages[2].opt.srcSet}
-                  sizes="(max-width: 768px) 100vw, 35vw"
-                  alt={teamImages[2].alt}
-                  className="w-full h-full object-cover object-center"
-                  loading="lazy"
-                  decoding="async"
-                  width={1365}
-                  height={910}
-                />
-              </div>
-              <p className="mt-2 text-[11px] text-neutral-500 dark:text-[#A39D93] font-light tracking-wide text-center">
-                Crafting memories together in Enugu
-              </p>
-            </div>
+                {/* Team Image 5 (Portrait, 1440x1907) */}
+                <div className="flex flex-col">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-[#ECE6D9] dark:bg-[#1C1B19] border border-[#DDD4C1] dark:border-white/10 shadow-sm flex-1">
+                    <img
+                      src={teamImages[4].opt.src}
+                      srcSet={teamImages[4].opt.srcSet}
+                      sizes="(max-width: 640px) 100vw, 350px"
+                      alt={teamImages[4].alt}
+                      className="w-full h-full object-cover object-center"
+                      loading="lazy"
+                      decoding="async"
+                      width={1440}
+                      height={1907}
+                    />
+                  </div>
+                  <p className="mt-2 text-[11px] text-neutral-500 dark:text-[#A39D93] font-light tracking-wide text-center">
+                    Artisanal care behind every creation
+                  </p>
+                </div>
 
+              </div>
+            )}
           </div>
 
           <div className="max-w-2xl mx-auto text-center pt-2">
