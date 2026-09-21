@@ -25,18 +25,18 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
   return (
     <section 
       id="bridal-gallery" 
-      className="py-20 lg:py-24 bg-[#F8F5EE] border-b border-[#EAE3D5]"
+      className="py-20 lg:py-24 bg-[#F8F5EE] dark:bg-[#121110] border-b border-[#EAE3D5] dark:border-white/10 transition-colors duration-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header with VIEW GALLERY -> link */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
           <div className="space-y-2">
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#111111] tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#111111] dark:text-[#F8F5EE] tracking-tight">
               Moments That Matter
             </h2>
             <div className="w-12 h-[2px] bg-[#C59B3F]" />
-            <p className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.26em] uppercase text-[#856122]">
+            <p className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.26em] uppercase text-[#856122] dark:text-[#E6C875]">
               OUR BRIDAL GALLERY
             </p>
           </div>
@@ -46,7 +46,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
               href="https://instagram.com/beajaycouture_bridal"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-neutral-600 hover:text-[#C59B3F] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs text-neutral-600 dark:text-[#D4CEC3] hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors"
             >
               <Instagram className="w-4 h-4 text-[#C59B3F]" />
               <span className="font-medium">@beajaycouture_bridal</span>
@@ -55,7 +55,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
             <button
               onClick={handleViewGallery}
               aria-label="View the full bridal gallery"
-              className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.2em] uppercase text-[#111111] hover:text-[#C59B3F] transition-colors cursor-pointer"
+              className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.2em] uppercase text-[#111111] dark:text-[#F8F5EE] hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer"
             >
               <span>VIEW THE GALLERY</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F]" />
@@ -65,41 +65,41 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
 
         {/* Editorial Content Display: Elegant Intentional State when items empty, or curated editorial preview */}
         {GALLERY_ITEMS.length === 0 ? (
-          <div className="bg-white border border-[#E7E1D4] p-8 sm:p-12 lg:p-16 text-center max-w-4xl mx-auto shadow-xs relative overflow-hidden">
+          <div className="bg-white dark:bg-[#161514] border border-[#E7E1D4] dark:border-white/10 p-8 sm:p-12 lg:p-16 text-center max-w-4xl mx-auto shadow-xs relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#C59B3F]" />
             
-            <div className="w-12 h-12 rounded-full bg-[#FAF7F2] border border-[#E8E2D5] flex items-center justify-center text-[#C59B3F] mx-auto mb-5">
+            <div className="w-12 h-12 rounded-full bg-[#FAF7F2] dark:bg-[#22201E] border border-[#E8E2D5] dark:border-white/15 flex items-center justify-center text-[#C59B3F] mx-auto mb-5">
               <Instagram className="w-5 h-5" />
             </div>
 
-            <p className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-[#856122] mb-3">
+            <p className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-[#856122] dark:text-[#E6C875] mb-3">
               BEAJAY BRIDAL STORIES
             </p>
 
-            <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-[#111111] max-w-2xl mx-auto leading-snug mb-4">
+            <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-[#111111] dark:text-[#F8F5EE] max-w-2xl mx-auto leading-snug mb-4">
               Bridal moments, fittings, details and stories from BEAJAY.
             </h3>
 
             <div className="w-12 h-[1.5px] bg-[#C59B3F] mx-auto mb-5" />
 
-            <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed mb-8">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-[#D4CEC3] font-light max-w-xl mx-auto leading-relaxed mb-8">
               A visual chronicle celebrating BEAJAY couture in motion—from bridal fittings and intricate hand-appliquéd lace to memorable wedding days. Follow our official channel for real-time bridal updates.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <button
                 onClick={() => onOpenModal('collections')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#111111] hover:bg-[#252422] text-[#F3EFE6] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#111111] dark:bg-[#C59B3F] hover:bg-[#252422] dark:hover:bg-[#B3892F] text-[#F3EFE6] dark:text-[#0C0C0B] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
               >
                 <span>EXPLORE COLLECTIONS</span>
-                <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
+                <ArrowRight className="w-4 h-4 text-[#C59B3F] dark:text-[#0C0C0B]" />
               </button>
 
               <a
                 href="https://instagram.com/beajaycouture_bridal"
                 target="_blank"
                 rel="noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FAF7F2] hover:bg-[#F2ECE0] text-[#111111] border border-[#D5CEC0] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FAF7F2] dark:bg-[#22201E] hover:bg-[#F2ECE0] dark:hover:bg-[#2C2A26] text-[#111111] dark:text-[#F8F5EE] border border-[#D5CEC0] dark:border-white/15 px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
               >
                 <Instagram className="w-4 h-4 text-[#C59B3F]" />
                 <span>FOLLOW ON INSTAGRAM</span>
@@ -107,7 +107,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
 
               <button
                 onClick={handleViewGallery}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 text-xs font-semibold tracking-[0.18em] uppercase text-[#856122] hover:text-[#111111] transition-colors py-3 px-4 cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 text-xs font-semibold tracking-[0.18em] uppercase text-[#856122] dark:text-[#E6C875] hover:text-[#111111] dark:hover:text-white transition-colors py-3 px-4 cursor-pointer"
               >
                 <span>VIEW GALLERY ARCHIVE</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -134,7 +134,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
                     tabIndex={0}
                     role="button"
                     aria-label={`View photograph: ${item.title}`}
-                    className="group relative aspect-[3/4] overflow-hidden bg-[#F5EFE4] border border-[#E3D9C6] hover:border-[#C59B3F] transition-all duration-300 shadow-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C59B3F]"
+                    className="group relative aspect-[3/4] overflow-hidden bg-[#F5EFE4] dark:bg-[#1C1B19] border border-[#E3D9C6] dark:border-white/10 hover:border-[#C59B3F] transition-all duration-300 shadow-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C59B3F]"
                   >
                     <img
                       src={opt.src}
@@ -165,15 +165,15 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
             </div>
 
             {/* Editorial Narrative Teaser Banner */}
-            <div className="bg-white border border-[#EAE3D5] p-6 sm:p-8 lg:p-10 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 text-left">
+            <div className="bg-white dark:bg-[#161514] border border-[#EAE3D5] dark:border-white/10 p-6 sm:p-8 lg:p-10 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 text-left">
               <div className="space-y-3 max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FAF6EE] border border-[#E8DFC8] text-[#856122] text-[10px] font-semibold tracking-[0.24em] uppercase">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FAF6EE] dark:bg-[#22201E] border border-[#E8DFC8] dark:border-white/10 text-[#856122] dark:text-[#E6C875] text-[10px] font-semibold tracking-[0.24em] uppercase">
                   BEAJAY BRIDAL STORIES
                 </div>
-                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111] leading-snug">
+                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111] dark:text-[#F8F5EE] leading-snug">
                   Bridal moments, fittings, details and stories from BEAJAY.
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-neutral-600 font-light leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-neutral-600 dark:text-[#D4CEC3] font-light leading-relaxed">
                   Explore our dedicated 65-photograph bridal gallery archive celebrating authentic bridal fittings, handcrafted details, and memorable bridal moments in motion.
                 </p>
               </div>
@@ -181,17 +181,17 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-auto shrink-0">
                 <button
                   onClick={handleViewGallery}
-                  className="inline-flex items-center justify-center gap-2 bg-[#111111] hover:bg-[#252422] text-[#F3EFE6] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
+                  className="inline-flex items-center justify-center gap-2 bg-[#111111] dark:bg-[#C59B3F] hover:bg-[#252422] dark:hover:bg-[#B3892F] text-[#F3EFE6] dark:text-[#0C0C0B] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
                 >
                   <span>VIEW FULL GALLERY</span>
-                  <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
+                  <ArrowRight className="w-4 h-4 text-[#C59B3F] dark:text-[#0C0C0B]" />
                 </button>
 
                 <a
                   href="https://instagram.com/beajaycouture_bridal"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-[#FAF7F2] hover:bg-[#F2ECE0] text-[#111111] border border-[#D5CEC0] px-5 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
+                  className="inline-flex items-center justify-center gap-2 bg-[#FAF7F2] dark:bg-[#22201E] hover:bg-[#F2ECE0] dark:hover:bg-[#2C2A26] text-[#111111] dark:text-[#F8F5EE] border border-[#D5CEC0] dark:border-white/15 px-5 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
                 >
                   <Instagram className="w-4 h-4 text-[#C59B3F]" />
                   <span>@beajaycouture_bridal</span>
@@ -202,16 +202,16 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
         )}
 
         {/* Subtle IG Link Bar */}
-        <div className="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 border-t border-[#EAE3D5] gap-3">
+        <div className="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 dark:text-[#A39D93] border-t border-[#EAE3D5] dark:border-white/10 gap-3">
           <div className="flex items-center gap-2">
             <Instagram className="w-4 h-4 text-[#C59B3F]" />
-            <span className="font-medium text-neutral-800 tracking-wider uppercase text-[11px]">FOLLOW THE JOURNEY</span>
+            <span className="font-medium text-neutral-800 dark:text-[#F8F5EE] tracking-wider uppercase text-[11px]">FOLLOW THE JOURNEY</span>
           </div>
           <a
             href="https://instagram.com/beajaycouture_bridal"
             target="_blank"
             rel="noreferrer"
-            className="text-[#856122] hover:text-[#C59B3F] font-medium hover:underline flex items-center gap-1.5 uppercase tracking-wider text-[11px] transition-colors"
+            className="text-[#856122] dark:text-[#E6C875] hover:text-[#C59B3F] font-medium hover:underline flex items-center gap-1.5 uppercase tracking-wider text-[11px] transition-colors"
           >
             <span>SEE MORE ON INSTAGRAM • @beajaycouture_bridal</span>
             <ArrowRight className="w-3.5 h-3.5" />

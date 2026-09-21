@@ -110,7 +110,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
   };
 
   return (
-    <div id="collections-page" className="min-h-screen bg-[#FCFAF7] text-[#111111] flex flex-col">
+    <div id="collections-page" className="min-h-screen bg-[#FCFAF7] dark:bg-[#0C0C0B] text-[#111111] dark:text-[#F8F5EE] flex flex-col transition-colors duration-200">
       {/* Editorial Hero Header */}
       <CollectionsHero />
 
@@ -118,14 +118,14 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
       <section className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1">
         
         {/* Silhouette Filter Navigation Bar */}
-        <div className="border-b border-[#EAE4D9] pb-5 mb-8">
+        <div className="border-b border-[#EAE4D9] dark:border-white/10 pb-5 mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <span className="text-[10.5px] tracking-[0.24em] font-semibold text-[#856122] uppercase">
+            <span className="text-[10.5px] tracking-[0.24em] font-semibold text-[#856122] dark:text-[#E6C875] uppercase">
               SELECT SILHOUETTE
             </span>
-            <span className="text-xs text-neutral-500 font-light">
-              Showing <strong className="text-neutral-900 font-medium">{visibleItems.length}</strong> of{' '}
-              <strong className="text-neutral-900 font-medium">{filteredMedia.length}</strong> official photographs
+            <span className="text-xs text-neutral-500 dark:text-[#A39D93] font-light">
+              Showing <strong className="text-neutral-900 dark:text-[#F8F5EE] font-medium">{visibleItems.length}</strong> of{' '}
+              <strong className="text-neutral-900 dark:text-[#F8F5EE] font-medium">{filteredMedia.length}</strong> official photographs
             </span>
           </div>
 
@@ -145,12 +145,12 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                   onClick={() => setSelectedCategory(cat.slug)}
                   className={`px-4 sm:px-5 py-2.5 text-[11px] font-semibold tracking-[0.18em] uppercase whitespace-nowrap transition-all duration-300 cursor-pointer border ${
                     isSelected
-                      ? 'bg-[#111111] text-white border-[#111111] shadow-sm'
-                      : 'bg-white text-neutral-700 border-[#E5DFD3] hover:border-[#C59B3F] hover:text-[#C59B3F]'
+                      ? 'bg-[#111111] dark:bg-[#C59B3F] text-white dark:text-[#0C0C0B] border-[#111111] dark:border-[#C59B3F] shadow-sm'
+                      : 'bg-white dark:bg-[#161514] text-neutral-700 dark:text-[#D4CEC3] border-[#E5DFD3] dark:border-white/10 hover:border-[#C59B3F] dark:hover:border-[#E6C875] hover:text-[#C59B3F] dark:hover:text-[#E6C875]'
                   }`}
                 >
                   <span>{cat.name}</span>
-                  <span className={`ml-2 text-[10px] font-mono ${isSelected ? 'text-[#C59B3F]' : 'text-neutral-400'}`}>
+                  <span className={`ml-2 text-[10px] font-mono ${isSelected ? 'text-[#C59B3F] dark:text-[#0C0C0B]' : 'text-neutral-400 dark:text-neutral-500'}`}>
                     ({String(count).padStart(2, '0')})
                   </span>
                 </button>
@@ -161,10 +161,10 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
 
         {/* Category Editorial Atmosphere Header */}
         <div className="mb-10 sm:mb-12 max-w-3xl">
-          <h2 className="font-serif text-2xl sm:text-3xl text-[#111111] font-normal tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl text-[#111111] dark:text-[#F8F5EE] font-normal tracking-tight">
             {currentCategoryMeta.title}
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-600 font-light leading-relaxed mt-1.5">
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-[#D4CEC3] font-light leading-relaxed mt-1.5">
             {currentCategoryMeta.description}
           </p>
         </div>
@@ -178,7 +178,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
               <div
                 key={item.id}
                 onClick={() => handleOpenLightbox(item)}
-                className="group relative flex flex-col bg-white border border-[#EFE9DF] hover:border-[#C59B3F]/70 transition-all duration-500 cursor-pointer overflow-hidden shadow-xs hover:shadow-md"
+                className="group relative flex flex-col bg-white dark:bg-[#161514] border border-[#EFE9DF] dark:border-white/10 hover:border-[#C59B3F]/70 transition-all duration-500 cursor-pointer overflow-hidden shadow-xs hover:shadow-md"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
@@ -190,7 +190,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                 aria-label={`View ${item.categoryLabel} photograph`}
               >
                 {/* Image Frame with Editorial 3:4 Proportions */}
-                <div className="relative aspect-[3/4] w-full bg-[#F4F0E8] overflow-hidden">
+                <div className="relative aspect-[3/4] w-full bg-[#F4F0E8] dark:bg-[#1C1B19] overflow-hidden">
                   <img
                     src={opt.src}
                     srcSet={opt.srcSet}
@@ -224,11 +224,11 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
               </div>
 
               {/* Editorial Card Caption */}
-              <div className="p-3.5 bg-white border-t border-[#F0ECE1] flex items-center justify-between">
-                <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-[#856122]">
+              <div className="p-3.5 bg-white dark:bg-[#161514] border-t border-[#F0ECE1] dark:border-white/10 flex items-center justify-between">
+                <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-[#856122] dark:text-[#E6C875]">
                   {item.categoryLabel}
                 </span>
-                <span className="text-[10.5px] text-neutral-400 font-light">
+                <span className="text-[10.5px] text-neutral-400 dark:text-[#A39D93] font-light">
                   BEAJAY Editorial
                 </span>
               </div>
@@ -242,7 +242,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
           <div className="mt-12 sm:mt-16 text-center">
             <button
               onClick={handleLoadMore}
-              className="inline-flex items-center gap-2.5 bg-white hover:bg-[#111111] hover:text-white text-[#111111] border border-[#D5CEBF] hover:border-[#111111] px-8 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-2.5 bg-white dark:bg-[#161514] hover:bg-[#111111] dark:hover:bg-[#22201E] hover:text-white text-[#111111] dark:text-[#F8F5EE] border border-[#D5CEBF] dark:border-white/15 hover:border-[#111111] dark:hover:border-[#C59B3F] px-8 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 shadow-xs cursor-pointer"
             >
               <span>LOAD MORE OFFICIAL PHOTOGRAPHS</span>
               <span className="font-mono text-[11px] text-[#C59B3F]">
@@ -256,18 +256,18 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
       </section>
 
       {/* Editorial Bottom Consultation & Rental Pathway */}
-      <section className="bg-[#FAF7F0] border-t border-[#EAE4D9] py-16 sm:py-20 mt-12">
+      <section className="bg-[#FAF7F0] dark:bg-[#121110] border-t border-[#EAE4D9] dark:border-white/10 py-16 sm:py-20 mt-12 transition-colors duration-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
-          <div className="inline-flex items-center gap-2 text-[#856122] text-[10px] sm:text-[11px] font-semibold tracking-[0.26em] uppercase">
+          <div className="inline-flex items-center gap-2 text-[#856122] dark:text-[#E6C875] text-[10px] sm:text-[11px] font-semibold tracking-[0.26em] uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C59B3F]" />
             <span>PRIVATE FITTINGS & APPOINTMENTS</span>
           </div>
 
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#111111] font-normal tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#111111] dark:text-[#F8F5EE] font-normal tracking-tight">
             EXPERIENCE THE COLLECTION IN PERSON
           </h2>
 
-          <p className="text-neutral-600 text-xs sm:text-sm font-light max-w-xl mx-auto leading-relaxed">
+          <p className="text-neutral-600 dark:text-[#D4CEC3] text-xs sm:text-sm font-light max-w-xl mx-auto leading-relaxed">
             All bridal silhouettes are crafted with meticulous internal corsetry and hand-placed embellishments. Schedule a private consultation at our boutique in Enugu to explore silhouettes and discuss your wedding date.
           </p>
 
@@ -281,7 +281,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
             </button>
           </div>
 
-          <p className="text-[11px] text-neutral-400 tracking-wider pt-2">
+          <p className="text-[11px] text-neutral-400 dark:text-[#A39D93] tracking-wider pt-2">
             Selected gowns available for rental bookings. Fittings by private appointment in Enugu, Nigeria.
           </p>
         </div>

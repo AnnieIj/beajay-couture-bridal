@@ -19,13 +19,13 @@ export const AboutModal: React.FC<AboutModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
       <div 
-        className="relative w-full max-w-3xl bg-[#FCFAF7] border border-[#DCD5C5] shadow-2xl max-h-[92vh] overflow-y-auto"
+        className="relative w-full max-w-3xl bg-[#FCFAF7] dark:bg-[#141312] border border-[#DCD5C5] dark:border-[#2E2B27] shadow-2xl max-h-[92vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 p-2 text-neutral-500 hover:text-neutral-900 z-10 cursor-pointer bg-white/80 rounded-full"
+          className="absolute top-4 right-4 p-2 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white z-10 cursor-pointer bg-white/80 dark:bg-[#22201D] rounded-full"
         >
           <X className="w-5 h-5" />
         </button>
@@ -33,22 +33,22 @@ export const AboutModal: React.FC<AboutModalProps> = ({
         <div className="p-6 sm:p-10 space-y-8">
           
           {/* Header */}
-          <div className="text-center space-y-2 border-b border-[#EAE3D5] pb-6">
+          <div className="text-center space-y-2 border-b border-[#EAE3D5] dark:border-[#262420] pb-6">
             <span className="text-[10px] tracking-[0.24em] font-semibold text-[#C59B3F] uppercase">
               THE BEAJAY BRIDAL HERITAGE
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#111111]">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#111111] dark:text-white">
               About BEAJAY COUTURE BRIDAL
             </h2>
             <div className="w-14 h-[2px] bg-[#C59B3F] mx-auto my-2" />
-            <p className="font-sans text-xs text-neutral-600 font-light max-w-lg mx-auto">
+            <p className="font-sans text-xs text-neutral-600 dark:text-neutral-300 font-light max-w-lg mx-auto">
               Rooted in Enugu, Nigeria — celebrating elegance, thoughtful craftsmanship, and dedicated bridal styling.
             </p>
           </div>
 
           {/* Editorial Split */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="aspect-[4/5] bg-neutral-100 overflow-hidden border border-[#E5DEC9] shadow-md relative">
+            <div className="aspect-[4/5] bg-neutral-100 dark:bg-neutral-900 overflow-hidden border border-[#E5DEC9] dark:border-[#2A2825] shadow-md relative">
               {(() => {
                 const opt = getOptimizedMedia(EDITORIAL_MEDIA_ASSETS.aboutModal.current);
                 return (
@@ -69,8 +69,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               </div>
             </div>
 
-            <div className="space-y-4 text-xs sm:text-[13px] text-neutral-600 font-light leading-relaxed">
-              <h3 className="font-serif text-xl font-normal text-[#111111]">
+            <div className="space-y-4 text-xs sm:text-[13px] text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
+              <h3 className="font-serif text-xl font-normal text-[#111111] dark:text-white">
                 Bridal Craftsmanship in Enugu
               </h3>
               <p>
@@ -79,43 +79,43 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               </p>
               <p>
                 Alongside our bridal collections, we offer our refined 
-                <strong className="font-medium text-neutral-900"> Gown Rental Service</strong> for brides and bridal industry partners.
+                <strong className="font-medium text-neutral-900 dark:text-white"> Gown Rental Service</strong> for brides and bridal industry partners.
               </p>
-              <div className="pt-2 border-t border-[#EAE3D5] grid grid-cols-2 gap-4 text-neutral-800 font-medium">
+              <div className="pt-2 border-t border-[#EAE3D5] dark:border-[#262420] grid grid-cols-2 gap-4 text-neutral-800 dark:text-neutral-200 font-medium">
                 <div>
                   <span className="font-serif text-2xl text-[#C59B3F] block font-light">100%</span>
-                  <span className="text-[11px] uppercase tracking-wider text-neutral-500">Private Fitting Sessions</span>
+                  <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Private Fitting Sessions</span>
                 </div>
                 <div>
                   <span className="font-serif text-2xl text-[#C59B3F] block font-light">Dedicated</span>
-                  <span className="text-[11px] uppercase tracking-wider text-neutral-500">Fitting Consultations</span>
+                  <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Fitting Consultations</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Values Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#EAE3D5]">
-            <div className="p-4 bg-white border border-[#EAE3D5] text-center space-y-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#EAE3D5] dark:border-[#262420]">
+            <div className="p-4 bg-white dark:bg-[#1C1B19] border border-[#EAE3D5] dark:border-[#2A2825] text-center space-y-2">
               <Heart className="w-5 h-5 text-[#C59B3F] mx-auto" />
-              <h4 className="font-serif text-base text-neutral-900">Dedicated Care</h4>
-              <p className="text-[11px] text-neutral-500 font-light">
+              <h4 className="font-serif text-base text-neutral-900 dark:text-white">Dedicated Care</h4>
+              <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light">
                 From private bridal styling to gentle hand adjustments, you are revered throughout.
               </p>
             </div>
 
-            <div className="p-4 bg-white border border-[#EAE3D5] text-center space-y-2">
+            <div className="p-4 bg-white dark:bg-[#1C1B19] border border-[#EAE3D5] dark:border-[#2A2825] text-center space-y-2">
               <Award className="w-5 h-5 text-[#C59B3F] mx-auto" />
-              <h4 className="font-serif text-base text-neutral-900">Quality Standards</h4>
-              <p className="text-[11px] text-neutral-500 font-light">
+              <h4 className="font-serif text-base text-neutral-900 dark:text-white">Quality Standards</h4>
+              <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light">
                 Curated fabrics, hand-finished detailing, and thoughtful gown construction.
               </p>
             </div>
 
-            <div className="p-4 bg-white border border-[#EAE3D5] text-center space-y-2">
+            <div className="p-4 bg-white dark:bg-[#1C1B19] border border-[#EAE3D5] dark:border-[#2A2825] text-center space-y-2">
               <MapPin className="w-5 h-5 text-[#C59B3F] mx-auto" />
-              <h4 className="font-serif text-base text-neutral-900">Enugu, Nigeria</h4>
-              <p className="text-[11px] text-neutral-500 font-light">
+              <h4 className="font-serif text-base text-neutral-900 dark:text-white">Enugu, Nigeria</h4>
+              <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light">
                 Located in Enugu, Nigeria with fittings and consultations.
               </p>
             </div>

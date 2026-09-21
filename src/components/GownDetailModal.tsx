@@ -25,20 +25,20 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
       <div 
-        className="relative w-full max-w-4xl bg-[#FCFAF7] border border-[#DCD5C5] shadow-2xl max-h-[92vh] overflow-y-auto flex flex-col md:flex-row"
+        className="relative w-full max-w-4xl bg-[#FCFAF7] dark:bg-[#151413] border border-[#DCD5C5] dark:border-[#2C2925] shadow-2xl max-h-[92vh] overflow-y-auto flex flex-col md:flex-row"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 p-2 text-neutral-600 hover:text-neutral-900 z-20 cursor-pointer bg-white/90 rounded-full shadow-xs"
+          className="absolute top-4 right-4 p-2 text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white z-20 cursor-pointer bg-white/90 dark:bg-[#22201D] rounded-full shadow-xs"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Left Column: Gown Imagery */}
-        <div className="md:w-1/2 relative bg-neutral-100 min-h-[350px] md:min-h-full">
+        <div className="md:w-1/2 relative bg-neutral-100 dark:bg-neutral-900 min-h-[350px] md:min-h-full">
           {(() => {
             const opt = getOptimizedMedia(gown.image);
             return (
@@ -65,50 +65,50 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
         </div>
 
         {/* Right Column: Specifications & Booking */}
-        <div className="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
+        <div className="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white dark:bg-[#151413]">
           <div className="space-y-5">
             
-            <div className="border-b border-[#EAE3D5] pb-4 space-y-1">
+            <div className="border-b border-[#EAE3D5] dark:border-[#262420] pb-4 space-y-1">
               <span className="text-[10px] tracking-[0.24em] font-semibold text-[#C59B3F] uppercase">
                 BEAJAY COUTURE ARCHIVE
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111]">
+              <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111] dark:text-white">
                 {gown.name}
               </h2>
             </div>
 
-            <p className="text-xs sm:text-[13px] text-neutral-600 font-light leading-relaxed">
+            <p className="text-xs sm:text-[13px] text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
               {gown.description}
             </p>
 
             {/* Specifications */}
-            <div className="space-y-3 bg-[#FAF7F0] border border-[#EAE3D5] p-4 text-xs">
+            <div className="space-y-3 bg-[#FAF7F0] dark:bg-[#1A1917] border border-[#EAE3D5] dark:border-[#2C2925] p-4 text-xs">
               <div className="grid grid-cols-3 gap-1">
-                <span className="text-neutral-500 font-medium">Silhouette:</span>
-                <span className="col-span-2 text-neutral-900 font-normal">{gown.silhouette}</span>
+                <span className="text-neutral-500 dark:text-neutral-400 font-medium">Silhouette:</span>
+                <span className="col-span-2 text-neutral-900 dark:text-neutral-200 font-normal">{gown.silhouette}</span>
               </div>
               <div className="grid grid-cols-3 gap-1">
-                <span className="text-neutral-500 font-medium">Fabric:</span>
-                <span className="col-span-2 text-neutral-900 font-normal">{gown.fabric}</span>
+                <span className="text-neutral-500 dark:text-neutral-400 font-medium">Fabric:</span>
+                <span className="col-span-2 text-neutral-900 dark:text-neutral-200 font-normal">{gown.fabric}</span>
               </div>
               <div className="grid grid-cols-3 gap-1">
-                <span className="text-neutral-500 font-medium">Embellishments:</span>
-                <span className="col-span-2 text-neutral-900 font-normal">{gown.embellishments}</span>
+                <span className="text-neutral-500 dark:text-neutral-400 font-medium">Embellishments:</span>
+                <span className="col-span-2 text-neutral-900 dark:text-neutral-200 font-normal">{gown.embellishments}</span>
               </div>
               {gown.trainLength && (
                 <div className="grid grid-cols-3 gap-1">
-                  <span className="text-neutral-500 font-medium">Train Length:</span>
-                  <span className="col-span-2 text-neutral-900 font-normal">{gown.trainLength}</span>
+                  <span className="text-neutral-500 dark:text-neutral-400 font-medium">Train Length:</span>
+                  <span className="col-span-2 text-neutral-900 dark:text-neutral-200 font-normal">{gown.trainLength}</span>
                 </div>
               )}
             </div>
 
             {/* Availability info */}
-            <div className="p-4 border border-[#D9CEBA] bg-[#FAF6EE] text-xs">
-              <span className="text-[10px] uppercase tracking-wider text-neutral-500 block mb-1">
+            <div className="p-4 border border-[#D9CEBA] dark:border-[#383329] bg-[#FAF6EE] dark:bg-[#201D18] text-xs">
+              <span className="text-[10px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-1">
                 Gown Availability
               </span>
-              <span className="font-medium text-neutral-900">
+              <span className="font-medium text-neutral-900 dark:text-[#E8D49E]">
                 Available for Rental Requests upon Date Confirmation
               </span>
             </div>
@@ -117,7 +117,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
             {gown.tags && gown.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {gown.tags.map((t, idx) => (
-                  <span key={idx} className="text-[10px] bg-neutral-100 text-neutral-600 px-2 py-0.5 tracking-wider uppercase font-sans">
+                  <span key={idx} className="text-[10px] bg-neutral-100 dark:bg-[#22201D] text-neutral-600 dark:text-neutral-300 px-2 py-0.5 tracking-wider uppercase font-sans">
                     #{t}
                   </span>
                 ))}
@@ -126,11 +126,11 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
           </div>
 
           {/* Action CTAs */}
-          <div className="space-y-2.5 pt-2 border-t border-[#EAE3D5]">
+          <div className="space-y-2.5 pt-2 border-t border-[#EAE3D5] dark:border-[#262420]">
             {onViewFullGownPage && (
               <button
                 onClick={() => onViewFullGownPage(gown)}
-                className="w-full bg-[#111111] hover:bg-[#252422] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer border border-[#C59B3F]/50"
+                className="w-full bg-[#111111] dark:bg-[#1E1C1A] hover:bg-[#252422] text-white py-3.5 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer border border-[#C59B3F]/50"
               >
                 <span>VIEW FULL EDITORIAL LOOKBOOK</span>
               </button>
@@ -139,7 +139,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
             {onRentGown && (
               <button
                 onClick={() => onRentGown(gown.name)}
-                className="w-full bg-neutral-900 hover:bg-black text-white py-3 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full bg-neutral-900 dark:bg-[#2A2724] hover:bg-black dark:hover:bg-[#383430] text-white py-3 px-5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>REQUEST RENTAL AVAILABILITY</span>
               </button>
@@ -157,7 +157,7 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
               href={buildWhatsAppUrl({ type: 'gown', gownName: gown.name, gownCode: gown.code })}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#0E1511] hover:bg-[#16231B] text-white py-3 px-5 text-xs font-semibold tracking-[0.18em] uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer border border-[#25D366]/40 hover:border-[#25D366]"
+              className="w-full bg-[#0E1511] dark:bg-[#121E17] hover:bg-[#16231B] text-white py-3 px-5 text-xs font-semibold tracking-[0.18em] uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer border border-[#25D366]/40 hover:border-[#25D366]"
             >
               <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
               <span>WHATSAPP GOWN ENQUIRY</span>
@@ -167,13 +167,13 @@ export const GownDetailModal: React.FC<GownDetailModalProps> = ({
               href={BRAND_CONTACT.socials.instagram.url}
               target="_blank"
               rel="noreferrer"
-              className="w-full border border-neutral-800 hover:border-[#C59B3F] hover:text-[#C59B3F] text-neutral-900 py-3 px-5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full border border-neutral-800 dark:border-neutral-600 hover:border-[#C59B3F] hover:text-[#C59B3F] dark:hover:border-[#C59B3F] dark:hover:text-[#C59B3F] text-neutral-900 dark:text-neutral-200 py-3 px-5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer"
             >
               <Instagram className="w-4 h-4 text-[#C59B3F]" />
               <span>Inquire on Instagram ({BRAND_CONTACT.socials.instagram.handle})</span>
             </a>
 
-            <p className="text-[10.5px] text-center text-neutral-500 font-light pt-1">
+            <p className="text-[10.5px] text-center text-neutral-500 dark:text-neutral-400 font-light pt-1">
               {BRAND_CONTACT.location} • {BRAND_CONTACT.whatsapp.internationalDisplay}
             </p>
           </div>

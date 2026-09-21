@@ -38,18 +38,18 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
   return (
     <section 
       id="featured-collections" 
-      className="py-20 lg:py-28 bg-[#FBF9F5] border-b border-[#EFECE5] relative"
+      className="py-20 lg:py-28 bg-[#FBF9F5] dark:bg-[#121110] border-b border-[#EFECE5] dark:border-white/10 relative transition-colors duration-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div className="space-y-2">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#111111] tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#111111] dark:text-[#F8F5EE] tracking-tight">
               DISCOVER THE COLLECTIONS
             </h2>
             <div className="w-12 h-[2px] bg-[#C59B3F]" />
-            <p className="font-sans text-xs sm:text-sm text-neutral-600 font-light">
+            <p className="font-sans text-xs sm:text-sm text-neutral-600 dark:text-[#D4CEC3] font-light">
               Explore BEAJAY's current bridal collections.
             </p>
           </div>
@@ -64,7 +64,7 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
                   onOpenModal('collections');
                 }
               }}
-              className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.2em] uppercase text-[#111111] hover:text-[#C59B3F] transition-colors cursor-pointer"
+              className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.2em] uppercase text-[#111111] dark:text-[#F8F5EE] hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer"
             >
               <span>VIEW ALL COLLECTIONS</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F]" />
@@ -75,14 +75,14 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
               <button
                 onClick={() => scroll('left')}
                 aria-label="Scroll left"
-                className="w-10 h-10 border border-[#D5CEC0] bg-white hover:border-[#C59B3F] hover:bg-[#FAF8F5] text-neutral-800 flex items-center justify-center transition-colors cursor-pointer shadow-xs"
+                className="w-10 h-10 border border-[#D5CEC0] dark:border-white/15 bg-white dark:bg-[#1C1B19] hover:border-[#C59B3F] hover:bg-[#FAF8F5] dark:hover:bg-[#262421] text-neutral-800 dark:text-[#F8F5EE] flex items-center justify-center transition-colors cursor-pointer shadow-xs"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={() => scroll('right')}
                 aria-label="Scroll right"
-                className="w-10 h-10 border border-[#D5CEC0] bg-white hover:border-[#C59B3F] hover:bg-[#FAF8F5] text-neutral-800 flex items-center justify-center transition-colors cursor-pointer shadow-xs"
+                className="w-10 h-10 border border-[#D5CEC0] dark:border-white/15 bg-white dark:bg-[#1C1B19] hover:border-[#C59B3F] hover:bg-[#FAF8F5] dark:hover:bg-[#262421] text-neutral-800 dark:text-[#F8F5EE] flex items-center justify-center transition-colors cursor-pointer shadow-xs"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -109,7 +109,7 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
                 className="group shrink-0 w-[280px] sm:w-[320px] md:w-auto snap-start cursor-pointer flex flex-col"
               >
                 {/* Image Container with Editorial Proportions */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-neutral-200 border border-[#E9E4DB] group-hover:border-[#C59B3F] transition-colors">
+                <div className="relative aspect-[3/4] overflow-hidden bg-neutral-200 dark:bg-[#1A1918] border border-[#E9E4DB] dark:border-white/10 group-hover:border-[#C59B3F] transition-colors">
                   <img
                     src={catOpt.src}
                     srcSet={catOpt.srcSet}
@@ -134,7 +134,7 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
                           handleCategoryClick(category.slug);
                         }
                       }}
-                      className="w-full bg-[#FCFAF7] hover:bg-[#C59B3F] hover:text-white text-[#111111] py-2.5 px-3 text-[11px] font-semibold tracking-[0.16em] uppercase transition-colors shadow-md"
+                      className="w-full bg-[#FCFAF7] dark:bg-[#22201E] hover:bg-[#C59B3F] dark:hover:bg-[#C59B3F] hover:text-white dark:hover:text-[#0C0C0B] text-[#111111] dark:text-[#F8F5EE] py-2.5 px-3 text-[11px] font-semibold tracking-[0.16em] uppercase transition-colors shadow-md"
                     >
                       EXPLORE SILHOUETTES
                     </button>
@@ -143,10 +143,10 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
 
                 {/* Category Caption Below Image */}
                 <div className="pt-4 text-center space-y-1">
-                  <h3 className="font-sans text-xs sm:text-[13px] font-semibold tracking-[0.24em] uppercase text-[#111111] group-hover:text-[#C59B3F] transition-colors">
+                  <h3 className="font-sans text-xs sm:text-[13px] font-semibold tracking-[0.24em] uppercase text-[#111111] dark:text-[#F8F5EE] group-hover:text-[#C59B3F] dark:group-hover:text-[#E6C875] transition-colors">
                     {category.name}
                   </h3>
-                  <p className="text-[12px] text-neutral-500 font-light line-clamp-2">
+                  <p className="text-[12px] text-neutral-500 dark:text-[#A39D93] font-light line-clamp-2">
                     {category.description}
                   </p>
                 </div>
@@ -156,8 +156,8 @@ export const FeaturedCollectionSection: React.FC<FeaturedCollectionSectionProps>
         </div>
 
         {/* Editorial Subline */}
-        <div className="mt-8 text-center border-t border-[#EFECE5] pt-6">
-          <p className="text-xs text-neutral-500 font-light tracking-wider">
+        <div className="mt-8 text-center border-t border-[#EFECE5] dark:border-white/10 pt-6">
+          <p className="text-xs text-neutral-500 dark:text-[#A39D93] font-light tracking-wider">
             Gowns in our collection are available for fittings, consultations, or rental requests with BEAJAY COUTURE BRIDAL in Enugu, Nigeria.
           </p>
         </div>

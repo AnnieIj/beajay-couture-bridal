@@ -47,15 +47,15 @@ export const GownCard: React.FC<GownCardProps> = ({
       tabIndex={0}
       role="button"
       aria-label={`View ${gown.name}`}
-      className={`group relative flex flex-col bg-white border border-[#EFE9DF] hover:border-[#C59B3F]/60 transition-all duration-500 cursor-pointer overflow-hidden ${
+      className={`group relative flex flex-col bg-white dark:bg-[#161514] border border-[#EFE9DF] dark:border-white/10 hover:border-[#C59B3F]/60 dark:hover:border-[#C59B3F]/70 transition-all duration-500 cursor-pointer overflow-hidden ${
         featured ? 'md:col-span-2' : ''
       }`}
     >
       {/* Editorial Image Container */}
-      <div className="relative aspect-[3/4] w-full bg-[#F4F0E8] overflow-hidden">
+      <div className="relative aspect-[3/4] w-full bg-[#F4F0E8] dark:bg-[#1C1B19] overflow-hidden">
         {/* Loading Placeholder Skeleton */}
         {!imageLoaded && !hasError && (
-          <div className="absolute inset-0 bg-[#EFE9DF] animate-pulse" />
+          <div className="absolute inset-0 bg-[#EFE9DF] dark:bg-[#22201E] animate-pulse" />
         )}
 
         {/* Primary Image: stays visible until secondary image is loaded */}
@@ -109,30 +109,30 @@ export const GownCard: React.FC<GownCardProps> = ({
       </div>
 
       {/* Gown Info */}
-      <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 bg-white">
+      <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 bg-white dark:bg-[#161514]">
         <div className="space-y-1.5">
-          <div className="flex items-center justify-between text-[10px] tracking-[0.22em] uppercase text-[#856122] font-medium">
+          <div className="flex items-center justify-between text-[10px] tracking-[0.22em] uppercase text-[#856122] dark:text-[#E6C875] font-medium">
             <span>{gown.categoryLabel}</span>
-            <span className="text-neutral-400 font-normal">{gown.silhouette.split(' ')[0]}</span>
+            <span className="text-neutral-400 dark:text-[#A39D93] font-normal">{gown.silhouette.split(' ')[0]}</span>
           </div>
 
-          <h3 className="font-serif text-lg sm:text-xl text-[#111111] group-hover:text-[#856122] transition-colors leading-snug line-clamp-1">
+          <h3 className="font-serif text-lg sm:text-xl text-[#111111] dark:text-[#F8F5EE] group-hover:text-[#856122] dark:group-hover:text-[#E6C875] transition-colors leading-snug line-clamp-1">
             {gown.name}
           </h3>
 
-          <p className="text-xs text-neutral-500 font-light line-clamp-2 leading-relaxed pt-0.5">
+          <p className="text-xs text-neutral-500 dark:text-[#D4CEC3] font-light line-clamp-2 leading-relaxed pt-0.5">
             {gown.description}
           </p>
         </div>
 
         {/* Bottom Bar: Action Trigger */}
-        <div className="pt-3.5 mt-3 border-t border-[#F2ECE0] flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.18em] uppercase text-[#111111] group-hover:text-[#C59B3F] transition-colors">
+        <div className="pt-3.5 mt-3 border-t border-[#F2ECE0] dark:border-white/10 flex items-center justify-between">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.18em] uppercase text-[#111111] dark:text-[#F8F5EE] group-hover:text-[#C59B3F] dark:group-hover:text-[#E6C875] transition-colors">
             <span>VIEW GOWN</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </span>
 
-          <span className="text-[10px] text-[#856122] tracking-wider uppercase font-medium">
+          <span className="text-[10px] text-[#856122] dark:text-[#E6C875] tracking-wider uppercase font-medium">
             Rental on Request
           </span>
         </div>

@@ -37,20 +37,20 @@ export const BridalExperienceSection: React.FC<BridalExperienceSectionProps> = (
   return (
     <section 
       id="bridal-experience" 
-      className="py-20 lg:py-28 bg-[#F8F5EE] border-b border-[#EAE3D5]"
+      className="py-20 lg:py-28 bg-[#F8F5EE] dark:bg-[#121110] border-b border-[#EAE3D5] dark:border-white/10 transition-colors duration-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <span className="text-[10px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-[#C59B3F]">
+          <span className="text-[10px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-[#C59B3F] dark:text-[#E6C875]">
             THE BEAJAY JOURNEY
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#111111] tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#111111] dark:text-[#F8F5EE] tracking-tight">
             The Bridal Experience
           </h2>
           <div className="w-12 h-[2px] bg-[#C59B3F] mx-auto my-3" />
-          <p className="text-sm text-neutral-600 font-light leading-relaxed">
+          <p className="text-sm text-neutral-600 dark:text-[#D4CEC3] font-light leading-relaxed">
             From initial exploration to your fitting or consultation, discover a dedicated bridal experience with BEAJAY COUTURE BRIDAL.
           </p>
         </div>
@@ -62,31 +62,31 @@ export const BridalExperienceSection: React.FC<BridalExperienceSectionProps> = (
             return (
               <div 
                 key={step.number}
-                className="bg-white border border-[#E8E1D2] p-8 flex flex-col justify-between hover:border-[#C59B3F] transition-all duration-300 relative group shadow-xs hover:shadow-md"
+                className="bg-white dark:bg-[#161514] border border-[#E8E1D2] dark:border-white/10 p-8 flex flex-col justify-between hover:border-[#C59B3F] dark:hover:border-[#C59B3F] transition-all duration-300 relative group shadow-xs hover:shadow-md"
               >
                 {/* Step Number In Gold */}
                 <div className="flex items-center justify-between mb-8">
-                  <span className="font-serif text-3xl font-light text-[#C59B3F] group-hover:scale-105 transition-transform">
+                  <span className="font-serif text-3xl font-light text-[#C59B3F] dark:text-[#E6C875] group-hover:scale-105 transition-transform">
                     {step.number}
                   </span>
-                  <div className="w-10 h-10 bg-[#FAF7F2] border border-[#E5DEC9] flex items-center justify-center text-[#856122] group-hover:bg-[#C59B3F] group-hover:text-white transition-colors">
+                  <div className="w-10 h-10 bg-[#FAF7F2] dark:bg-[#201E1C] border border-[#E5DEC9] dark:border-white/15 flex items-center justify-center text-[#856122] dark:text-[#E6C875] group-hover:bg-[#C59B3F] group-hover:text-white transition-colors">
                     <Icon className="w-4 h-4" />
                   </div>
                 </div>
 
                 <div className="space-y-2.5">
-                  <h3 className="font-serif text-xl font-normal text-[#111111] group-hover:text-[#C59B3F] transition-colors">
+                  <h3 className="font-serif text-xl font-normal text-[#111111] dark:text-[#F8F5EE] group-hover:text-[#C59B3F] dark:group-hover:text-[#E6C875] transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-light">
+                  <p className="text-xs sm:text-[13px] text-neutral-600 dark:text-[#D4CEC3] leading-relaxed font-light">
                     {step.description}
                   </p>
                 </div>
 
                 {/* Subtitle Accent line */}
-                <div className="mt-6 pt-4 border-t border-[#F2ECE0] flex items-center justify-between text-[10px] tracking-[0.2em] uppercase text-neutral-400">
+                <div className="mt-6 pt-4 border-t border-[#F2ECE0] dark:border-white/10 flex items-center justify-between text-[10px] tracking-[0.2em] uppercase text-neutral-400 dark:text-[#A39D93]">
                   <span>Step {idx + 1} of 4</span>
-                  <span className="text-[#C59B3F] group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="text-[#C59B3F] dark:text-[#E6C875] group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             );
@@ -97,10 +97,10 @@ export const BridalExperienceSection: React.FC<BridalExperienceSectionProps> = (
         <div className="mt-14 text-center">
           <button
             onClick={() => onOpenModal('appointment')}
-            className="inline-flex items-center gap-3 bg-[#111111] hover:bg-[#262420] text-white px-8 py-4 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-md cursor-pointer border border-transparent hover:border-[#C59B3F]"
+            className="inline-flex items-center gap-3 bg-[#111111] dark:bg-[#C59B3F] hover:bg-[#262420] dark:hover:bg-[#B3892F] text-white dark:text-[#0C0C0B] px-8 py-4 text-xs font-semibold tracking-[0.2em] uppercase transition-colors shadow-md cursor-pointer border border-transparent hover:border-[#C59B3F]"
           >
             <span>BOOK A FITTING OR CONSULTATION</span>
-            <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
+            <ArrowRight className="w-4 h-4 text-[#C59B3F] dark:text-[#0C0C0B]" />
           </button>
         </div>
 

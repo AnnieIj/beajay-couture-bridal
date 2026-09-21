@@ -213,7 +213,7 @@ export default function App() {
     : 'home';
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FCFAF7] text-[#1A1A1A] font-sans">
+    <div className="min-h-screen flex flex-col bg-[#FCFAF7] dark:bg-[#121110] text-[#1A1A1A] dark:text-[#E8E4DD] font-sans transition-colors duration-300">
       
       {/* Top Announcement Bar */}
       <AnnouncementBar onContactClick={() => navigateToContact()} />

@@ -142,15 +142,15 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
   };
 
   return (
-    <div className="bg-[#FCFAF7] min-h-screen text-[#1A1A1A] pt-24 sm:pt-28 pb-20">
+    <div className="bg-[#FCFAF7] dark:bg-[#0C0C0B] min-h-screen text-[#1A1A1A] dark:text-[#F8F5EE] pt-24 sm:pt-28 pb-20">
       
       {/* =========================================================================
           1. RESTRAINED EDITORIAL HERO
           ========================================================================= */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12 sm:pb-16 text-center border-b border-[#EAE3D5]">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12 sm:pb-16 text-center border-b border-[#EAE3D5] dark:border-white/10">
         
         {/* Subtle Decorative Atmosphere */}
-        <div className="inline-flex items-center gap-2 mb-4 px-3.5 py-1.5 rounded-full bg-[#F5EFE4] border border-[#E3D9C6] text-[#8C6B28]">
+        <div className="inline-flex items-center gap-2 mb-4 px-3.5 py-1.5 rounded-full bg-[#F5EFE4] dark:bg-[#1C1B19] border border-[#E3D9C6] dark:border-white/15 text-[#8C6B28] dark:text-[#E6C875]">
           <Sparkles className="w-3.5 h-3.5 text-[#C59B3F]" />
           <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase">
             THE BEAJAY GALLERY
@@ -158,7 +158,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
         </div>
 
         {/* Primary Heading */}
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-[#111111] tracking-tight mb-5 max-w-4xl mx-auto leading-[1.12]">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-[#111111] dark:text-[#F8F5EE] tracking-tight mb-5 max-w-4xl mx-auto leading-[1.12]">
           BEAJAY Bridal Stories
         </h1>
 
@@ -166,24 +166,24 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
         <div className="w-16 h-[2px] bg-[#C59B3F] mx-auto mb-6" />
 
         {/* Supporting Copy */}
-        <p className="font-sans text-sm sm:text-base text-neutral-600 font-light max-w-2xl mx-auto leading-relaxed mb-4">
+        <p className="font-sans text-sm sm:text-base text-neutral-600 dark:text-[#D4CEC3] font-light max-w-2xl mx-auto leading-relaxed mb-4">
           Bridal moments, fittings, details and stories from BEAJAY.
         </p>
 
         {/* Brand Statement */}
-        <p className="font-serif text-xs sm:text-sm tracking-[0.16em] uppercase text-[#856122] font-medium">
+        <p className="font-serif text-xs sm:text-sm tracking-[0.16em] uppercase text-[#856122] dark:text-[#E6C875] font-medium">
           Crafted in Nigeria. Made for Brides Everywhere.
         </p>
 
         {/* Restrained Instagram Follower Link */}
-        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-neutral-500">
+        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-neutral-500 dark:text-[#A39D93]">
           <Instagram className="w-3.5 h-3.5 text-[#C59B3F]" />
-          <span className="text-[11px] font-semibold tracking-wider uppercase text-neutral-700">FOLLOW THE JOURNEY:</span>
+          <span className="text-[11px] font-semibold tracking-wider uppercase text-neutral-700 dark:text-[#D4CEC3]">FOLLOW THE JOURNEY:</span>
           <a
             href="https://instagram.com/beajaycouture_bridal"
             target="_blank"
             rel="noreferrer"
-            className="text-[#111111] hover:text-[#C59B3F] font-medium underline underline-offset-4 transition-colors"
+            className="text-[#111111] dark:text-[#F8F5EE] hover:text-[#C59B3F] font-medium underline underline-offset-4 transition-colors"
           >
             @beajaycouture_bridal
           </a>
@@ -196,7 +196,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
       {shouldShowFilters && (
         <nav 
           aria-label="Gallery category filters"
-          className="sticky top-[72px] sm:top-[80px] z-30 bg-[#FCFAF7]/95 backdrop-blur-md border-b border-[#EAE3D5] py-3.5 sm:py-4 px-4 sm:px-6 mb-10 shadow-xs"
+          className="sticky top-[72px] sm:top-[80px] z-30 bg-[#FCFAF7]/95 dark:bg-[#0C0C0B]/95 backdrop-blur-md border-b border-[#EAE3D5] dark:border-white/10 py-3.5 sm:py-4 px-4 sm:px-6 mb-10 shadow-xs"
         >
           <div className="max-w-7xl mx-auto flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar scroll-smooth gap-2 sm:gap-3 py-1">
             {GALLERY_CATEGORIES.map((cat) => {
@@ -214,13 +214,13 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
                   onClick={() => handleCategoryChange(cat.id)}
                   className={`min-h-[44px] px-4 sm:px-5 py-2 text-xs tracking-[0.16em] uppercase whitespace-nowrap transition-all duration-300 font-medium cursor-pointer border flex items-center gap-2 ${
                     isActive
-                      ? 'bg-[#141312] text-[#F3EFE6] border-[#141312] shadow-sm'
-                      : 'bg-[#F9F6F0] text-neutral-700 hover:text-black border-[#E4DCD0] hover:border-[#C59B3F]'
+                      ? 'bg-[#141312] dark:bg-[#C59B3F] text-[#F3EFE6] dark:text-[#0C0C0B] border-[#141312] dark:border-[#C59B3F] shadow-sm'
+                      : 'bg-[#F9F6F0] dark:bg-[#1C1B19] text-neutral-700 dark:text-[#D4CEC3] hover:text-black dark:hover:text-white border-[#E4DCD0] dark:border-white/15 hover:border-[#C59B3F]'
                   }`}
                   aria-pressed={isActive}
                 >
                   <span>{cat.label}</span>
-                  <span className={`text-[10px] font-mono ${isActive ? 'text-[#C59B3F]' : 'text-neutral-400'}`}>
+                  <span className={`text-[10px] font-mono ${isActive ? 'text-[#C59B3F] dark:text-[#0C0C0B]' : 'text-neutral-400'}`}>
                     ({count})
                   </span>
                 </button>
@@ -258,10 +258,10 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
                     tabIndex={0}
                     role="button"
                     aria-label={`View photograph: ${item.title}`}
-                    className={`group relative overflow-hidden bg-[#F3EFE6] cursor-pointer transition-all duration-300 border border-[#EAE3D5] hover:border-[#C59B3F] shadow-xs hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#C59B3F] focus:ring-offset-2 ${getItemMarginBottom(globalIndex, columnCount)}`}
+                    className={`group relative overflow-hidden bg-[#F3EFE6] dark:bg-[#161514] cursor-pointer transition-all duration-300 border border-[#EAE3D5] dark:border-white/10 hover:border-[#C59B3F] shadow-xs hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#C59B3F] focus:ring-offset-2 ${getItemMarginBottom(globalIndex, columnCount)}`}
                   >
                     {/* Image Container preserving natural orientation and natural image heights */}
-                    <div className="relative w-full overflow-hidden bg-neutral-100">
+                    <div className="relative w-full overflow-hidden bg-neutral-100 dark:bg-[#1C1B19]">
                       <img
                         src={opt.src}
                         srcSet={opt.srcSet}
@@ -306,62 +306,62 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
         {/* Progressive Loading: Load More Action */}
         {hasMore && (
           <div className="mt-12 sm:mt-16 text-center space-y-3">
-            <div className="text-xs font-sans tracking-[0.2em] uppercase text-neutral-500">
+            <div className="text-xs font-sans tracking-[0.2em] uppercase text-neutral-500 dark:text-[#A39D93]">
               Showing {displayedItems.length} of {filteredItems.length} Photographs
             </div>
-            <div className="w-24 h-[1px] bg-[#EAE3D5] mx-auto mb-4" />
+            <div className="w-24 h-[1px] bg-[#EAE3D5] dark:bg-white/10 mx-auto mb-4" />
             <button
               onClick={handleLoadMore}
-              className="inline-flex items-center justify-center gap-3 min-h-[44px] px-8 py-4 bg-[#141312] hover:bg-[#252422] text-[#F3EFE6] text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 border border-transparent hover:border-[#C59B3F] cursor-pointer shadow-md hover:shadow-lg active:scale-98"
+              className="inline-flex items-center justify-center gap-3 min-h-[44px] px-8 py-4 bg-[#141312] dark:bg-[#C59B3F] hover:bg-[#252422] dark:hover:bg-[#B3892F] text-[#F3EFE6] dark:text-[#0C0C0B] text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 border border-transparent hover:border-[#C59B3F] cursor-pointer shadow-md hover:shadow-lg active:scale-98"
             >
               <span>LOAD MORE PHOTOGRAPHS</span>
-              <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
+              <ArrowRight className="w-4 h-4 text-[#C59B3F] dark:text-[#0C0C0B]" />
             </button>
           </div>
         )}
 
         {!hasMore && filteredItems.length > 16 && (
-          <div className="mt-12 text-center text-xs font-sans tracking-[0.2em] uppercase text-neutral-400">
+          <div className="mt-12 text-center text-xs font-sans tracking-[0.2em] uppercase text-neutral-400 dark:text-[#A39D93]">
             All {filteredItems.length} Photographs Loaded
           </div>
         )}
 
         {/* Fallback state if filteredItems is empty */}
         {filteredItems.length === 0 && (
-          <div className="text-center py-16 sm:py-20 bg-white border border-[#EAE3D5] p-8 sm:p-12 max-w-3xl mx-auto shadow-xs space-y-6">
-            <div className="w-12 h-12 rounded-full bg-[#FAF7F2] border border-[#E8E2D5] flex items-center justify-center text-[#C59B3F] mx-auto">
+          <div className="text-center py-16 sm:py-20 bg-white dark:bg-[#161514] border border-[#EAE3D5] dark:border-white/10 p-8 sm:p-12 max-w-3xl mx-auto shadow-xs space-y-6">
+            <div className="w-12 h-12 rounded-full bg-[#FAF7F2] dark:bg-[#22201E] border border-[#E8E2D5] dark:border-white/15 flex items-center justify-center text-[#C59B3F] mx-auto">
               <Sparkles className="w-5 h-5" />
             </div>
 
             <div className="space-y-2">
-              <p className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-[#856122]">
+              <p className="font-sans text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-[#856122] dark:text-[#E6C875]">
                 BEAJAY BRIDAL STORIES
               </p>
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-[#111111] max-w-2xl mx-auto leading-snug">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-[#111111] dark:text-[#F8F5EE] max-w-2xl mx-auto leading-snug">
                 Bridal moments, fittings, details and stories from BEAJAY.
               </h2>
             </div>
 
             <div className="w-12 h-[1.5px] bg-[#C59B3F] mx-auto" />
 
-            <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xl mx-auto leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-[#D4CEC3] font-light max-w-xl mx-auto leading-relaxed">
               Our bridal gallery is reserved for authentic visual stories from BEAJAY COUTURE BRIDAL—including personalized bridal fittings in Enugu, hand-crafted couture details, and memorable bridal moments.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <button
                 onClick={onNavigateCollections}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#111111] hover:bg-[#252422] text-[#F3EFE6] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#111111] dark:bg-[#C59B3F] hover:bg-[#252422] dark:hover:bg-[#B3892F] text-[#F3EFE6] dark:text-[#0C0C0B] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors cursor-pointer border border-transparent hover:border-[#C59B3F]"
               >
                 <span>EXPLORE COLLECTIONS</span>
-                <ArrowRight className="w-4 h-4 text-[#C59B3F]" />
+                <ArrowRight className="w-4 h-4 text-[#C59B3F] dark:text-[#0C0C0B]" />
               </button>
 
               <a
                 href="https://instagram.com/beajaycouture_bridal"
                 target="_blank"
                 rel="noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FAF7F2] hover:bg-[#F2ECE0] text-[#111111] border border-[#D5CEC0] px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FAF7F2] dark:bg-[#22201E] hover:bg-[#F2ECE0] dark:hover:bg-[#2C2A26] text-[#111111] dark:text-[#F8F5EE] border border-[#D5CEC0] dark:border-white/15 px-6 py-3.5 text-xs font-semibold tracking-[0.16em] uppercase transition-colors"
               >
                 <Instagram className="w-4 h-4 text-[#C59B3F]" />
                 <span>FOLLOW BEAJAY ON INSTAGRAM</span>
@@ -404,29 +404,29 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
           5. SUBTLE EDITORIAL CTA: BRIDAL APPOINTMENT CONNECTION
           ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="text-center py-12 sm:py-16 px-6 bg-[#F5EFE4] border border-[#E3D9C6]">
-          <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-[#856122] block mb-2">
+        <div className="text-center py-12 sm:py-16 px-6 bg-[#F5EFE4] dark:bg-[#161514] border border-[#E3D9C6] dark:border-white/10">
+          <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-[#856122] dark:text-[#E6C875] block mb-2">
             EXPERIENCE THE COLLECTION
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#111111] font-normal mb-3">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#111111] dark:text-[#F8F5EE] font-normal mb-3">
             Begin your personal BEAJAY bridal experience.
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-md mx-auto mb-6 leading-relaxed">
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-[#D4CEC3] font-light max-w-md mx-auto mb-6 leading-relaxed">
             Reserve a bridal fitting consultation in Enugu, Nigeria or discover signature designs available for purchase and rental.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {onBookAppointment && (
               <button
                 onClick={onBookAppointment}
-                className="group min-h-[44px] inline-flex items-center gap-2 px-6 py-3 bg-[#111111] hover:bg-black text-[#FAF7F2] font-medium text-xs tracking-[0.18em] uppercase transition-colors cursor-pointer shadow-sm"
+                className="group min-h-[44px] inline-flex items-center gap-2 px-6 py-3 bg-[#111111] dark:bg-[#C59B3F] hover:bg-black dark:hover:bg-[#B3892F] text-[#FAF7F2] dark:text-[#0C0C0B] font-medium text-xs tracking-[0.18em] uppercase transition-colors cursor-pointer shadow-sm"
               >
                 <span>BOOK APPOINTMENT</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F]" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#C59B3F] dark:text-[#0C0C0B]" />
               </button>
             )}
             <button
               onClick={onNavigateCollections}
-              className="min-h-[44px] px-6 py-3 border border-[#856122] hover:bg-[#EBE2D3] text-[#111111] font-medium text-xs tracking-[0.18em] uppercase transition-colors cursor-pointer"
+              className="min-h-[44px] px-6 py-3 border border-[#856122] dark:border-[#C59B3F] hover:bg-[#EBE2D3] dark:hover:bg-[#22201E] text-[#111111] dark:text-[#F8F5EE] font-medium text-xs tracking-[0.18em] uppercase transition-colors cursor-pointer"
             >
               DISCOVER THE COLLECTION
             </button>
@@ -438,14 +438,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
           6. RESTRAINED INSTAGRAM INVITATION
           ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between py-6 px-6 sm:px-8 bg-white border border-[#EAE3D5] text-xs gap-4">
-          <div className="flex items-center gap-3 text-neutral-700">
+        <div className="flex flex-col sm:flex-row items-center justify-between py-6 px-6 sm:px-8 bg-white dark:bg-[#161514] border border-[#EAE3D5] dark:border-white/10 text-xs gap-4">
+          <div className="flex items-center gap-3 text-neutral-700 dark:text-[#D4CEC3]">
             <Instagram className="w-5 h-5 text-[#C59B3F] shrink-0" />
             <div>
-              <span className="font-semibold tracking-wider uppercase text-[#111111] block text-[11px]">
+              <span className="font-semibold tracking-wider uppercase text-[#111111] dark:text-[#F8F5EE] block text-[11px]">
                 FOLLOW BEAJAY
               </span>
-              <span className="text-neutral-500 font-light">
+              <span className="text-neutral-500 dark:text-[#A39D93] font-light">
                 Discover bridal silhouettes, design previews, and veil details.
               </span>
             </div>
@@ -454,7 +454,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
             href="https://instagram.com/beajaycouture_bridal"
             target="_blank"
             rel="noreferrer"
-            className="min-h-[44px] inline-flex items-center gap-2 px-5 py-2.5 border border-[#141312] text-[#111111] hover:bg-[#141312] hover:text-white font-medium text-[11px] tracking-widest uppercase transition-colors shrink-0"
+            className="min-h-[44px] inline-flex items-center gap-2 px-5 py-2.5 border border-[#141312] dark:border-white/20 text-[#111111] dark:text-[#F8F5EE] hover:bg-[#141312] hover:text-white dark:hover:bg-white/10 font-medium text-[11px] tracking-widest uppercase transition-colors shrink-0"
           >
             <span>SEE MORE ON INSTAGRAM • @beajaycouture_bridal</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#C59B3F]" />

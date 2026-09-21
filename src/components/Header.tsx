@@ -110,8 +110,8 @@ export const Header: React.FC<HeaderProps> = ({
       id="main-header"
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#FCFAF7]/95 backdrop-blur-md shadow-xs py-3.5 border-b border-[#EAE4D9]' 
-          : 'bg-[#FCFAF7] py-5 border-b border-[#EAE4D9]/80'
+          ? 'bg-[#FCFAF7]/95 dark:bg-[#0C0C0B]/95 backdrop-blur-md shadow-xs py-3.5 border-b border-[#EAE4D9] dark:border-white/10' 
+          : 'bg-[#FCFAF7] dark:bg-[#0C0C0B] py-5 border-b border-[#EAE4D9]/80 dark:border-white/10'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,12 +127,12 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center space-x-7 text-[11px] font-medium tracking-[0.14em] uppercase text-neutral-800">
+          <nav className="hidden xl:flex items-center space-x-7 text-[11px] font-medium tracking-[0.14em] uppercase text-neutral-800 dark:text-[#E8E3D8]">
             {/* Home */}
             <button 
               onClick={() => handleNavClick('home')}
-              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
-                activeView === 'home' ? 'text-[#C59B3F] font-semibold' : ''
+              className={`py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer ${
+                activeView === 'home' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
               }`}
             >
               Home
@@ -141,8 +141,8 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Collections */}
             <button 
               onClick={() => handleNavClick('featured-collections', 'collections')}
-              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
-                activeView === 'collections' ? 'text-[#C59B3F] font-semibold' : ''
+              className={`py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer ${
+                activeView === 'collections' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
               }`}
             >
               Collections
@@ -151,8 +151,8 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Rentals - Single Unified Direct Link */}
             <button
               onClick={() => handleNavClick('gown-rentals-section', 'rentals')}
-              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
-                activeView === 'rentals' ? 'text-[#C59B3F] font-semibold' : ''
+              className={`py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer ${
+                activeView === 'rentals' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
               }`}
             >
               Rentals
@@ -161,8 +161,8 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Gallery */}
             <button 
               onClick={() => handleNavClick('bridal-gallery', 'gallery')}
-              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
-                activeView === 'gallery' ? 'text-[#C59B3F] font-semibold' : ''
+              className={`py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer ${
+                activeView === 'gallery' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
               }`}
             >
               Gallery
@@ -171,8 +171,8 @@ export const Header: React.FC<HeaderProps> = ({
             {/* About */}
             <button 
               onClick={() => handleNavClick('about-page', 'about')}
-              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
-                activeView === 'about' ? 'text-[#C59B3F] font-semibold' : ''
+              className={`py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer ${
+                activeView === 'about' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
               }`}
             >
               About
@@ -181,7 +181,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Book Appointment */}
             <button 
               onClick={() => onOpenModal('appointment')}
-              className="py-2 hover:text-[#C59B3F] transition-colors cursor-pointer"
+              className="py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer"
             >
               Book Appointment
             </button>
@@ -189,8 +189,8 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Contact */}
             <button 
               onClick={() => handleNavClick('contact-page', 'contact')}
-              className={`py-2 hover:text-[#C59B3F] transition-colors cursor-pointer ${
-                activeView === 'contact' ? 'text-[#C59B3F] font-semibold' : ''
+              className={`py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer ${
+                activeView === 'contact' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
               }`}
             >
               Contact
@@ -204,7 +204,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={() => onOpenModal('search')}
               aria-label="Search Gowns"
-              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-700 hover:text-[#C59B3F] transition-colors cursor-pointer focus:outline-none"
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-700 dark:text-[#E8E3D8] hover:text-[#C59B3F] dark:hover:text-[#E6C875] transition-colors cursor-pointer focus:outline-none"
             >
               <Search className="w-5 h-5" />
             </button>
@@ -224,7 +224,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Mobile Hamburger Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-800 hover:text-[#C59B3F] focus:outline-none cursor-pointer"
+              className="xl:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-800 dark:text-[#F8F5EE] hover:text-[#C59B3F] dark:hover:text-[#E6C875] focus:outline-none cursor-pointer"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -239,52 +239,52 @@ export const Header: React.FC<HeaderProps> = ({
       {mobileMenuOpen && (
         <div 
           id="mobile-nav-menu"
-          className="xl:hidden bg-[#FCFAF7] border-b border-[#EAE4D9] px-6 py-6 space-y-4 shadow-xl animate-in slide-in-from-top-4 duration-200 max-h-[85vh] overflow-y-auto"
+          className="xl:hidden bg-[#FCFAF7] dark:bg-[#121110] border-b border-[#EAE4D9] dark:border-white/10 px-6 py-6 space-y-4 shadow-xl animate-in slide-in-from-top-4 duration-200 max-h-[85vh] overflow-y-auto"
         >
-          <div className="flex flex-col space-y-3 text-sm font-medium tracking-[0.12em] uppercase text-neutral-800 border-b border-[#EAE4D9] pb-5">
+          <div className="flex flex-col space-y-3 text-sm font-medium tracking-[0.12em] uppercase text-neutral-800 dark:text-[#F8F5EE] border-b border-[#EAE4D9] dark:border-white/10 pb-5">
             <button 
               onClick={() => handleNavClick('home')}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+              className="text-left py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] flex items-center justify-between cursor-pointer"
             >
               <span>Home</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">01</span>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">01</span>
             </button>
 
             <button 
               onClick={() => handleNavClick('featured-collections', 'collections')}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+              className="text-left py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] flex items-center justify-between cursor-pointer"
             >
               <span>Collections</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">02</span>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">02</span>
             </button>
 
             {/* Rentals - Direct link */}
             <button 
               onClick={() => handleNavClick('gown-rentals-section', 'rentals')}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+              className="text-left py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] flex items-center justify-between cursor-pointer"
             >
               <span>Rentals</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">03</span>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">03</span>
             </button>
 
             <button 
               onClick={() => handleNavClick('bridal-gallery', 'gallery')}
-              className={`text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer ${
-                activeView === 'gallery' ? 'text-[#C59B3F] font-semibold' : ''
+              className={`text-left py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] flex items-center justify-between cursor-pointer ${
+                activeView === 'gallery' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
               }`}
             >
               <span>Gallery</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">04</span>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">04</span>
             </button>
 
             <button 
               onClick={() => handleNavClick('about-page', 'about')}
-              className={`text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer ${
-                activeView === 'about' ? 'text-[#C59B3F] font-semibold' : ''
+              className={`text-left py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] flex items-center justify-between cursor-pointer ${
+                activeView === 'about' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
               }`}
             >
               <span>About</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">05</span>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">05</span>
             </button>
 
             <button 
@@ -292,25 +292,25 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 onOpenModal('appointment');
               }}
-              className="text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer"
+              className="text-left py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] flex items-center justify-between cursor-pointer"
             >
               <span>Book Appointment</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">06</span>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">06</span>
             </button>
 
             <button 
               onClick={() => handleNavClick('contact-page', 'contact')}
-              className={`text-left py-2 hover:text-[#C59B3F] flex items-center justify-between cursor-pointer ${
-                activeView === 'contact' ? 'text-[#C59B3F] font-semibold' : ''
+              className={`text-left py-2 hover:text-[#C59B3F] dark:hover:text-[#E6C875] flex items-center justify-between cursor-pointer ${
+                activeView === 'contact' ? 'text-[#C59B3F] dark:text-[#E6C875] font-semibold' : ''
               }`}
             >
               <span>Contact</span>
-              <span className="text-[10px] text-[#C59B3F] tracking-widest">07</span>
+              <span className="text-[10px] text-[#C59B3F] dark:text-[#E6C875] tracking-widest">07</span>
             </button>
 
             {/* Appearance Toggle */}
-            <div className="flex items-center justify-between py-2 border-t border-[#EAE4D9]/60 pt-3">
-              <span className="text-[11px] uppercase tracking-[0.16em] text-neutral-600 font-medium">Theme</span>
+            <div className="flex items-center justify-between py-2 border-t border-[#EAE4D9]/60 dark:border-white/10 pt-3">
+              <span className="text-[11px] uppercase tracking-[0.16em] text-neutral-600 dark:text-[#D4CEC3] font-medium">Theme</span>
               <ThemeToggle />
             </div>
           </div>
@@ -337,7 +337,7 @@ export const Header: React.FC<HeaderProps> = ({
               <span>CHAT ON WHATSAPP</span>
             </a>
 
-            <p className="text-center text-[11px] text-neutral-500 tracking-wider pt-1">
+            <p className="text-center text-[11px] text-neutral-500 dark:text-[#A39D93] tracking-wider pt-1">
               Enugu, Nigeria
             </p>
           </div>

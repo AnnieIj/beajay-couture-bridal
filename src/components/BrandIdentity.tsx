@@ -82,23 +82,23 @@ export const BrandIdentity: React.FC<BrandIdentityProps> = ({
       >
         {/* Dominant Wordmark: BEAJAY */}
         <div className="flex items-baseline whitespace-nowrap">
-          <span className="font-serif text-[18px] min-[360px]:text-[20px] sm:text-2xl lg:text-[27px] font-normal tracking-[0.14em] min-[360px]:tracking-[0.16em] sm:tracking-[0.18em] text-[#111111] group-hover:text-[#856122] transition-colors leading-none">
-            BEA<span className="font-serif italic font-normal text-[#856122] pr-[0.5px]">J</span>AY
+          <span className="font-serif text-[18px] min-[360px]:text-[20px] sm:text-2xl lg:text-[27px] font-normal tracking-[0.14em] min-[360px]:tracking-[0.16em] sm:tracking-[0.18em] text-[#111111] dark:text-[#F8F5EE] group-hover:text-[#856122] dark:group-hover:text-[#E6C875] transition-colors leading-none">
+            BEA<span className="font-serif italic font-normal text-[#856122] dark:text-[#E6C875] pr-[0.5px]">J</span>AY
           </span>
         </div>
 
         {/* Slender Vertical Fine Divider */}
         <span 
-          className="w-[1px] h-5 min-[360px]:h-6 sm:h-7 bg-[#DDD6C8] shrink-0" 
+          className="w-[1px] h-5 min-[360px]:h-6 sm:h-7 bg-[#DDD6C8] dark:bg-white/20 shrink-0" 
           aria-hidden="true" 
         />
 
         {/* Couture & Bridal Lockup */}
         <div className="flex flex-col justify-center leading-none space-y-[2px] sm:space-y-[3px] whitespace-nowrap">
-          <span className="font-sans text-[7.5px] min-[360px]:text-[8.5px] sm:text-[9.5px] font-semibold tracking-[0.28em] min-[360px]:tracking-[0.32em] uppercase text-[#1A1A1A]">
+          <span className="font-sans text-[7.5px] min-[360px]:text-[8.5px] sm:text-[9.5px] font-semibold tracking-[0.28em] min-[360px]:tracking-[0.32em] uppercase text-[#1A1A1A] dark:text-[#E5E0D6]">
             COUTURE
           </span>
-          <span className="font-sans text-[7px] min-[360px]:text-[8px] sm:text-[9px] font-semibold tracking-[0.30em] min-[360px]:tracking-[0.34em] uppercase text-[#856122]">
+          <span className="font-sans text-[7px] min-[360px]:text-[8px] sm:text-[9px] font-semibold tracking-[0.30em] min-[360px]:tracking-[0.34em] uppercase text-[#856122] dark:text-[#E6C875]">
             BRIDAL
           </span>
         </div>
@@ -155,15 +155,15 @@ export const BrandIdentity: React.FC<BrandIdentityProps> = ({
       <div className="flex justify-center mb-2">
         <CoutureEmblem className="w-6 h-6 text-[#C59B3F]" strokeColor="#C59B3F" fillColor="#C59B3F" />
       </div>
-      <h2 className="font-serif text-2xl sm:text-3xl font-light tracking-[0.2em] text-[#111111]">
-        BEA<span className="font-serif italic text-[#856122]">J</span>AY
+      <h2 className="font-serif text-2xl sm:text-3xl font-light tracking-[0.2em] text-[#111111] dark:text-[#F8F5EE]">
+        BEA<span className="font-serif italic text-[#856122] dark:text-[#E6C875]">J</span>AY
       </h2>
       <div className="flex items-center justify-center gap-2 pt-1">
-        <span className="font-sans text-[9px] font-semibold tracking-[0.32em] uppercase text-[#111111]">
+        <span className="font-sans text-[9px] font-semibold tracking-[0.32em] uppercase text-[#111111] dark:text-[#E5E0D6]">
           COUTURE
         </span>
-        <span className="w-1 h-1 rotate-45 bg-[#856122]" />
-        <span className="font-sans text-[8.5px] font-semibold tracking-[0.34em] uppercase text-[#856122]">
+        <span className="w-1 h-1 rotate-45 bg-[#856122] dark:bg-[#E6C875]" />
+        <span className="font-sans text-[8.5px] font-semibold tracking-[0.34em] uppercase text-[#856122] dark:text-[#E6C875]">
           BRIDAL
         </span>
       </div>

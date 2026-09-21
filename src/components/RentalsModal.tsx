@@ -252,22 +252,22 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
       aria-labelledby="rental-modal-title"
     >
       <div 
-        className="relative w-full h-full sm:h-auto sm:max-h-[92vh] sm:max-w-2xl lg:max-w-3xl bg-[#FCFAF7] border-0 sm:border sm:border-[#DCD5C5] shadow-2xl flex flex-col overflow-hidden"
+        className="relative w-full h-full sm:h-auto sm:max-h-[92vh] sm:max-w-2xl lg:max-w-3xl bg-[#FCFAF7] dark:bg-[#141312] border-0 sm:border sm:border-[#DCD5C5] dark:sm:border-[#2C2925] shadow-2xl flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="p-4 sm:p-6 border-b border-[#EAE3D5] flex items-center justify-between bg-white shrink-0">
+        <div className="p-4 sm:p-6 border-b border-[#EAE3D5] dark:border-[#262420] flex items-center justify-between bg-white dark:bg-[#181716] shrink-0">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] tracking-[0.24em] font-semibold text-[#856122] uppercase">
+              <span className="text-[10px] tracking-[0.24em] font-semibold text-[#856122] dark:text-[#E6C875] uppercase">
                 BEAJAY GOWN RENTALS
               </span>
-              <span className="text-neutral-300">•</span>
-              <span className="text-[10px] tracking-wider text-neutral-500 uppercase">
+              <span className="text-neutral-300 dark:text-neutral-600">•</span>
+              <span className="text-[10px] tracking-wider text-neutral-500 dark:text-neutral-400 uppercase">
                 Enugu, Nigeria & Worldwide
               </span>
             </div>
-            <h2 id="rental-modal-title" className="font-serif text-xl sm:text-2xl text-[#111111] font-normal mt-0.5">
+            <h2 id="rental-modal-title" className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-white font-normal mt-0.5">
               {step === 7 ? 'Request Received' : 'Rental Request'}
             </h2>
           </div>
@@ -275,7 +275,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
           <button
             onClick={onClose}
             aria-label="Close"
-            className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-neutral-900 rounded-full hover:bg-neutral-100 transition-colors cursor-pointer"
+            className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white rounded-full hover:bg-neutral-100 dark:hover:bg-[#252320] transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -283,13 +283,13 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
         {/* Multi-step Progress Bar (Steps 1 to 6) */}
         {step <= 6 && (
-          <div className="bg-[#FAF7F0] border-b border-[#EAE4D9] px-4 sm:px-6 py-2.5 flex items-center justify-between text-xs shrink-0">
+          <div className="bg-[#FAF7F0] dark:bg-[#1C1B18] border-b border-[#EAE4D9] dark:border-[#262420] px-4 sm:px-6 py-2.5 flex items-center justify-between text-xs shrink-0">
             <div className="flex items-center gap-2">
-              <span className="text-[10.5px] font-semibold tracking-wider text-[#856122] uppercase">
+              <span className="text-[10.5px] font-semibold tracking-wider text-[#856122] dark:text-[#E6C875] uppercase">
                 STEP {step} OF 6
               </span>
-              <span className="text-neutral-300">|</span>
-              <span className="text-[11px] text-neutral-700 font-medium">
+              <span className="text-neutral-300 dark:text-neutral-600">|</span>
+              <span className="text-[11px] text-neutral-700 dark:text-neutral-300 font-medium">
                 {step === 1 && 'Select Gown'}
                 {step === 2 && 'Renter Type'}
                 {step === 3 && 'Event & Dates'}
@@ -308,8 +308,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                     s === step 
                       ? 'w-6 bg-[#C59B3F]' 
                       : s < step 
-                      ? 'w-2 bg-[#856122]' 
-                      : 'w-2 bg-neutral-300'
+                      ? 'w-2 bg-[#856122] dark:bg-[#C59B3F]' 
+                      : 'w-2 bg-neutral-300 dark:bg-neutral-700'
                   }`}
                 />
               ))}
@@ -326,20 +326,20 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
           {step === 1 && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div className="space-y-1">
-                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] uppercase">
+                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] dark:text-[#E6C875] uppercase">
                   STEP 1
                 </span>
-                <h3 className="font-serif text-xl sm:text-2xl text-[#111111]">
+                <h3 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-white">
                   Choose Your Rental Silhouette
                 </h3>
-                <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
                   Select the couture gown you wish to request for rental. All BEAJAY bridal gowns and dresses are available for rental requests upon date confirmation.
                 </p>
               </div>
 
               {/* Selected Gown Feature Card */}
-              <div className="bg-white border border-[#EAE3D5] p-4 sm:p-5 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start shadow-xs">
-                <div className="relative w-28 sm:w-32 aspect-[3/4] bg-[#F4F0E8] overflow-hidden shrink-0 border border-[#E0D8C8]">
+              <div className="bg-white dark:bg-[#1A1917] border border-[#EAE3D5] dark:border-[#2C2925] p-4 sm:p-5 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start shadow-xs">
+                <div className="relative w-28 sm:w-32 aspect-[3/4] bg-[#F4F0E8] dark:bg-[#22201D] overflow-hidden shrink-0 border border-[#E0D8C8] dark:border-[#33302B]">
                   {(() => {
                     const opt = getOptimizedMedia(selectedGown.images?.[0] || selectedGown.image);
                     return (
@@ -359,22 +359,22 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
                 <div className="flex-1 space-y-2">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-[#856122]">
+                    <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-[#856122] dark:text-[#E6C875]">
                       {selectedGown.categoryLabel}
                     </span>
                   </div>
 
-                  <h4 className="font-serif text-lg sm:text-xl text-[#111111]">
+                  <h4 className="font-serif text-lg sm:text-xl text-[#111111] dark:text-white">
                     {selectedGown.name}
                   </h4>
 
-                  <p className="text-xs text-neutral-600 font-light line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-neutral-600 dark:text-neutral-300 font-light line-clamp-2 leading-relaxed">
                     {selectedGown.description}
                   </p>
 
                   {selectedGown.fabric && (
-                    <p className="text-[11px] text-neutral-500 font-light">
-                      <strong className="font-medium text-neutral-700">Fabric:</strong> {selectedGown.fabric}
+                    <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-light">
+                      <strong className="font-medium text-neutral-700 dark:text-neutral-200">Fabric:</strong> {selectedGown.fabric}
                     </p>
                   )}
                 </div>
@@ -382,17 +382,17 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
               {/* Gown Selector Dropdown */}
               <div className="space-y-1.5">
-                <label htmlFor="rental-gown-selector" className="block text-xs font-semibold tracking-wider uppercase text-neutral-800">
+                <label htmlFor="rental-gown-selector" className="block text-xs font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                   Select Gown for Rental Request
                 </label>
                 <select
                   id="rental-gown-selector"
                   value={selectedGown.id}
                   onChange={(e) => handleGownChange(e.target.value)}
-                  className="w-full px-3.5 py-3 bg-white border border-[#D5CDBF] text-xs text-neutral-900 focus:outline-none focus:border-[#C59B3F] transition-colors cursor-pointer"
+                  className="w-full px-3.5 py-3 bg-white dark:bg-[#1C1B19] border border-[#D5CDBF] dark:border-[#33302B] text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#C59B3F] transition-colors cursor-pointer"
                 >
                   {rentalGowns.map(g => (
-                    <option key={g.id} value={g.id}>
+                    <option key={g.id} value={g.id} className="dark:bg-[#1C1B19] dark:text-white">
                       {g.code} — {g.name} ({g.categoryLabel})
                     </option>
                   ))}
@@ -414,13 +414,13 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
           {step === 2 && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div className="space-y-1">
-                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] uppercase">
+                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] dark:text-[#E6C875] uppercase">
                   STEP 2
                 </span>
-                <h3 className="font-serif text-xl sm:text-2xl text-[#111111]">
+                <h3 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-white">
                   I am renting as:
                 </h3>
-                <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
                   Both individual brides and bridal vendors share this unified rental service. Selecting your profile ensures we gather the relevant fitting or commercial details.
                 </p>
               </div>
@@ -432,12 +432,12 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   onClick={() => setFormData({ ...formData, renterType: 'individual' })}
                   className={`p-5 sm:p-6 text-left border transition-all cursor-pointer flex flex-col justify-between space-y-4 ${
                     formData.renterType === 'individual'
-                      ? 'border-[#C59B3F] bg-[#FAF6EE] shadow-xs'
-                      : 'border-[#E2DAD0] bg-white hover:border-[#C59B3F]/60'
+                      ? 'border-[#C59B3F] bg-[#FAF6EE] dark:bg-[#242018] shadow-xs'
+                      : 'border-[#E2DAD0] dark:border-[#2E2B27] bg-white dark:bg-[#1A1917] hover:border-[#C59B3F]/60'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="w-9 h-9 rounded-full bg-white border border-[#E0D7C6] flex items-center justify-center text-[#856122]">
+                    <div className="w-9 h-9 rounded-full bg-white dark:bg-[#24221E] border border-[#E0D7C6] dark:border-[#3A3630] flex items-center justify-center text-[#856122] dark:text-[#E6C875]">
                       <User className="w-4 h-4" />
                     </div>
                     <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
@@ -450,10 +450,10 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   </div>
 
                   <div>
-                    <h4 className="font-serif text-base text-neutral-900 font-medium">
+                    <h4 className="font-serif text-base text-neutral-900 dark:text-white font-medium">
                       Individual / Bride
                     </h4>
-                    <p className="text-xs text-neutral-600 font-light mt-1 leading-relaxed">
+                    <p className="text-xs text-neutral-600 dark:text-neutral-300 font-light mt-1 leading-relaxed">
                       For brides, debutantes, or individuals renting directly for their own wedding or special occasion.
                     </p>
                   </div>
@@ -465,12 +465,12 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   onClick={() => setFormData({ ...formData, renterType: 'vendor' })}
                   className={`p-5 sm:p-6 text-left border transition-all cursor-pointer flex flex-col justify-between space-y-4 ${
                     formData.renterType === 'vendor'
-                      ? 'border-[#C59B3F] bg-[#FAF6EE] shadow-xs'
-                      : 'border-[#E2DAD0] bg-white hover:border-[#C59B3F]/60'
+                      ? 'border-[#C59B3F] bg-[#FAF6EE] dark:bg-[#242018] shadow-xs'
+                      : 'border-[#E2DAD0] dark:border-[#2E2B27] bg-white dark:bg-[#1A1917] hover:border-[#C59B3F]/60'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="w-9 h-9 rounded-full bg-white border border-[#E0D7C6] flex items-center justify-center text-[#856122]">
+                    <div className="w-9 h-9 rounded-full bg-white dark:bg-[#24221E] border border-[#E0D7C6] dark:border-[#3A3630] flex items-center justify-center text-[#856122] dark:text-[#E6C875]">
                       <Building className="w-4 h-4" />
                     </div>
                     <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
@@ -483,10 +483,10 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   </div>
 
                   <div>
-                    <h4 className="font-serif text-base text-neutral-900 font-medium">
+                    <h4 className="font-serif text-base text-neutral-900 dark:text-white font-medium">
                       Bridal Vendor / Business
                     </h4>
-                    <p className="text-xs text-neutral-600 font-light mt-1 leading-relaxed">
+                    <p className="text-xs text-neutral-600 dark:text-neutral-300 font-light mt-1 leading-relaxed">
                       For professional bridal stylists, wedding planners, photo agencies, or boutiques sourcing for clients.
                     </p>
                   </div>
@@ -494,8 +494,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               </div>
 
               {/* Brand statement */}
-              <div className="p-3.5 bg-[#FAF7F0] border border-[#EAE4D9] text-center text-[11px] text-neutral-600 font-light">
-                <span className="text-[#856122] font-medium uppercase tracking-wider">
+              <div className="p-3.5 bg-[#FAF7F0] dark:bg-[#1C1B18] border border-[#EAE4D9] dark:border-[#262420] text-center text-[11px] text-neutral-600 dark:text-neutral-300 font-light">
+                <span className="text-[#856122] dark:text-[#E6C875] font-medium uppercase tracking-wider">
                   BEAJAY COUTURE BRIDAL
                 </span>{' '}
                 — Crafted in Nigeria. Made for Brides Everywhere.
@@ -509,13 +509,13 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
           {step === 3 && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div className="space-y-1">
-                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] uppercase">
+                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] dark:text-[#E6C875] uppercase">
                   STEP 3
                 </span>
-                <h3 className="font-serif text-xl sm:text-2xl text-[#111111]">
+                <h3 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-white">
                   Event & Preferred Dates
                 </h3>
-                <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
                   Provide your target ceremony or intended use dates so our bridal team can review availability and fitting preparation timelines.
                 </p>
               </div>
@@ -523,7 +523,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* 1. Event / Intended Use Date */}
                 <div className="space-y-1.5">
-                  <label htmlFor="rental-event-date" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                  <label htmlFor="rental-event-date" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                     Event / Use Date *
                   </label>
                   <input
@@ -535,8 +535,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                       setFormData({ ...formData, eventDate: e.target.value });
                       setErrors(prev => ({ ...prev, eventDate: '' }));
                     }}
-                    className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                      errors.eventDate ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                    className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#C59B3F] ${
+                      errors.eventDate ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                     }`}
                   />
                   {errors.eventDate && (
@@ -546,7 +546,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
                 {/* 2. Preferred Collection Date */}
                 <div className="space-y-1.5">
-                  <label htmlFor="rental-collection-date" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                  <label htmlFor="rental-collection-date" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                     Preferred Collection *
                   </label>
                   <input
@@ -557,8 +557,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                       setFormData({ ...formData, collectionDate: e.target.value });
                       setErrors(prev => ({ ...prev, collectionDate: '', returnDate: '' }));
                     }}
-                    className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                      errors.collectionDate ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                    className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#C59B3F] ${
+                      errors.collectionDate ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                     }`}
                   />
                   {errors.collectionDate && (
@@ -568,7 +568,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
                 {/* 3. Expected Return Date */}
                 <div className="space-y-1.5">
-                  <label htmlFor="rental-return-date" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                  <label htmlFor="rental-return-date" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                     Expected Return *
                   </label>
                   <input
@@ -579,8 +579,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                       setFormData({ ...formData, returnDate: e.target.value });
                       setErrors(prev => ({ ...prev, returnDate: '', collectionDate: '' }));
                     }}
-                    className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                      errors.returnDate ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                    className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#C59B3F] ${
+                      errors.returnDate ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                     }`}
                   />
                   {errors.returnDate && (
@@ -590,8 +590,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               </div>
 
               {/* Neutral Date Disclaimer */}
-              <div className="p-4 bg-[#FAF7F0] border border-[#EAE4D9] text-xs text-neutral-600 font-light flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-[#856122] shrink-0 mt-0.5" />
+              <div className="p-4 bg-[#FAF7F0] dark:bg-[#1C1B18] border border-[#EAE4D9] dark:border-[#262420] text-xs text-neutral-600 dark:text-neutral-300 font-light flex items-start gap-2.5">
+                <Clock className="w-4 h-4 text-[#856122] dark:text-[#E6C875] shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
                   Submitting preferred dates does not automatically approve or reserve the gown. Gown availability for your specific dates requires manual review and confirmation by BEAJAY COUTURE BRIDAL.
                 </p>
@@ -605,13 +605,13 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
           {step === 4 && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div className="space-y-1">
-                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] uppercase">
+                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] dark:text-[#E6C875] uppercase">
                   STEP 4
                 </span>
-                <h3 className="font-serif text-xl sm:text-2xl text-[#111111]">
+                <h3 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-white">
                   {formData.renterType === 'vendor' ? 'Vendor & Contact Information' : 'Bride / Client Details'}
                 </h3>
-                <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
                   We welcome enquiries from Nigeria and worldwide. Please provide your contact details so our concierge can follow up on your request.
                 </p>
               </div>
@@ -622,7 +622,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                 {formData.renterType === 'vendor' && (
                   <>
                     <div className="space-y-1.5">
-                      <label htmlFor="rental-business-name" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                      <label htmlFor="rental-business-name" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                         Business / Brand Name *
                       </label>
                       <input
@@ -634,8 +634,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                           setFormData({ ...formData, businessName: e.target.value });
                           setErrors(prev => ({ ...prev, businessName: '' }));
                         }}
-                        className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                          errors.businessName ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                        className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F] ${
+                          errors.businessName ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                         }`}
                       />
                       {errors.businessName && (
@@ -644,7 +644,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="rental-contact-person" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                      <label htmlFor="rental-contact-person" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                         Contact Person *
                       </label>
                       <input
@@ -656,8 +656,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                           setFormData({ ...formData, contactPerson: e.target.value });
                           setErrors(prev => ({ ...prev, contactPerson: '' }));
                         }}
-                        className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                          errors.contactPerson ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                        className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F] ${
+                          errors.contactPerson ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                         }`}
                       />
                       {errors.contactPerson && (
@@ -666,7 +666,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                     </div>
 
                     <div className="space-y-1.5 sm:col-span-2">
-                      <label htmlFor="rental-social-handle" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                      <label htmlFor="rental-social-handle" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                         Social Handle / Portfolio (Optional)
                       </label>
                       <input
@@ -675,7 +675,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                         placeholder="@yourbridalbrand or portfolio link"
                         value={formData.socialHandle}
                         onChange={(e) => setFormData({ ...formData, socialHandle: e.target.value })}
-                        className="w-full px-3.5 py-2.5 bg-white border border-[#D5CDBF] text-xs focus:outline-none focus:border-[#C59B3F]"
+                        className="w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border border-[#D5CDBF] dark:border-[#33302B] text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F]"
                       />
                     </div>
                   </>
@@ -684,7 +684,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                 {/* Individual Full Name */}
                 {formData.renterType === 'individual' && (
                   <div className="space-y-1.5 sm:col-span-2">
-                    <label htmlFor="rental-full-name" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                    <label htmlFor="rental-full-name" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                       Full Name *
                     </label>
                     <input
@@ -696,8 +696,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                         setFormData({ ...formData, fullName: e.target.value });
                         setErrors(prev => ({ ...prev, fullName: '' }));
                       }}
-                      className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                        errors.fullName ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                      className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F] ${
+                        errors.fullName ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                       }`}
                     />
                     {errors.fullName && (
@@ -708,7 +708,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
                 {/* Common Fields: Email */}
                 <div className="space-y-1.5">
-                  <label htmlFor="rental-email" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                  <label htmlFor="rental-email" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                     Email Address *
                   </label>
                   <input
@@ -720,8 +720,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                       setFormData({ ...formData, email: e.target.value });
                       setErrors(prev => ({ ...prev, email: '' }));
                     }}
-                    className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                      errors.email ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                    className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F] ${
+                      errors.email ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                     }`}
                   />
                   {errors.email && (
@@ -731,7 +731,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
                 {/* Common Fields: Phone / WhatsApp */}
                 <div className="space-y-1.5">
-                  <label htmlFor="rental-phone" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                  <label htmlFor="rental-phone" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                     Phone / WhatsApp Number *
                   </label>
                   <input
@@ -743,8 +743,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                       setFormData({ ...formData, phone: e.target.value });
                       setErrors(prev => ({ ...prev, phone: '' }));
                     }}
-                    className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                      errors.phone ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                    className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F] ${
+                      errors.phone ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                     }`}
                   />
                   {errors.phone && (
@@ -754,7 +754,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
                 {/* Global Location: Country */}
                 <div className="space-y-1.5">
-                  <label htmlFor="rental-country" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                  <label htmlFor="rental-country" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                     Country *
                   </label>
                   <input
@@ -766,8 +766,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                       setFormData({ ...formData, country: e.target.value });
                       setErrors(prev => ({ ...prev, country: '' }));
                     }}
-                    className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                      errors.country ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                    className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F] ${
+                      errors.country ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                     }`}
                   />
                   {errors.country && (
@@ -777,7 +777,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
                 {/* Global Location: City */}
                 <div className="space-y-1.5">
-                  <label htmlFor="rental-city" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                  <label htmlFor="rental-city" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                     City *
                   </label>
                   <input
@@ -789,8 +789,8 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                       setFormData({ ...formData, city: e.target.value });
                       setErrors(prev => ({ ...prev, city: '' }));
                     }}
-                    className={`w-full px-3.5 py-2.5 bg-white border text-xs focus:outline-none focus:border-[#C59B3F] ${
-                      errors.city ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF]'
+                    className={`w-full px-3.5 py-2.5 bg-white dark:bg-[#1C1B19] border text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F] ${
+                      errors.city ? 'border-rose-400 bg-rose-50/20' : 'border-[#D5CDBF] dark:border-[#33302B]'
                     }`}
                   />
                   {errors.city && (
@@ -808,19 +808,19 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
           {step === 5 && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div className="space-y-1">
-                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] uppercase">
+                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] dark:text-[#E6C875] uppercase">
                   STEP 5
                 </span>
-                <h3 className="font-serif text-xl sm:text-2xl text-[#111111]">
+                <h3 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-white">
                   Additional Information
                 </h3>
-                <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
                   Let us know if you have specific fitting preferences, measurement notes, or ceremony details you would like our stylists to consider.
                 </p>
               </div>
 
               <div className="space-y-1.5">
-                <label htmlFor="rental-notes" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                <label htmlFor="rental-notes" className="block text-[11px] font-semibold tracking-wider uppercase text-neutral-800 dark:text-neutral-200">
                   Optional Notes / Special Requests
                 </label>
                 <textarea
@@ -829,13 +829,13 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   placeholder="e.g. Ceremony venue, fitting date availability, height with heels, or specific veil pairing preferences..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full p-3.5 bg-white border border-[#D5CDBF] text-xs text-neutral-900 focus:outline-none focus:border-[#C59B3F] leading-relaxed"
+                  className="w-full p-3.5 bg-white dark:bg-[#1C1B19] border border-[#D5CDBF] dark:border-[#33302B] text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C59B3F] leading-relaxed"
                 />
               </div>
 
               {/* Minimal rental terms guidance placeholder */}
-              <div className="p-4 bg-[#FAF7F0] border border-[#EAE4D9] text-xs text-neutral-600 font-light space-y-1">
-                <span className="font-semibold text-[#856122] uppercase tracking-wider text-[10.5px] block">
+              <div className="p-4 bg-[#FAF7F0] dark:bg-[#1C1B18] border border-[#EAE4D9] dark:border-[#262420] text-xs text-neutral-600 dark:text-neutral-300 font-light space-y-1">
+                <span className="font-semibold text-[#856122] dark:text-[#E6C875] uppercase tracking-wider text-[10.5px] block">
                   RENTAL TERMS & CARE
                 </span>
                 <p>
@@ -851,18 +851,18 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
           {step === 6 && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div className="space-y-1">
-                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] uppercase">
+                <span className="text-[10px] tracking-[0.2em] font-semibold text-[#856122] dark:text-[#E6C875] uppercase">
                   STEP 6
                 </span>
-                <h3 className="font-serif text-xl sm:text-2xl text-[#111111]">
+                <h3 className="font-serif text-xl sm:text-2xl text-[#111111] dark:text-white">
                   Review Your Request
                 </h3>
-                <p className="text-xs text-neutral-600 font-light leading-relaxed">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
                   Please review the summary below before submitting. You can click Edit on any section to make adjustments.
                 </p>
               </div>
 
-              <div className="bg-white border border-[#EAE3D5] divide-y divide-[#EAE3D5] text-xs">
+              <div className="bg-white dark:bg-[#1A1917] border border-[#EAE3D5] dark:border-[#2C2925] divide-y divide-[#EAE3D5] dark:divide-[#2C2925] text-xs">
                 
                 {/* 1. Gown */}
                 <div className="p-4 flex items-start justify-between gap-4">
@@ -875,15 +875,15 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                           alt={selectedGown.name}
                           loading="lazy"
                           decoding="async"
-                          className="w-12 h-16 object-cover object-top border border-[#E2DAD0]"
+                          className="w-12 h-16 object-cover object-top border border-[#E2DAD0] dark:border-[#33302B]"
                         />
                       );
                     })()}
                     <div>
-                      <span className="text-[9.5px] font-semibold tracking-wider text-[#856122] uppercase block">
+                      <span className="text-[9.5px] font-semibold tracking-wider text-[#856122] dark:text-[#E6C875] uppercase block">
                         {selectedGown.code} • {selectedGown.categoryLabel}
                       </span>
-                      <h4 className="font-serif text-sm text-[#111111] font-medium">
+                      <h4 className="font-serif text-sm text-[#111111] dark:text-white font-medium">
                         {selectedGown.name}
                       </h4>
                     </div>
@@ -891,7 +891,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="inline-flex items-center gap-1 text-[11px] text-[#856122] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#856122] dark:text-[#E6C875] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
                   >
                     <Edit3 className="w-3 h-3" />
                     <span>Edit</span>
@@ -901,17 +901,17 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                 {/* 2. Renter Type */}
                 <div className="p-4 flex items-center justify-between gap-4">
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block">
                       Renter Profile
                     </span>
-                    <span className="font-medium text-neutral-900">
+                    <span className="font-medium text-neutral-900 dark:text-white">
                       {formData.renterType === 'vendor' ? 'Bridal Vendor / Business' : 'Individual / Bride'}
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setStep(2)}
-                    className="inline-flex items-center gap-1 text-[11px] text-[#856122] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#856122] dark:text-[#E6C875] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
                   >
                     <Edit3 className="w-3 h-3" />
                     <span>Edit</span>
@@ -921,20 +921,20 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                 {/* 3. Dates */}
                 <div className="p-4 flex items-start justify-between gap-4">
                   <div className="space-y-1">
-                    <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block">
                       Requested Dates
                     </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-neutral-800">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-neutral-800 dark:text-neutral-200">
                       <div>
-                        <span className="text-neutral-500 block text-[10px]">Event Date:</span>
+                        <span className="text-neutral-500 dark:text-neutral-400 block text-[10px]">Event Date:</span>
                         <span className="font-medium">{formData.eventDate || '—'}</span>
                       </div>
                       <div>
-                        <span className="text-neutral-500 block text-[10px]">Collection:</span>
+                        <span className="text-neutral-500 dark:text-neutral-400 block text-[10px]">Collection:</span>
                         <span className="font-medium">{formData.collectionDate || '—'}</span>
                       </div>
                       <div>
-                        <span className="text-neutral-500 block text-[10px]">Return:</span>
+                        <span className="text-neutral-500 dark:text-neutral-400 block text-[10px]">Return:</span>
                         <span className="font-medium">{formData.returnDate || '—'}</span>
                       </div>
                     </div>
@@ -942,7 +942,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setStep(3)}
-                    className="inline-flex items-center gap-1 text-[11px] text-[#856122] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#856122] dark:text-[#E6C875] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
                   >
                     <Edit3 className="w-3 h-3" />
                     <span>Edit</span>
@@ -952,10 +952,10 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                 {/* 4. Contact & Location */}
                 <div className="p-4 flex items-start justify-between gap-4">
                   <div className="space-y-1">
-                    <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block">
                       Contact & Destination
                     </span>
-                    <div className="text-neutral-900 font-medium">
+                    <div className="text-neutral-900 dark:text-white font-medium">
                       {formData.renterType === 'vendor' ? (
                         <>
                           {formData.businessName} (Attn: {formData.contactPerson})
@@ -964,10 +964,10 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                         formData.fullName
                       )}
                     </div>
-                    <div className="text-neutral-600 font-light text-[11px]">
+                    <div className="text-neutral-600 dark:text-neutral-300 font-light text-[11px]">
                       {formData.email} • {formData.phone}
                     </div>
-                    <div className="text-neutral-600 font-light text-[11px] flex items-center gap-1">
+                    <div className="text-neutral-600 dark:text-neutral-300 font-light text-[11px] flex items-center gap-1">
                       <MapPin className="w-3 h-3 text-[#C59B3F]" />
                       <span>{formData.city}, {formData.country}</span>
                     </div>
@@ -975,7 +975,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setStep(4)}
-                    className="inline-flex items-center gap-1 text-[11px] text-[#856122] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#856122] dark:text-[#E6C875] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
                   >
                     <Edit3 className="w-3 h-3" />
                     <span>Edit</span>
@@ -986,17 +986,17 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                 {formData.notes && (
                   <div className="p-4 flex items-start justify-between gap-4">
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider text-neutral-500 block">
+                      <span className="text-[10px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block">
                         Special Requests
                       </span>
-                      <p className="text-neutral-700 font-light italic mt-0.5 leading-relaxed">
+                      <p className="text-neutral-700 dark:text-neutral-300 font-light italic mt-0.5 leading-relaxed">
                         "{formData.notes}"
                       </p>
                     </div>
                     <button
                       type="button"
                       onClick={() => setStep(5)}
-                      className="inline-flex items-center gap-1 text-[11px] text-[#856122] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
+                      className="inline-flex items-center gap-1 text-[11px] text-[#856122] dark:text-[#E6C875] hover:underline uppercase tracking-wider font-semibold cursor-pointer"
                     >
                       <Edit3 className="w-3 h-3" />
                       <span>Edit</span>
@@ -1006,7 +1006,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
               </div>
 
-              <div className="p-4 bg-[#FAF7F0] border border-[#EAE4D9] text-xs text-neutral-600 font-light text-center">
+              <div className="p-4 bg-[#FAF7F0] dark:bg-[#1C1B18] border border-[#EAE4D9] dark:border-[#262420] text-xs text-neutral-600 dark:text-neutral-300 font-light text-center">
                 Submitting this request will prepare your preferred dates and details for BEAJAY review.
               </div>
             </div>
@@ -1016,46 +1016,46 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               STEP 7: RENTAL REQUEST PREPARED (Confirmation)
               ======================================================= */}
           {step === 7 && (
-            <div className="bg-white border border-[#E5DEC9] p-6 sm:p-10 text-center space-y-6 shadow-xs animate-in zoom-in-95 duration-200">
-              <div className="w-16 h-16 bg-[#FAF5E8] border border-[#C59B3F] rounded-full flex items-center justify-center mx-auto text-[#C59B3F]">
+            <div className="bg-white dark:bg-[#1A1917] border border-[#E5DEC9] dark:border-[#2C2925] p-6 sm:p-10 text-center space-y-6 shadow-xs animate-in zoom-in-95 duration-200">
+              <div className="w-16 h-16 bg-[#FAF5E8] dark:bg-[#252015] border border-[#C59B3F] rounded-full flex items-center justify-center mx-auto text-[#C59B3F]">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
 
               <div className="space-y-2">
-                <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] uppercase">
+                <span className="text-[10px] tracking-[0.28em] font-semibold text-[#856122] dark:text-[#E6C875] uppercase">
                   BEAJAY COUTURE BRIDAL
                 </span>
-                <h3 className="font-serif text-2xl sm:text-3xl text-[#111111]">
+                <h3 className="font-serif text-2xl sm:text-3xl text-[#111111] dark:text-white">
                   RENTAL REQUEST PREPARED
                 </h3>
               </div>
 
-              <p className="text-xs sm:text-sm text-neutral-600 max-w-md mx-auto font-light leading-relaxed">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 max-w-md mx-auto font-light leading-relaxed">
                 Online rental request submission will be available soon. You can contact BEAJAY via WhatsApp for rental availability.
               </p>
 
               {/* Prepared Summary Card */}
-              <div className="bg-[#FAF7F0] border border-[#E8E0CF] p-4 sm:p-5 text-left max-w-lg mx-auto space-y-2.5 text-xs">
-                <div className="text-[10px] font-semibold tracking-wider text-[#856122] uppercase border-b border-[#E8E0CF] pb-1.5 flex items-center justify-between">
+              <div className="bg-[#FAF7F0] dark:bg-[#151413] border border-[#E8E0CF] dark:border-[#2C2925] p-4 sm:p-5 text-left max-w-lg mx-auto space-y-2.5 text-xs">
+                <div className="text-[10px] font-semibold tracking-wider text-[#856122] dark:text-[#E6C875] uppercase border-b border-[#E8E0CF] dark:border-[#2C2925] pb-1.5 flex items-center justify-between">
                   <span>Prepared Request Summary</span>
-                  <span className="font-normal text-neutral-500 lowercase">{formData.renterType === 'vendor' ? 'Bridal Vendor' : 'Individual'}</span>
+                  <span className="font-normal text-neutral-500 dark:text-neutral-400 lowercase">{formData.renterType === 'vendor' ? 'Bridal Vendor' : 'Individual'}</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-neutral-700">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-neutral-700 dark:text-neutral-300">
                   <div>
-                    <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Selected Gown</span>
-                    <span className="font-serif text-neutral-900 font-medium">{selectedGown.name} ({selectedGown.code})</span>
+                    <span className="text-[10px] text-neutral-400 dark:text-neutral-500 uppercase tracking-wider block">Selected Gown</span>
+                    <span className="font-serif text-neutral-900 dark:text-white font-medium">{selectedGown.name} ({selectedGown.code})</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Renter</span>
-                    <span className="text-neutral-900">{formData.renterType === 'vendor' ? (formData.businessName || formData.fullName) : formData.fullName}</span>
+                    <span className="text-[10px] text-neutral-400 dark:text-neutral-500 uppercase tracking-wider block">Renter</span>
+                    <span className="text-neutral-900 dark:text-white">{formData.renterType === 'vendor' ? (formData.businessName || formData.fullName) : formData.fullName}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Event Date</span>
-                    <span className="text-neutral-900">{formData.eventDate || 'Not specified'}</span>
+                    <span className="text-[10px] text-neutral-400 dark:text-neutral-500 uppercase tracking-wider block">Event Date</span>
+                    <span className="text-neutral-900 dark:text-white">{formData.eventDate || 'Not specified'}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Location</span>
-                    <span className="text-neutral-900">{formData.city ? `${formData.city}, ${formData.country}` : formData.country}</span>
+                    <span className="text-[10px] text-neutral-400 dark:text-neutral-500 uppercase tracking-wider block">Location</span>
+                    <span className="text-neutral-900 dark:text-white">{formData.city ? `${formData.city}, ${formData.country}` : formData.country}</span>
                   </div>
                 </div>
               </div>
@@ -1082,7 +1082,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
                       onClose();
                       onExploreCollections();
                     }}
-                    className="w-full sm:w-auto bg-[#111111] hover:bg-[#252422] text-white px-5 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
+                    className="w-full sm:w-auto bg-[#111111] dark:bg-[#252320] hover:bg-[#252422] dark:hover:bg-[#33302B] text-white px-5 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
                   >
                     EXPLORE ALL COLLECTIONS
                   </button>
@@ -1090,13 +1090,13 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
                 <button
                   onClick={onClose}
-                  className="w-full sm:w-auto bg-white hover:bg-[#FAF7F0] text-neutral-800 border border-[#D5CDBF] px-5 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
+                  className="w-full sm:w-auto bg-white dark:bg-[#22201D] hover:bg-[#FAF7F0] dark:hover:bg-[#2C2925] text-neutral-800 dark:text-neutral-200 border border-[#D5CDBF] dark:border-[#38342E] px-5 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
                 >
                   CLOSE
                 </button>
               </div>
 
-              <div className="pt-2 text-[11px] text-neutral-400 font-light">
+              <div className="pt-2 text-[11px] text-neutral-400 dark:text-neutral-500 font-light">
                 Crafted in Nigeria. Made for Brides Everywhere.
               </div>
             </div>
@@ -1106,12 +1106,12 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
 
         {/* Modal Footer Controls (Steps 1 to 6) */}
         {step <= 6 && (
-          <div className="p-4 sm:p-5 border-t border-[#EAE3D5] bg-white flex items-center justify-between gap-3 shrink-0">
+          <div className="p-4 sm:p-5 border-t border-[#EAE3D5] dark:border-[#262420] bg-white dark:bg-[#181716] flex items-center justify-between gap-3 shrink-0">
             {step > 1 ? (
               <button
                 type="button"
                 onClick={handleBack}
-                className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-neutral-700 hover:text-neutral-900 cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back</span>
@@ -1120,7 +1120,7 @@ export const RentalsModal: React.FC<RentalsModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2.5 text-xs font-medium uppercase tracking-wider text-neutral-500 hover:text-neutral-800 cursor-pointer"
+                className="px-4 py-2.5 text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 cursor-pointer"
               >
                 Cancel
               </button>
